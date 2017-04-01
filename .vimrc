@@ -12,6 +12,8 @@ if &compatible
 
 " ##### Plaginlist #####
 call dein#add('Shougo/neocomplete.vim') " 補完
+call dein#add('Shougo/neosnippet') "スニペット
+call dein#add('Shougo/neosnippet-snippets') "スニペットの定義ファイル
 call dein#add('Townk/vim-autoclose') " カッコを自動で閉じる
 call dein#add('w0ng/vim-hybrid') " カラースキーム
 call dein#add('Shougo/unite.vim') "カレントディレクトリ以下にあるファイルの一覧を開く
@@ -33,7 +35,7 @@ call dein#add('vim-scripts/javacomplete', {
             \       'mac': 'javac autoload/Reflection.java',
             \       'unix': 'javac autoload/Reflection.java',
             \   },
-            \}) "java補完
+            \}) "java補完(javacomplete2の方が良さそう?)
 
 " 設定終了
         call dein#end()
@@ -128,4 +130,3 @@ set history=5000 " 保存するコマンド履歴の数
 syntax on "色付けオン
 set background=dark
 colorscheme hybrid
-
