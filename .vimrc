@@ -1,11 +1,89 @@
+"##### Plugin ##### 
+if &compatible
+  set nocompatible
+  endif
+
+" dein.vim がなければ github から落としてくる
+  set runtimepath+=/Users/zip/.cache/dein/repos/github.com/Shougo/dein.vim
+
+" 設定開始
+  if dein#load_state('/Users/zip/.cache/dein')
+    call dein#begin('/Users/zip/.cache/dein') "プラグインを管理する一番上のディレクトリ
+
+" ##### Plaginlist #####
+call dein#add('Shougo/neocomplete.vim') " 補完
+call dein#add('Townk/vim-autoclose') " カッコを自動で閉じる
+call dein#add('w0ng/vim-hybrid') " カラースキーム
+call dein#add('Shougo/unite.vim') "カレントディレクトリ以下にあるファイルの一覧を開く
+call dein#add('Shougo/neomru.vim') "unit.vimで最近使ったファイルを表示できるようにする
+call dein#add('itchyny/lightline.vim') "ステータスバーをオシャレに
+call dein#add('thinca/vim-quickrun') "vim上で\rでコードを実行
+call dein#add('Shougo/vimproc', {
+     \ 'build' : {
+     \ 'windows' : 'make -f make_mingw32.mak',
+     \ 'cygwin' : 'make -f make_cygwin.mak',
+     \ 'mac' : 'make -f make_mac.mak',
+     \ 'unix' : 'make -f make_unix.mak',
+     \ },
+     \ }) "非同期処理
+
+call dein#add('vim-scripts/javacomplete', {
+            \   'build': {
+            \       'cygwin': 'javac autoload/Reflection.java',
+            \       'mac': 'javac autoload/Reflection.java',
+            \       'unix': 'javac autoload/Reflection.java',
+            \   },
+            \}) "java補完
+
+" 設定終了
+        call dein#end()
+        call dein#save_state()
+        endif
+        filetype plugin indent on
+" 未インストールのものがあったらインストール
+        if dein#check_install()
+        call dein#install()
+    endif
+
+"##### Uniteの設定 ######    
+" 入力モードで開始する
+let g:unite_enable_start_insert=1
+" バッファ一覧
+noremap <C-P> :Unite buffer<CR>
+" ファイル一覧
+noremap <C-N> :Unite -buffer-name=file file<CR>
+" 最近使ったファイルの一覧
+noremap <C-Z> :Unite file_mru<CR>
+" sourcesを「今開いているファイルのディレクトリ」とする
+noremap :uff :<C-u>UniteWithBufferDir file -buffer-name=file<CR>
+
+au FileType unite nnoremap <silent> <buffer> <expr> <C-J> unite#do_action('split')
+au FileType unite inoremap <silent> <buffer> <expr> <C-J> unite#do_action('split')
+" ウィンドウを縦に分割して開く
+au FileType unite nnoremap <silent> <buffer> <expr> <C-K> unite#do_action('vsplit')
+au FileType unite inoremap <silent> <buffer> <expr> <C-K> unite#do_action('vsplit')
+" ESCキーを2回押すと終了する
+au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
+au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
+
+"##### lightlineの設定 #####
+set laststatus=2
+set t_Co=256
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'component': {
+      \   'readonly': '%{&readonly?"\u2b64":""}',
+      \ }
+      \ }
+
 "##### 基本設定 #####
 set encoding=utf-8 "ファイル読み込み時の文字コードの設定
 scriptencoding utf-8 "Vim script内でマルチバイト文字を使う場合の設定
 set fenc=utf-8 "文字コードをUFT-8に設定
 set title "編集中のファイル名を表示
 set showmatch "括弧に対応する括弧を表示
-syntax on "色付けオン
 set mouse=a "マウスモードオン
+inoremap <silent> jj <ESC> "インサートモードで素早くjjと入力するとノーマルモードへ移行
 
 "##### 文字コード #####
 set fileencoding=utf-8 " 保存時の文字コード
@@ -33,7 +111,6 @@ nnoremap <silent><Esc><Esc> :<C-u>set nohlsearch!<CR>
 set whichwrap=b,s,h,l,<,>,[,],~ " カーソルの左右移動で行末から次の行の行頭への移動が可能になる
 set number " 行番号を表示
 set cursorline " カーソルラインをハイライト
-
 " 行が折り返し表示されていた場合、行単位ではなく表示行単位でカーソルを移動する
 nnoremap j gj
 nnoremap k gk
@@ -47,4 +124,8 @@ set backspace=indent,eol,start
 set wildmenu " コマンドモードの補完
 set history=5000 " 保存するコマンド履歴の数
 
+"##### 色設定#####
+syntax on "色付けオン
+set background=dark
+colorscheme hybrid
 

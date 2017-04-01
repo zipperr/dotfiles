@@ -13,6 +13,7 @@ alias ....='cd ../../..'
 setopt correct           # コマンドのスペルを訂正する
 setopt prompt_subst      # プロンプト定義内で変数置換やコマンド置換を扱う
 setopt notify            # バックグラウンドジョブの状態変化を即時報告する
+export TERM=xterm-256color #色
 
 ##### 補完機能 #####
 autoload -U compinit; compinit # 補完機能を有効にする
