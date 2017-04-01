@@ -20,6 +20,7 @@ call dein#add('Shougo/unite.vim') "カレントディレクトリ以下にある
 call dein#add('Shougo/neomru.vim') "unit.vimで最近使ったファイルを表示できるようにする
 call dein#add('itchyny/lightline.vim') "ステータスバーをオシャレに
 call dein#add('thinca/vim-quickrun') "vim上で\rでコードを実行
+call dein#add('scrooloose/nerdtree') ":NERDTreeでツリー型でディレクトリ表示
 call dein#add('Shougo/vimproc', {
      \ 'build' : {
      \ 'windows' : 'make -f make_mingw32.mak',
@@ -78,6 +79,9 @@ let g:lightline = {
       \ }
       \ }
 
+"##### NERDTreeの設定 #####
+nnoremap <silent><C-e> :NERDTreeToggle<CR> "Ctrl+eでNERDTreeを開く
+
 "##### 基本設定 #####
 set encoding=utf-8 "ファイル読み込み時の文字コードの設定
 scriptencoding utf-8 "Vim script内でマルチバイト文字を使う場合の設定
@@ -119,8 +123,8 @@ nnoremap k gk
 nnoremap <down> gj
 nnoremap <up> gk
 
-" バックスペースキーの有効化
-set backspace=indent,eol,start
+set backspace=indent,eol,start " バックスペースキーの有効化
+
 
 "##### 補完機能 #####
 set wildmenu " コマンドモードの補完
