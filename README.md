@@ -5,5 +5,5 @@
 4.cd ~/dotfiles  
 5../setup.sh  
 6.mkdir ~/.cache/dein  
-7.curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh 
+7.curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh   
 8.sh ./installer.sh ~/.cache/dein  
