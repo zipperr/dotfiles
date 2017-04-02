@@ -12,15 +12,17 @@ if &compatible
 
 " ##### Plaginlist #####
 call dein#add('Shougo/neocomplete.vim') " 補完
-call dein#add('Shougo/neosnippet') "スニペット
+call dein#add('Shougo/neosnippet')      "スニペット
 call dein#add('Shougo/neosnippet-snippets') "スニペットの定義ファイル
-call dein#add('Townk/vim-autoclose') " カッコを自動で閉じる
-call dein#add('w0ng/vim-hybrid') " カラースキーム
-call dein#add('Shougo/unite.vim') "カレントディレクトリ以下にあるファイルの一覧を開く
-call dein#add('Shougo/neomru.vim') "unit.vimで最近使ったファイルを表示できるようにする
-call dein#add('itchyny/lightline.vim') "ステータスバーをオシャレに
-call dein#add('thinca/vim-quickrun') "vim上で\rでコードを実行
-call dein#add('scrooloose/nerdtree') ":NERDTreeでツリー型でディレクトリ表示
+call dein#add('Townk/vim-autoclose')    " カッコを自動で閉じる
+call dein#add('w0ng/vim-hybrid')        " カラースキーム
+call dein#add('Shougo/unite.vim')       "カレントディレクトリ以下にあるファイルの一覧を開く
+call dein#add('Shougo/neomru.vim')      "unit.vimで最近使ったファイルを表示できるようにする
+call dein#add('itchyny/lightline.vim')  "ステータスバーをオシャレに
+call dein#add('thinca/vim-quickrun')    "vim上で\rでコードを実行
+call dein#add('tyru/open-browser.vim')  "URLをクリックで開けるようにする
+call dein#add('scrooloose/nerdtree')    "ツリー型でディレクトリ表示
+call dein#add('tpope/vim-fugitive')     "vim上でGitを操作する
 call dein#add('Shougo/vimproc', {
      \ 'build' : {
      \ 'windows' : 'make -f make_mingw32.mak',
@@ -70,8 +72,8 @@ au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 
 "##### lightlineの設定 #####
-set laststatus=2
-set t_Co=256
+set laststatus=2 "ステータスラインを常時表示
+set t_Co=256 "色
 let g:lightline = {
       \ 'colorscheme': 'wombat',
       \ 'component': {
@@ -81,6 +83,12 @@ let g:lightline = {
 
 "##### NERDTreeの設定 #####
 nnoremap <silent><C-e> :NERDTreeToggle<CR> "Ctrl+eでNERDTreeを開く
+let NERDTreeShowHidden = 1 "可視化ファイルを表示する
+
+"##### Open-Browser設定 #####
+" カーソル下のURLや単語をブラウザで開く
+nmap <Leader>b <Plug>(openbrowser-smart-search)
+vmap <Leader>b <Plug>(openbrowser-smart-search)
 
 "##### 基本設定 #####
 set encoding=utf-8 "ファイル読み込み時の文字コードの設定
@@ -122,9 +130,7 @@ nnoremap j gj
 nnoremap k gk
 nnoremap <down> gj
 nnoremap <up> gk
-
 set backspace=indent,eol,start " バックスペースキーの有効化
-
 
 "##### 補完機能 #####
 set wildmenu " コマンドモードの補完
