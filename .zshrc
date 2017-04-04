@@ -4,20 +4,20 @@ export LANG=ja_JP.UTF-8  # 文字コードをUTF-8に設定
 export KCODE=u           # KCODEにUTF-8を設定
 export AUTOFEATURE=true  # autotestでfeatureを動かす
 bindkey -v               # キーバインドをviモードに設定
+setopt print_eight_bit   #日本語名ファイルを表示可
 setopt no_beep           # ビープ音を鳴らさないようにする
 setopt no_hist_beep      # ビープ音を鳴らさないようにする
 setopt no_list_beep      # ビープ音を鳴らさないようにする
-setopt auto_cd           # ディレクトリ名の入力のみで移動する 
+setopt auto_cd           # ディレクトリ名の入力のみで移動する
 alias ...='cd ../..'
 alias ....='cd ../../..'
 setopt correct           # コマンドのスペルを訂正する
 setopt prompt_subst      # プロンプト定義内で変数置換やコマンド置換を扱う
-setopt print_eight_bit　 # 日本語ファイル名を表示可能にする
 setopt notify            # バックグラウンドジョブの状態変化を即時報告する
 export TERM=xterm-256color #256色使う。(vimのlightline作動にも使います)
 
 ##### 補完機能 ####
-autoload -U compinit           # 補完機能を有効にする 
+autoload -U compinit           # 補完機能を有効にする
 compinit -u                    # セキュリティ警告を表示しない
 setopt auto_list               # 補完候補を一覧で表示する
 setopt auto_menu               # 補完キー連打で補完候補を順に表示する

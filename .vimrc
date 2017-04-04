@@ -1,4 +1,4 @@
-"##### Plugin ##### 
+"##### Plugin #####
 if &compatible
   set nocompatible
   endif
@@ -50,7 +50,7 @@ call dein#add('vim-scripts/javacomplete', {
         call dein#install()
     endif
 
-"##### Uniteの設定 ######    
+"##### Uniteの設定 ######
 " 入力モードで開始する
 let g:unite_enable_start_insert=1
 " バッファ一覧
@@ -99,6 +99,7 @@ set showmatch "括弧に対応する括弧を表示
 set mouse=a "マウスモードオン
 inoremap <silent> jj <ESC> "インサートモードで素早くjjと入力するとノーマルモードへ移行
 autocmd BufWritePre * :%s/\s\+$//ge "末尾の空白を消す
+set clipboard=unnamed,autoselect "ヤンクした文をクリップボードへコピー
 
 "##### 文字コード #####
 set fileencoding=utf-8 " 保存時の文字コード
