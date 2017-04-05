@@ -97,9 +97,12 @@ set fenc=utf-8 "文字コードをUFT-8に設定
 set title "編集中のファイル名を表示
 set showmatch "括弧に対応する括弧を表示
 set mouse=a "マウスモードオン
-inoremap <silent> jj <ESC> "インサートモードで素早くjjと入力するとノーマルモードへ移行
+inoremap <silent> jj <ESC>          "インサートモードで素早くjjと入力するとノーマルモードへ移行
 autocmd BufWritePre * :%s/\s\+$//ge "末尾の空白を消す
 set clipboard=unnamed,autoselect "ヤンクした文をクリップボードへコピー
+set nobackup                     " バックアップをしない
+set noswapfile                   " スワップファイルを作らない
+autocmd FileType * setlocal formatoptions-=ro " 勝手にコメントアウトされるのを防ぐ "
 
 "##### 文字コード #####
 set fileencoding=utf-8 " 保存時の文字コード
@@ -130,8 +133,12 @@ set cursorline " カーソルラインをハイライト
 " 行が折り返し表示されていた場合、行単位ではなく表示行単位でカーソルを移動する
 nnoremap j gj
 nnoremap k gk
+vnoremap j gj
+vnoremap k gk
 nnoremap <down> gj
 nnoremap <up> gk
+vnoremap <down> gj
+vnoremap <up> gk
 set backspace=indent,eol,start " バックスペースキーの有効化
 
 "##### 補完機能 #####
