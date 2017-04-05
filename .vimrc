@@ -102,7 +102,7 @@ autocmd BufWritePre * :%s/\s\+$//ge "末尾の空白を消す
 set clipboard=unnamed,autoselect "ヤンクした文をクリップボードへコピー
 set nobackup                     " バックアップをしない
 set noswapfile                   " スワップファイルを作らない
-autocmd FileType * setlocal formatoptions-=ro " 勝手にコメントアウトされるのを防ぐ "
+autocmd FileType * setlocal formatoptions-=ro " 勝手にコメントアウトされるのを防ぐ
 
 "##### 文字コード #####
 set fileencoding=utf-8 " 保存時の文字コード
