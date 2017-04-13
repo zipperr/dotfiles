@@ -15,7 +15,7 @@ sudo vi /etc/shells
 chpass -s /usr/local/bin/zsh
 
 ##  Linux
-sudo apt-get install zsh vim git mono ruby perl python mysql tomcat irssi screenfetch wget curl
-chsh -s /bin/zsh
+sudo apt-get install zsh vim git mono ruby perl python mysql tomcat irssi screenfetch wget curl  
+chsh -s /bin/zsh  
 
 ##  Windows
