@@ -20,6 +20,6 @@ chsh -s /bin/zsh
 
 ##Windows
 =======
-4. ~/dotfiles/setup.sh  # if windows use this > setup.bat  
-5. vi  
+4. ~/dotfiles/setup.sh  # if windows use this > setup.bat
+5. vi
 >>>>>>> 08bb6368e93be7ce303aaf177adba945e0b101d1
