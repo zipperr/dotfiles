@@ -16,6 +16,7 @@ setopt prompt_subst      # プロンプト定義内で変数置換やコマン�
 setopt notify            # バックグラウンドジョブの状態変化を即時報告する
 export TERM=xterm-256color #256色使う。(vimのlightline作動にも使います)
 autoload -U colors && colors
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"  #caskでインストールしたアプリをApplicationsへ
 
 ##### 補完機能 ####
 autoload -U compinit           # 補完機能を有効にする
