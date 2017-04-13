@@ -5,13 +5,13 @@
 4. ~/dotfiles/setup.sh  # if windows use this > setup.bat
 5. sudo vim
 
-## Mac OSX
-xcode-select --install
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-brew tap Homebrew/bundle
-brew bundle
-sudo vi /etc/shells
-chpass -s /usr/local/bin/zsh
+## Mac OSX  
+xcode-select --install  
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"  
+brew tap Homebrew/bundle  
+brew bundle  
+sudo vi /etc/shells  
+chpass -s /usr/local/bin/zsh  
 
 ##  Linux
 sudo apt-get install zsh vim git mono ruby perl python mysql tomcat irssi screenfetch wget curl  
