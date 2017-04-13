@@ -12,20 +12,15 @@ if &runtimepath !~# '/dein.vim'
     execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
     endif
 
-if &compatible
-  set nocompatible
-endif
-set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
-
 "設定開始
 if dein#load_state(s:dein_dir)
-call dein#begin(s:dein_dir)
+  call dein#begin(s:dein_dir)
 
 "##### PluginList #####
 call dein#add('Shougo/dein.vim')        "プラグイン管理
 call dein#add('Shougo/neocomplete.vim') " 補完
-"call dein#add('Shougo/neosnippet')      "スニペット
-"call dein#add('Shougo/neosnippet-snippets') "スニペットの定義ファイル
+call dein#add('Shougo/neosnippet.vim')      "スニペット
+call dein#add('Shougo/neosnippet-snippets') "スニペットの定義ファイル
 call dein#add('Townk/vim-autoclose')    " カッコを自動で閉じる
 call dein#add('w0ng/vim-hybrid')        " カラースキーム
 call dein#add('Shougo/unite.vim')       "カレントディレクトリ以下にあるファイルの一覧を開く
@@ -76,6 +71,30 @@ au FileType unite inoremap <silent> <buffer> <expr> <C-K> unite#do_action('vspli
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 
+"##### Neosnippetの設定 #####
+" Plugin key-mappings.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+" SuperTab like snippets behavior.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+"imap <expr><TAB>
+" \ pumvisible() ? "\<C-n>" :
+" \ neosnippet#expandable_or_jumpable() ?
+" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+" For conceal markers.
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
+"set snippet file dir
+let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet-snippets/snippets/,~/.vim/snippets'
+
 "##### lightlineの設定 #####
 set laststatus=2 "ステータスラインを常時表示
 set t_Co=256 "色
@@ -119,6 +138,7 @@ set clipboard=unnamed,autoselect "ヤンクした文をクリップボードへ�
 set nobackup                     " バックアップをしない
 set noswapfile                   " スワップファイルを作らない
 autocmd FileType * setlocal formatoptions-=ro " 勝手にコメントアウトされるのを防ぐ
+set nocompatible                "これいる?
 
 "##### 文字コード #####
 set fileencoding=utf-8 " 保存時の文字コード
