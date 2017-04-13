@@ -1,2 +1,0 @@
-100
-['Shougo/dein.vim', 'Shougo/neocomplete.vim', 'Shougo/neomru.vim', 'Shougo/unite.vim', 'Shougo/vimproc.vim', 'Townk/vim-autoclose', 'itchyny/lightline.vim', 'scrooloose/nerdtree', 'thinca/vim-quickrun', 'tpope/vim-fugitive', 'tyru/open-browser.vim', 'vim-scripts/javacomplete', 'vim-syntastic/syntastic', 'w0ng/vim-hybrid']
