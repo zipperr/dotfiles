@@ -4,8 +4,10 @@ if &compatible
 endif
 set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
 
+
 "設定開始
 if dein#load_state(expand('~/.vim/dein'))
+"プラグインが実際にインストールされるディレクトリ
 call dein#begin(expand('~/.vim/dein'))
 
 "##### PluginList #####
@@ -31,7 +33,6 @@ call dein#add('vim-scripts/javacomplete', {
             \       'unix': 'javac autoload/Reflection.java',
             \   },
             \}) "java補完(javacomplete2の方が良さそう?)
-
 
     " 設定終了
     call dein#end()
@@ -121,7 +122,7 @@ set softtabstop=4 " 連続した空白に対してタブキーやBSKeyでカー�
 set autoindent " 改行時に前の行のインデントを継続する
 set smartindent " 改行時に前の行の構文をチェックし次の行のインデントを増減する
 set shiftwidth=4 " smartindentで増減する幅
-"クリップボードからだとインデントしない
+"クリップボードからのコピペをインデントしない
 if &term =~ "xterm"
     let &t_SI .= "\e[?2004h"
     let &t_EI .= "\e[?2004l"
