@@ -1,14 +1,25 @@
 "##### Plugin #####
+
+"プラグインの場所とdein.vim本体の場所
+let s:dein_dir = expand('~/.vim/dein')
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+
+"dein.vimが無ければインストールする
+if &runtimepath !~# '/dein.vim'
+    if !isdirectory(s:dein_repo_dir)
+    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+    endif
+    execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
+    endif
+
 if &compatible
   set nocompatible
 endif
 set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
 
-
 "設定開始
-if dein#load_state(expand('~/.vim/dein'))
-"プラグインが実際にインストールされるディレクトリ
-call dein#begin(expand('~/.vim/dein'))
+if dein#load_state(s:dein_dir)
+call dein#begin(s:dein_dir)
 
 "##### PluginList #####
 call dein#add('Shougo/dein.vim')        "プラグイン管理
@@ -122,6 +133,7 @@ set softtabstop=4 " 連続した空白に対してタブキーやBSKeyでカー�
 set autoindent " 改行時に前の行のインデントを継続する
 set smartindent " 改行時に前の行の構文をチェックし次の行のインデントを増減する
 set shiftwidth=4 " smartindentで増減する幅
+
 "クリップボードからのコピペをインデントしない
 if &term =~ "xterm"
     let &t_SI .= "\e[?2004h"
