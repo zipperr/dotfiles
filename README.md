@@ -20,4 +20,3 @@ chsh -s /bin/zsh
 ##  Windows
 c:\cygwin\setup.exe -q -d -D -L -s http://ftp.jaist.ac.jp/pub/cygwin/ -l "%USERPROFILE%\.cygwin" -R  
 c:\cygwin -P git,vim,wget,zsh    
-chsh -s /bin/zsh  
