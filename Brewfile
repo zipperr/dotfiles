@@ -15,9 +15,12 @@ brew 'perl'
 brew 'ruby'
 brew 'wget'
 brew 'zsh'
+brew 'ricty'
 
 cask 'google-chrome'
 cask 'google-japanese-ime'
 cask 'iterm2'
 cask 'firefox'
 cask 'skype'
+cask 'torbrowser'
+
