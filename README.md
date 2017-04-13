@@ -14,12 +14,16 @@ brew bundle
 sudo vi /etc/shells
 chpass -s /usr/local/bin/zsh
 
-##Linux
-sudo apt-get install zsh vim git mono ruby perl python mysql tomcat irssi screenfetch wget curl
-chsh -s /bin/zsh
+##  Linux
+sudo apt-get install zsh vim git mono ruby perl python mysql tomcat irssi screenfetch wget curl  
+chsh -s /bin/zsh  
 
+<<<<<<< HEAD
 ##Windows
 =======
 4. ~/dotfiles/setup.sh  # if windows use this > setup.bat
 5. vi
 >>>>>>> 08bb6368e93be7ce303aaf177adba945e0b101d1
+=======
+##  Windows
+>>>>>>> 05af8c4b473fae86a7ecfb41ddc1b75b011ee97a
