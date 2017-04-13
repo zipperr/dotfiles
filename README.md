@@ -2,6 +2,7 @@
 1. cd ~   # if windows use this > cd %HOMEPATH%
 2. git clone https://github.com/zipperr/dotfiles
 3. chmod +x dotfiles/setup.sh
+<<<<<<< HEAD
 4. ~/dotfiles/setup.sh  # if windows use this > setup.bat
 5. sudo vim
 
@@ -18,3 +19,7 @@ sudo apt-get install zsh vim git mono ruby perl python mysql tomcat irssi screen
 chsh -s /bin/zsh
 
 ##Windows
+=======
+4. ~/dotfiles/setup.sh  # if windows use this > setup.bat  
+5. vi  
+>>>>>>> 08bb6368e93be7ce303aaf177adba945e0b101d1
