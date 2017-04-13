@@ -1,19 +1,18 @@
 "##### Plugin #####
 if &compatible
   set nocompatible
-  endif
+endif
+set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
 
-" dein.vim がなければ github から落としてくる
-  set runtimepath+=/Users/zip/.cache/dein/repos/github.com/Shougo/dein.vim
+"設定開始
+if dein#load_state(expand('~/.vim/dein'))
+call dein#begin(expand('~/.vim/dein'))
 
-" 設定開始
-  if dein#load_state('/Users/zip/.cache/dein')
-    call dein#begin('/Users/zip/.cache/dein') "プラグインを管理する一番上のディレクトリ
-
-" ##### Plaginlist #####
+"##### PluginList #####
+call dein#add('Shougo/dein.vim')        "プラグイン管理
 call dein#add('Shougo/neocomplete.vim') " 補完
-call dein#add('Shougo/neosnippet')      "スニペット
-call dein#add('Shougo/neosnippet-snippets') "スニペットの定義ファイル
+"call dein#add('Shougo/neosnippet')      "スニペット
+"call dein#add('Shougo/neosnippet-snippets') "スニペットの定義ファイル
 call dein#add('Townk/vim-autoclose')    " カッコを自動で閉じる
 call dein#add('w0ng/vim-hybrid')        " カラースキーム
 call dein#add('Shougo/unite.vim')       "カレントディレクトリ以下にあるファイルの一覧を開く
@@ -21,17 +20,10 @@ call dein#add('Shougo/neomru.vim')      "unit.vimで最近使ったファイル�
 call dein#add('itchyny/lightline.vim')  "ステータスバーをオシャレに
 call dein#add('thinca/vim-quickrun')    "vim上で\rでコードを実行
 call dein#add('tyru/open-browser.vim')  "URLをクリックで開けるようにする
+call dein#add('vim-syntastic/syntastic') "構文チェック
 call dein#add('scrooloose/nerdtree')    "ツリー型でディレクトリ表示
 call dein#add('tpope/vim-fugitive')     "vim上でGitを操作する
-call dein#add('Shougo/vimproc', {
-     \ 'build' : {
-     \ 'windows' : 'make -f make_mingw32.mak',
-     \ 'cygwin' : 'make -f make_cygwin.mak',
-     \ 'mac' : 'make -f make_mac.mak',
-     \ 'unix' : 'make -f make_unix.mak',
-     \ },
-     \ }) "非同期処理
-
+call dein#add('Shougo/vimproc.vim', {'build': 'make'}) "非同期処理
 call dein#add('vim-scripts/javacomplete', {
             \   'build': {
             \       'cygwin': 'javac autoload/Reflection.java',
@@ -40,15 +32,16 @@ call dein#add('vim-scripts/javacomplete', {
             \   },
             \}) "java補完(javacomplete2の方が良さそう?)
 
-" 設定終了
-        call dein#end()
-        call dein#save_state()
-        endif
-        filetype plugin indent on
-" 未インストールのものがあったらインストール
-        if dein#check_install()
-        call dein#install()
-    endif
+
+    " 設定終了
+    call dein#end()
+    call dein#save_state()
+  endif
+
+  " 未インストールのものがあったらインストール
+  if dein#check_install()
+    call dein#install()
+  endif
 
 "##### Uniteの設定 ######
 " 入力モードで開始する
@@ -90,6 +83,17 @@ let NERDTreeShowHidden = 1 "可視化ファイルを表示する
 nmap <Leader>b <Plug>(openbrowser-smart-search)
 vmap <Leader>b <Plug>(openbrowser-smart-search)
 
+"##### syntasticの設定 #####
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_save = 1 "ファイル保存時にはチェックを実施
+let g:syntastic_check_on_wq = 0
+
 "##### 基本設定 #####
 set encoding=utf-8 "ファイル読み込み時の文字コードの設定
 scriptencoding utf-8 "Vim script内でマルチバイト文字を使う場合の設定
@@ -117,6 +121,19 @@ set softtabstop=4 " 連続した空白に対してタブキーやBSKeyでカー�
 set autoindent " 改行時に前の行のインデントを継続する
 set smartindent " 改行時に前の行の構文をチェックし次の行のインデントを増減する
 set shiftwidth=4 " smartindentで増減する幅
+"クリップボードからだとインデントしない
+if &term =~ "xterm"
+    let &t_SI .= "\e[?2004h"
+    let &t_EI .= "\e[?2004l"
+    let &pastetoggle = "\e[201~"
+
+    function XTermPasteBegin(ret)
+        set paste
+        return a:ret
+    endfunction
+
+    inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
+endif
 
 "##### 検索 #####
 set incsearch " インクリメンタルサーチ. １文字入力毎に検索を行う
