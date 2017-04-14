@@ -17,6 +17,7 @@ brew 'wget'
 brew 'zsh'
 brew 'ricty'
 brew 'mas'
+brew 'maven'
 
 cask 'google-chrome'
 cask 'google-japanese-ime'
