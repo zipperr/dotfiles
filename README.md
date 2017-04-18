@@ -10,12 +10,11 @@ xcode-select --install
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"  
 brew tap Homebrew/bundle  
 brew bundle  
-sudo vi /etc/shells  
-chpass -s /usr/local/bin/zsh  
+chsh -s /bin/zsh
 
 ##  Linux
-sudo apt-get install zsh vim git mono ruby perl python mysql tomcat irssi screenfetch wget curl  
-chsh -s /bin/zsh  
+sudo apt-get install zsh vim git  
+chsh -s /usr/bin/zsh   
 
 ##  Windows
 c:\cygwin\setup.exe -q -d -D -L -s http://ftp.jaist.ac.jp/pub/cygwin/ -l "%USERPROFILE%\.cygwin" -R  
