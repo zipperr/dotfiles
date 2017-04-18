@@ -28,6 +28,7 @@ cask 'torbrowser'
 cask 'mplayerx'
 cask 'dropbox'
 cask 'hipchat'
+cask 'virtualbox'
 cask 'java'
 
 mas 'Xcode', id: 497799835
