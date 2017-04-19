@@ -19,16 +19,14 @@ autoload -U colors && colors
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"  #caskでインストールしたアプリをApplicationsへ
 
 ##### 補完機能 ####
-autoload -U compinit           # 補完機能を有効にする
+autoload -U compinit           # 補完機能(TAB)を有効にする
 compinit -u                    # セキュリティ警告を表示しない
 setopt auto_list               # 補完候補を一覧で表示する
 setopt auto_menu               # 補完キー連打で補完候補を順に表示する
 setopt list_packed             # 補完候補をできるだけ詰めて表示する
 setopt list_types              # 補完候補にファイルの種類も表示する
 setopt auto_param_keys         # カッコの対応などを自動的に補完
-setopt auto_param_slash        # ディレクトリ名の補完で末尾の / を自動的に付加し、次の補完に備える
-autoload predict-on            #先方予測補完機能
-predict-on
+setopt auto_param_slash        # ディレクトリ名の補完で末尾の / を自動的に付加
 zstyle ':completion:*:default' menu select=1                                 # 補完メニューをカーソルで選択可能にする。
 zstyle ':completion:*:cd:*' tag-order local-directories path-directories     # カレントに候補が無い場合のみcdpath 上のディレクトリが候補となる。
 zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*' # 補完の時に大文字小文字を区別しない
