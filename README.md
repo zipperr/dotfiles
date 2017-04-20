@@ -16,5 +16,9 @@ sudo apt-get install zsh vim git
 chsh -s /usr/bin/zsh  
 
 ##  Windows
-c:\cygwin\setup.exe -q -d -D -L -s http://ftp.jaist.ac.jp/pub/cygwin/ -l "%USERPROFILE%\.cygwin" -R
-c:\cygwin -P git,vim,wget,zsh
+setup-x86.exe ^  
+   --root c:\cygwin ^  
+   --local-package-dir %CD% ^  
+   --site http://ftp.iij.ad.jp/pub/cygwin/ ^  
+   --quiet-mode ^  
+   --packages gcc,git,make,wget,zsh,vim  
