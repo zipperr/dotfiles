@@ -27,8 +27,6 @@ setopt list_packed             # 補完候補をできるだけ詰めて表示�
 setopt list_types              # 補完候補にファイルの種類も表示する
 setopt auto_param_keys         # カッコの対応などを自動的に補完
 setopt auto_param_slash        # ディレクトリ名の補完で末尾の / を自動的に付加し、次の補完に備える
-autoload predict-on            #先方予測補完機能
-predict-on
 zstyle ':completion:*:default' menu select=1                                 # 補完メニューをカーソルで選択可能にする。
 zstyle ':completion:*:cd:*' tag-order local-directories path-directories     # カレントに候補が無い場合のみcdpath 上のディレクトリが候補となる。
 zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*' # 補完の時に大文字小文字を区別しない
