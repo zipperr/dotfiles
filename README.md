@@ -17,8 +17,8 @@ chsh -s /usr/bin/zsh
 
 ##  Windows
 setup-x86.exe ^  
-   --root c:\cygwin ^  
-   --local-package-dir %CD% ^  
-   --site http://ftp.iij.ad.jp/pub/cygwin/ ^  
-   --quiet-mode ^  
-   --packages gcc,git,make,wget,zsh,vim  
+--root c:\cygwin ^  
+--local-package-dir %CD% ^  
+--site http://ftp.iij.ad.jp/pub/cygwin/ ^  
+--quiet-mode ^  
+--packages gcc,gcc-core,gcc-g++,gcc-ada,binutils,git,make,wget,zsh,vim  
