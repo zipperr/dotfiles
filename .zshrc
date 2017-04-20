@@ -26,13 +26,10 @@ setopt auto_menu               # 補完キー連打で補完候補を順に表�
 setopt list_packed             # 補完候補をできるだけ詰めて表示する
 setopt list_types              # 補完候補にファイルの種類も表示する
 setopt auto_param_keys         # カッコの対応などを自動的に補完
-<<<<<<< HEAD
 setopt auto_param_slash        # ディレクトリ名の補完で末尾の / を自動的に付加し、次の補完に備える
-zstyle ':completion:*:default' menu select=1                                 # 補完メニューをカーソルで選択可能にする。
-=======
+zstyle ':completion:*:default' menu select=1    # 補完メニューをカーソルで選択可能にする。
 setopt auto_param_slash        # ディレクトリ名の補完で末尾の / を自動的に付加
 zstyle ':completion:*:default' menu select=1            # 補完メニューをカーソルで選択可能にする。
->>>>>>> 430bd0b793718aa27fca9ec8099cfd19bd1d31bd
 zstyle ':completion:*:cd:*' tag-order local-directories path-directories     # カレントに候補が無い場合のみcdpath 上のディレクトリが候補となる。
 zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*' # 補完の時に大文字小文字を区別しない
 export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
