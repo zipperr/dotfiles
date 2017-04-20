@@ -52,8 +52,8 @@ zstyle ':completion:*:manuals' separate-sections true
 
 ##### コマンド履歴 #####
 HISTFILE=~/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=50000
+SAVEHIST=50000
 setopt hist_ignore_dups
 setopt share_history
 
