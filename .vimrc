@@ -1,4 +1,4 @@
-"##### Plugin #####
+"##### Plugin #####{{{1
 
 "プラグインの場所とdein.vim本体の場所
 let s:dein_dir = expand('~/.vim/dein')
@@ -16,7 +16,7 @@ if &runtimepath !~# '/dein.vim'
 if dein#load_state(s:dein_dir)
   call dein#begin(s:dein_dir)
 
-"##### PluginList #####
+"##### PluginList #####{{{1
 call dein#add('Shougo/dein.vim')        "プラグイン管理
 call dein#add('Shougo/vimproc.vim', {'build': 'make'}) "非同期処理
 call dein#add('Shougo/neosnippet.vim')      "スニペット
@@ -164,6 +164,7 @@ let g:lightline = {
 "##### NERDTreeの設定 #####
 nnoremap <silent><C-e> :NERDTreeToggle<CR>  "ctrl+eでNERDTreeを開く
 let NERDTreeShowHidden = 1 "可視化ファイルを表示する
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif "NERDTreeだけが残る場合はvim終了
 
 "##### accelerated-jkの設定 #####
 nmap j <Plug>(accelerated_jk_gj)
@@ -184,7 +185,7 @@ let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_save = 1 "ファイル保存時にはチェックを実施
 let g:syntastic_check_on_wq = 0
 
-"##### 基本設定 #####
+"##### 基本設定 #####{{{1
 set encoding=utf-8 "ファイル読み込み時の文字コードの設定
 scriptencoding utf-8 "Vim script内でマルチバイト文字を使う場合の設定
 set fenc=utf-8 "文字コードをUFT-8に設定
@@ -199,16 +200,14 @@ set nobackup                        " バックアップをしない
 set noswapfile                      " スワップファイルを作らない
 autocmd FileType * setlocal formatoptions-=ro " 勝手にコメントアウトされるのを防ぐ
 set nocompatible                    "これいる?
-"w!! でスーパーユーザーとして保存
-cmap w!! w !sudo tee > /dev/null %
 
-"##### 文字コード #####
+"##### 文字コード #####{{{1
 set fileencoding=utf-8 " 保存時の文字コード
 set fileencodings=ucs-boms,utf-8,euc-jp,cp932 " 読み込み時の文字コードの自動判別. 左側が優先される
 set fileformats=unix,dos,mac " 改行コードの自動判別. 左側が優先される
 set ambiwidth=double " □や○文字が崩れる問題を解決
 
-"##### タブ・インデント #####
+"##### タブ・インデント・コピペ #####{{{1
 set expandtab " タブ入力を複数の空白入力に置き換える
 set tabstop=4 " 画面上でタブ文字が占める幅
 set softtabstop=4 " 連続した空白に対してタブキーやBSKeyでカーソルが動く幅
@@ -216,12 +215,6 @@ set autoindent " 改行時に前の行のインデントを継続する
 set smartindent " 改行時に前の行の構文をチェックし次の行のインデントを増減する
 set shiftwidth=4 " smartindentで増減する幅
 
-"全角スペース可視化
-augroup highlightIdegraphicSpace
-  autocmd!
-  autocmd Colorscheme * highlight IdeographicSpace term=underline ctermbg=DarkGreen guibg=DarkGreen
-  autocmd VimEnter,WinEnter * match IdeographicSpace /　/
-augroup END
 "クリップボードからのコピペをインデントしない
 if &term =~ "xterm"
     let &t_SI .= "\e[?2004h"
@@ -240,15 +233,27 @@ endif
 " 勝手にコメントアウトされるのを防ぐ
 autocmd FileType * setlocal formatoptions-=ro
 
-"##### 検索 #####
+"xキーで文字を削除した際にヤンクの内容を消えないようにする
+noremap PP "0p
+noremap x "_x
+
+"全角スペース可視化
+augroup highlightIdegraphicSpace
+  autocmd!
+  autocmd Colorscheme * highlight IdeographicSpace term=underline ctermbg=DarkGreen guibg=DarkGreen
+  autocmd VimEnter,WinEnter * match IdeographicSpace /　/
+augroup END
+
+"##### 検索 #####{{{1
 set incsearch " インクリメンタルサーチ. １文字入力毎に検索を行う
 set ignorecase " 検索パターンに大文字小文字を区別しない
 set smartcase " 検索パターンに大文字を含んでいたら大文字小文字を区別する
 set hlsearch " 検索結果をハイライト
+
 " ESCキー2度押しでハイライトの切り替え
 nnoremap <silent><Esc><Esc> :<C-u>set nohlsearch!<CR>
 
-"##### カーソル #####
+"##### カーソル #####{{{1
 set whichwrap=b,s,h,l,<,>,[,],~ " カーソルの左右移動で行末から次の行の行頭への移動が可能になる
 set number " 行番号を表示
 set cursorline " カーソルラインをハイライト
@@ -264,9 +269,28 @@ vnoremap <down> gj
 vnoremap <up> gk
 set backspace=indent,eol,start " バックスペースキーの有効化
 
-"##### 補完機能 #####
+"全角H,J,K,Lで高速移動
+noremap J 20j
+noremap K 20k
+noremap L 10l
+noremap H 10h
+
+"##### 補完機能 #####{{{1
 set wildmenu " コマンドモードの補完
 set history=5000 " 保存するコマンド履歴の数
+
+" オムニ補完の設定（insertモードでCtrl+oで候補を出す、Ctrl+n Ctrl+pで選択、Ctrl+yで確定）
+autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+autocmd FileType phtml set omnifunc=phpcomplete#CompletePHP
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
+autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+autocmd FileType c set omnifunc=ccomplete#Complete
+autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
+autocmd FileType java set omnifunc=javacomplete#Complete
+autocmd FileType cpp set omnifunc=omni#cpp#complete#Main
 
 "HTML閉じタグ補完
 augroup MyXML
@@ -276,7 +300,23 @@ augroup MyXML
   autocmd Filetype eruby inoremap <buffer> </ </<C-x><C-o>
 augroup END
 
-"##### 色設定#####
+"##### 色設定#####{{{1
 syntax on "色付けオン
 set background=dark
 colorscheme hybrid
+
+"##### その他 #####{{{1
+"Escキーのディレイを無くす
+if !has('gui_running')
+    set timeout timeoutlen=1000 ttimeoutlen=50
+endif
+
+"w!! でスーパーユーザーとして保存
+cmap w!! w !sudo tee > /dev/null %
+
+"##### モードライン設定 #####{{{1
+set modeline "モードラインを有効にする
+set modelines=3 "モードライン検索行
+" vim: foldmethod=marker
+" vim: foldcolumn=3
+" vim: foldlevel=0
