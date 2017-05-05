@@ -7,3 +7,5 @@ chmod +x dotfiles/setup.sh
 sudo apt install vim zsh
 zsh
 chsh -s /usr/bin/zsh
+aa
+zsh
