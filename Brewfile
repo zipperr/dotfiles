@@ -29,6 +29,7 @@ cask 'virtualbox'
 cask 'atom'
 cask 'steam'
 cask 'bathyscaphe'
+cask 'java'
 
 mas 'Twitter', id: 409789998
 mas 'LINE', id: 539883307 
