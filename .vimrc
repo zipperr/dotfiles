@@ -184,7 +184,7 @@ let g:syntastic_enable_signs = 1  "構文エラー行に>>を表示
 let g:syntastic_auto_loc_list = 1 "構文エラーリストを表示
 let g:syntastic_check_on_open = 0 "ファイルを開いたときにチェックしない
 let g:syntastic_check_on_save = 1 "ファイル保存時にはチェックを実施
-let g:syntastic_check_on_wq = 1 "wqで終了時にもチェック
+let g:syntastic_check_on_wq = 0   "wqで終了時にもチェック
 
 "##### 基本設定 #####{{{1
 set encoding=utf-8 "ファイル読み込み時の文字コードの設定
