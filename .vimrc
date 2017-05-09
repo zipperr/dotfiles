@@ -303,6 +303,8 @@ augroup END
 "##### 色設定#####{{{1
 syntax on "色付けオン
 set background=dark
+autocmd Colorscheme * highlight Normal ctermbg=none
+autocmd Colorscheme * highlight LineNr ctermbg=none
 colorscheme hybrid
 
 "##### その他 #####{{{1
