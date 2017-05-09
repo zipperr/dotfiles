@@ -313,6 +313,18 @@ if !has('gui_running')
     set timeout timeoutlen=1000 ttimeoutlen=50
 endif
 
+"Escディレイをなくす　その2
+set timeoutlen=50
+
+"Escキーを押したときにIMEをオフにする(macのみ)
+if has('mac')
+  let g:imeoff = 'osascript -e "tell application \"System Events\" to key code 102"'
+  augroup MyIMEGroup
+    autocmd!
+    autocmd InsertLeave * :call system(g:imeoff)
+  augroup END
+endif
+
 "w!! でスーパーユーザーとして保存
 cmap w!! w !sudo tee > /dev/null %
 
