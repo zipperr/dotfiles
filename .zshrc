@@ -1,4 +1,4 @@
-######　基本設定 #####
+###### 基本設定 #####
 export EDITOR=vim        # エディタをvimに設定
 export LANG=ja_JP.UTF-8  # 文字コードをUTF-8に設定
 export KCODE=u           # KCODEにUTF-8を設定
