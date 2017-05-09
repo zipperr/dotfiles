@@ -14,7 +14,7 @@ execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
 
 "設定開始
 if dein#load_state(s:dein_dir)
-  call dein#begin(s:dein_dir)
+	call dein#begin(s:dein_dir)
 
 "##### PluginList #####{{{1
 call dein#add('Shougo/dein.vim')		"プラグイン管理
@@ -225,8 +225,8 @@ if &term =~ "xterm"
 	let &t_EI .= "\e[?2004l"
 	let &pastetoggle = "\e[201~"
 	function XTermPasteBegin(ret)
-		set paste
-		return a:ret
+	set paste
+	return a:ret
 	endfunction
 	inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
 endif
@@ -240,9 +240,9 @@ noremap x "_x
 
 "全角スペース可視化
 augroup highlightIdegraphicSpace
-  autocmd!
-  autocmd Colorscheme * highlight IdeographicSpace term=underline ctermbg=DarkGreen guibg=DarkGreen
-  autocmd VimEnter,WinEnter * match IdeographicSpace /　/
+	autocmd!
+	autocmd Colorscheme * highlight IdeographicSpace term=underline ctermbg=DarkGreen guibg=DarkGreen
+	autocmd VimEnter,WinEnter * match IdeographicSpace /　/
 augroup END
 
 "##### 検索 #####{{{1
@@ -295,10 +295,10 @@ autocmd FileType cpp set omnifunc=omni#cpp#complete#Main
 
 "HTML閉じタグ補完
 augroup MyXML
-  autocmd!
-  autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o>
-  autocmd Filetype html inoremap <buffer> </ </<C-x><C-o>
-  autocmd Filetype eruby inoremap <buffer> </ </<C-x><C-o>
+	autocmd!
+	autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o>
+	autocmd Filetype html inoremap <buffer> </ </<C-x><C-o>
+	autocmd Filetype eruby inoremap <buffer> </ </<C-x><C-o>
 augroup END
 
 "##### 色設定#####{{{1
