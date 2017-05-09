@@ -8,13 +8,13 @@ let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 if &runtimepath !~# '/dein.vim'
 if !isdirectory(s:dein_repo_dir)
 execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
-  endif
-  execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
-  endif
+    endif
+    execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
+endif
 
 "設定開始
 if dein#load_state(s:dein_dir)
-  call dein#begin(s:dein_dir)
+    call dein#begin(s:dein_dir)
 
 "##### PluginList #####{{{1
 call dein#add('Shougo/dein.vim')    "プラグイン管理
@@ -57,10 +57,10 @@ call dein#end()
 call dein#save_state()
 endif
 
-  " 未インストールのものがあったらインストール
-  if dein#check_install()
-  call dein#install()
-  endif
+" 未インストールのものがあったらインストール
+if dein#check_install()
+    call dein#install()
+endif
 
 "##### Uniteの設定 ######
 " 入力モードで開始する
@@ -103,13 +103,13 @@ let g:neocomplete#enable_fuzzy_completion     = 1 "曖昧検索
 let g:neocomplete#enable_auto_delimiter = 1       "区切り文字まで補完する
 let g:neocomplete#lock_buffer_name_pattern = '\*ku\*' "自動的にロックするバッファ名のパターン
 
-  if !exists('g:neocomplete#keyword_patterns')
+if !exists('g:neocomplete#keyword_patterns')
     let g:neocomplete#keyword_patterns = {}
-  endif
-  let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-  if !exists('g:neocomplete#force_omni_input_patterns')
-  let g:neocomplete#force_omni_input_patterns = {}
-  endif
+endif
+    let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+if !exists('g:neocomplete#force_omni_input_patterns')
+    let g:neocomplete#force_omni_input_patterns = {}
+endif
 
 else                          "luaがない場合はcomplcacheを使う
 let g:acp_enableAtStartup = 0             "AutoComplPopを無効化
@@ -127,11 +127,11 @@ let g:neocomplcache_dictionary_filetype_lists = {
 \ 'scheme' : $HOME.'/.gosh_completions'
 \ }
 
-  if !exists('g:neocomplcache_keyword_patterns')
-    let g:neocomplcache_keyword_patterns = {}
-  endif
-  let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
-endif
+    if !exists('g:neocomplcache_keyword_patterns')
+        let g:neocomplcache_keyword_patterns = {}
+    endif
+        let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
+    endif
 
 "##### Neosnippetの設定 #####
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -146,7 +146,7 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
   \: "\<TAB>"
 
 if has('conceal')
-  set conceallevel=2 concealcursor=niv
+    set conceallevel=2 concealcursor=niv
 endif
 let g:neosnippet#enable_snipmate_compatibility = 1
 let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet-snippets/snippets/,~/.vim/snippets'
@@ -155,11 +155,11 @@ let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet-snippets/snippets/
 set laststatus=2 "ステータスラインを常時表示
 set t_Co=256 "色
 let g:lightline = {
-  \ 'colorscheme': 'wombat',
-  \ 'component': {
-  \ 'readonly': '%{&readonly?"\u2b64":""}',
-  \ }
-  \ }
+    \ 'colorscheme': 'wombat',
+    \ 'component': {
+    \ 'readonly': '%{&readonly?"\u2b64":""}',
+    \ }
+    \ }
 
 "##### NERDTreeの設定 #####
 nnoremap <silent><C-e> :NERDTreeToggle<CR>  "ctrl+eでNERDTreeを開く
@@ -213,11 +213,11 @@ set ambiwidth=double " □や○文字が崩れる問題を解決
 
 "##### タブ・インデント・コピペ #####{{{1
 set expandtab " タブ入力を複数の空白入力に置き換える
-set tabstop=2 " 画面上でタブ文字が占める幅
-set softtabstop=0 " 連続した空白に対してタブキーやBSKeyでカーソルが動く幅
+set tabstop=4 " 画面上でタブ文字が占める幅
+set softtabstop=4 " 連続した空白に対してタブキーやBSKeyでカーソルが動く幅
 set autoindent " 改行時に前の行のインデントを継続する
 set smartindent " 改行時に前の行の構文をチェックし次の行のインデントを増減する
-set shiftwidth=2 " smartindentで増減する幅
+set shiftwidth=4 " smartindentで増減する幅
 
 "クリップボードからのコピペをインデントしない
 if &term =~ "xterm"
@@ -240,9 +240,9 @@ noremap x "_x
 
 "全角スペース可視化
 augroup highlightIdegraphicSpace
-  autocmd!
-  autocmd Colorscheme * highlight IdeographicSpace term=underline ctermbg=DarkGreen guibg=DarkGreen
-  autocmd VimEnter,WinEnter * match IdeographicSpace /　/
+    autocmd!
+    autocmd Colorscheme * highlight IdeographicSpace term=underline ctermbg=DarkGreen guibg=DarkGreen
+    autocmd VimEnter,WinEnter * match IdeographicSpace /　/
 augroup END
 
 "##### 検索 #####{{{1
@@ -295,10 +295,10 @@ autocmd FileType cpp set omnifunc=omni#cpp#complete#Main
 
 "HTML閉じタグ補完
 augroup MyXML
-  autocmd!
-  autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o>
-  autocmd Filetype html inoremap <buffer> </ </<C-x><C-o>
-  autocmd Filetype eruby inoremap <buffer> </ </<C-x><C-o>
+    autocmd!
+    autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o>
+    autocmd Filetype html inoremap <buffer> </ </<C-x><C-o>
+    autocmd Filetype eruby inoremap <buffer> </ </<C-x><C-o>
 augroup END
 
 "##### 色設定#####{{{1
@@ -311,7 +311,7 @@ colorscheme hybrid
 "##### その他 #####{{{1
 "Escキーのディレイを無くす
 if !has('gui_running')
-  set timeout timeoutlen=1000 ttimeoutlen=50
+    set timeout timeoutlen=1000 ttimeoutlen=50
 endif
 
 "Escディレイをなくすpart2
@@ -320,10 +320,10 @@ set timeout timeoutlen=50
 "Escキーを押したときにIMEをオフにする(macのみ)
 if has('mac')
 let g:imeoff = 'osascript -e "tell application \"System Events\" to key code 102"'
-  augroup MyIMEGroup
-  autocmd!
-  autocmd InsertLeave * :call system(g:imeoff)
-  augroup END
+    augroup MyIMEGroup
+    autocmd!
+    autocmd InsertLeave * :call system(g:imeoff)
+    augroup END
 endif
 
 "w!! でスーパーユーザーとして保存
