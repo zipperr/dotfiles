@@ -32,6 +32,7 @@ call dein#add('vim-syntastic/syntastic') "構文チェック
 call dein#add('scrooloose/nerdtree')    "ツリー型でディレクトリ表示
 call dein#add('tpope/vim-fugitive')     "vim上でGitを操作する
 call dein#add('rhysd/accelerated-jk')   "j,kキーの移動速度を上げる
+call dein#add('Yggdroot/indentLine')    "インデント表示
 call dein#add('othree/html5.vim')               "HTML5色付け
 call dein#add('hail2u/vim-css3-syntax')         "css3色付け
 call dein#add('jelera/vim-javascript-syntax')   "javascript色付け
@@ -178,11 +179,12 @@ vmap <Leader>b <Plug>(openbrowser-smart-search)
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
+let g:syntastic_always_populate_loc_list = 1 "他のプラグインと競合するのを防ぐ
+let g:syntastic_enable_signs = 1  "構文エラー行に>>を表示
+let g:syntastic_auto_loc_list = 1 "構文エラーリストを表示
+let g:syntastic_check_on_open = 0 "ファイルを開いたときにチェックしない
 let g:syntastic_check_on_save = 1 "ファイル保存時にはチェックを実施
-let g:syntastic_check_on_wq = 0
+let g:syntastic_check_on_wq = 1 "wqで終了時にもチェック
 
 "##### 基本設定 #####{{{1
 set encoding=utf-8 "ファイル読み込み時の文字コードの設定
@@ -192,6 +194,7 @@ set title "編集中のファイル名を表示
 set showmatch "括弧に対応する括弧を表示
 source $VIMRUNTIME/macros/matchit.vim " Vimの「%」を拡張する
 set mouse=a "マウスモードオン
+set vb t_vb= "ビープ音を消す
 inoremap <silent> jj <ESC>          "インサートモードで素早くjjと入力するとノーマルモードへ移行
 autocmd BufWritePre * :%s/\s\+$//ge "末尾の空白を消す
 set clipboard=unnamed,autoselect    "ヤンクした文をクリップボードへコピー
@@ -310,7 +313,7 @@ if !has('gui_running')
 endif
 
 "Escディレイをなくすpart2
-set timeoutlen=50
+set timeout timeoutlen=50
 
 "Escキーを押したときにIMEをオフにする(macのみ)
 if has('mac')
