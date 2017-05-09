@@ -27,6 +27,7 @@ cask 'torbrowser'
 cask 'mplayerx'
 cask 'virtualbox'
 cask 'atom'
+cask 'steam'
 
 mas 'Twitter', id: 409789998
 mas 'LINE', id: 539883307 
