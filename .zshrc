@@ -16,6 +16,7 @@ setopt chase_links       # シンボリックリンクは実体を追うよう�
 export TERM=xterm-256color #256色使う。(vimのlightline作動にも使います)
 autoload -U colors && colors
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"  #caskでインストールしたアプリをApplicationsへ
+export JAVA_HOME=`/usr/libexec/java_home -v 1.8`    #caskでインストールしたjavaの場所
 
 ##### エイリアス #####
 alias sudo='sudo '       # sudo の後のコマンドでエイリアスを有効にする
