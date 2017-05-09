@@ -51,10 +51,10 @@ call dein#add('vim-scripts/javacomplete', {
             \   },
             \})                          "java補完
 
-    " 設定終了
-    call dein#end()
-    call dein#save_state()
-  endif
+" 設定終了
+call dein#end()
+call dein#save_state()
+endif
 
   " 未インストールのものがあったらインストール
   if dein#check_install()
@@ -130,7 +130,6 @@ let g:neocomplcache_dictionary_filetype_lists = {
         let g:neocomplcache_keyword_patterns = {}
     endif
     let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
-
 endif
 
 "##### Neosnippetの設定 #####
@@ -220,15 +219,12 @@ if &term =~ "xterm"
     let &t_SI .= "\e[?2004h"
     let &t_EI .= "\e[?2004l"
     let &pastetoggle = "\e[201~"
-
     function XTermPasteBegin(ret)
         set paste
         return a:ret
     endfunction
-
     inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
 endif
-
 
 " 勝手にコメントアウトされるのを防ぐ
 autocmd FileType * setlocal formatoptions-=ro
@@ -302,7 +298,7 @@ augroup END
 
 "##### 色設定#####{{{1
 syntax on "色付けオン
-set background=dark
+set background=dark "背景を黒にする
 autocmd Colorscheme * highlight Normal ctermbg=none
 autocmd Colorscheme * highlight LineNr ctermbg=none
 colorscheme hybrid
@@ -313,7 +309,7 @@ if !has('gui_running')
     set timeout timeoutlen=1000 ttimeoutlen=50
 endif
 
-"Escディレイをなくす　その2
+"Escディレイをなくすpart2
 set timeoutlen=50
 
 "Escキーを押したときにIMEをオフにする(macのみ)
