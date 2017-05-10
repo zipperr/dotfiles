@@ -221,14 +221,14 @@ set shiftwidth=4 " smartindentで増減する幅
 
 "クリップボードからのコピペをインデントしない
 if &term =~ "xterm"
-  let &t_SI .= "\e[?2004h"
-  let &t_EI .= "\e[?2004l"
-  let &pastetoggle = "\e[201~"
-  function XTermPasteBegin(ret)
-  set paste
-  return a:ret
-  endfunction
-  inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
+    let &t_SI .= "\e[?2004h"
+    let &t_EI .= "\e[?2004l"
+    let &pastetoggle = "\e[201~"
+    function XTermPasteBegin(ret)
+    set paste
+    return a:ret
+    endfunction
+    inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
 endif
 
 " 勝手にコメントアウトされるのを防ぐ
@@ -245,6 +245,9 @@ augroup highlightIdegraphicSpace
     autocmd VimEnter,WinEnter * match IdeographicSpace /　/
 augroup END
 
+" 不可視文字の視覚化
+set list
+set listchars=tab:»-,trail:-,nbsp:%,eol:↲
 "##### 検索 #####{{{1
 set incsearch " インクリメンタルサーチ. １文字入力毎に検索を行う
 set ignorecase " 検索パターンに大文字小文字を区別しない
