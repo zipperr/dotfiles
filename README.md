@@ -7,11 +7,9 @@
 ## Mac OSX
 xcode-select --install  
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"  
-brew tap Homebrew/bundle   
-brew bundle  
-chsh -s /bin/zsh  
-brew install rcmdnk/file/brew-file  
-brew file install  
+brew tap Homebrew/bundle  
+brew bundle  
+chsh -s /bin/zsh    
 
 ##  Linux
 sudo apt-get install zsh vim git
