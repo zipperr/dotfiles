@@ -28,6 +28,7 @@ cask 'mplayerx'
 cask 'virtualbox'
 cask 'atom'
 cask 'steam'
+cask 'openemu'
 cask 'bathyscaphe'
 cask 'java'
 
@@ -39,3 +40,4 @@ mas 'Numbers', id: 409203825
 mas 'Pages', id: 409201541
 mas 'iMovie', id: 408981434
 mas 'Keynote', id: 409183694
+mas 'The Unarchiver', id: 425424353
