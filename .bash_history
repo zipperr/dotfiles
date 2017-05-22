@@ -110,3 +110,50 @@ bash
 vim .bashrc
 bash
 zsh
+cd ~
+vim .basrc
+vim .bashrc
+bash
+vim .bashrc
+bash
+vim .bashrc
+vim .bashrc
+bash
+~
+bash
+vim .bashrc
+bash
+cd ~
+vim .bashrc
+ls
+ls
+vim .bashrc
+bash
+ls
+v .bashrc
+bash
+ls
+cd ~/dotfiles
+ls
+bash
+cd ~
+ls
+vim .bashrc
+bash
+cd ~
+~
+cd ~/dotfiles
+cd ~
+vim .bashrc
+~
+~/dotfiles
+shopt -s autocd
+~/dotfiles
+shopt -s autocd
+~
+vim .bashrc
+chmod +x dotfiles/setup.sh
+~/dotfiles/setup.sh
+v .zshhistry
+v .zsh_history
+zsh
