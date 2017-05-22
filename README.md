@@ -16,4 +16,4 @@ sudo apt-get install zsh vim git
 chsh -s /usr/bin/zsh  
 
 ##  Windows
-Cygwin.batを起動  
+git bashをインストールしてくる  
