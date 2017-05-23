@@ -19,10 +19,10 @@ stty stop undef
 
 # エイリアス
 if [ "$(uname)" = 'Darwin' ]; then
-    export LSCOLORS=gxfxcxdxbxegedabagacad
+#    export LSCOLORS=gxfxcxdxbxegedabagacad
     alias ls='ls -a -G'
 else
-    alias ls='ls --color=auto'
+#    eval `dircolors ~/.colorrc`
     alias ls='ls -a  --color=auto'
 fi
 
