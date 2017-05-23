@@ -169,3 +169,96 @@ vim .bashrc
 vim .bash_profile 
 #1495492184
 bash
+#1495547378
+vim .bashrc
+#1495547470
+bash
+#1495547491
+zsh
+#1495547682
+cd ~/dorfiles
+#1495547690
+zsh
+#1495548326
+vim .bash_profile 
+#1495548331
+vim .bashrc
+#1495548436
+bash
+#1495548441
+sudo -s
+#1495548482
+zsh
+#1495548473
+vim .bashrc
+#1495548478
+bash
+#1495548504
+vim .bashrc
+#1495548681
+bash
+#1495548684
+vim .bashrc
+#1495548738
+bash
+#1495548748
+vim .bashrc
+#1495548826
+zsh
+#1495548843
+bash
+#1495548847
+zsh
+#1495549135
+vim .bashrc
+#1495549164
+bash
+#1495549169
+vim .bashrc
+#1495549185
+vim .bash_profile 
+#1495549310
+vim .bashrc
+#1495549323
+bash
+#1495549472
+bash
+zsh
+#1495549644
+vim .bashrc
+#1495549669
+bash
+#1495549721
+bash
+#1495549807
+source ~/.bashrc
+#1495549812
+bash
+#1495549814
+vim .bashrc
+#1495550129
+source .bashrc
+#1495550135
+exit
+#1495549974
+~/dot
+#1495549982
+cd ~/dotfiles
+#1495550033
+source ~/.bashrc
+#1495550096
+su -
+#1495550107
+sudo -s
+#1495550423
+source ~/.bash_profile
+#1495550436
+bash update
+#1495550448
+update
+#1495550496
+brew doctor
+#1495550530
+brew update
+#1495550555
+brew install bash
