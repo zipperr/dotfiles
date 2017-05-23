@@ -27,10 +27,22 @@ alias sc='screen'
 alias ps='ps --sort=start_time'
 alias v='vim'
 alias vi='vim'
+alias g='git'
+alias ..='cd ..'
 
+#sudoの後も候補予測する
+complete -cf sudo
+
+#置換コマンド(sr 置換前の文字列 置換後の文字列)
+function sr {
+    find . -type f -exec sed -i '' s/$1/$2/g {} +
+}
+
+source $HOME/.git-prompt.sh
+export PS1=' \[\e[036m\](\t)\[\e[036m\]\[\e[036m\][\u@\h]\[\e[36m\][\w]\[\e[31m\]$(__git_ps1 "[%s]")\[\e[0m\]\n\$ '
 
 # プロンプトの表示 (時間)[ユーザー名@ホスト名][カレントディレクトリ]で表示
-PS1="\[\e[036m\](\t)\[\e[036m\]\[\e[036m\][\u@\h]\[\e[36m\][\w]\[\e[m\]"
+#PS1="\[\e[036m\](\t)\[\e[036m\]\[\e[036m\][\u@\h]\[\e[36m\][\w]\[\e[m\]"
 
 # cdしたらlsする
 cd ()

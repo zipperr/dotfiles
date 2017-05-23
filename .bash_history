@@ -157,3 +157,15 @@ chmod +x dotfiles/setup.sh
 v .zshhistry
 v .zsh_history
 zsh
+#1495466710
+~
+#1495466809
+bin
+#1495466820
+v .bashrc
+#1495492136
+vim .bashrc
+#1495492149
+vim .bash_profile 
+#1495492184
+bash
