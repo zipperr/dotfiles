@@ -18,7 +18,14 @@ export HISTTIMEFORMAT='%Y/%m/%d %H:%M:%S' # historyコマンドで表示され�
 stty stop undef
 
 # エイリアス
-alias ls='ls -a -G'
+if [ "$(uname)" = 'Darwin' ]; then
+    export LSCOLORS=gxfxcxdxbxegedabagacad
+    alias ls='ls -a -G'
+else
+    alias ls='ls --color=auto'
+    alias ls='ls -a  --color=auto'
+fi
+
 alias la='ls -CFal'
 alias mv='mv -i'
 alias rm='rm -i'
