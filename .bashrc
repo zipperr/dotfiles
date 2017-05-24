@@ -52,9 +52,9 @@ export PS1='\[\e[036m\](\t)\[\e[036m\]\[\e[036m\][\u@\h]\[\e[36m\][\w]\[\e[31m\]
 elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then   #Linux用
 export PS1='\[\e[036m\](\t)\[\e[036m\]\[\e[036m\][\u@\h]\[\e[36m\][\w]\[\e[31m\]$(__git_ps1 "[%s]")\[\e[0m\]\n\$ '
 elif [ "$(expr substr $(uname -s) 1 10)" == 'MINGW64_NT' ]; then    #Gitbash,Cygwin 64bit用
-export PS1="\[\e[036m\](\t)[\u@\h][\w]\[\e[31m\]\$(__git_ps1 ' [%s]')"$'\[\e[0m\]\n$'
+export PS1="\[\e[036m\](\t)[\u@\h][\w]\[\e[31m\]\$(__git_ps1 '[%s]')"$'\[\e[0m\]\n$'
 elif [ "$(expr substr $(uname -s) 1 10)" == 'MINGW32_NT' ]; then    #Gitbash,Cygwin 32bit用
-export PS1="\[\e[036m\](\t)[\u@\h][\w]\[\e[31m\]\$(__git_ps1 ' [%s]')"$'\[\e[0m\]\n$'
+export PS1="\[\e[036m\](\t)[\u@\h][\w]\[\e[31m\]\$(__git_ps1 '[%s]')"$'\[\e[0m\]\n$'
 else    #その他(ブランチ名は表示しない)
 export PS1="\[\e[036m\](\t)\[\e[036m\]\[\e[036m\][\u@\h]\[\e[36m\][\w]\[\e[m\]"
 fi
