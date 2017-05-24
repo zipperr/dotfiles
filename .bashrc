@@ -52,6 +52,8 @@ if [ "$(uname)" == 'Darwin' ]; then
 export PS1='\[\e[036m\](\t)\[\e[036m\]\[\e[036m\][\u@\h]\[\e[36m\][\w]\[\e[31m\]$(__git_ps1 "[%s]")\[\e[0m\]\n\$ '
 elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
 export PS1='\[\e[036m\](\t)\[\e[036m\]\[\e[036m\][\u@\h]\[\e[36m\][\w]\[\e[31m\]$(__git_ps1 "[%s]")\[\e[0m\]\n\$ '
+elif [ "$(expr substr $(uname -s) 1 10)" == 'MINGW64_NT' ]; then
+export PS1="\[\e[036m\](\t)[\u@\h][\w]\[\e[31m\]\$(__git_ps1 ' { %s }')"$'\[\e[0m\]\n$'
 elif [ "$(expr substr $(uname -s) 1 10)" == 'MINGW32_NT' ]; then
 export PS1="\[\e[036m\](\t)[\u@\h][\w]\[\e[31m\]\$(__git_ps1 ' { %s }')"$'\[\e[0m\]\n$'
 else
