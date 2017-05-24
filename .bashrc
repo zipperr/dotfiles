@@ -47,8 +47,16 @@ function sr {
 
 #プロンプト表示　(時間)[ユーザ名@ホスト名][場所][ブランチ名]で表示
 source $HOME/.git-prompt.sh
-export PS1='\[\e[036m\](\t)\[\e[036m\]\[\e[036m\][\u@\h]\[\e[36m\][\w]\[\e[31m\]$(__git_ps1 "[%s]")\[\e[0m\]\n\$ '
 
+if [ "$(uname)" == 'Darwin' ]; then
+export PS1='\[\e[036m\](\t)\[\e[036m\]\[\e[036m\][\u@\h]\[\e[36m\][\w]\[\e[31m\]$(__git_ps1 "[%s]")\[\e[0m\]\n\$ '
+elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
+export PS1='\[\e[036m\](\t)\[\e[036m\]\[\e[036m\][\u@\h]\[\e[36m\][\w]\[\e[31m\]$(__git_ps1 "[%s]")\[\e[0m\]\n\$ '
+elif [ "$(expr substr $(uname -s) 1 10)" == 'MINGW32_NT' ]; then
+export PS1="\[\e[036m\](\t)[\u@\h][\w]\[\e[31m\]\$(__git_ps1 ' { %s }')"$'\[\e[0m\]\n$'
+else
+export PS1="\[\e[036m\](\t)\[\e[036m\]\[\e[036m\][\u@\h]\[\e[36m\][\w]\[\e[m\]"
+fi
 #Gitbash用
 #PS1="\[\e[036m\](\t)[\u@\h][\w]\[\e[31m\]\$(__git_ps1 ' { %s }')"$'\[\e[0m\]\n$'
 
