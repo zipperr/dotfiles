@@ -9,14 +9,17 @@ setopt no_beep           # ビープ音を鳴らさないようにする
 setopt no_hist_beep      # ビープ音を鳴らさないようにする
 setopt no_list_beep      # ビープ音を鳴らさないようにする
 setopt auto_cd           # ディレクトリ名の入力のみで移動する
+setopt AUTO_NAME_DIRS    #"~$var" でディレクトリにアクセス
 setopt correct           # コマンドのスペルを訂正する
 setopt prompt_subst      # プロンプト定義内で変数置換やコマンド置換を扱う
 setopt notify            # バックグラウンドジョブの状態変化を即時報告する
 setopt chase_links       # シンボリックリンクは実体を追うようになる
+setopt AUTO_RESUME       # サスペンド中のプロセスと同じコマンド名を実行した場合はリジュームする
 export TERM=xterm-256color #256色使う。(vimのlightline作動にも使います)
 autoload -U colors && colors
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"  #caskでインストールしたアプリをApplicationsへ
 export JAVA_HOME=`/usr/libexec/java_home -v 1.8`    #caskでインストールしたjavaの場所
+export PATH=$HOME/bin:/usr/local/bin:$PATH          #パス
 
 ##### エイリアス #####
 alias sudo='sudo '       # sudo の後のコマンドでエイリアスを有効にする
@@ -38,6 +41,7 @@ alias server3='python -m http.server'   #python3はこっち
 alias ip='ifconfig'     #IPを表示する
 alias onkey="sudo kextload /System/Library/Extensions/AppleUSBTopCase.kext/Contents/PlugIns/AppleUSBTCKeyboard.kext/"    #mac本体のキーボードを有効にする
 alias offkey="sudo kextunload /System/Library/Extensions/AppleUSBTopCase.kext/Contents/PlugIns/AppleUSBTCKeyboard.kext/" #mac本体のキーボードを無効にする
+alias dsstore="find . -name '*.DS_Store' -type f -ls -delete"   #DS_Store削除
 
 ##### 補完機能 ####
 autoload -U compinit           # 補完機能(TAB)を有効にする
@@ -177,3 +181,24 @@ function cdup() {
 }
 zle -N cdup
 bindkey '\^' cdup
+
+: << '#COMMENT_OUT'
+#Proxy環境下でapt-get,yum,docker,git等を使う時に設定しておく
+export HTTP_PROXY_USER=id
+export HTTP_PROXY_PASS=pass
+export HTTP_PROXY=http://${HTTP_PROXY_USER}:${HTTP_PROXY_PASS}@proxysrv:port/
+export HTTPS_PROXY=${HTTP_PROXY}
+#COMMENT_OUT
+
+: << '#COMMENT_OUT'
+#認証のないプロキシの時はこっちを使う
+export http_proxy=http://<ProxyFQDN>:<ProxyPort>
+export https_proxy=http://<ProxyFQDN>:<ProxyPort>
+#COMMENT_OUT
+
+: << '#COMMENT_OUT'
+#GitにProxy設定を加える
+git config --global http.proxy ${HTTP_PROXY}
+git config --global https.proxy ${HTTPS_PROXY}
+git config --global url."https://".insteadOf git://
+#COMMENT_OUT

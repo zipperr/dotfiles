@@ -5,6 +5,11 @@ export EDITOR='/usr/bin/vim' # visudo とかで使われる
 export LANG='ja_JP.UTF-8' #文字コード
 export LC_ALL='ja_JP.UTF-8'
 export LC_MESSAGES='ja_JP.UTF-8'
+shopt -s autocd
+shopt -s cdable_vars
+shopt -s cdspell
+shopt -s dirspell
+complete -cf sudo #sudoの後も候補予測する
 
 # コマンド履歴
 export HISTSIZE=100000  # 現在使用中のbashが保持するコマンド履歴数
@@ -19,11 +24,9 @@ stty stop undef
 
 # エイリアス
 if [ "$(uname)" = 'Darwin' ]; then
-#    export LSCOLORS=gxfxcxdxbxegedabagacad
-    alias ls='ls -a -G'
+    alias ls='ls -a -G'  #mac用
 else
-#    eval `dircolors ~/.colorrc`
-    alias ls='ls -a  --color=auto'
+    alias ls='ls -a  --color=auto'  #その他
 fi
 
 alias la='ls -CFal'
@@ -38,14 +41,7 @@ alias g='git'
 alias ..='cd ..'
 alias onkey="sudo kextload /System/Library/Extensions/AppleUSBTopCase.kext/Contents/PlugIns/AppleUSBTCKeyboard.kext/"   #mac本体のキーボードを有効にする
 alias offkey="sudo kextunload /System/Library/Extensions/AppleUSBTopCase.kext/Contents/PlugIns/AppleUSBTCKeyboard.kext/" #mac本体のキーボードを無効にする
-
-#sudoの後も候補予測する
-complete -cf sudo
-
-#置換コマンド(sr 置換前の文字列 置換後の文字列)
-function sr {
-    find . -type f -exec sed -i '' s/$1/$2/g {} +
-}
+alias dsstore="find . -name '*.DS_Store' -type f -ls -delete"   #DS_Store削除
 
 #プロンプト表示 (時間)[ユーザ名@ホスト名][場所][ブランチ名]で表示
 source $HOME/.git-prompt.sh
@@ -67,10 +63,23 @@ cd ()
     builtin cd "$@" && ls
 }
 
-shopt -s autocd
-shopt -s cdable_vars
-shopt -s cdspell
-shopt -s dirspell
+# mkdirしたらcdする
+function mkcd() {
+    mkdir $1;
+    cd $1;
+}
+alias mkcd=mkcd
+
+#在処が全然解らないファイルを力尽くで探す
+function fa() {
+    sudo find / -name "$1" -ls;
+}
+alias fa=fa
+
+#置換コマンド(sr 置換前の文字列 置換後の文字列)
+function sr {
+    find . -type f -exec sed -i '' s/$1/$2/g {} +
+}
 
 #change_色名でターミナルの色を変える (デフォルトターミナル、端末でのみ有効)
 BASE_COLOR_CHANGE='tell application "Terminal" to set current settings of first window to settings set '
@@ -85,3 +94,49 @@ alias change_green=$PREFIX_COLOR_CHANGE' "Grass"'"'"
 alias server='python -m SimpleHTTPServer'   #簡易サーバーを立てる デフォルトは8000 引数で設定可↲
 alias server3='python -m http.server'   #python3はこっち↲
 alias ip='ifconfig'     #IPを表示する
+
+#googleコマンドで検索する
+google(){
+    if [ $(echo $1 | egrep "^-[cfs]$") ]; then
+        local opt="$1"
+        shift
+    fi
+    local url="https://www.google.co.jp/search?q=${*// /+}"
+    local app="/Applications"
+    local g="${app}/Google Chrome.app"
+    local f="${app}/Firefox.app"
+    local s="${app}/Safari.app"
+    case ${opt} in
+        "-g")   open "${url}" -a "$g";;
+        "-f")   open "${url}" -a "$f";;
+        "-s")   open "${url}" -a "$s";;
+        *)      open "${url}";;
+    esac
+}
+
+#設定した時間に牛が通知してくれるアラームコマンド 例:alarm 'メッセージ' 9:50
+alarm(){
+    echo "echo $1 | cowsay | wall" | at $2
+}
+
+<< '#COMMENT_OUT'
+#Proxy環境下でapt-get,yum,docker,git等を使う時に設定しておく
+export HTTP_PROXY_USER=id
+export HTTP_PROXY_PASS=pass
+export HTTP_PROXY=http://${HTTP_PROXY_USER}:${HTTP_PROXY_PASS}@proxysrv:port/
+export HTTPS_PROXY=${HTTP_PROXY}
+#COMMENT_OUT
+
+<< '#COMMENT_OUT'
+#認証のないプロキシの時はこっちを使う
+export http_proxy=http://<ProxyFQDN>:<ProxyPort>
+export https_proxy=http://<ProxyFQDN>:<ProxyPort>
+#COMMENT_OUT
+
+<< '#COMMENT_OUT'
+#GitにProxy設定を加える
+git config --global http.proxy ${HTTP_PROXY}
+git config --global https.proxy ${HTTPS_PROXY}
+git config --global url."https://".insteadOf git://
+#COMMENT_OUT
+
