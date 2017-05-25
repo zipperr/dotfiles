@@ -33,6 +33,11 @@ alias rm='rm -i'
 alias vi='vim'
 alias v='vim'
 alias vz='vim ~/.zshrc'
+alias server='python -m SimpleHTTPServer'   #簡易サーバーを立てる デフォルトは8000 引数で設定可
+alias server3='python -m http.server'   #python3はこっち
+alias ip='ifconfig'     #IPを表示する
+alias onkey="sudo kextload /System/Library/Extensions/AppleUSBTopCase.kext/Contents/PlugIns/AppleUSBTCKeyboard.kext/"    #mac本体のキーボードを有効にする
+alias offkey="sudo kextunload /System/Library/Extensions/AppleUSBTopCase.kext/Contents/PlugIns/AppleUSBTCKeyboard.kext/" #mac本体のキーボードを無効にする
 
 ##### 補完機能 ####
 autoload -U compinit           # 補完機能(TAB)を有効にする

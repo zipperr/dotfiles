@@ -36,6 +36,8 @@ alias v='vim'
 alias vi='vim'
 alias g='git'
 alias ..='cd ..'
+alias onkey="sudo kextload /System/Library/Extensions/AppleUSBTopCase.kext/Contents/PlugIns/AppleUSBTCKeyboard.kext/"   #mac本体のキーボードを有効にする
+alias offkey="sudo kextunload /System/Library/Extensions/AppleUSBTopCase.kext/Contents/PlugIns/AppleUSBTCKeyboard.kext/" #mac本体のキーボードを無効にする
 
 #sudoの後も候補予測する
 complete -cf sudo
@@ -69,3 +71,17 @@ shopt -s autocd
 shopt -s cdable_vars
 shopt -s cdspell
 shopt -s dirspell
+
+#change_色名でターミナルの色を変える (デフォルトターミナル、端末でのみ有効)
+BASE_COLOR_CHANGE='tell application "Terminal" to set current settings of first window to settings set '
+PREFIX_COLOR_CHANGE='/usr/bin/osascript -e '"'"$BASE_COLOR_CHANGE
+alias change_default=$PREFIX_COLOR_CHANGE' "Pro"'"'"
+alias change_blue=$PREFIX_COLOR_CHANGE' "Ocean"'"'"
+alias change_red=$PREFIX_COLOR_CHANGE' "Red Sands"'"'"
+alias change_silver=$PREFIX_COLOR_CHANGE' "Silver Aerogel"'"'"
+alias change_green=$PREFIX_COLOR_CHANGE' "Grass"'"'"
+
+#簡易サーバーを立てる
+alias server='python -m SimpleHTTPServer'   #簡易サーバーを立てる デフォルトは8000 引数で設定可↲
+alias server3='python -m http.server'   #python3はこっち↲
+alias ip='ifconfig'     #IPを表示する

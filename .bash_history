@@ -262,3 +262,159 @@ brew doctor
 brew update
 #1495550555
 brew install bash
+#1495550611
+brew info bash
+#1495550638
+bash --version
+#1495550665
+bash
+#1495550673
+~
+#1495550709
+source ~/.bash_profile
+#1495550716
+source ~/.bashrc
+#1495550769
+vim .bashrc
+#1495550807
+bash
+#1495550824
+vim .bashrc
+#1495550840
+bash
+#1495550850
+vim .bashrc
+#1495550870
+bash
+#1495550880
+vim .bashrc
+#1495550962
+bash
+#1495550969
+source ~/.bashrc
+#1495550976
+vim .bashrc
+#1495551016
+bash
+#1495551059
+vim .bashrc
+#1495551112
+bash
+#1495551128
+~
+#1495551136
+~/dotfiles
+#1495551160
+zsh
+#1495551173
+zsh
+#1495552210
+~
+#1495552221
+~/dotfiles/
+#1495552242
+vim .bashrc
+#1495552267
+bash
+#1495552269
+~
+#1495552280
+~/dotfiles/
+#1495552287
+vim .bashrc
+#1495552505
+bash
+#1495552507
+~
+#1495552515
+~/dotfiles
+#1495552526
+git add -A
+#1495552529
+git commit
+#1495552552
+git push
+#1495552599
+vim .bashrc
+#1495552639
+bash
+#1495552645
+~/dotfiles/
+#1495552664
+vim .zshrc
+#1495552718
+vim .bashrc
+#1495552739
+bash
+#1495552744
+~/dotfiles/
+#1495552753
+git add -A
+#1495552758
+git commit
+#1495552771
+git push
+#1495552900
+zsh
+#1495581563
+~
+#1495619790
+uname -o
+#1495619802
+uname -a
+#1495619933
+zsh
+#1495620796
+vim .bashrc
+#1495620846
+git add -A
+#1495620849
+git commit
+#1495620864
+git push
+#1495620906
+vim .bashrc
+#1495620941
+git add -A
+#1495620944
+git commit
+#1495620959
+git push
+#1495621277
+ls
+#1495621288
+vim setup.bat
+#1495621341
+git add -A
+#1495621345
+git commit
+#1495621365
+git push
+#1495622448
+bash
+#1495622450
+ls
+#1495622453
+~
+#1495622459
+..
+#1495622469
+~
+#1495622474
+~/dotfiles/
+#1495622482
+zsh
+#1495622837
+ps
+#1495622859
+ps -g
+#1495639123
+zsh
+#1495718981
+change_red
+#1495719012
+zsh
+#1495720521
+ip
+#1495720527
+server 8001
