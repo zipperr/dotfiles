@@ -1,3 +1,5 @@
+![result](https://github.com/zipperr/dotfiles/blob/master/教祖.jpeg)  
+
 ## 使い方
 1. cd ~
 2. git clone https://github.com/zipperr/dotfiles
@@ -9,7 +11,7 @@ xcode-select --install
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"  
 brew tap Homebrew/bundle  
 brew bundle  
-chsh -s /bin/zsh    
+chsh -s /bin/zsh   
 
 ##  Linux
 sudo apt-get install zsh vim git  

@@ -22,6 +22,12 @@ export JAVA_HOME=`/usr/libexec/java_home -v 1.8`    #caskでインストール�
 export PATH=$HOME/bin:/usr/local/bin:$PATH          #パス
 
 ##### エイリアス #####
+if [ "$(uname)" = 'Darwin' ]; then
+    alias ls='ls -a -G'  #mac用
+else
+    alias ls='ls -a  --color=auto'  #その他
+fi
+
 alias sudo='sudo '       # sudo の後のコマンドでエイリアスを有効にする
 alias -g L='| less'
 alias -g H='| head'
@@ -148,12 +154,9 @@ ls_abbrev() {
             fi
             ;;
     esac
-
     local ls_result
     ls_result=$(CLICOLOR_FORCE=1 COLUMNS=$COLUMNS command $cmd_ls ${opt_ls[@]} | sed $'/^\e\[[0-9;]*m$/d')
-
     local ls_lines=$(echo "$ls_result" | wc -l | tr -d ' ')
-
     if [ $ls_lines -gt 10 ]; then
         echo "$ls_result" | head -n 5
         echo '...'
@@ -182,6 +185,7 @@ function cdup() {
 zle -N cdup
 bindkey '\^' cdup
 
+##### Proxy設定 #####
 : << '#COMMENT_OUT'
 #Proxy環境下でapt-get,yum,docker,git等を使う時に設定しておく
 export HTTP_PROXY_USER=id
