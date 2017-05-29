@@ -9,7 +9,7 @@ setopt no_beep           # ビープ音を鳴らさないようにする
 setopt no_hist_beep      # ビープ音を鳴らさないようにする
 setopt no_list_beep      # ビープ音を鳴らさないようにする
 setopt auto_cd           # ディレクトリ名の入力のみで移動する
-setopt AUTO_NAME_DIRS    #"~$var" でディレクトリにアクセス
+setopt AUTO_NAME_DIRS    # "~$var" でディレクトリにアクセス
 setopt correct           # コマンドのスペルを訂正する
 setopt prompt_subst      # プロンプト定義内で変数置換やコマンド置換を扱う
 setopt notify            # バックグラウンドジョブの状態変化を即時報告する
@@ -42,6 +42,7 @@ alias rm='rm -i'
 alias vi='vim'
 alias v='vim'
 alias vz='vim ~/.zshrc'
+alias g='git'
 alias server='python -m SimpleHTTPServer'   #簡易サーバーを立てる デフォルトは8000 引数で設定可
 alias server3='python -m http.server'   #python3はこっち
 alias ip='ifconfig'     #IPを表示する

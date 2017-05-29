@@ -52,6 +52,14 @@ call dein#add('vim-scripts/javacomplete', {
     \ },
     \})                                                 "java補完
 
+"TweetVim関係
+call dein#add('basyura/TweetVim')
+call dein#add('mattn/webapi-vim')
+call dein#add('basyura/twibill.vim')
+call dein#add('h1mesuke/unite-outline')
+call dein#add('basyura/bitly.vim')
+
+
 " 設定終了
 call dein#end()
 call dein#save_state()
@@ -187,6 +195,93 @@ let g:syntastic_check_on_open = 0 "ファイルを開いたときにチェック
 let g:syntastic_check_on_save = 1 "ファイル保存時にはチェックを実施
 let g:syntastic_check_on_wq = 0   "wqで終了時にもチェック
 
+"##### TweetVimの設定 #####
+" フレームにアイコンを表示しない
+let g:tweetvim_display_icon = 0
+" 1ページのツイート数
+let g:tweetvim_tweet_per_page = 60
+
+nnoremap <silent><Leader>tw :<C-u>tabnew <Bar> TweetVimHomeTimeline<CR>
+nnoremap <silent><Leader>tl :<C-u>TweetVimHomeTimeline<CR>
+nnoremap <silent><Leader>tm :<C-u>TweetVimMentions<CR>
+nnoremap <Leader>ts :<C-u>TweetVimSay<CR>
+
+augroup TweetVimSetting
+    autocmd!
+    " マッピング
+    " 挿入・通常モードでsayバッファを閉じる
+    autocmd FileType tweetvim_say nnoremap <buffer><silent><C-g>    :<C-u>q!<CR>
+    autocmd FileType tweetvim_say inoremap <buffer><silent><C-g>    <C-o>:<C-u>q!<CR><Esc>
+    " 各種アクション
+    autocmd FileType tweetvim     nnoremap <buffer>s                :<C-u>TweetVimSay<CR>   "ツイート
+    autocmd FileType tweetvim     nnoremap <buffer>m                :<C-u>TweetVimMentions<CR>  "メンション"
+    autocmd FileType tweetvim     nnoremap <buffer>h                :<C-u>TweetVimHomeTimeline<CR>  "タイムライン
+    autocmd FileType tweetvim     nmap     <buffer>c                <Plug>(tweetvim_action_in_reply_to)
+    autocmd FileType tweetvim     nnoremap <buffer>t                :<C-u>Unite tweetvim -no-start-insert -quick-match<CR>
+    autocmd FileType tweetvim     nmap     <buffer><Leader>F        <Plug>(tweetvim_action_remove_favorite)
+    autocmd FileType tweetvim     nmap     <buffer><Leader>d        <Plug>(tweetvim_action_remove_status)
+    " リロード
+    autocmd FileType tweetvim     nmap     <buffer><Tab>            <Plug>(tweetvim_action_reload)
+    " ページの先頭に戻ったときにリロード
+    autocmd FileType tweetvim     nmap     <buffer><silent>gg       gg<Plug>(tweetvim_action_reload)
+    " ページ移動を ff/bb から f/b に
+    autocmd FileType tweetvim     nmap     <buffer>f                <Plug>(tweetvim_action_page_next)
+    autocmd FileType tweetvim     nmap     <buffer>b                <Plug>(tweetvim_action_page_previous)
+    " favstar や web UI で表示
+    autocmd FileType tweetvim     nnoremap <buffer><Leader><Leader> :<C-u>call <SID>tweetvim_favstar()<CR>
+    " ブラウザで対象ユーザのホームを開く
+    autocmd FileType tweetvim     nnoremap <buffer><Leader>u        :<C-u>call <SID>tweetvim_open_home()<CR>
+    " 縦移動（カーソルを常に中央にする）
+    autocmd FileType tweetvim     nnoremap <buffer><silent>j        :<C-u>call <SID>tweetvim_vertical_move("gj")<CR>zz
+    autocmd FileType tweetvim     nnoremap <buffer><silent>k        :<C-u>call <SID>tweetvim_vertical_move("gk")<CR>zz
+    " 不要なマップを除去
+    autocmd FileType tweetvim     nunmap   <buffer>ff
+    autocmd FileType tweetvim     nunmap   <buffer>bb
+    " tweetvim バッファに移動したときに自動リロード
+    autocmd BufEnter * call <SID>tweetvim_reload()
+augroup END
+
+" セパレータを飛ばして移動する
+" ページの先頭や末尾でそれ以上 上/下 に移動しようとしたらページ移動する
+function! s:tweetvim_vertical_move(cmd)
+    execute "normal! ".a:cmd
+    let end = line('$')
+    while getline('.') =~# '^[-~]\+$' && line('.') != end
+        execute "normal! ".a:cmd
+    endwhile
+    " 一番下まで来たら次のページに進む
+    let line = line('.')
+    if line == end
+        call feedkeys("\<Plug>(tweetvim_action_page_next)")
+    elseif line == 1
+        call feedkeys("\<Plug>(tweetvim_action_page_previous)")
+    endif
+endfunction
+
+" filetype が tweetvim ならツイートをリロード
+function! s:tweetvim_reload()
+    if &filetype ==# "tweetvim"
+        call feedkeys("\<Plug>(tweetvim_action_reload)")
+    endif
+endfunction
+
+" カーソル行のツイートをしたユーザの favstar を開く
+function! s:tweetvim_favstar()
+    let screen_name = matchstr(getline('.'),'^\s\zs\w\+')
+    let path = empty(screen_name) ? "/me" : "/users/" . screen_name
+
+    execute "OpenBrowser http://ja.favstar.fm" . path
+endfunction
+
+"
+" ツイートしたユーザのホームを開く
+function! s:tweetvim_open_home()
+    let username = expand('<cword>')
+    if username =~# '^[a-zA-Z0-9_]\+$'
+        execute "OpenBrowser https://twitter.com/" . username
+    endif
+endfunction
+
 "##### 基本設定 #####{{{1
 set encoding=utf-8 "ファイル読み込み時の文字コードの設定
 scriptencoding utf-8 "Vim script内でマルチバイト文字を使う場合の設定
@@ -205,6 +300,7 @@ autocmd FileType * setlocal formatoptions-=ro " 勝手にコメントアウト�
 set tw=0              "勝手に改行されるのを防ぐ
 set formatoptions=q         "同上
 set nocompatible          "これいる?
+let mapleader = "\<Space>"      "リーダーキーをスペースにする
 
 "##### 文字コード #####{{{1
 set fileencoding=utf-8 " 保存時の文字コード
@@ -355,6 +451,14 @@ autocmd BufWritePre * :%s/\s\+$//ge
 inoremap <expr> ,df strftime('%Y/%m/%d %H:%M:%S')
 inoremap <expr> ,dd strftime('%Y/%m/%d')
 inoremap <expr> ,dt strftime('%H:%M:%S')
+
+" :e などでファイルを開く際にフォルダが存在しない場合は自動作成
+function! s:mkdir(dir, force)
+  if !isdirectory(a:dir) && (a:force ||
+        \ input(printf('"%s" does not exist. Create? [y/N]', a:dir)) =~? '^y\%[es]$')
+    call mkdir(iconv(a:dir, &encoding, &termencoding), 'p')
+  endif
+endfunction
 
 "##### モードライン設定 #####{{{1
 set modeline "モードラインを有効にする
