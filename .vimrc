@@ -280,6 +280,15 @@ noremap K 20k
 noremap L 10l
 noremap H 10h
 
+" インサートモードでもhjklで移動（Ctrl同時押し）
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-h> <Left>
+inoremap <C-l> <Right>
+
+" 対応する括弧に移動
+nnoremap ( %
+nnoremap ) %
 "##### 補完機能 #####{{{1
 set wildmenu " コマンドモードの補完
 set history=5000 " 保存するコマンド履歴の数
@@ -296,14 +305,17 @@ autocmd FileType c set omnifunc=ccomplete#Complete
 autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
 autocmd FileType java set omnifunc=javacomplete#Complete
 autocmd FileType cpp set omnifunc=omni#cpp#complete#Main
+" カンマの後に自動的にスペースを挿入
+inoremap , ,<Space>
 
-"HTML閉じタグ補完
+"閉じタグ補完
 augroup MyXML
     autocmd!
     autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o>
     autocmd Filetype html inoremap <buffer> </ </<C-x><C-o>
     autocmd Filetype eruby inoremap <buffer> </ </<C-x><C-o>
 augroup END
+
 
 "##### 色設定#####{{{1
 syntax on "色付けオン
@@ -332,6 +344,17 @@ endif
 
 "w!! でスーパーユーザーとして保存
 cmap w!! w !sudo tee > /dev/null %
+
+" 保存時に行末の空白を除去する
+autocmd BufWritePre * :%s/\s\+$//ge
+
+" 保存時にtabをスペースに変換する
+" autocmd BufWritePre * :%s/\t/  /ge
+
+" 日時の自動入力
+inoremap <expr> ,df strftime('%Y/%m/%d %H:%M:%S')
+inoremap <expr> ,dd strftime('%Y/%m/%d')
+inoremap <expr> ,dt strftime('%H:%M:%S')
 
 "##### モードライン設定 #####{{{1
 set modeline "モードラインを有効にする
