@@ -70,7 +70,7 @@ if dein#check_install()
     call dein#install()
 endif
 
-"##### Uniteの設定 ######
+"##### Uniteの設定 #####{{{1
 " 入力モードで開始する
 let g:unite_enable_start_insert=1
 " バッファ一覧
@@ -91,7 +91,7 @@ au FileType unite inoremap <silent> <buffer> <expr> <C-K> unite#do_action('vspli
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 
-"##### NeocompleteとNeocomplcacheの設定 #####
+"##### NeocompleteとNeocomplcacheの設定 #####{{{1
 if has('lua')                                       "luaがある場合はcompleteを使う
 let g:neocomplete#enable_at_startup = 1             "起動時に有効化
 let g:neocomplete#auto_completion_start_length = 2  "補完が自動で開始される文字数
@@ -141,7 +141,7 @@ endif
     let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 endif
 
-"##### Neosnippetの設定 #####
+"##### Neosnippetの設定 #####{{{1
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
@@ -160,7 +160,7 @@ endif
 let g:neosnippet#enable_snipmate_compatibility = 1
 let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet-snippets/snippets/,~/.vim/snippets'
 
-"##### lightlineの設定 #####
+"##### lightlineの設定 #####{{{1
 set laststatus=2 "ステータスラインを常時表示
 set t_Co=256 "色
 let g:lightline = {
@@ -170,21 +170,21 @@ let g:lightline = {
     \ }
     \ }
 
-"##### NERDTreeの設定 #####
+"##### NERDTreeの設定 #####{{{1
 nnoremap <silent><C-e> :NERDTreeToggle<CR>  "ctrl+eでNERDTreeを開く
 let NERDTreeShowHidden = 1 "可視化ファイルを表示する
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif "NERDTreeだけが残る場合はvim終了
 
-"##### accelerated-jkの設定 #####
+"##### accelerated-jkの設定 #####{{{1
 nmap j <Plug>(accelerated_jk_gj)
 nmap k <Plug>(accelerated_jk_gk)
 
-"##### Open-Browser設定 #####
+"##### Open-Browser設定 #####{{{1
 " カーソル下のURLや単語をブラウザで開く
 nmap <Leader>b <Plug>(openbrowser-smart-search)
 vmap <Leader>b <Plug>(openbrowser-smart-search)
 
-"##### syntasticの設定 #####
+"##### syntasticの設定 #####{{{1
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -195,7 +195,7 @@ let g:syntastic_check_on_open = 0 "ファイルを開いたときにチェック
 let g:syntastic_check_on_save = 1 "ファイル保存時にはチェックを実施
 let g:syntastic_check_on_wq = 0   "wqで終了時にもチェック
 
-"##### TweetVimの設定 #####
+"##### TweetVimの設定 #####{{{1
 " フレームにアイコンを表示しない
 let g:tweetvim_display_icon = 0
 " 1ページのツイート数
