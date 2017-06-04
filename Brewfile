@@ -31,9 +31,10 @@ cask 'steam'
 cask 'openemu'
 cask 'bathyscaphe'
 cask 'java'
+cask 'karabiner'
 
 mas 'Twitter', id: 409789998
-mas 'LINE', id: 539883307 
+mas 'LINE', id: 539883307
 mas 'Xcode', id: 497799835
 mas 'GarageBand', id: 682658836
 mas 'Numbers', id: 409203825
