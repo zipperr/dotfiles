@@ -418,6 +418,7 @@ syntax on "色付けオン
 set background=dark "背景を黒にする
 autocmd Colorscheme * highlight Normal ctermbg=none
 autocmd Colorscheme * highlight LineNr ctermbg=none
+let g:solarized_termcolors=256
 colorscheme hybrid
 
 "##### その他 #####{{{1
