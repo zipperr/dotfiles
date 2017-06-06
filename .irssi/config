@@ -431,9 +431,5 @@ settings = {
   "perl/core/scripts" = { awl_shared_sbar = "OFF"; };
 };
 logs = { };
-windows = {
-  1 = { immortal = "yes"; name = "(status)"; level = "ALL"; };
-};
-mainwindows = {
-  1 = { first_line = "14"; lines = "9"; };
-};
+windows = { 1 = { immortal = "yes"; name = "(status)"; level = "ALL"; }; };
+mainwindows = { 1 = { first_line = "14"; lines = "9"; }; };
