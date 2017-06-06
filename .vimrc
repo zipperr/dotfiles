@@ -214,7 +214,7 @@ augroup TweetVimSetting
     autocmd FileType tweetvim_say inoremap <buffer><silent><C-g>    <C-o>:<C-u>q!<CR><Esc>
     " 各種アクション
     autocmd FileType tweetvim     nnoremap <buffer>s                :<C-u>TweetVimSay<CR>   "ツイート
-    autocmd FileType tweetvim     nnoremap <buffer>m                :<C-u>TweetVimMentions<CR>  "メンション"
+    autocmd FileType tweetvim     nnoremap <buffer>m                :<C-u>TweetVimMentions<CR>  "メンション
     autocmd FileType tweetvim     nnoremap <buffer>h                :<C-u>TweetVimHomeTimeline<CR>  "タイムライン
     autocmd FileType tweetvim     nmap     <buffer>c                <Plug>(tweetvim_action_in_reply_to)
     autocmd FileType tweetvim     nnoremap <buffer>t                :<C-u>Unite tweetvim -no-start-insert -quick-match<CR>
