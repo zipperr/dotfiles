@@ -49,6 +49,8 @@ alias ip='ifconfig'     #IPを表示する
 alias onkey="sudo kextload /System/Library/Extensions/AppleUSBTopCase.kext/Contents/PlugIns/AppleUSBTCKeyboard.kext/"    #mac本体のキーボードを有効にする
 alias offkey="sudo kextunload /System/Library/Extensions/AppleUSBTopCase.kext/Contents/PlugIns/AppleUSBTCKeyboard.kext/" #mac本体のキーボードを無効にする
 alias dsstore="find . -name '*.DS_Store' -type f -ls -delete"   #DS_Store削除
+alias w3="w3m -B"
+alias tw='vim -c TweetVimUserStream'
 
 ##### 補完機能 ####
 autoload -U compinit           # 補完機能(TAB)を有効にする
@@ -121,18 +123,22 @@ zstyle ':vcs_info:*' actionformats '[%b|%a]'
 precmd () { vcs_info }
 RPROMPT=$RPROMPT'${vcs_info_msg_0_}'
 
-##### googleコマンドで検索 #####
-google() {
-    local str opt
-    if [ $# != 0 ]; then
-        for i in $*; do
-            # $strが空じゃない場合、検索ワードを+記号でつなぐ(and検索)
-            str="$str${str:++}$i"
-        done
-        opt='search?num=100'
-        opt="${opt}&q=${str}"
+google(){
+    if [ $(echo $1 | egrep "^-[cfs]$") ]; then
+        local opt="$1"
+        shift
     fi
-    open -a Google\ Chrome http://www.google.co.jp/$opt
+    local url="https://www.google.co.jp/search?q=${*// /+}"
+    local app="/Applications"
+    local s="${app}/Safari.app"
+    local g="${app}/Google Chrome.app"
+    local f="${app}/Firefox.app"
+    case ${opt} in
+        "-s")   open "${url}" -a "$s";;
+        "-g")   open "${url}" -a "$g";;
+        "-f")   open "${url}" -a "$f";;
+        *)      open "${url}";;
+    esac
 }
 
 ##### cdしたらlsする #####

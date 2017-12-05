@@ -1,10 +1,7 @@
-"##### Plugin #####{{{1
-
-"プラグインの場所とdein.vim本体の場所
+"##### Plugin #####
 let s:dein_dir = expand('~/.vim/dein')
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
-"dein.vimが無ければインストールする
 if &runtimepath !~# '/dein.vim'
 if !isdirectory(s:dein_repo_dir)
     execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
@@ -12,7 +9,6 @@ if !isdirectory(s:dein_repo_dir)
     execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
 endif
 
-"設定開始
 if dein#load_state(s:dein_dir)
     call dein#begin(s:dein_dir)
 
@@ -28,14 +24,10 @@ call dein#add('w0ng/vim-hybrid')                        " カラースキーム
 call dein#add('itchyny/lightline.vim')                  "ステータスバーをオシャレに
 call dein#add('thinca/vim-quickrun')                    "vim上で\rでコードを実行
 call dein#add('tyru/open-browser.vim')                  "URLをクリックで開けるようにする
-call dein#add('vim-syntastic/syntastic')                "構文チェック
 call dein#add('scrooloose/nerdtree')                    "ツリー型でディレクトリ表示
 call dein#add('tpope/vim-fugitive')                     "vim上でGitを操作する
 call dein#add('rhysd/accelerated-jk')                   "j,kキーの移動速度を上げる
 call dein#add('Yggdroot/indentLine')                    "インデント表示
-call dein#add('othree/html5.vim')                       "HTML5色付け
-call dein#add('hail2u/vim-css3-syntax')                 "css3色付け
-call dein#add('jelera/vim-javascript-syntax')           "javascript色付け
 call dein#add('Shougo/neocomplcache.vim')               "自動補完
 call dein#add('Shougo/neocomplete.vim', {
     \ 'if' : has('lua')
@@ -51,14 +43,6 @@ call dein#add('vim-scripts/javacomplete', {
     \ 'unix': 'javac autoload/Reflection.java',
     \ },
     \})                                                 "java補完
-
-"TweetVim関係
-call dein#add('basyura/TweetVim')
-call dein#add('mattn/webapi-vim')
-call dein#add('basyura/twibill.vim')
-call dein#add('h1mesuke/unite-outline')
-call dein#add('basyura/bitly.vim')
-
 
 " 設定終了
 call dein#end()
@@ -160,7 +144,7 @@ endif
 let g:neosnippet#enable_snipmate_compatibility = 1
 let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet-snippets/snippets/,~/.vim/snippets'
 
-"##### lightlineの設定 #####{{{1
+"##### lightlineの設定 #####
 set laststatus=2 "ステータスラインを常時表示
 set t_Co=256 "色
 let g:lightline = {
@@ -170,21 +154,21 @@ let g:lightline = {
     \ }
     \ }
 
-"##### NERDTreeの設定 #####{{{1
+"##### NERDTreeの設定 #####
 nnoremap <silent><C-e> :NERDTreeToggle<CR>  "ctrl+eでNERDTreeを開く
 let NERDTreeShowHidden = 1 "可視化ファイルを表示する
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif "NERDTreeだけが残る場合はvim終了
 
-"##### accelerated-jkの設定 #####{{{1
+"##### accelerated-jkの設定 #####
 nmap j <Plug>(accelerated_jk_gj)
 nmap k <Plug>(accelerated_jk_gk)
 
-"##### Open-Browser設定 #####{{{1
+"##### Open-Browser設定 #####
 " カーソル下のURLや単語をブラウザで開く
 nmap <Leader>b <Plug>(openbrowser-smart-search)
 vmap <Leader>b <Plug>(openbrowser-smart-search)
 
-"##### syntasticの設定 #####{{{1
+"##### syntasticの設定 #####
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -195,94 +179,7 @@ let g:syntastic_check_on_open = 0 "ファイルを開いたときにチェック
 let g:syntastic_check_on_save = 1 "ファイル保存時にはチェックを実施
 let g:syntastic_check_on_wq = 0   "wqで終了時にもチェック
 
-"##### TweetVimの設定 #####{{{1
-" フレームにアイコンを表示しない
-let g:tweetvim_display_icon = 0
-" 1ページのツイート数
-let g:tweetvim_tweet_per_page = 60
-
-nnoremap <silent><Leader>tw :<C-u>tabnew <Bar> TweetVimHomeTimeline<CR>
-nnoremap <silent><Leader>tl :<C-u>TweetVimHomeTimeline<CR>
-nnoremap <silent><Leader>tm :<C-u>TweetVimMentions<CR>
-nnoremap <Leader>ts :<C-u>TweetVimSay<CR>
-
-augroup TweetVimSetting
-    autocmd!
-    " マッピング
-    " 挿入・通常モードでsayバッファを閉じる
-    autocmd FileType tweetvim_say nnoremap <buffer><silent><C-g>    :<C-u>q!<CR>
-    autocmd FileType tweetvim_say inoremap <buffer><silent><C-g>    <C-o>:<C-u>q!<CR><Esc>
-    " 各種アクション
-    autocmd FileType tweetvim     nnoremap <buffer>s                :<C-u>TweetVimSay<CR>   "ツイート
-    autocmd FileType tweetvim     nnoremap <buffer>m                :<C-u>TweetVimMentions<CR>  "メンション
-    autocmd FileType tweetvim     nnoremap <buffer>h                :<C-u>TweetVimHomeTimeline<CR>  "タイムライン
-    autocmd FileType tweetvim     nmap     <buffer>c                <Plug>(tweetvim_action_in_reply_to)
-    autocmd FileType tweetvim     nnoremap <buffer>t                :<C-u>Unite tweetvim -no-start-insert -quick-match<CR>
-    autocmd FileType tweetvim     nmap     <buffer><Leader>F        <Plug>(tweetvim_action_remove_favorite)
-    autocmd FileType tweetvim     nmap     <buffer><Leader>d        <Plug>(tweetvim_action_remove_status)
-    " リロード
-    autocmd FileType tweetvim     nmap     <buffer><Tab>            <Plug>(tweetvim_action_reload)
-    " ページの先頭に戻ったときにリロード
-    autocmd FileType tweetvim     nmap     <buffer><silent>gg       gg<Plug>(tweetvim_action_reload)
-    " ページ移動を ff/bb から f/b に
-    autocmd FileType tweetvim     nmap     <buffer>f                <Plug>(tweetvim_action_page_next)
-    autocmd FileType tweetvim     nmap     <buffer>b                <Plug>(tweetvim_action_page_previous)
-    " favstar や web UI で表示
-    autocmd FileType tweetvim     nnoremap <buffer><Leader><Leader> :<C-u>call <SID>tweetvim_favstar()<CR>
-    " ブラウザで対象ユーザのホームを開く
-    autocmd FileType tweetvim     nnoremap <buffer><Leader>u        :<C-u>call <SID>tweetvim_open_home()<CR>
-    " 縦移動（カーソルを常に中央にする）
-    autocmd FileType tweetvim     nnoremap <buffer><silent>j        :<C-u>call <SID>tweetvim_vertical_move("gj")<CR>zz
-    autocmd FileType tweetvim     nnoremap <buffer><silent>k        :<C-u>call <SID>tweetvim_vertical_move("gk")<CR>zz
-    " 不要なマップを除去
-    autocmd FileType tweetvim     nunmap   <buffer>ff
-    autocmd FileType tweetvim     nunmap   <buffer>bb
-    " tweetvim バッファに移動したときに自動リロード
-    autocmd BufEnter * call <SID>tweetvim_reload()
-augroup END
-
-" セパレータを飛ばして移動する
-" ページの先頭や末尾でそれ以上 上/下 に移動しようとしたらページ移動する
-function! s:tweetvim_vertical_move(cmd)
-    execute "normal! ".a:cmd
-    let end = line('$')
-    while getline('.') =~# '^[-~]\+$' && line('.') != end
-        execute "normal! ".a:cmd
-    endwhile
-    " 一番下まで来たら次のページに進む
-    let line = line('.')
-    if line == end
-        call feedkeys("\<Plug>(tweetvim_action_page_next)")
-    elseif line == 1
-        call feedkeys("\<Plug>(tweetvim_action_page_previous)")
-    endif
-endfunction
-
-" filetype が tweetvim ならツイートをリロード
-function! s:tweetvim_reload()
-    if &filetype ==# "tweetvim"
-        call feedkeys("\<Plug>(tweetvim_action_reload)")
-    endif
-endfunction
-
-" カーソル行のツイートをしたユーザの favstar を開く
-function! s:tweetvim_favstar()
-    let screen_name = matchstr(getline('.'),'^\s\zs\w\+')
-    let path = empty(screen_name) ? "/me" : "/users/" . screen_name
-
-    execute "OpenBrowser http://ja.favstar.fm" . path
-endfunction
-
-"
-" ツイートしたユーザのホームを開く
-function! s:tweetvim_open_home()
-    let username = expand('<cword>')
-    if username =~# '^[a-zA-Z0-9_]\+$'
-        execute "OpenBrowser https://twitter.com/" . username
-    endif
-endfunction
-
-"##### 基本設定 #####{{{1
+"##### 基本設定 #####
 set encoding=utf-8 "ファイル読み込み時の文字コードの設定
 scriptencoding utf-8 "Vim script内でマルチバイト文字を使う場合の設定
 set fenc=utf-8 "文字コードをUFT-8に設定
@@ -299,16 +196,15 @@ set noswapfile            " スワップファイルを作らない
 autocmd FileType * setlocal formatoptions-=ro " 勝手にコメントアウトされるのを防ぐ
 set tw=0              "勝手に改行されるのを防ぐ
 set formatoptions=q         "同上
-set nocompatible          "これいる?
 let mapleader = "\<Space>"      "リーダーキーをスペースにする
 
-"##### 文字コード #####{{{1
+"##### 文字コード #####
 set fileencoding=utf-8 " 保存時の文字コード
 set fileencodings=ucs-boms,utf-8,euc-jp,cp932 " 読み込み時の文字コードの自動判別. 左側が優先される
 set fileformats=dos,unix,mac " 改行コードの自動判別. 左側が優先される
 set ambiwidth=double " □や○文字が崩れる問題を解決
 
-"##### タブ・インデント・コピペ #####{{{1
+"##### タブ・インデント・コピペ #####
 set expandtab " タブ入力を複数の空白入力に置き換える
 set tabstop=4 " 画面上でタブ文字が占める幅
 set softtabstop=4 " 連続した空白に対してタブキーやBSKeyでカーソルが動く幅
@@ -328,9 +224,6 @@ if &term =~ "xterm"
     inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
 endif
 
-" 勝手にコメントアウトされるのを防ぐ
-autocmd FileType * setlocal formatoptions-=ro
-
 "xキーで文字を削除した際にヤンクの内容を消えないようにする
 noremap PP "0p
 noremap x "_x
@@ -345,7 +238,8 @@ augroup END
 " 不可視文字の視覚化
 set list
 set listchars=tab:»-,trail:-,nbsp:%,eol:↲
-"##### 検索 #####{{{1
+
+"##### searce settings #####
 set incsearch " インクリメンタルサーチ. １文字入力毎に検索を行う
 set ignorecase " 検索パターンに大文字小文字を区別しない
 set smartcase " 検索パターンに大文字を含んでいたら大文字小文字を区別する
@@ -385,35 +279,13 @@ inoremap <C-l> <Right>
 " 対応する括弧に移動
 nnoremap ( %
 nnoremap ) %
-"##### 補完機能 #####{{{1
-set wildmenu " コマンドモードの補完
-set history=5000 " 保存するコマンド履歴の数
+set wildmenu
+set history=10000
 
-" オムニ補完の設定（insertモードでCtrl+oで候補を出す、Ctrl+n Ctrl+pで選択、Ctrl+yで確定）
-autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-autocmd FileType phtml set omnifunc=phpcomplete#CompletePHP
-autocmd FileType python set omnifunc=pythoncomplete#Complete
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
-autocmd FileType php set omnifunc=phpcomplete#CompletePHP
-autocmd FileType c set omnifunc=ccomplete#Complete
-autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
-autocmd FileType java set omnifunc=javacomplete#Complete
-autocmd FileType cpp set omnifunc=omni#cpp#complete#Main
 " カンマの後に自動的にスペースを挿入
 inoremap , ,<Space>
 
-"閉じタグ補完
-augroup MyXML
-    autocmd!
-    autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o>
-    autocmd Filetype html inoremap <buffer> </ </<C-x><C-o>
-    autocmd Filetype eruby inoremap <buffer> </ </<C-x><C-o>
-augroup END
-
-
-"##### 色設定#####{{{1
+"##### color settings #####
 syntax on "色付けオン
 set background=dark "背景を黒にする
 autocmd Colorscheme * highlight Normal ctermbg=none
@@ -421,14 +293,6 @@ autocmd Colorscheme * highlight LineNr ctermbg=none
 let g:solarized_termcolors=256
 colorscheme hybrid
 
-"##### その他 #####{{{1
-"Escキーのディレイを無くす
-if !has('gui_running')
-    set timeout timeoutlen=1000 ttimeoutlen=50
-endif
-
-"Escディレイをなくすpart2
-set timeout timeoutlen=50
 
 "Escキーを押したときにIMEをオフにする(macのみ)
 if has('mac')
@@ -445,25 +309,5 @@ cmap w!! w !sudo tee > /dev/null %
 " 保存時に行末の空白を除去する
 autocmd BufWritePre * :%s/\s\+$//ge
 
-" 保存時にtabをスペースに変換する
-" autocmd BufWritePre * :%s/\t/  /ge
-
-" 日時の自動入力
-inoremap <expr> ,df strftime('%Y/%m/%d %H:%M:%S')
-inoremap <expr> ,dd strftime('%Y/%m/%d')
-inoremap <expr> ,dt strftime('%H:%M:%S')
-
-" :e などでファイルを開く際にフォルダが存在しない場合は自動作成
-function! s:mkdir(dir, force)
-  if !isdirectory(a:dir) && (a:force ||
-        \ input(printf('"%s" does not exist. Create? [y/N]', a:dir)) =~? '^y\%[es]$')
-    call mkdir(iconv(a:dir, &encoding, &termencoding), 'p')
-  endif
-endfunction
-
-"##### モードライン設定 #####{{{1
-set modeline "モードラインを有効にする
-set modelines=3 "モードライン検索行
-" vim: foldmethod=marker
-" vim: foldcolumn=3
-" vim: foldlevel=0
+"Escディレイをなくすpart2
+set timeout timeoutlen=40
