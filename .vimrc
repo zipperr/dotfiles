@@ -36,13 +36,6 @@ call dein#add('ujihisa/neco-look', {
     \ 'depends': ['neocomplete.vim'],
     \ 'if' : has('lua')
     \ })                                                "英単語自動補完
-call dein#add('vim-scripts/javacomplete', {
-    \ 'build': {
-    \ 'cygwin': 'javac autoload/Reflection.java',
-    \ 'mac': 'javac autoload/Reflection.java',
-    \ 'unix': 'javac autoload/Reflection.java',
-    \ },
-    \})                                                 "java補完
 
 " 設定終了
 call dein#end()
