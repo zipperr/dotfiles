@@ -4,10 +4,8 @@ export EDITOR='/usr/bin/vim'
 export LANG='ja_JP.UTF-8'
 export LC_ALL='ja_JP.UTF-8'
 export LC_MESSAGES='ja_JP.UTF-8'
-shopt -s autocd
 shopt -s cdable_vars
 shopt -s cdspell
-shopt -s dirspell
 complete -cf sudo
 
 export HISTSIZE=100000
