@@ -1,7 +1,0 @@
-# list the possibilities after an ambiguous completion
-#
-set show-all-if-ambiguous on
-
-# stop the beep
-#
-set bell-style none

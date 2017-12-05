@@ -1,5 +1,3 @@
-![result](https://github.com/zipperr/dotfiles/blob/master/教祖.jpeg)  
-
 ## 使い方
 1. cd ~
 2. git clone https://github.com/zipperr/dotfiles
