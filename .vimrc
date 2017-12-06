@@ -124,9 +124,7 @@ let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet-snippets/snippets/
 "##### lightline #####
 set laststatus=2
 set t_Co=256
-let g:lightline = {
-    \ 'colorscheme': 'wombat',
-    \ 'component': {'readonly': '%{&readonly?"\u2b64":""}',}}
+let g:lightline = {'colorscheme': 'wombat'}
 
 "##### NERDTree #####
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
