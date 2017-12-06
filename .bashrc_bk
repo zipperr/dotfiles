@@ -33,8 +33,6 @@ alias v='vim'
 alias vi='vim'
 alias g='git'
 alias ..='cd ..'
-alias server='python -m SimpleHTTPServer'
-alias server3='python -m http.server'
 
 #(時間)[ユーザ名@ホスト名][場所][ブランチ名]
 source $HOME/.git-prompt.sh
@@ -59,6 +57,11 @@ function mkcd() {
     cd $1;
 }
 alias mkcd=mkcd
+
+#PythonServer
+alias server='python -m SimpleHTTPServer'
+alias server3='python -m http.server'
+alias ipconfig='ifconfig'
 
 << '#COMMENT_OUT'
 #Proxy環境下でapt-get,yum,docker,git等を使う時に設定しておく

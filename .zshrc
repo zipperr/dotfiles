@@ -18,7 +18,6 @@ setopt AUTO_RESUME       # サスペンド中のプロセスと同じコマン�
 export TERM=xterm-256color #256色使う。(vimのlightline作動にも使います)
 autoload -U colors && colors
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"  #caskでインストールしたアプリをApplicationsへ
-export JAVA_HOME=`/usr/libexec/java_home -v 1.8`    #caskでインストールしたjavaの場所
 export PATH=$HOME/bin:/usr/local/bin:$PATH          #パス
 
 ##### エイリアス #####
@@ -46,11 +45,7 @@ alias g='git'
 alias server='python -m SimpleHTTPServer'   #簡易サーバーを立てる デフォルトは8000 引数で設定可
 alias server3='python -m http.server'   #python3はこっち
 alias ip='ifconfig'     #IPを表示する
-alias onkey="sudo kextload /System/Library/Extensions/AppleUSBTopCase.kext/Contents/PlugIns/AppleUSBTCKeyboard.kext/"    #mac本体のキーボードを有効にする
-alias offkey="sudo kextunload /System/Library/Extensions/AppleUSBTopCase.kext/Contents/PlugIns/AppleUSBTCKeyboard.kext/" #mac本体のキーボードを無効にする
-alias dsstore="find . -name '*.DS_Store' -type f -ls -delete"   #DS_Store削除
 alias w3="w3m -B"
-alias tw='vim -c TweetVimUserStream'
 
 ##### 補完機能 ####
 autoload -U compinit           # 補完機能(TAB)を有効にする
