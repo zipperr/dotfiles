@@ -220,7 +220,7 @@ noremap L 10l
 noremap H 10h
 inoremap <C-j> <Down>
 inoremap <C-k> <Up>
-inoremap <C-h> <Left>
+"inoremap <C-h> <Left> "teratermでデリートキー使えなくなる
 inoremap <C-l> <Right>
 set wildmenu
 set history=10000
