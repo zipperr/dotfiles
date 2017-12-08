@@ -44,7 +44,7 @@ alias server='python -m SimpleHTTPServer'
 alias server3='python -m http.server'
 alias w3="w3m -B"
 
-##### 補完機能 ####
+##### Completion ####
 autoload -U compinit
 compinit -u
 setopt auto_list
@@ -61,8 +61,6 @@ bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
-
-###### 補完の表示関連 #####
 zstyle ':completion:*:default' menu select=1
 zstyle ':completion:*:cd:*' tag-order local-directories path-directories
 zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
