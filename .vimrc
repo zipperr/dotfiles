@@ -11,27 +11,17 @@ if dein#load_state(s:dein_dir)
     call dein#begin(s:dein_dir)
 
 "##### PluginList #####
-"プラグイン管理
 call dein#add('Shougo/dein.vim')
-"非同期
 call dein#add('Shougo/vimproc.vim', {'build': 'make'})
-"スニペット(補完)
 call dein#add('Shougo/neosnippet.vim')
-"デフォルトスニペット
 call dein#add('Shougo/neosnippet-snippets')
-"カラースキーム
 call dein#add('w0ng/vim-hybrid')
-"ステータスバー
 call dein#add('itchyny/lightline.vim')
-"ファイルツリー
 call dein#add('scrooloose/nerdtree')
-"入力補完
 call dein#add('Shougo/neocomplcache.vim')
-"入力補完
 call dein#add('Shougo/neocomplete.vim', {
     \ 'if' : has('lua')
     \ })
-"英単語補完
 call dein#add('ujihisa/neco-look', {
     \ 'depends': ['neocomplete.vim'],
     \ 'if' : has('lua')
@@ -119,18 +109,14 @@ inoremap <<CR> <<CR>><Esc><S-o><TAB>
 inoremap , ,<Space>
 
 "##### Neosnipett #####
-" Plugin key-mappings.
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-
-" SuperTab like snippets behavior.
 imap <expr><TAB> neosnippet#expandable() <Bar><bar> neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
 smap <expr><TAB> neosnippet#expandable() <Bar><bar> neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
-" For snippet_complete marker.
 if has('conceal')
   set conceallevel=2 concealcursor=i
 endif
+
 "##### Neocomplete, Neocomplcache #####
 if has('lua')
 let g:neocomplete#enable_at_startup = 1
@@ -179,7 +165,6 @@ endif
 endif
 
 let g:neocomplete#text_mode_filetypes = { "_" : 1 }
-
 
 "##### NERDTree #####
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
