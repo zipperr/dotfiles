@@ -177,6 +177,9 @@ let g:lightline = {'colorscheme': 'wombat'}
 
 "##### hybrid #####
 syntax on
+set term=builtin_linux
+set ttytype=builtin_linux
+set t_Co=256
 autocmd ColorScheme * highlight Normal ctermbg=none
 autocmd ColorScheme * highlight LineNr ctermbg=none
 colorscheme hybrid
