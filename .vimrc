@@ -1,3 +1,6 @@
+set encoding=utf-8
+scriptencoding utf-8
+
 "##### Plugin #####
 let s:dein_dir = expand('~/.vim/dein')
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
@@ -36,7 +39,6 @@ endif
 
 "##### basic config #####
 "Encoding
-set encoding=utf-8
 set fileencodings=utf-8,cp932,euc-jp,sjis
 set fileformats=unix,dos,mac
 set ambiwidth=double
@@ -109,13 +111,13 @@ inoremap <<CR> <<CR>><Esc><S-o><TAB>
 inoremap , ,<Space>
 
 "##### Neosnipett #####
-inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>" 
-imap <C-k> <Plug>(neosnippet_expand_or_jump)
-smap <C-k> <Plug>(neosnippet_expand_or_jump)
-imap <expr><TAB> neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+imap <expr><TAB> pumvisible() ? "\<C-n>" : neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 smap <expr><TAB> neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-if has('conceal') set conceallevel=2 concealcursor=i
-	endif
+if has('conceal')
+	set conceallevel=2 concealcursor=i
+endif
 
 "##### Neocomplete, Neocomplcache #####
 if has('lua')
