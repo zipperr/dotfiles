@@ -21,7 +21,6 @@ call dein#add('Shougo/vimproc.vim', {
 	\     'windows' : 'make -f make_mingw64.mak',
 	\     'cygwin' : 'make -f make_cygwin.mak',
 	\     'mac' : 'make -f make_mac.mak',
-	\     'linux'   : 'make',
 	\     'unix' : 'make -f make_unix.mak',
 	\    },
 	\ })
@@ -33,6 +32,7 @@ call dein#add('scrooloose/nerdtree')
 call dein#add('Shougo/neocomplcache.vim')
 call dein#add('ujihisa/neco-look')
 call dein#add('scrooloose/syntastic')
+call dein#add('thinca/vim-quickrun')
 call dein#end()
 call dein#save_state()
 endif
@@ -53,11 +53,6 @@ set smartindent
 "Invisibles
 set list
 set listchars=tab:>-,trail:-
-augroup highlightIdegraphicSpace
-	autocmd!
-	autocmd Colorscheme * highlight IdeographicSpace term=underline ctermbg=DarkGreen guibg=DarkGreen
-	autocmd VimEnter,WinEnter * match IdeographicSpace /　/
-augroup END
 "SwapFile
 set nobackup
 set noswapfile
@@ -73,10 +68,13 @@ set history=100
 set infercase
 "Clipboard
 set clipboard=unnamed,autoselect
+nnoremap x "_x
+nnoremap dd "_dd
 "Other
 set showmatch
 set nocompatible
 set vb t_vb=
+set novisualbell
 set shellslash
 cmap w!! w !sudo tee % > /dev/null
 
@@ -87,6 +85,7 @@ noremap K 20k
 noremap L 10l
 noremap H 10h
 "NormalMode
+nnoremap <C-w> <C-w><C-w>
 nnoremap r <C-r>
 nnoremap j gj
 nnoremap k gk
@@ -112,12 +111,54 @@ inoremap [<CR> [<CR>]<Esc><S-o><TAB>
 inoremap <<CR> <<CR>><Esc><S-o><TAB>
 inoremap , ,<Space>
 
+"##### Script #####
+"SpaceHiglight
+augroup highlightIdegraphicSpace
+	autocmd!
+	autocmd Colorscheme * highlight IdeographicSpace term=underline ctermbg=DarkGreen guibg=DarkGreen
+	autocmd VimEnter,WinEnter * match IdeographicSpace /　/
+augroup END
+
+"Paste
+if &term =~ "xterm"
+    let &t_SI .= "\e[?2004h"
+    let &t_EI .= "\e[?2004l"
+    let &pastetoggle = "\e[201~"
+    function XTermPasteBegin(ret)
+    set paste
+    return a:ret
+    endfunction
+    inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
+endif
+
+"Esckey(macOnly)
+if has('mac')
+let g:imeoff = 'osascript -e "tell application \"System Events\" to key code 102"'
+    augroup MyIMEGroup
+    autocmd!
+    autocmd InsertLeave * :call system(g:imeoff)
+    augroup END
+endif
+
+"CursorRetune
+augroup vimrcEx
+  au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
+  \ exe "normal g`\"" | endif
+augroup END
+
 "##### Neocomplcache, Neosnippet #####
 let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_enable_smart_case = 1
-let g:neocomplcache_max_list = 20
-let g:neocomplcache_enable_ignore_case = 1
+let g:neocomplcache_max_list = 10
+let g:neocomplcache_auto_completion_start_length = 1
+let g:neocomplcache_manual_completion_start_length = 3
+let g:neocomplcache_min_keyword_length = 3
 let g:neocomplcache_min_syntax_length = 3
+let g:neocomplcache_enable_ignore_case = 1
+let g:neocomplcache_enable_smart_case = 1
+let g:neocomplcache_enable_camel_case_completion = 0
+let g:neocomplcache_enable_underbar_completion = 0
+let g:neocomplcache_enable_at_startuple_auto_select = 1
+let g:neocomplcache_enable_insert_char_pre = 1
 let g:neocomplcache_text_mode_filetypes = {
 	\ 'markdown' : 1,
 	\ 'gitcommit' : 1,
@@ -129,16 +170,32 @@ imap <expr><CR> neosnippet#expandable() ? "<Plug>(neosnippet_expand_or_jump)" : 
 imap <expr><TAB> pumvisible() ? "<C-n>" : neosnippet#jumpable() ? "<Plug>(neosnippet_expand_or_jump)" : "<TAB>"
 
 "##### syntax #####
-let g:syntastic_enable_signs = 1
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_loc_list_height = 1
+let g:syntastic_aggregate_errors = 1
 let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_enable_signs = 1
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 1
+let g:syntastic_check_on_wq = 0
+
+"##### quickrun #####
+let g:quickrun_config = {"_" : {
+\		"runner" : "vimproc",
+\		"runner/vimproc/updatetime" : 60,
+\		"outputter" : "error",
+\		"outputter/error/success" : "buffer",
+\		"outputter/error/error" : "quickfix",
+\		"outputter/buffer/split" : ":rightbelow 5sp",
+\		"outputter/buffer/close_on_empty" : 1,
+\		}}
+nnoremap <C-q> :QuickRun<CR>
+au FileType qf nnoremap <silent><buffer>q :quit<CR>
 
 "##### NERDTree #####
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
-silent! map <C-a> :NERDTreeFind<CR>
-let g:NERDTreeMapActivateNode="<C-a>"
 let NERDTreeShowHidden = 1
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
