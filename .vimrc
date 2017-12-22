@@ -137,6 +137,8 @@ let g:syntastic_check_on_wq = 1
 
 "##### NERDTree #####
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
+silent! map <C-a> :NERDTreeFind<CR>
+let g:NERDTreeMapActivateNode="<C-a>"
 let NERDTreeShowHidden = 1
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
