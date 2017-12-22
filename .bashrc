@@ -15,6 +15,7 @@ export HISTCONTROL=ignoreboth
 export HISTTIMEFORMAT='%Y/%m/%d %H:%M:%S'
 #vimでC-q
 stty stop undef
+stty start undef
 
 if [ "$(uname)" = 'Darwin' ]; then
     alias ls='ls -a -G'
