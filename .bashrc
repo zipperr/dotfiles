@@ -7,14 +7,13 @@ export LC_MESSAGES='ja_JP.UTF-8'
 shopt -s cdable_vars
 shopt -s cdspell
 complete -cf sudo
-
 export HISTSIZE=100000
 export HISTFILESIZE=100000
 export HISTCONTROL=ignoredups
 export HISTCONTROL=ignorespace
 export HISTCONTROL=ignoreboth
 export HISTTIMEFORMAT='%Y/%m/%d %H:%M:%S'
-
+#vimでC-q
 stty stop undef
 
 if [ "$(uname)" = 'Darwin' ]; then
@@ -53,12 +52,10 @@ fi
 cd (){
     builtin cd "$@" && ls
 }
-
-function mkcd() {
-    mkdir $1;
-    cd $1;
-}
-alias mkcd=mkcd
+shopt -s autocd
+shopt -s cdable_vars
+shopt -s cdspell
+shopt -s dirspell
 
 << '#COMMENT_OUT'
 #Proxy環境下でapt-get,yum,docker,git等を使う時に設定しておく
