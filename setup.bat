@@ -1,2 +1,2 @@
-mklink %HOMEPATH%"\.vimrc" %HOMEPATH%"\dotfiles\.vimrc"
+XCOPY %HOMEPATH%"\dotfiles\.vimrc" %HOMEPATH%"\.vimrc" /I /O /Y
 exit 0

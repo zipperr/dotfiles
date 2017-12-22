@@ -18,10 +18,8 @@ export TERM=xterm-256color
 autoload -U colors && colors
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 export PATH=$HOME/bin:/usr/local/bin:$PATH
-
 #vimでC-q
 stty stop undef
-stty start undef
 
 ##### alias #####
 if [ "$(uname)" = 'Darwin' ]; then
