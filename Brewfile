@@ -16,6 +16,7 @@ brew 'perl'
 brew 'ruby'
 brew 'wget'
 brew 'zsh'
+brew 'bash'
 brew 'mas'
 
 cask 'mplayerx'

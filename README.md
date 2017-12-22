@@ -16,5 +16,5 @@ sudo apt-get install zsh vim git
 chsh -s /usr/bin/zsh  
 
 ##  Windows
-[Gitbash Install](http://gitforwindows.org)
+[Gitbash Install](http://gitforwindows.org)  
 setup.bat
