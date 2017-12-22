@@ -1,2 +1,7 @@
-XCOPY %HOMEPATH%"\dotfiles\.vimrc" %HOMEPATH%"\.vimrc" /I /O /Y
+XCOPY %HOMEPATH%"\dotfiles\.vimrc" %HOMEPATH% /D /S /R /I /K /Y
+XCOPY %HOMEPATH%"\dotfiles\.bashrc" %HOMEPATH% /D /S /R /I /K /Y
+XCOPY %HOMEPATH%"\dotfiles\.gitconfig" %HOMEPATH% /D /S /R /I /K /Y
+XCOPY %HOMEPATH%"\dotfiles\.gitignore_global" %HOMEPATH% /D /S /R /I /K /Y
+XCOPY %HOMEPATH%"\dotfiles\.git-prompt" %HOMEPATH% /D /S /R /I /K /Y
+XCOPY %HOMEPATH%"\dotfiles\vimproc\*" %HOMEPATH%"/.vim/dein/repos/github.com/Shogo/vimproc.vim/lib/" /D /S /R /I /K /Y
 exit 0
