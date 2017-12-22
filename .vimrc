@@ -131,20 +131,30 @@ if &term =~ "xterm"
 	inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
 endif
 
-"Esckey(macOnly)
-if has('mac')
-let g:imeoff = 'osascript -e "tell application \"System Events\" to key code 102"'
-	augroup MyIMEGroup
-	autocmd!
-	autocmd InsertLeave * :call system(g:imeoff)
-	augroup END
-endif
-
 "CursorRetune
 augroup vimrcEx
 	au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
 	\ exe "normal g`\"" | endif
 augroup END
+
+"##### OSenvironment #####
+if has("mac")
+"Script
+let g:imeoff = 'osascript -e "tell application \"System Events\" to key code 102"'
+	augroup MyIMEGroup
+	autocmd!
+	autocmd InsertLeave * :call system(g:imeoff)
+	augroup END
+elseif has("unix")
+set term=builtin_linux
+set ttytype=builtin_linux
+elseif has("win64")
+set t_Co=256
+elseif has("win32unix")
+set t_Co=256
+elseif has("win32")
+set t_Co=256
+endif
 
 "##### Neocomplcache, Neosnippet #####
 let g:neocomplcache_enable_at_startup = 1
@@ -203,11 +213,11 @@ let g:quickrun_config = {"_" : {
 set splitright
 nnoremap <C-q> :QuickRun<CR>
 nnoremap q :<C-u>bw! \[quickrun\ output\]<CR>
-"au FileType qf nnoremap <silent><buffer>q :quit<CR>
 
 "##### NERDTree #####
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
 let NERDTreeShowHidden = 1
+autocmd vimenter * if !argc() | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 "##### lightline #####
@@ -216,9 +226,6 @@ let g:lightline = {'colorscheme': 'wombat'}
 
 "##### hybrid #####
 syntax on
-"set term=builtin_linux
-"set ttytype=builtin_linux
-set t_Co=256
 autocmd ColorScheme * highlight Normal ctermbg=none
 autocmd ColorScheme * highlight LineNr ctermbg=none
 colorscheme hybrid
