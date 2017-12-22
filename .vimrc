@@ -16,14 +16,7 @@ if dein#load_state(s:dein_dir)
 
 "##### PluginList #####
 call dein#add('Shougo/dein.vim')
-call dein#add('Shougo/vimproc.vim', {
-	\'build': {
-		\'windows' : 'make -f make_mingw64.mak',
-		\'cygwin' : 'make -f make_cygwin.mak',
-		\'mac' : 'make -f make_mac.mak',
-		\'unix' : 'make -f make_unix.mak',
-		\},
-	\})
+call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
 call dein#add('Shougo/neocomplcache.vim')
 call dein#add('Shougo/neosnippet.vim')
 call dein#add('Shougo/neosnippet-snippets')
@@ -149,11 +142,8 @@ elseif has("unix")
 set term=builtin_linux
 set ttytype=builtin_linux
 elseif has("win64")
-set t_Co=256
 elseif has("win32unix")
-set t_Co=256
 elseif has("win32")
-set t_Co=256
 endif
 
 "##### Neocomplcache, Neosnippet #####
@@ -226,6 +216,7 @@ let g:lightline = {'colorscheme': 'wombat'}
 
 "##### hybrid #####
 syntax on
+set t_Co=256
 autocmd ColorScheme * highlight Normal ctermbg=none
 autocmd ColorScheme * highlight LineNr ctermbg=none
 colorscheme hybrid
