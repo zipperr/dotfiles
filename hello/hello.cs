@@ -1,6 +1,6 @@
-using System
+using System;
 
-class HelloWorld
+class hello
 {
 	[STAThread]
 	static void Main(string[] args)
