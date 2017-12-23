@@ -12,7 +12,7 @@ brew bundle
 chsh -s /bin/zsh   
 
 ##  Linux
-sudo apt-get install zsh vim git  
+sudo apt-get install zsh vim git make gcc  
 chsh -s /usr/bin/zsh  
 
 ##  Windows

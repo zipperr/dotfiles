@@ -139,8 +139,9 @@ let g:imeoff = 'osascript -e "tell application \"System Events\" to key code 102
 	autocmd InsertLeave * :call system(g:imeoff)
 	augroup END
 elseif has("unix")
-set term=builtin_linux
-set ttytype=builtin_linux
+"sentOS
+"set term=builtin_linux
+"set ttytype=builtin_linux
 elseif has("win64")
 elseif has("win32unix")
 elseif has("win32")
