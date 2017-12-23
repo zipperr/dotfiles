@@ -13,7 +13,10 @@ chsh -s /bin/zsh   
 
 ##  Linux
 sudo apt-get install zsh vim git make gcc  
-chsh -s /usr/bin/zsh  
+chsh -s /usr/bin/zsh
+
+aptコマンドメモ:node.js python3 python perl ruby golang gcc cpp g++  
+default-jre default-jdk php clisp mono lua groovy open-cobol
 
 ##  Windows
 [Gitbash Install](http://gitforwindows.org)  
