@@ -16,21 +16,25 @@ if dein#load_state(s:dein_dir)
 
 "##### PluginList #####
 call dein#add('Shougo/dein.vim')
+" Utility
 call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
 call dein#add('Shougo/unite.vim')
+call dein#add('scrooloose/nerdtree')
+call dein#add('tomtom/tcomment_vim')
+call dein#add('osyo-manga/vim-brightest')
+call dein#add('LeafCage/yankround.vim')
+" Programming Support
 call dein#add('Shougo/neocomplcache.vim')
 call dein#add('Shougo/neosnippet.vim')
 call dein#add('Shougo/neosnippet-snippets')
 call dein#add('scrooloose/syntastic')
-call dein#add('scrooloose/nerdtree')
-call dein#add('tomtom/tcomment_vim')
-call dein#add('w0ng/vim-hybrid')
 call dein#add('ujihisa/neco-look')
 call dein#add('thinca/vim-quickrun')
-call dein#add('osyo-manga/vim-brightest')
+" Theme / Interface
+call dein#add('w0ng/vim-hybrid')
+" Git Support
 call dein#add('airblade/vim-gitgutter')
 call dein#add('tpope/vim-fugitive')
-call dein#add('LeafCage/yankround.vim')
 call dein#end()
 call dein#save_state()
 endif
@@ -240,104 +244,6 @@ nmap gP <Plug>(yankround-gP)
 nmap <C-p> <Plug>(yankround-prev)
 nmap <C-n> <Plug>(yankround-next)
 
-"##### Statusline #####
-set laststatus=2
-set statusline=%{expand('%:p:t')}\ %<\(%{SnipMid(expand('%:p:h'),80-len(expand('%:p:t')),'...')}\)%=\ %m%r%y%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}[%3l/%3L]
-function! SnipMid(str, len, mask)
-  if a:len >= len(a:str)
-    return a:str
-  elseif a:len <= len(a:mask)
-    return a:mask
-  endif
-  let len_head = (a:len - len(a:mask)) / 2
-  let len_tail = a:len - len(a:mask) - len_head
-  return (len_head > 0 ? a:str[: len_head - 1] : '') . a:mask . (len_tail > 0 ? a:str[-len_tail :] : '')
-endfunction
-
-hi StatusLine gui=NONE guifg=Black guibg=DarkCyan cterm=NONE ctermfg=Black ctermbg=DarkCyan
-let g:hi_insert = 'highlight StatusLine guifg=Black guibg=DarkGreen cterm=NONE ctermfg=Black ctermbg=DarkGreen'
-if has('syntax')
-  augroup InsertHook
-    autocmd!
-    autocmd InsertEnter * call s:StatusLine('Enter')
-    autocmd InsertLeave * call s:StatusLine('Leave')
-  augroup END
-endif
-let s:slhlcmd = ''
-function! s:StatusLine(mode)
-  if a:mode == 'Enter'
-    silent! let s:slhlcmd = 'highlight ' . s:GetHighlight('StatusLine')
-    silent exec g:hi_insert
-  else
-    highlight clear StatusLine
-    silent exec s:slhlcmd
-    redraw
-  endif
-endfunction
-function! s:GetHighlight(hi)
-  redir => hl
-  exec 'highlight '.a:hi
-  redir END
-  let hl = substitute(hl, '[\r\n]', '', 'g')
-  let hl = substitute(hl, 'xxx', '', '')
-  return hl
-endfunction
-
-"##### CursorLine #####
-set cursorline
-set number
-hi clear CursorLine
-
-"##### Statusline #####
-set laststatus=2
-set statusline=%{expand('%:p:t')}\ %<\(%{SnipMid(expand('%:p:h'),80-len(expand('%:p:t')),'...')}\)%=\ %m%r%y%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}[%3l/%3L]
-function! SnipMid(str, len, mask)
-  if a:len >= len(a:str)
-    return a:str
-  elseif a:len <= len(a:mask)
-    return a:mask
-  endif
-  let len_head = (a:len - len(a:mask)) / 2
-  let len_tail = a:len - len(a:mask) - len_head
-  return (len_head > 0 ? a:str[: len_head - 1] : '') . a:mask . (len_tail > 0 ? a:str[-len_tail :] : '')
-endfunction
-
-hi StatusLine gui=NONE guifg=Black guibg=DarkCyan cterm=NONE ctermfg=Black ctermbg=DarkCyan
-let g:hi_insert = 'highlight StatusLine guifg=Black guibg=DarkGreen cterm=NONE ctermfg=Black ctermbg=DarkGreen'
-if has('syntax')
-  augroup InsertHook
-    autocmd!
-    autocmd InsertEnter * call s:StatusLine('Enter')
-    autocmd InsertLeave * call s:StatusLine('Leave')
-  augroup END
-endif
-let s:slhlcmd = ''
-function! s:StatusLine(mode)
-  if a:mode == 'Enter'
-    silent! let s:slhlcmd = 'highlight ' . s:GetHighlight('StatusLine')
-    silent exec g:hi_insert
-  else
-    highlight clear StatusLine
-    silent exec s:slhlcmd
-    redraw
-  endif
-endfunction
-function! s:GetHighlight(hi)
-  redir => hl
-  exec 'highlight '.a:hi
-  redir END
-  let hl = substitute(hl, '[\r\n]', '', 'g')
-  let hl = substitute(hl, 'xxx', '', '')
-  return hl
-endfunction
-
-"##### CursorLine #####
-set cursorline
-set number
-hi clear CursorLine
-
-nmap p <Plug>(yankround-p)
-nmap p <Plug>(yankround-p)
 "##### hybrid #####
 syntax on
 set t_Co=256
