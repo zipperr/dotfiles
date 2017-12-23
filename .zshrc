@@ -23,9 +23,9 @@ stty stop undef
 stty start undef
 ##### alias #####
 if [ "$(uname)" = 'Darwin' ]; then
-    alias ls='ls -a -G'
+	alias ls='ls -a -G'
 else
-    alias ls='ls -a  --color=auto'
+	alias ls='ls -a  --color=auto'
 fi
 
 alias sudo='sudo '
