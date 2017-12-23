@@ -18,3 +18,10 @@ chsh -s /usr/bin/zsh  
 ##  Windows
 [Gitbash Install](http://gitforwindows.org)  
 setup.bat
+
+##vimMEMO
+C-eでディレクトリツリーを開く  
+C-wでタブ間移動  
+C-qでソースコードを実行、バッファとして出力  
+qでバッファを閉じる(Unite、ツリー、実行結果等)  
+S-h,j,k,lで20行単位で移動
