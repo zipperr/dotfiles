@@ -23,10 +23,12 @@ call dein#add('Shougo/neosnippet.vim')
 call dein#add('Shougo/neosnippet-snippets')
 call dein#add('scrooloose/syntastic')
 call dein#add('scrooloose/nerdtree')
+call dein#add('tomtom/tcomment_vim')
 call dein#add('w0ng/vim-hybrid')
 call dein#add('itchyny/lightline.vim')
 call dein#add('ujihisa/neco-look')
 call dein#add('thinca/vim-quickrun')
+call dein#add('osyo-manga/vim-brightest')
 call dein#end()
 call dein#save_state()
 endif
@@ -81,8 +83,8 @@ nnoremap <C-w> <C-w><C-w>
 nnoremap r <C-r>
 nnoremap j gj
 nnoremap k gk
-nnoremap <Down> gj
-nnoremap <Up>   gk
+nnoremap gj j
+nnoremap gk k
 "InsertMode
 inoremap <silent> jj <ESC>
 inoremap { {}<Left>
@@ -208,6 +210,10 @@ nnoremap <silent><C-e> :NERDTreeToggle<CR>
 let NERDTreeShowHidden = 1
 autocmd vimenter * if !argc() | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+"#####Commentout #####
+nmap ,, gcc
+vmap ,, gcc
 
 "##### lightline #####
 set laststatus=2
