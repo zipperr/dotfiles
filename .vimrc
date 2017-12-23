@@ -25,7 +25,6 @@ call dein#add('scrooloose/syntastic')
 call dein#add('scrooloose/nerdtree')
 call dein#add('tomtom/tcomment_vim')
 call dein#add('w0ng/vim-hybrid')
-call dein#add('itchyny/lightline.vim')
 call dein#add('ujihisa/neco-look')
 call dein#add('thinca/vim-quickrun')
 call dein#add('osyo-manga/vim-brightest')
@@ -44,6 +43,7 @@ set ambiwidth=double
 "Indent
 set tabstop=4
 set shiftwidth=4
+set softtabstop=4
 set autoindent
 set smartindent
 "Invisibles
@@ -58,6 +58,7 @@ set whichwrap=b,s,h,l,<,>,[,],~
 set nowrap
 set mouse=a
 set wrap
+set scrolloff=5
 "CommandLine
 set wildmenu
 set history=100
@@ -66,19 +67,27 @@ set infercase
 set clipboard=unnamed,autoselect
 nnoremap x "_x
 nnoremap dd "_dd
+vnoremap pp "0p
+vnoremap <silent> y y`]
+vnoremap <silent> p p`]
+nnoremap <silent> p p`]
 "Other
 set showmatch
 set nocompatible
 set vb t_vb=
+set lazyredraw
+set ttyfast
 cmap w!! w !sudo tee % > /dev/null
 
 "##### KeyMapping #####
+let mapleader = "\<Space>"
 "NormalMode+VisualMode
 noremap J 20j
 noremap K 20k
 noremap L 10l
 noremap H 10h
 "NormalMode
+nnoremap <Leader>w :w<CR>
 nnoremap <C-w> <C-w><C-w>
 nnoremap r <C-r>
 nnoremap j gj
@@ -102,8 +111,11 @@ inoremap <> <>
 inoremap {<CR> {<CR>}<Esc><S-o>
 inoremap (<CR> (<CR>)<Esc><S-o><TAB>
 inoremap [<CR> [<CR>]<Esc><S-o><TAB>
-inoremap <<CR> <<CR>><Esc><S-o><TAB>
-inoremap , ,<Space>
+inoremap <<cr> <<cr>><esc><s-o><tab>
+inoremap , ,<space>
+"VisualMode+NormalMode
+vnoremap v $h
+vnoremap <silent> * "vy/\V<C-r>=substitute(escape(@v, '\/'), "\n", '\\n','g')<CR><CR>
 
 "##### Script #####
 "SpaceHiglight
@@ -215,10 +227,6 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 nmap ,, gcc
 vmap ,, gcc
 
-"##### lightline #####
-set laststatus=2
-let g:lightline = {'colorscheme': 'wombat'}
-
 "##### hybrid #####
 syntax on
 set t_Co=256
@@ -226,5 +234,51 @@ autocmd ColorScheme * highlight Normal ctermbg=none
 autocmd ColorScheme * highlight LineNr ctermbg=none
 colorscheme hybrid
 set background=dark
-set number
+
+"##### Statusline #####
+set laststatus=2
+set statusline=%{expand('%:p:t')}\ %<\(%{SnipMid(expand('%:p:h'),80-len(expand('%:p:t')),'...')}\)%=\ %m%r%y%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}[%3l/%3L]
+function! SnipMid(str, len, mask)
+  if a:len >= len(a:str)
+    return a:str
+  elseif a:len <= len(a:mask)
+    return a:mask
+  endif
+  let len_head = (a:len - len(a:mask)) / 2
+  let len_tail = a:len - len(a:mask) - len_head
+  return (len_head > 0 ? a:str[: len_head - 1] : '') . a:mask . (len_tail > 0 ? a:str[-len_tail :] : '')
+endfunction
+
+hi StatusLine gui=NONE guifg=Black guibg=DarkCyan cterm=NONE ctermfg=Black ctermbg=DarkCyan
+let g:hi_insert = 'highlight StatusLine guifg=Black guibg=DarkGreen cterm=NONE ctermfg=Black ctermbg=DarkGreen'
+if has('syntax')
+  augroup InsertHook
+    autocmd!
+    autocmd InsertEnter * call s:StatusLine('Enter')
+    autocmd InsertLeave * call s:StatusLine('Leave')
+  augroup END
+endif
+let s:slhlcmd = ''
+function! s:StatusLine(mode)
+  if a:mode == 'Enter'
+    silent! let s:slhlcmd = 'highlight ' . s:GetHighlight('StatusLine')
+    silent exec g:hi_insert
+  else
+    highlight clear StatusLine
+    silent exec s:slhlcmd
+    redraw
+  endif
+endfunction
+function! s:GetHighlight(hi)
+  redir => hl
+  exec 'highlight '.a:hi
+  redir END
+  let hl = substitute(hl, '[\r\n]', '', 'g')
+  let hl = substitute(hl, 'xxx', '', '')
+  return hl
+endfunction
+
+"##### CursorLine #####
 set cursorline
+set number
+hi clear CursorLine
