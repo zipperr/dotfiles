@@ -68,7 +68,6 @@ nnoremap dd "_dd
 set showmatch
 set nocompatible
 set vb t_vb=
-set shellslash
 cmap w!! w !sudo tee % > /dev/null
 
 "##### KeyMapping #####
