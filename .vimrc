@@ -17,6 +17,7 @@ if dein#load_state(s:dein_dir)
 "##### PluginList #####
 call dein#add('Shougo/dein.vim')
 call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
+call dein#add('Shougo/unite.vim')
 call dein#add('Shougo/neocomplcache.vim')
 call dein#add('Shougo/neosnippet.vim')
 call dein#add('Shougo/neosnippet-snippets')
@@ -67,7 +68,6 @@ nnoremap dd "_dd
 set showmatch
 set nocompatible
 set vb t_vb=
-set novisualbell
 set shellslash
 cmap w!! w !sudo tee % > /dev/null
 
@@ -173,7 +173,6 @@ let g:neocomplcache_text_mode_filetypes = {
 	\'zsh':1,
 	\'python':1,
 \}
-
 inoremap <expr><BS> neocomplcache#smart_close_popup()."<C-h>"
 imap <expr><CR> neosnippet#expandable() ? "<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "<C-y>" : "<CR>"
 imap <expr><TAB> pumvisible() ? "<C-n>" : neosnippet#jumpable() ? "<Plug>(neosnippet_expand_or_jump)" : "<TAB>"

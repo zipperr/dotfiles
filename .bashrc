@@ -5,6 +5,8 @@ export LANG='ja_JP.UTF-8'
 export LC_ALL='ja_JP.UTF-8'
 export LC_MESSAGES='ja_JP.UTF-8'
 shopt -s cdable_vars
+shopt -s autocd
+shopt -s dirspell
 shopt -s cdspell
 complete -cf sudo
 export HISTSIZE=100000
@@ -27,6 +29,9 @@ alias la='ls -CFal'
 alias mv='mv -i'
 alias rm='rm -i'
 alias cp='cp -i'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias mkdir='mkdir -p'
 alias sc='screen'
 alias ps='ps --sort=start_time'
 alias v='vim'
@@ -53,10 +58,6 @@ fi
 cd (){
     builtin cd "$@" && ls
 }
-shopt -s autocd
-shopt -s cdable_vars
-shopt -s cdspell
-shopt -s dirspell
 
 << '#COMMENT_OUT'
 #Proxy環境下でapt-get,yum,docker,git等を使う時に設定しておく
