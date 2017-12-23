@@ -19,7 +19,7 @@ chsh -s /usr/bin/zsh  
 [Gitbash Install](http://gitforwindows.org)  
 setup.bat
 
-##vimMEMO
+##  vimMEMO
 C-eでディレクトリツリーを開く  
 C-wでタブ間移動  
 C-qでソースコードを実行、バッファとして出力  
