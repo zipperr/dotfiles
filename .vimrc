@@ -98,6 +98,7 @@ hi clear CursorLine
 set vb t_vb=
 set lazyredraw
 set ttyfast
+set shellslash
 cmap w!! w !sudo tee % > /dev/null
 
 "##### KeyMapping #####
@@ -142,7 +143,7 @@ vnoremap <silent> * "vy/\V<C-r>=substitute(escape(@v, '\/'), "\n", '\\n','g')<CR
 "##### Script #####
 "ZenkakuSpase
 function! ZenkakuSpace()
-	highlight ZenkakuSpace cterm=reverse ctermfg=Red gui=reverse guifg=Red
+	highlight ZenkakuSpace term=underline cterm=reverse ctermfg=Red gui=reverse guifg=Red
 endfunction
 augroup ZenkakuSpace
 autocmd!
@@ -168,6 +169,15 @@ augroup vimrcEx
 	au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
 	\ exe "normal g`\"" | endif
 augroup END
+
+"MacESC-IME
+if has("mac")
+let g:imeoff = 'osascript -e "tell application \"System Events\" to key code 102"'
+	augroup MyIMEGroup
+	autocmd!
+	autocmd InsertLeave * :call system(g:imeoff)
+	augroup END
+endif
 
 "##### Statusline #####
 set laststatus=2
