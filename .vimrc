@@ -65,7 +65,7 @@ set noundofile
 "Move
 set virtualedit=onemore
 set wrap
-""set nocompatible
+"set nocompatible
 set backspace=indent,eol,start
 set whichwrap=b,s,h,l,<,>,[,],~
 set mouse=a
@@ -147,15 +147,8 @@ vnoremap <silent> * "vy/\V<C-r>=substitute(escape(@v, '\/'), "\n", '\\n','g')<CR
 
 "##### Script #####
 "ZenkakuSpase
-function! ZenkakuSpace()
-	highlight ZenkakuSpace term=underline cterm=reverse ctermfg=Red gui=reverse guifg=Red
-endfunction
-augroup ZenkakuSpace
-autocmd!
-autocmd ColorScheme       * call ZenkakuSpace()
-autocmd VimEnter,WinEnter * match ZenkakuSpace /　/
-augroup END
-call ZenkakuSpace()
+highlight ZenkakuSpace term=underline cterm=reverse ctermfg=Red gui=reverse guifg=Red
+au BufNewFile,BufRead * match ZenkakuSpace /　/
 
 "PasteIndent
 if &term =~ "xterm"

@@ -1,15 +1,14 @@
 @if(0)==(0) echo off
 :: URL: http://bit.ly/cyginst
-:: 最終更新: 2017年12月09日 23:38
+:: 最終更新: 2017年4月21日 5:58:42
 setlocal
 
 REM --- 編集するところ(ここから↓) ---
-set CYG_NAME=project1
+set CYG_NAME=Cygwin
 set CYG_BITS=32
 ::set CYG_CATS=Archive,Python
-set CYG_PKGS=gcc, make, git, wget, zsh, vim, look, python, python3, ruby
+set CYG_PKGS=gcc,gcc-core,gcc-g++,gcc-ada,binutils,git,make,wget,zsh,vim,ruby,php,python3,perl,lua
 set DT_ICONS=1
-::set CYG_HOME=.
 REM --- 編集するところ(ここまで↑) ---
 
 REM --- デバッグ/カスタマイズ(ここから↓) ---
@@ -18,8 +17,6 @@ set CYG_SITE=http://mirrors.kernel.org/sourceware/cygwin/
 set CYG_LANG=ja
 set CYG_FONT=MS Gothic
 set CYG_FONT_HEIGHT=12
-set CYG_CURSOR_TYPE=block
-set CYG_CONFIRM_EXIT=no
 REM --- デバッグ/カスタマイズ(ここまで↑) ---
 
 cscript.exe //nologo //E:JScript "%~f0"
