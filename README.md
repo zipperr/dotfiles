@@ -1,28 +1,28 @@
-## 使い方
+#  使い方
 1. cd ~
 2. git clone https://github.com/zipperr/dotfiles
 3. chmod +x dotfiles/setup.sh
 4. ~/dotfiles/setup.sh
 
-## Mac OSX
+#  Mac OSX
 xcode-select --install  
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"  
 brew tap Homebrew/bundle  
 brew bundle  
 chsh -s /bin/zsh   
 
-##  Linux
+#  Linux
 sudo apt-get install zsh vim git make gcc  
 chsh -s /usr/bin/zsh
 
 aptコマンドメモ:node.js python3 python perl ruby golang gcc cpp g++  
 default-jre default-jdk php clisp mono lua groovy open-cobol
 
-##  Windows
-#  Gitbash
+#  Windows
+##  Gitbash
 [Gitbash Install](http://gitforwindows.org)  
 setup.bat  
-#  Cygwin
+##  Cygwin
 Cygwin.bat  
 git clone https://github.com/transcode-open/apt-cyg.git  
 install apt-cyg /usr/local/bin  
