@@ -32,6 +32,7 @@ call dein#add('ujihisa/neco-look')
 call dein#add('thinca/vim-quickrun')
 " Theme / Interface
 call dein#add('w0ng/vim-hybrid')
+call dein#add('itchyny/lightline.vim')
 " Git Support
 call dein#add('airblade/vim-gitgutter')
 call dein#add('tpope/vim-fugitive')
@@ -59,10 +60,12 @@ set listchars=tab:>-,trail:-
 "SwapFile
 set nobackup
 set noswapfile
+set viminfo+=n~/.vim/viminfo.txt
+set noundofile
 "Move
 set virtualedit=onemore
 set wrap
-set nocompatible
+""set nocompatible
 set backspace=indent,eol,start
 set whichwrap=b,s,h,l,<,>,[,],~
 set mouse=a
@@ -112,6 +115,7 @@ noremap H 10h
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :q<CR>
 nnoremap <C-w> <C-w><C-w>
+nnoremap <Tab> %
 nnoremap r <C-r>
 nnoremap j gj
 nnoremap k gk
@@ -137,6 +141,7 @@ inoremap [<CR> [<CR>]<Esc><S-o><TAB>
 inoremap <<cr> <<cr>><esc><s-o><tab>
 inoremap , ,<space>
 "VisualMode
+vnoremap <Tab> %
 vnoremap v $h
 vnoremap <silent> * "vy/\V<C-r>=substitute(escape(@v, '\/'), "\n", '\\n','g')<CR><CR>
 
@@ -152,7 +157,7 @@ autocmd VimEnter,WinEnter * match ZenkakuSpace /　/
 augroup END
 call ZenkakuSpace()
 
-"Paste
+"PasteIndent
 if &term =~ "xterm"
 	let &t_SI .= "\e[?2004h"
 	let &t_EI .= "\e[?2004l"
@@ -178,58 +183,6 @@ let g:imeoff = 'osascript -e "tell application \"System Events\" to key code 102
 	autocmd InsertLeave * :call system(g:imeoff)
 	augroup END
 endif
-
-"##### Statusline #####
-set laststatus=2
-set statusline=\[%{SnipMid(expand('%:p:h'),80-len(expand('%:p:t')),'A...')}/%{expand('%:p:t')}\]%<%=\ %m%r%w%{fugitive#statusline()}[%Y,%{&fenc!=''?&fenc:&enc},%{s}][%3l/%3L]
-function! SnipMid(str, len, mask)
-	if a:len >= len(a:str)
-		return a:str
-	elseif a:len <= len(a:mask)
-	return a:mask
-	endif
-		let len_head = (a:len - len(a:mask)) / 2
-		let len_tail = a:len - len(a:mask) - len_head
-	return (len_head > 0 ? a:str[: len_head - 1] : '') . a:mask . (len_tail > 0 ? a:str[-len_tail :] : '')
-endfunction
-
-let dic_line = {'dos': 'CRLF', 'unix': 'CR', 'mac': 'LF'}
-let f = &fileformat
-let s = ''
-if has_key(dic_line, f)
-	let s = dic_line[f]
-else
-	let s = 'unkwown'
-endif
-
-hi StatusLine gui=NONE guifg=Black guibg=DarkCyan cterm=NONE ctermfg=Black ctermbg=DarkCyan
-let g:hi_insert = 'highlight StatusLine guifg=Black guibg=DarkGreen cterm=NONE ctermfg=Black ctermbg=DarkGreen'
-if has('syntax')
-	augroup InsertHook
-	autocmd!
-	autocmd InsertEnter * call s:StatusLine('Enter')
-	autocmd InsertLeave * call s:StatusLine('Leave')
-	augroup END
-endif
-let s:slhlcmd = ''
-function! s:StatusLine(mode)
-	if a:mode == 'Enter'
-		silent! let s:slhlcmd = 'highlight ' . s:GetHighlight('StatusLine')
-		silent exec g:hi_insert
-	else
-		highlight clear StatusLine
-		silent exec s:slhlcmd
-		redraw
-	endif
-endfunction
-function! s:GetHighlight(hi)
-	redir => hl
-	exec 'highlight '.a:hi
-	redir END
-	let hl = substitute(hl, '[\r\n]', '', 'g')
-	let hl = substitute(hl, 'xxx', '', '')
-	return hl
-endfunction
 
 "##### Neocomplcache, Neosnippet #####
 let g:neocomplcache_enable_at_startup = 1
@@ -288,6 +241,18 @@ set splitright
 nnoremap <C-q> :QuickRun<CR>
 nnoremap q :<C-u>bw! \[quickrun\ output\]<CR>
 
+"##### lightline #####
+set laststatus=2
+let g:lightline = {
+	\'colorscheme': 'wombat',
+	\'active': {
+	\'left': [ [ 'mode', 'paste' ],
+	\[ 'gitbranch', 'readonly', 'filename', 'modified' ] ]},
+	\'component_function': {
+	\'gitbranch': 'fugitive#head'
+	\},
+	\}
+
 "##### NERDTree #####
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
 let NERDTreeShowHidden = 1
@@ -307,4 +272,3 @@ xmap gp <Plug>(yankround-gp)
 nmap gP <Plug>(yankround-gP)
 nmap <C-p> <Plug>(yankround-prev)
 nmap <C-n> <Plug>(yankround-next)
-
