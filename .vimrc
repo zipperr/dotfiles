@@ -60,11 +60,12 @@ set listchars=tab:>-,trail:-
 set nobackup
 set noswapfile
 "Move
+set virtualedit=onemore
+set wrap
+set nocompatible
 set backspace=indent,eol,start
 set whichwrap=b,s,h,l,<,>,[,],~
-set nowrap
 set mouse=a
-set wrap
 set scrolloff=3
 "CommandLine
 set wildmenu
@@ -80,7 +81,6 @@ vnoremap <silent> p p`]
 nnoremap <silent> p p`]
 "Other
 set showmatch
-set nocompatible
 set vb t_vb=
 set lazyredraw
 set ttyfast
@@ -95,6 +95,7 @@ noremap L 10l
 noremap H 10h
 "NormalMode
 nnoremap <Leader>w :w<CR>
+nnoremap <Leader>q :q<CR>
 nnoremap <C-w> <C-w><C-w>
 nnoremap r <C-r>
 nnoremap j gj
@@ -120,7 +121,7 @@ inoremap (<CR> (<CR>)<Esc><S-o><TAB>
 inoremap [<CR> [<CR>]<Esc><S-o><TAB>
 inoremap <<cr> <<cr>><esc><s-o><tab>
 inoremap , ,<space>
-"VisualMode+NormalMode
+"VisualMode
 vnoremap v $h
 vnoremap <silent> * "vy/\V<C-r>=substitute(escape(@v, '\/'), "\n", '\\n','g')<CR><CR>
 
@@ -163,8 +164,12 @@ elseif has("unix")
 "set term=builtin_linux
 "set ttytype=builtin_linux
 elseif has("win64")
+set shellslash
 elseif has("win32unix")
+"Cygwin
+set shellslash
 elseif has("win32")
+set shellslash
 endif
 
 "##### Neocomplcache, Neosnippet #####
@@ -254,8 +259,7 @@ set background=dark
 
 "##### Statusline #####
 set laststatus=2
-
-set statusline=\[%{SnipMid(expand('%:p:h'),80-len(expand('%:p:t')),'A...')}/%{expand('%:p:t')}\]%<%=\ %m%r%h%w%{fugitive#statusline()}[%Y,%{&fenc!=''?&fenc:&enc},%{s}][%3l/%3L]
+set statusline=\[%{SnipMid(expand('%:p:h'),80-len(expand('%:p:t')),'A...')}/%{expand('%:p:t')}\]%<%=\ %m%r%w%{fugitive#statusline()}[%Y,%{&fenc!=''?&fenc:&enc},%{s}][%3l/%3L]
 function! SnipMid(str, len, mask)
 	if a:len >= len(a:str)
 		return a:str
@@ -267,7 +271,7 @@ function! SnipMid(str, len, mask)
 	return (len_head > 0 ? a:str[: len_head - 1] : '') . a:mask . (len_tail > 0 ? a:str[-len_tail :] : '')
 endfunction
 
-let dic_line = { 'dos': 'dos(CRLF)', 'unix': 'unix(CR)', 'mac': 'mac(LF)'}
+let dic_line = { 'dos': 'CRLF', 'unix': 'CR', 'mac': 'LF'}
 let f = &fileformat
 let s = ''
 if has_key(dic_line, f)
