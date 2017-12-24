@@ -19,8 +19,14 @@ aptコマンドメモ:node.js python3 python perl ruby golang gcc cpp g++
 default-jre default-jdk php clisp mono lua groovy open-cobol
 
 ##  Windows
+#  Gitbash
 [Gitbash Install](http://gitforwindows.org)  
-setup.bat
+setup.bat  
+#  Cygwin
+Cygwin.bat  
+git clone https://github.com/transcode-open/apt-cyg.git  
+install apt-cyg /usr/local/bin  
+apt-cyg -m ftp://ftp.iij.ad.jp/pub/cygwin/ update
 
 ##  vimMEMO
 C-eでディレクトリツリーを開く  

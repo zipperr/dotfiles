@@ -7,7 +7,7 @@ REM --- 編集するところ(ここから↓) ---
 set CYG_NAME=Cygwin
 set CYG_BITS=32
 ::set CYG_CATS=Archive,Python
-set CYG_PKGS=gcc,gcc-core,gcc-g++,gcc-ada,binutils,git,make,wget,zsh,vim,ruby,php,python3,perl,lua
+set CYG_PKGS=gcc,gcc-core,gcc-g++,gcc-ada,binutils,git,make,wget,zsh,vim,ruby,php,python2,perl,lua
 set DT_ICONS=1
 REM --- 編集するところ(ここまで↑) ---
 
