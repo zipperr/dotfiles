@@ -254,7 +254,8 @@ set background=dark
 
 "##### Statusline #####
 set laststatus=2
-set statusline=%{expand('%:p:t')}\ %<\(%{SnipMid(expand('%:p:h'),80-len(expand('%:p:t')),'...')}\)%=\ %m%r%w%{fugitive#statusline()}%y%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}[%3l/%3L]
+
+set statusline=\[%{SnipMid(expand('%:p:h'),80-len(expand('%:p:t')),'A...')}/%{expand('%:p:t')}\]%<%=\ %m%r%h%w%{fugitive#statusline()}[%Y,%{&fenc!=''?&fenc:&enc},%{s}][%3l/%3L]
 function! SnipMid(str, len, mask)
 	if a:len >= len(a:str)
 		return a:str
@@ -265,6 +266,15 @@ function! SnipMid(str, len, mask)
 		let len_tail = a:len - len(a:mask) - len_head
 	return (len_head > 0 ? a:str[: len_head - 1] : '') . a:mask . (len_tail > 0 ? a:str[-len_tail :] : '')
 endfunction
+
+let dic_line = { 'dos': 'dos(CRLF)', 'unix': 'unix(CR)', 'mac': 'mac(LF)'}
+let f = &fileformat
+let s = ''
+if has_key(dic_line, f)
+	let s = dic_line[f]
+else
+	let s = 'unkwown'
+endif
 
 hi StatusLine gui=NONE guifg=Black guibg=DarkCyan cterm=NONE ctermfg=Black ctermbg=DarkCyan
 let g:hi_insert = 'highlight StatusLine guifg=Black guibg=DarkGreen cterm=NONE ctermfg=Black ctermbg=DarkGreen'
