@@ -246,12 +246,63 @@ set laststatus=2
 let g:lightline = {
 	\'colorscheme': 'wombat',
 	\'active': {
-	\'left': [ [ 'mode', 'paste' ],
-	\[ 'gitbranch', 'readonly', 'filename', 'modified' ] ]},
-	\'component_function': {
-	\'gitbranch': 'fugitive#head'
+		\'left': [ ['mode', 'paste'], ['fugitive', 'readonly', 'filename', 'modified']],
+		\'right': [ [ 'syntastic', 'lineinfo' ], ['percent'],[ 'fileformat', 'fileencoding', 'filetype' ] ]
 	\},
+	\'component': {
+		\'readonly': '%{&readonly?"RO":""}',
+	\},
+	\'component_function': {
+		\'fugitive': 'LightlineFugitive',
+		\'filename': 'LightlineFilename',
+		\'fileformat': 'LightlineFileformat',
+		\'filetype': 'LightlineFiletype',
+		\'fileencoding': 'LightlineFileencoding',
+		\'mode': 'LightlineMode',
+	\},
+	\'component_expand': {
+		\'syntastic': 'SyntasticStatuslineFlag',
+	\},
+	\'component_type': {
+		\'syntastic': 'error',
 	\}
+\}
+function! LightlineFugitive()
+	return exists('*fugitive#head') ? fugitive#head() : ''
+endfunction
+
+function! LightlineFilename()
+let fname = expand('%:t')
+return fname == 'ControlP' && has_key(g:lightline, 'ctrlp_item') ? g:lightline.ctrlp_item :
+	\ fname =~ 'NERD_tree' ? '' :
+	\ &ft == 'unite' ? unite#get_status_string() :
+	\ ('' != fname ? fname : '[No Name]')
+endfunction
+
+function! LightlineFileformat()
+	return winwidth(0) > 70 ? &fileformat : ''
+endfunction
+
+function! LightlineFiletype()
+	return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+endfunction
+
+function! LightlineFileencoding()
+	return winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
+endfunction
+
+function! LightlineMode()
+	let fname = expand('%:t')
+	return fname == 'ControlP' ? 'CtrlP' :
+		\fname =~ 'NERD_tree' ? 'NERDTree' :
+		\&ft == 'unite' ? 'Unite' :
+		\winwidth(0) > 30 ? lightline#mode() : ''
+endfunction
+
+function! s:syntastic()
+	SyntasticCheck
+	call lightline#update()
+endfunction
 
 "##### NERDTree #####
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
