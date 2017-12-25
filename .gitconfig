@@ -1,20 +1,23 @@
 [user]
-    name = zipperr
-    email = zipperr@i.softbank.jp
+	name = zipperr
+	email = zipperr@i.softbank.jp
 [core]
-    editor = vim -c \"set fenc=utf-8\"
-    excludesfile = ~/.gitignore_global
+	editor = vim -c \"set fenc=utf-8\"
+	excludesfile = ~/.gitignore_global
 [color]
-    ui = true
-    diff = auto
-    status = auto
-    branch = auto
+	ui = true
+	diff = auto
+	status = auto
+	branch = auto
 [alias]
-    st = status
-    cm = commit
-    cmm = commit -m
-    co = checkout
-    b = branch
-    cb = checkout -b
-    sm = submodule
-    p = push
+	st = status
+	a = add
+	aa = add -A
+	cm = commit
+	cmm = commit -m
+	pu = push
+	b = branch
+	co = checkout
+	cb = checkout -b
+	sm = submodule
+	di = diff

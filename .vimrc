@@ -36,11 +36,6 @@ call dein#add('itchyny/lightline.vim')
 " Git Support
 call dein#add('airblade/vim-gitgutter')
 call dein#add('tpope/vim-fugitive')
-
-"おためしプラグイン
-call dein#add('thiagoalessio/rainbow_levels.vim')
-
-
 call dein#end()
 call dein#save_state()
 endif
@@ -181,17 +176,43 @@ let g:imeoff = 'osascript -e "tell application \"System Events\" to key code 102
 	augroup END
 endif
 
+"encryptionFile
+if has('cryptv')
+  if v:version > 704 || v:version == 704 && has('patch401')
+    set cryptmethod=blowfish2
+  elseif v:version >= 703
+    set cryptmethod=blowfish
+  else
+    set cryptmethod=zip
+  endif
+endif
+
+"AuteWrite
+set autowrite
+set updatetime=500
+function s:AutoWriteIfPossible()
+  if &modified && !&readonly && bufname('%') !=# '' && &buftype ==# '' && expand("%") !=# ''
+    write
+  endif
+endfunction
+autocmd CursorHold * call s:AutoWriteIfPossible()
+autocmd CursorHoldI * call s:AutoWriteIfPossible()
+
 "##### Neocomplcache, Neosnippet #####
 let g:neocomplcache_enable_at_startup = 1
+let g:NeoComplCache_SmartCase = 1
+let g:neocomplcache_enable_underbar_completion = 1
+let g:NeoComplCache_PreviousKeywordCompletion = 1
+let g:NeoComplCache_EnableCamelCaseCompletion = 1
+let g:NeoComplCache_EnableUnderbarCompletion = 1
 let g:neocomplcache_max_list = 10
 let g:neocomplcache_auto_completion_start_length = 1
-let g:neocomplcache_manual_completion_start_length = 3
-let g:neocomplcache_min_keyword_length = 3
+let g:neocomplcache_manual_completion_start_length = 0
+let g:neocomplcache_min_keyword_length = 2
 let g:neocomplcache_min_syntax_length = 3
 let g:neocomplcache_enable_ignore_case = 1
 let g:neocomplcache_enable_smart_case = 1
 let g:neocomplcache_enable_camel_case_completion = 0
-let g:neocomplcache_enable_underbar_completion = 0
 let g:neocomplcache_enable_at_startuple_auto_select = 1
 let g:neocomplcache_enable_insert_char_pre = 1
 let g:neocomplcache_text_mode_filetypes = {
@@ -231,7 +252,7 @@ let g:quickrun_config = {"_" : {
 	\"outputter" : "error",
 	\"outputter/error/success" : "buffer",
 	\"outputter/error/error" : "buffer",
-	\"outputter/buffer/split" : ":vertical 5sp",
+	\"outputter/buffer/split" : ":vertical 35",
 	\"outputter/buffer/close_on_empty" : 0
 \}}
 set splitright
@@ -320,28 +341,3 @@ xmap gp <Plug>(yankround-gp)
 nmap gP <Plug>(yankround-gP)
 nmap <C-p> <Plug>(yankround-prev)
 nmap <C-n> <Plug>(yankround-next)
-
-
-"##### おためしプラグインとスクリプト #####
-":Xでファイル暗号化
-if has('cryptv')
-  if v:version > 704 || v:version == 704 && has('patch401')
-    set cryptmethod=blowfish2
-  elseif v:version >= 703
-    set cryptmethod=blowfish
-  else
-    set cryptmethod=zip
-  endif
-endif
-
-
-map <leader>l :RainbowLevelsToggle<cr>
-let g:rainbow_levels = [
-    \{'ctermfg': 2, 'guifg': '#859900'},
-    \{'ctermfg': 6, 'guifg': '#2aa198'},
-    \{'ctermfg': 4, 'guifg': '#268bd2'},
-    \{'ctermfg': 5, 'guifg': '#6c71c4'},
-    \{'ctermfg': 1, 'guifg': '#dc322f'},
-    \{'ctermfg': 3, 'guifg': '#b58900'},
-    \{'ctermfg': 8, 'guifg': '#839496'},
-    \{'ctermfg': 7, 'guifg': '#586e75'}]
