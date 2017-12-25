@@ -92,6 +92,9 @@ autocmd ColorScheme * highlight Normal ctermbg=none
 autocmd ColorScheme * highlight LineNr ctermbg=none
 colorscheme hybrid
 set background=dark
+hi Comment gui=NONE font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE  term=NONE ctermfg=59 ctermbg=NONE
+hi LineNr gui=NONE font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE  term=NONE ctermfg=59 ctermbg=NONE
+hi MatchParen gui=underline font=NONE guifg=NONE guibg=NONE guisp=NONE cterm=underline  term=underline ctermfg=NONE ctermbg=NONE
 "CursorLine
 set cursorline
 set number
