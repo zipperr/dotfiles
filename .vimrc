@@ -17,7 +17,15 @@ if dein#load_state(s:dein_dir)
 "##### PluginList #####
 call dein#add('Shougo/dein.vim')
 " Utility
-call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
+call dein#add('Shougo/vimproc.vim',
+	{'build' : {
+		\'windows' : 'tools\\update-dll-mingw',
+		\'cygwin' : 'make -f make_cygwin.mak',
+		\'mac' : 'make',
+		\'linux' : 'make',
+		\'unix' : 'gmake',
+	\},
+\})
 call dein#add('Shougo/unite.vim')
 call dein#add('scrooloose/nerdtree')
 call dein#add('tomtom/tcomment_vim')
@@ -36,6 +44,11 @@ call dein#add('itchyny/lightline.vim')
 " Git Support
 call dein#add('airblade/vim-gitgutter')
 call dein#add('tpope/vim-fugitive')
+
+"おためしプラグイン
+call dein#add('thiagoalessio/rainbow_levels.vim')
+
+
 call dein#end()
 call dein#save_state()
 endif
@@ -65,7 +78,6 @@ set noundofile
 "Move
 set virtualedit=onemore
 set wrap
-"set nocompatible
 set backspace=indent,eol,start
 set whichwrap=b,s,h,l,<,>,[,],~
 set mouse=a
@@ -316,3 +328,28 @@ xmap gp <Plug>(yankround-gp)
 nmap gP <Plug>(yankround-gP)
 nmap <C-p> <Plug>(yankround-prev)
 nmap <C-n> <Plug>(yankround-next)
+
+
+"##### おためしプラグインとスクリプト #####
+":Xでファイル暗号化
+if has('cryptv')
+  if v:version > 704 || v:version == 704 && has('patch401')
+    set cryptmethod=blowfish2
+  elseif v:version >= 703
+    set cryptmethod=blowfish
+  else
+    set cryptmethod=zip
+  endif
+endif
+
+
+map <leader>l :RainbowLevelsToggle<cr>
+let g:rainbow_levels = [
+    \{'ctermfg': 2, 'guifg': '#859900'},
+    \{'ctermfg': 6, 'guifg': '#2aa198'},
+    \{'ctermfg': 4, 'guifg': '#268bd2'},
+    \{'ctermfg': 5, 'guifg': '#6c71c4'},
+    \{'ctermfg': 1, 'guifg': '#dc322f'},
+    \{'ctermfg': 3, 'guifg': '#b58900'},
+    \{'ctermfg': 8, 'guifg': '#839496'},
+    \{'ctermfg': 7, 'guifg': '#586e75'}]
