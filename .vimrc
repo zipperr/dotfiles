@@ -17,15 +17,7 @@ if dein#load_state(s:dein_dir)
 "##### PluginList #####
 call dein#add('Shougo/dein.vim')
 " Utility
-call dein#add('Shougo/vimproc.vim',
-	{'build' : {
-		\'windows' : 'tools\\update-dll-mingw',
-		\'cygwin' : 'make -f make_cygwin.mak',
-		\'mac' : 'make',
-		\'linux' : 'make',
-		\'unix' : 'gmake',
-	\},
-\})
+call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
 call dein#add('Shougo/unite.vim')
 call dein#add('scrooloose/nerdtree')
 call dein#add('tomtom/tcomment_vim')
