@@ -25,6 +25,7 @@ setup.bat
 ##  Cygwin
 Cygwin.bat  
 git clone https://github.com/transcode-open/apt-cyg.git  
+cd apt-cyg/  
 install apt-cyg /usr/local/bin  
 apt-cyg -m ftp://ftp.iij.ad.jp/pub/cygwin/ update
 
