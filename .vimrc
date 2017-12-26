@@ -40,7 +40,9 @@ call dein#add('tpope/vim-fugitive')
 call dein#add('ujihisa/unite-colorscheme')
 call dein#add('tyru/open-browser.vim')
 call dein#add('flazz/vim-colorschemes')
-
+"Twitter
+call dein#add('basyura/TweetVim')
+call dein#add('basyura/twibill.vim')
 call dein#end()
 call dein#save_state()
 endif
@@ -71,6 +73,7 @@ set noundofile
 "Move
 set virtualedit=onemore
 set wrap
+set noequalalways
 set backspace=indent,eol,start
 set whichwrap=b,s,h,l,<,>,[,],~
 set mouse=a
@@ -92,6 +95,7 @@ set showmatch
 set matchtime=0
 set matchpairs+=<:>,「:」,『:』,（:）,【:】,《:》,〈:〉,［:］,‘:’,“:”
 "Search
+set hlsearch
 set incsearch
 set ignorecase
 set smartcase
@@ -107,10 +111,9 @@ set background=dark
 hi Comment gui=NONE font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE  term=NONE ctermfg=59 ctermbg=NONE
 hi LineNr gui=NONE font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE  term=NONE ctermfg=59 ctermbg=NONE
 hi SpecialKey gui=NONE font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE  term=NONE ctermfg=59 ctermbg=NONE
-
-hi MatchParen gui=underline font=NONE guifg=NONE guibg=NONE guisp=NONE cterm=underline	term=underline ctermfg=NONE ctermbg=NONE
-
-
+hi IncSearch gui=underline font=NONE guifg=NONE guibg=NONE guisp=NONE cterm=underline term=underline ctermfg=NONE ctermbg=NONE
+hi Search gui=underline font=NONE guifg=NONE guibg=NONE guisp=NONE cterm=underline term=underline ctermfg=NONE ctermbg=NONE
+hi MatchParen gui=underline font=NONE guifg=NONE guibg=NONE guisp=NONE cterm=underline term=underline ctermfg=NONE ctermbg=NONE
 "CursorLine
 set cursorline
 set number
@@ -132,6 +135,7 @@ noremap H 10h
 "NormalMode
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :q<CR>
+nnoremap <Esc><Esc> :noh<CR>
 nnoremap <C-w> <C-w><C-w>
 nnoremap <Tab> %
 nnoremap r <C-r>
@@ -361,7 +365,24 @@ nmap gP <Plug>(yankround-gP)
 nmap <C-p> <Plug>(yankround-prev)
 nmap <C-n> <Plug>(yankround-next)
 
+"##### Tweetvim #####
+nnoremap <F2> :TweetVimUserStream<CR>
+nnoremap <F3> :TweetVimCommandSay<CR>
+let g:tweetvim_config_dir = expand('~/.vim/.tweetvim')
+let g:tweetvim_display_time = 1
+let g:tweetvim_open_buffer_cmd = '17vsplit'
+let g:tweetvim_display_separator = 0
+let g:tweetvim_display_source = 0
+let g:tweetvim_async_post = 1
+let g:tweetvim_tweet_per_page = 50
+let g:tweetvim_include_rts = 1
+augroup TweetVimSetting
+	autocmd!
+	autocmd FileType tweetvim set nonumber
+augroup END
+
 "##### UniteMenu #####
+nnoremap <F1> :Unite menu:shortcut<CR>
 if !exists("g:unite_source_menu_menus")
 	let g:unite_source_menu_menus = {}
 endif
@@ -370,6 +391,7 @@ let g:unite_source_menu_menus.shortcut.command_candidates = [
 	\[ "[web]Github", "OpenBrowser https://github.com/zipperr" ],
 	\[ "[web]Google", "OpenBrowser https://www.google.co.jp" ],
 	\[ "[web]Qiita", "OpenBrowser https://qiita.com" ],
+	\[ "[vim]Twitter", "TweetVimUserStream" ],
 	\[ "[vim]Open_UTF8", "e ++enc=utf-8" ],
 	\[ "[vim]Set_UTF8", "set fenc=utf-8" ],
 	\[ "[vim]Open_shiftjis", "e ++enc=cp932" ],
@@ -385,9 +407,9 @@ let g:unite_source_menu_menus.shortcut.command_candidates = [
 	\[ "[vim]タブ→スペース", "set expandtab|retab 4" ],
 	\[ "[vim]スペース→タブ", "set noexpandtab | retab! 4" ],
 	\[ "[vim]Unite Beautiful Attack", "Unite -auto-preview colorscheme" ],
+	\[ "[vim]TweetVimNewToken", "TweetVimAccessToken" ],
 	\[ "[Edit]vimrc", "edit $MYVIMRC"],
 	\[ "[Edit]zshrc", "edit ~/.zshrc"],
 	\[ "[Edit]bashrc", "edit ~/.bashrc"],
 	\[ "[Edit]gitconf", "edit ~/.gitconfig"],
 \]
-nnoremap <F1> :Unite menu:shortcut<CR>
