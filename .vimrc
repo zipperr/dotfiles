@@ -370,7 +370,7 @@ nnoremap <F2> :TweetVimUserStream<CR>
 nnoremap <F3> :TweetVimCommandSay<CR>
 let g:tweetvim_config_dir = expand('~/.vim/.tweetvim')
 let g:tweetvim_display_time = 1
-let g:tweetvim_open_buffer_cmd = '17vsplit'
+let g:tweetvim_open_buffer_cmd = '20vsplit'
 let g:tweetvim_display_separator = 0
 let g:tweetvim_display_source = 0
 let g:tweetvim_async_post = 1
@@ -392,6 +392,7 @@ let g:unite_source_menu_menus.shortcut.command_candidates = [
 	\[ "[web]Google", "OpenBrowser https://www.google.co.jp" ],
 	\[ "[web]Qiita", "OpenBrowser https://qiita.com" ],
 	\[ "[vim]Twitter", "TweetVimUserStream" ],
+	\[ "[vim]Tweet", "TweetVimCommandSay" ],
 	\[ "[vim]Open_UTF8", "e ++enc=utf-8" ],
 	\[ "[vim]Set_UTF8", "set fenc=utf-8" ],
 	\[ "[vim]Open_shiftjis", "e ++enc=cp932" ],
