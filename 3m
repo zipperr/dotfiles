@@ -36,10 +36,11 @@ call dein#add('itchyny/lightline.vim')
 " Git Support
 call dein#add('airblade/vim-gitgutter')
 call dein#add('tpope/vim-fugitive')
-"Unite
+
+"おためし
 call dein#add('ujihisa/unite-colorscheme')
 call dein#add('tyru/open-browser.vim')
-call dein#add('flazz/vim-colorschemes')
+call dein#add('yuratomo/w3m.vim')
 
 call dein#end()
 call dein#save_state()
@@ -53,7 +54,6 @@ endif
 set fileencodings=utf-8,cp932,euc-jp,sjis
 set fileformats=unix,dos,mac
 set ambiwidth=double
-set nofixeol
 "Indent
 set tabstop=4
 set shiftwidth=4
@@ -108,7 +108,7 @@ hi Comment gui=NONE font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE  te
 hi LineNr gui=NONE font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE  term=NONE ctermfg=59 ctermbg=NONE
 hi SpecialKey gui=NONE font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE  term=NONE ctermfg=59 ctermbg=NONE
 
-hi MatchParen gui=underline font=NONE guifg=NONE guibg=NONE guisp=NONE cterm=underline	term=underline ctermfg=NONE ctermbg=NONE
+hi MatchParen gui=underline font=NONE guifg=NONE guibg=NONE guisp=NONE cterm=underline  term=underline ctermfg=NONE ctermbg=NONE
 
 
 "CursorLine
@@ -198,11 +198,11 @@ endif
 "encryptionFile
 if has('cryptv')
   if v:version > 704 || v:version == 704 && has('patch401')
-	set cryptmethod=blowfish2
+    set cryptmethod=blowfish2
   elseif v:version >= 703
-	set cryptmethod=blowfish
+    set cryptmethod=blowfish
   else
-	set cryptmethod=zip
+    set cryptmethod=zip
   endif
 endif
 
@@ -210,9 +210,9 @@ endif
 " set autowrite
 " set updatetime=500
 " function s:AutoWriteIfPossible()
-"	if &modified && !&readonly && bufname('%') !=# '' && &buftype ==# '' && expand("%") !=# ''
-"	  write
-"	endif
+"   if &modified && !&readonly && bufname('%') !=# '' && &buftype ==# '' && expand("%") !=# ''
+"     write
+"   endif
 " endfunction
 " autocmd CursorHold * call s:AutoWriteIfPossible()
 " autocmd CursorHoldI * call s:AutoWriteIfPossible()
@@ -361,33 +361,23 @@ nmap gP <Plug>(yankround-gP)
 nmap <C-p> <Plug>(yankround-prev)
 nmap <C-n> <Plug>(yankround-next)
 
-"##### UniteMenu #####
+
+
+
 if !exists("g:unite_source_menu_menus")
-	let g:unite_source_menu_menus = {}
+    let g:unite_source_menu_menus = {}
 endif
-let g:unite_source_menu_menus.shortcut = {"description" : "shortcut",}
+
+" unite-shortcut {{{
+let g:unite_source_menu_menus.shortcut = {
+\   "description" : "shortcut"
+\}
+
+" ここに書かれた順番のまま出力される
 let g:unite_source_menu_menus.shortcut.command_candidates = [
-	\[ "[web]Github", "OpenBrowser https://github.com/zipperr" ],
-	\[ "[web]Google", "OpenBrowser https://www.google.co.jp" ],
-	\[ "[web]Qiita", "OpenBrowser https://qiita.com" ],
-	\[ "[vim]Open_UTF8", "e ++enc=utf-8" ],
-	\[ "[vim]Set_UTF8", "set fenc=utf-8" ],
-	\[ "[vim]Open_shiftjis", "e ++enc=cp932" ],
-	\[ "[vim]Set_shiftjis", "set fenc=cp932" ],
-	\[ "[vim]Open_euc-jp", "e ++enc=euc-jp" ],
-	\[ "[vim]Set_euc-jp", "set fenc=euc-jp" ],
-	\[ "[vim]Open_iso-2022-jp", "e ++enc=iso-2022-jp" ],
-	\[ "[vim]Set_iso-2022-jp", "set fenc=iso-2022-jp" ],
-	\[ "[vim]FileFormat_Dos", "set ff=dos" ],
-	\[ "[vim]FileFormat_Mac", "set ff=mac" ],
-	\[ "[vim]FileFormat_Unix", "set ff=unix" ],
-	\[ "[vim]EOLdelete", "set binary noeol|wq" ],
-	\[ "[vim]タブ→スペース", "set expandtab|retab 4" ],
-	\[ "[vim]スペース→タブ", "set noexpandtab | retab! 4" ],
-	\[ "[vim]Unite Beautiful Attack", "Unite -auto-preview colorscheme" ],
-	\[ "[Edit]vimrc", "edit $MYVIMRC"],
-	\[ "[Edit]zshrc", "edit ~/.zshrc"],
-	\[ "[Edit]bashrc", "edit ~/.bashrc"],
-	\[ "[Edit]gitconf", "edit ~/.gitconfig"],
+\   [ "Blog Edit", "OpenBrowser http://d.hatena.ne.jp/osyo-manga/edit" ],
+\   [ "ideone", "OpenBrowser http://ideone.com/" ],
+\   [ "AllMap", "Unite output:AllMap" ],
+\   [ "Unite Beautiful Attack", "Unite -auto-preview colorscheme" ],
+\   [ "Boost.MPL Ref", "OpenBrowser http://www.boost.org/doc/libs/release/libs/mpl/doc/refmanual/refmanual_toc.html" ],
 \]
-nnoremap <F1> :Unite menu:shortcut<CR>
