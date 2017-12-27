@@ -43,6 +43,8 @@ call dein#add('flazz/vim-colorschemes')
 "Twitter
 call dein#add('basyura/TweetVim')
 call dein#add('basyura/twibill.vim')
+call dein#add('osyo-manga/vim-automatic')
+call dein#add('rhysd/tmpwin.vim')
 call dein#end()
 call dein#save_state()
 endif
@@ -62,6 +64,7 @@ set shiftwidth=4
 set softtabstop=4
 set autoindent
 set smartindent
+set breakindent
 "Invisibles
 set list
 set listchars=tab:>-,trail:-
@@ -73,7 +76,6 @@ set noundofile
 "Move
 set virtualedit=onemore
 set wrap
-set noequalalways
 set backspace=indent,eol,start
 set whichwrap=b,s,h,l,<,>,[,],~
 set mouse=a
@@ -85,7 +87,7 @@ set infercase
 "Clipboard
 set clipboard=unnamed,autoselect
 nnoremap x "_x
-nnoremap dd "_dd
+" nnoremap dd "_dd
 vnoremap pp "0p
 vnoremap <silent> y y`]
 vnoremap <silent> p p`]
@@ -155,7 +157,7 @@ inoremap "" ""
 inoremap '' ''
 inoremap () ()
 inoremap [] []
-inoremap {} {}
+inoremap {} {
 inoremap <> <>
 inoremap {<CR> {<CR>}<Esc><S-o>
 inoremap (<CR> (<CR>)<Esc><S-o><TAB>
@@ -252,7 +254,6 @@ let g:neocomplcache_text_mode_filetypes = {
 	\'zsh':1,
 	\'python':1,
 \}
-inoremap <expr><BS> neocomplcache#smart_close_popup()."<C-h>"
 imap <expr><CR> neosnippet#expandable() ? "<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "<C-y>" : "<CR>"
 imap <expr><TAB> pumvisible() ? "<C-n>" : neosnippet#jumpable() ? "<Plug>(neosnippet_expand_or_jump)" : "<TAB>"
 
@@ -366,51 +367,73 @@ nmap <C-p> <Plug>(yankround-prev)
 nmap <C-n> <Plug>(yankround-next)
 
 "##### Tweetvim #####
-nnoremap <F2> :TweetVimUserStream<CR>
+" nnoremap <F2> :TweetVimUserStream<CR>
+nnoremap <F2> :call tmpwin#toggle('TweetVimHomeTimeline')
 nnoremap <F3> :TweetVimCommandSay<CR>
 let g:tweetvim_config_dir = expand('~/.vim/.tweetvim')
 let g:tweetvim_display_time = 1
-let g:tweetvim_open_buffer_cmd = '20vsplit'
+let g:tweetvim_open_buffer_cmd = '25vsplit'
 let g:tweetvim_display_separator = 0
 let g:tweetvim_display_source = 0
 let g:tweetvim_async_post = 1
 let g:tweetvim_tweet_per_page = 50
 let g:tweetvim_include_rts = 1
+
 augroup TweetVimSetting
 	autocmd!
 	autocmd FileType tweetvim set nonumber
+	autocmd FileType tweetvim set noequalalways
 augroup END
+" let $http_proxy	= 'http://xxx.xx.xx:8080'
+" let $HTTPS_PROXY	= 'http://xxx.xx.xx:8080'
 
 "##### UniteMenu #####
-nnoremap <F1> :Unite menu:shortcut<CR>
-if !exists("g:unite_source_menu_menus")
-	let g:unite_source_menu_menus = {}
-endif
+nnoremap <F1> :Unite -toggle -silent -vertical -winwidth=30 -wrap menu:shortcut<CR>
+let g:unite_source_menu_menus = get(g:,'unite_source_menu_menus',{})
 let g:unite_source_menu_menus.shortcut = {"description" : "shortcut",}
 let g:unite_source_menu_menus.shortcut.command_candidates = [
 	\[ "[web]Github", "OpenBrowser https://github.com/zipperr" ],
 	\[ "[web]Google", "OpenBrowser https://www.google.co.jp" ],
+	\[ "[web]GoogleDrive", "OpenBrowser https://drive.google.com" ],
 	\[ "[web]Qiita", "OpenBrowser https://qiita.com" ],
+	\[ "[web]Wiki", "OpenBrowser https://ja.wikipedia.org" ],
+	\[ "[web]Slack", "OpenBrowser https://vim-jp.slack.com" ],
 	\[ "[vim]Twitter", "TweetVimUserStream" ],
 	\[ "[vim]Tweet", "TweetVimCommandSay" ],
 	\[ "[vim]Open_UTF8", "e ++enc=utf-8" ],
-	\[ "[vim]Set_UTF8", "set fenc=utf-8" ],
 	\[ "[vim]Open_shiftjis", "e ++enc=cp932" ],
-	\[ "[vim]Set_shiftjis", "set fenc=cp932" ],
 	\[ "[vim]Open_euc-jp", "e ++enc=euc-jp" ],
-	\[ "[vim]Set_euc-jp", "set fenc=euc-jp" ],
 	\[ "[vim]Open_iso-2022-jp", "e ++enc=iso-2022-jp" ],
+	\[ "[vim]Open_Dos", "e ++ff=dos" ],
+	\[ "[vim]Open_Mac", "e ++ff=mac" ],
+	\[ "[vim]Open_Unix", "e ++ff=unix" ],
+	\[ "[vim]Set_UTF8", "set fenc=utf-8" ],
+	\[ "[vim]Set_shiftjis", "set fenc=cp932" ],
+	\[ "[vim]Set_euc-jp", "set fenc=euc-jp" ],
 	\[ "[vim]Set_iso-2022-jp", "set fenc=iso-2022-jp" ],
-	\[ "[vim]FileFormat_Dos", "set ff=dos" ],
-	\[ "[vim]FileFormat_Mac", "set ff=mac" ],
-	\[ "[vim]FileFormat_Unix", "set ff=unix" ],
+	\[ "[vim]Set_Dos", "set ff=dos" ],
+	\[ "[vim]Set_Mac", "set ff=mac" ],
+	\[ "[vim]Set_Unix", "set ff=unix" ],
 	\[ "[vim]EOLdelete", "set binary noeol|wq" ],
+	\[ "[vim]BGdark", "set background=dark" ],
+	\[ "[vim]BGlight", "set background=light" ],
 	\[ "[vim]タブ→スペース", "set expandtab|retab 4" ],
 	\[ "[vim]スペース→タブ", "set noexpandtab | retab! 4" ],
 	\[ "[vim]Unite Beautiful Attack", "Unite -auto-preview colorscheme" ],
 	\[ "[vim]TweetVimNewToken", "TweetVimAccessToken" ],
+	\[ "[Toggle]Number", "set number!" ],
+	\[ "[Toggle]BreakIndent", "set breakindent!" ],
+	\[ "[Toggle]CursorColumn", "set cursorcolumn!" ],
+	\[ "[Toggle]CursorLine", "set cursorline!" ],
+	\[ "[Toggle]HilightSeach", "set hlsearch!" ],
+	\[ "[Toggle]ShowMatch", "set showmatch!" ],
+	\[ "[Toggle]Wrap", "set wrap!" ],
 	\[ "[Edit]vimrc", "edit $MYVIMRC"],
 	\[ "[Edit]zshrc", "edit ~/.zshrc"],
 	\[ "[Edit]bashrc", "edit ~/.bashrc"],
 	\[ "[Edit]gitconf", "edit ~/.gitconfig"],
 \]
+augroup UniteSetting
+	autocmd!
+	autocmd FileType unite set noequalalways
+augroup END
