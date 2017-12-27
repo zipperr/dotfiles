@@ -21,8 +21,6 @@ call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
 call dein#add('Shougo/unite.vim')
 call dein#add('scrooloose/nerdtree')
 call dein#add('tomtom/tcomment_vim')
-call dein#add('osyo-manga/vim-brightest')
-call dein#add('LeafCage/yankround.vim')
 " Programming Support
 call dein#add('Shougo/neocomplcache.vim')
 call dein#add('Shougo/neosnippet.vim')
@@ -33,14 +31,12 @@ call dein#add('thinca/vim-quickrun')
 " Theme / Interface
 call dein#add('w0ng/vim-hybrid')
 call dein#add('itchyny/lightline.vim')
+call dein#add('osyo-manga/vim-brightest')
 " Git Support
 call dein#add('airblade/vim-gitgutter')
 call dein#add('tpope/vim-fugitive')
-"Unite
-call dein#add('ujihisa/unite-colorscheme')
+" Twitter
 call dein#add('tyru/open-browser.vim')
-call dein#add('flazz/vim-colorschemes')
-"Twitter
 call dein#add('basyura/TweetVim')
 call dein#add('basyura/twibill.vim')
 call dein#end()
@@ -85,7 +81,6 @@ set infercase
 "Clipboard
 set clipboard=unnamed,autoselect
 nnoremap x "_x
-" nnoremap dd "_dd
 vnoremap pp "0p
 vnoremap <silent> y y`]
 vnoremap <silent> p p`]
@@ -95,7 +90,6 @@ set showmatch
 set matchtime=0
 set matchpairs+=<:>,「:」,『:』,（:）,【:】,《:》,〈:〉,［:］,‘:’,“:”
 "Search
-set hlsearch
 set incsearch
 set ignorecase
 set smartcase
@@ -130,12 +124,11 @@ let mapleader = "\<Space>"
 "NormalMode+VisualMode
 noremap J 20j
 noremap K 20k
-noremap L 10l
-noremap H 10h
+noremap L $
+noremap H ^
 "NormalMode
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :q<CR>
-nnoremap <Esc><Esc> :noh<CR>
 nnoremap <C-w> <C-w><C-w>
 nnoremap <Tab> %
 nnoremap r <C-r>
@@ -190,15 +183,6 @@ augroup vimrcEx
 	\ exe "normal g`\"" | endif
 augroup END
 
-"MacESC-IME
-if has("mac")
-let g:imeoff = 'osascript -e "tell application \"System Events\" to key code 102"'
-	augroup MyIMEGroup
-	autocmd!
-	autocmd InsertLeave * :call system(g:imeoff)
-	augroup END
-endif
-
 "encryptionFile
 if has('cryptv')
   if v:version > 704 || v:version == 704 && has('patch401')
@@ -209,17 +193,6 @@ if has('cryptv')
 	set cryptmethod=zip
   endif
 endif
-
-" "AuteWrite
-" set autowrite
-" set updatetime=500
-" function s:AutoWriteIfPossible()
-"	if &modified && !&readonly && bufname('%') !=# '' && &buftype ==# '' && expand("%") !=# ''
-"	  write
-"	endif
-" endfunction
-" autocmd CursorHold * call s:AutoWriteIfPossible()
-" autocmd CursorHoldI * call s:AutoWriteIfPossible()
 
 "##### Neocomplcache, Neosnippet #####
 let g:neocomplcache_enable_at_startup = 1
@@ -310,7 +283,6 @@ let g:lightline = {
 function! LightlineFugitive()
 	return exists('*fugitive#head') ? fugitive#head() : ''
 endfunction
-
 function! LightlineFilename()
 let fname = expand('%:t')
 return fname == 'ControlP' && has_key(g:lightline, 'ctrlp_item') ? g:lightline.ctrlp_item :
@@ -318,19 +290,15 @@ return fname == 'ControlP' && has_key(g:lightline, 'ctrlp_item') ? g:lightline.c
 	\ &ft == 'unite' ? unite#get_status_string() :
 	\ ('' != fname ? fname : '[No Name]')
 endfunction
-
 function! LightlineFileformat()
 	return winwidth(0) > 70 ? &fileformat : ''
 endfunction
-
 function! LightlineFiletype()
 	return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
 endfunction
-
 function! LightlineFileencoding()
 	return winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
 endfunction
-
 function! LightlineMode()
 	let fname = expand('%:t')
 	return fname == 'ControlP' ? 'CtrlP' :
@@ -338,7 +306,6 @@ function! LightlineMode()
 		\&ft == 'unite' ? 'Unite' :
 		\winwidth(0) > 30 ? lightline#mode() : ''
 endfunction
-
 function! s:syntastic()
 	SyntasticCheck
 	call lightline#update()
@@ -346,6 +313,8 @@ endfunction
 
 "##### NERDTree #####
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
+autocmd FileType NERDTree nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
+autocmd FileType NERDTree inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 let NERDTreeShowHidden = 1
 autocmd vimenter * if !argc() | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -353,16 +322,6 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 "#####Commentout #####
 nmap ,, gcc
 vmap ,, gcc
-
-"##### Yankround #####
-nmap p <Plug>(yankround-p)
-xmap p <Plug>(yankround-p)
-nmap P <Plug>(yankround-P)
-nmap gp <Plug>(yankround-gp)
-xmap gp <Plug>(yankround-gp)
-nmap gP <Plug>(yankround-gP)
-nmap <C-p> <Plug>(yankround-prev)
-nmap <C-n> <Plug>(yankround-next)
 
 "##### Tweetvim #####
 nnoremap <F2> :TweetVimUserStream<CR>
@@ -375,7 +334,6 @@ let g:tweetvim_display_source = 0
 let g:tweetvim_async_post = 1
 let g:tweetvim_tweet_per_page = 50
 let g:tweetvim_include_rts = 1
-
 augroup TweetVimSetting
 	autocmd!
 	autocmd FileType tweetvim set nonumber
@@ -397,27 +355,28 @@ let g:unite_source_menu_menus.shortcut.command_candidates = [
 	\[ "[web]Slack", "OpenBrowser https://vim-jp.slack.com" ],
 	\[ "[vim]Twitter", "TweetVimUserStream" ],
 	\[ "[vim]Tweet", "TweetVimCommandSay" ],
-	\[ "[vim]Open_UTF8", "e ++enc=utf-8" ],
-	\[ "[vim]Open_ShiftJis", "e ++enc=cp932" ],
-	\[ "[vim]Open_euc-jp", "e ++enc=euc-jp" ],
-	\[ "[vim]Open_iso-2022-jp", "e ++enc=iso-2022-jp" ],
-	\[ "[vim]Open_Dos", "e ++ff=dos" ],
-	\[ "[vim]Open_Mac", "e ++ff=mac" ],
-	\[ "[vim]Open_Unix", "e ++ff=unix" ],
-	\[ "[vim]Set_UTF8", "set fenc=utf-8" ],
-	\[ "[vim]Set_ShiftJis", "set fenc=cp932" ],
-	\[ "[vim]Set_euc-jp", "set fenc=euc-jp" ],
-	\[ "[vim]Set_iso-2022-jp", "set fenc=iso-2022-jp" ],
-	\[ "[vim]Set_Dos", "set ff=dos" ],
-	\[ "[vim]Set_Mac", "set ff=mac" ],
-	\[ "[vim]Set_Unix", "set ff=unix" ],
-	\[ "[vim]EOLdelete", "set binary noeol|wq" ],
+	\[ "[vim]SyntaxOn", "set syntax=on" ],
+	\[ "[vim]SyntaxOff", "set syntax=off" ],
 	\[ "[vim]BGdark", "set background=dark" ],
 	\[ "[vim]BGlight", "set background=light" ],
-	\[ "[vim]タブ→スペース", "set expandtab|retab 4" ],
-	\[ "[vim]スペース→タブ", "set noexpandtab | retab! 4" ],
-	\[ "[vim]Unite Beautiful Attack", "Unite -auto-preview colorscheme" ],
 	\[ "[vim]TweetVimNewToken", "TweetVimAccessToken" ],
+	\[ "[File]Tab > Space", "set expandtab|retab 4" ],
+	\[ "[File]Space > Tab", "set noexpandtab | retab! 4" ],
+	\[ "[File]Open_UTF8", "e ++enc=utf-8" ],
+	\[ "[File]Open_ShiftJis", "e ++enc=cp932" ],
+	\[ "[File]Open_euc-jp", "e ++enc=euc-jp" ],
+	\[ "[File]Open_iso-2022-jp", "e ++enc=iso-2022-jp" ],
+	\[ "[File]Open_Dos", "e ++ff=dos" ],
+	\[ "[File]Open_Mac", "e ++ff=mac" ],
+	\[ "[File]Open_Unix", "e ++ff=unix" ],
+	\[ "[File]Set_UTF8", "set fenc=utf-8" ],
+	\[ "[File]Set_ShiftJis", "set fenc=cp932" ],
+	\[ "[File]Set_euc-jp", "set fenc=euc-jp" ],
+	\[ "[File]Set_iso-2022-jp", "set fenc=iso-2022-jp" ],
+	\[ "[File]Set_Dos", "set ff=dos" ],
+	\[ "[File]Set_Mac", "set ff=mac" ],
+	\[ "[File]Set_Unix", "set ff=unix" ],
+	\[ "[File]EOLdelete", "set binary noeol|wq" ],
 	\[ "[Toggle]Number", "set number!" ],
 	\[ "[Toggle]BreakIndent", "set breakindent!" ],
 	\[ "[Toggle]CursorColumn", "set cursorcolumn!" ],
