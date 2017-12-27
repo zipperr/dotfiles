@@ -43,8 +43,6 @@ call dein#add('flazz/vim-colorschemes')
 "Twitter
 call dein#add('basyura/TweetVim')
 call dein#add('basyura/twibill.vim')
-call dein#add('osyo-manga/vim-automatic')
-call dein#add('rhysd/tmpwin.vim')
 call dein#end()
 call dein#save_state()
 endif
@@ -367,8 +365,7 @@ nmap <C-p> <Plug>(yankround-prev)
 nmap <C-n> <Plug>(yankround-next)
 
 "##### Tweetvim #####
-" nnoremap <F2> :TweetVimUserStream<CR>
-nnoremap <F2> :call tmpwin#toggle('TweetVimHomeTimeline')
+nnoremap <F2> :TweetVimUserStream<CR>
 nnoremap <F3> :TweetVimCommandSay<CR>
 let g:tweetvim_config_dir = expand('~/.vim/.tweetvim')
 let g:tweetvim_display_time = 1
@@ -401,14 +398,14 @@ let g:unite_source_menu_menus.shortcut.command_candidates = [
 	\[ "[vim]Twitter", "TweetVimUserStream" ],
 	\[ "[vim]Tweet", "TweetVimCommandSay" ],
 	\[ "[vim]Open_UTF8", "e ++enc=utf-8" ],
-	\[ "[vim]Open_shiftjis", "e ++enc=cp932" ],
+	\[ "[vim]Open_ShiftJis", "e ++enc=cp932" ],
 	\[ "[vim]Open_euc-jp", "e ++enc=euc-jp" ],
 	\[ "[vim]Open_iso-2022-jp", "e ++enc=iso-2022-jp" ],
 	\[ "[vim]Open_Dos", "e ++ff=dos" ],
 	\[ "[vim]Open_Mac", "e ++ff=mac" ],
 	\[ "[vim]Open_Unix", "e ++ff=unix" ],
 	\[ "[vim]Set_UTF8", "set fenc=utf-8" ],
-	\[ "[vim]Set_shiftjis", "set fenc=cp932" ],
+	\[ "[vim]Set_ShiftJis", "set fenc=cp932" ],
 	\[ "[vim]Set_euc-jp", "set fenc=euc-jp" ],
 	\[ "[vim]Set_iso-2022-jp", "set fenc=iso-2022-jp" ],
 	\[ "[vim]Set_Dos", "set ff=dos" ],
@@ -435,5 +432,7 @@ let g:unite_source_menu_menus.shortcut.command_candidates = [
 \]
 augroup UniteSetting
 	autocmd!
+	autocmd FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
+	autocmd FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 	autocmd FileType unite set noequalalways
 augroup END
