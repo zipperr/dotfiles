@@ -46,7 +46,7 @@ if dein#check_install()
 	call dein#install()
 endif
 
-"##### DefaultSetting #####
+"##### DefaultSetting #####{{{
 "Encoding
 set fileencodings=utf-8,cp932,euc-jp,sjis
 set fileformats=unix,dos,mac
@@ -182,8 +182,7 @@ endif
 
 "CursorRetune
 augroup vimrcEx
-	au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
-	\ exe "normal g`\"" | endif
+	au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
 augroup END
 
 "encryptionFile
@@ -249,13 +248,9 @@ let g:syntastic_check_on_wq = 0
 
 "##### quickrun #####
 let g:quickrun_config = {"_" : {
-	\"runner" : "vimproc",
-	\"runner/vimproc/updatetime" : 60,
-	\"outputter" : "error",
-	\"outputter/error/success" : "buffer",
-	\"outputter/error/error" : "buffer",
-	\"outputter/buffer/split" : ":vertical 35",
-	\"outputter/buffer/close_on_empty" : 0
+	\"runner" : "vimproc","runner/vimproc/updatetime" : 60,
+	\"outputter" : "error","outputter/error/success" : "buffer","outputter/error/error" : "buffer",
+	\"outputter/buffer/split" : ":vertical 35","outputter/buffer/close_on_empty" : 0
 \}}
 set splitright
 nnoremap <C-q> :QuickRun<CR>
@@ -269,9 +264,7 @@ let g:lightline = {
 		\'left': [ ['mode', 'paste'], ['fugitive', 'readonly', 'filename', 'modified']],
 		\'right': [ [ 'syntastic', 'lineinfo' ], ['percent'],[ 'fileformat', 'fileencoding', 'filetype' ] ]
 	\},
-	\'component': {
-		\'readonly': '%{&readonly?"RO":""}',
-	\},
+	\'component': {'readonly': '%{&readonly?"RO":""}',},
 	\'component_function': {
 		\'fugitive': 'LightlineFugitive',
 		\'filename': 'LightlineFilename',
@@ -280,12 +273,8 @@ let g:lightline = {
 		\'fileencoding': 'LightlineFileencoding',
 		\'mode': 'LightlineMode',
 	\},
-	\'component_expand': {
-		\'syntastic': 'SyntasticStatuslineFlag',
-	\},
-	\'component_type': {
-		\'syntastic': 'error',
-	\}
+	\'component_expand': {'syntastic': 'SyntasticStatuslineFlag',},
+	\'component_type': {'syntastic': 'error',}
 \}
 function! LightlineFugitive()
 	return exists('*fugitive#head') ? fugitive#head() : ''
