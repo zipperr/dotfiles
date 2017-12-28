@@ -81,6 +81,7 @@ set infercase
 "Clipboard
 set clipboard=unnamed,autoselect
 nnoremap x "_x
+nnoremap dd "_dd
 vnoremap pp "0p
 vnoremap <silent> y y`]
 vnoremap <silent> p p`]
@@ -116,6 +117,7 @@ hi clear CursorLine
 set vb t_vb=
 set lazyredraw
 set ttyfast
+set updatetime=10
 set shellslash
 cmap w!! w !sudo tee % > /dev/null
 
@@ -194,7 +196,7 @@ if has('cryptv')
   endif
 endif
 
-"##### Neocomplcache, Neosnippet #####
+"##### Neocomplcache #####
 let g:neocomplcache_enable_at_startup = 1
 let g:NeoComplCache_SmartCase = 1
 let g:neocomplcache_enable_underbar_completion = 1
@@ -225,8 +227,12 @@ let g:neocomplcache_text_mode_filetypes = {
 	\'zsh':1,
 	\'python':1,
 \}
+
+"##### Neosnippet #####
 imap <expr><CR> neosnippet#expandable() ? "<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "<C-y>" : "<CR>"
 imap <expr><TAB> pumvisible() ? "<C-n>" : neosnippet#jumpable() ? "<Plug>(neosnippet_expand_or_jump)" : "<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+let g:neosnippet#snippets_directory='~/dotfiles/.vim/snippets/'
 
 "##### syntastic #####
 set statusline+=%#warningmsg#
@@ -360,6 +366,9 @@ let g:unite_source_menu_menus.shortcut.command_candidates = [
 	\[ "[vim]BGdark", "set background=dark" ],
 	\[ "[vim]BGlight", "set background=light" ],
 	\[ "[vim]TweetVimNewToken", "TweetVimAccessToken" ],
+	\[ "[Snippet]MakeSnippet", "NeoSnippetEdit" ],
+	\[ "[Snippet]DefaultSnippets", "Unite neosnippet/runtime" ],
+	\[ "[Snippet]OriginalSnippets", "Unite neosnippet/user" ],
 	\[ "[File]Tab > Space", "set expandtab|retab 4" ],
 	\[ "[File]Space > Tab", "set noexpandtab | retab! 4" ],
 	\[ "[File]Open_UTF8", "e ++enc=utf-8" ],
