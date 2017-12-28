@@ -214,18 +214,8 @@ let g:neocomplcache_enable_camel_case_completion = 0
 let g:neocomplcache_enable_at_startuple_auto_select = 1
 let g:neocomplcache_enable_insert_char_pre = 1
 let g:neocomplcache_text_mode_filetypes = {
-	\'rst':1,
-	\'markdown':1,
-	\'gitrebase':1,
-	\'gitcommit':1,
-	\'vcs-commit':1,
-	\'text':1,
-	\'tex': 1,
-	\'plaintex': 1,
-	\'help':1,
-	\'vim' :1,
-	\'zsh':1,
-	\'python':1,
+	\'rst':1,'markdown':1,'gitrebase':1,'gitcommit':1,'vcs-commit':1,'text':1,'tex': 1,
+	\'plaintex': 1,'help':1,'vim' :1,'zsh':1,'python':1,
 \}
 
 "##### Neosnippet #####
@@ -261,9 +251,8 @@ set laststatus=2
 let g:lightline = {
 	\'colorscheme': 'wombat',
 	\'active': {
-		\'left': [ ['mode', 'paste'], ['fugitive', 'readonly', 'filename', 'modified']],
-		\'right': [ [ 'syntastic', 'lineinfo' ], ['percent'],[ 'fileformat', 'fileencoding', 'filetype' ] ]
-	\},
+		\'left': [['mode', 'paste'], ['fugitive', 'readonly', 'filename', 'modified']],
+		\'right': [[ 'syntastic', 'lineinfo' ], ['percent'],[ 'fileformat', 'fileencoding', 'filetype']]},
 	\'component': {'readonly': '%{&readonly?"RO":""}',},
 	\'component_function': {
 		\'fugitive': 'LightlineFugitive',
@@ -271,8 +260,7 @@ let g:lightline = {
 		\'fileformat': 'LightlineFileformat',
 		\'filetype': 'LightlineFiletype',
 		\'fileencoding': 'LightlineFileencoding',
-		\'mode': 'LightlineMode',
-	\},
+		\'mode': 'LightlineMode',},
 	\'component_expand': {'syntastic': 'SyntasticStatuslineFlag',},
 	\'component_type': {'syntastic': 'error',}
 \}
