@@ -51,14 +51,14 @@ endif
 set fileencodings=utf-8,cp932,euc-jp,sjis
 set fileformats=unix,dos,mac
 set ambiwidth=double
-set nofixeol
+if(v:version >= 704)|set nofixeol|endif
 "Indent
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set autoindent
 set smartindent
-set breakindent
+if(v:version >= 800)|set breakindent|endif
 "Invisibles
 set list
 set listchars=tab:>-,trail:-
@@ -119,7 +119,6 @@ set lazyredraw
 set ttyfast
 set updatetime=10
 set shellslash
-cmap w!! w !sudo tee % > /dev/null
 
 "##### KeyMapping #####
 let mapleader = "\<Space>"
@@ -155,12 +154,14 @@ inoremap <> <>
 inoremap {<CR> {<CR>}<Esc><S-o>
 inoremap (<CR> (<CR>)<Esc><S-o><TAB>
 inoremap [<CR> [<CR>]<Esc><S-o><TAB>
-inoremap <<cr> <<cr>><esc><s-o><tab>
+inoremap <<CR> <<CR>><Esc><S-o><TAB>
 inoremap , ,<space>
 "VisualMode
 vnoremap <Tab> %
 vnoremap v $h
 vnoremap <silent> * "vy/\V<C-r>=substitute(escape(@v, '\/'), "\n", '\\n','g')<CR><CR>
+"CommandlineMode
+cmap w!! w !sudo tee % > /dev/null
 
 "##### Script #####
 "ZenkakuSpase
@@ -187,13 +188,13 @@ augroup END
 
 "encryptionFile
 if has('cryptv')
-  if v:version > 704 || v:version == 704 && has('patch401')
-	set cryptmethod=blowfish2
-  elseif v:version >= 703
-	set cryptmethod=blowfish
-  else
-	set cryptmethod=zip
-  endif
+	if v:version > 704 || v:version == 704 && has('patch401')
+		set cryptmethod=blowfish2
+	elseif v:version >= 703
+		set cryptmethod=blowfish
+	else
+		set cryptmethod=zip
+	endif
 endif
 
 "##### Neocomplcache #####
@@ -258,7 +259,7 @@ let g:quickrun_config = {"_" : {
 \}}
 set splitright
 nnoremap <C-q> :QuickRun<CR>
-nnoremap q :<C-u>bw! \[quickrun\ output\]<CR>
+nnoremap <silent><ESC><ESC> :bw! \[quickrun\ output\]<CR>
 
 "##### lightline #####
 set laststatus=2
@@ -322,6 +323,10 @@ nnoremap <silent><C-e> :NERDTreeToggle<CR>
 autocmd FileType NERDTree nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 autocmd FileType NERDTree inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 let NERDTreeShowHidden = 1
+" let g:NERDTreeMinimalUI=1
+let g:NERDTreeWinSize=30
+let g:NERDTreeWinPos="left"
+let g:NERDTreeIgnore=['\.clean$', '\.swp$', '\.bak$', '\~$', '\.DS_Store']
 autocmd vimenter * if !argc() | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
@@ -366,9 +371,9 @@ let g:unite_source_menu_menus.shortcut.command_candidates = [
 	\[ "[vim]BGdark", "set background=dark" ],
 	\[ "[vim]BGlight", "set background=light" ],
 	\[ "[vim]TweetVimNewToken", "TweetVimAccessToken" ],
-	\[ "[Snippet]MakeSnippet", "NeoSnippetEdit" ],
-	\[ "[Snippet]DefaultSnippets", "Unite neosnippet/runtime" ],
-	\[ "[Snippet]OriginalSnippets", "Unite neosnippet/user" ],
+	\[ "[Snippet]MakeSnippet", "vsplit|NeoSnippetEdit" ],
+	\[ "[Snippet]DefaultSnippets", "Unite -silent -vertical -winwidth=30 neosnippet/runtime" ],
+	\[ "[Snippet]OriginalSnippets", "Unite -silent -vertical -winwidth=30 neosnippet/user" ],
 	\[ "[File]Tab > Space", "set expandtab|retab 4" ],
 	\[ "[File]Space > Tab", "set noexpandtab | retab! 4" ],
 	\[ "[File]Open_UTF8", "e ++enc=utf-8" ],
