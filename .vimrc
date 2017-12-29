@@ -29,12 +29,13 @@ call dein#add('ujihisa/neco-look')
 call dein#add('thinca/vim-quickrun')
 call dein#add('tomtom/tcomment_vim')
 call dein#add('AndrewRadev/switch.vim')
+call dein#add('soramugi/auto-ctags.vim')
+call dein#add('majutsushi/tagbar')
 " Theme / Interface
 call dein#add('itchyny/lightline.vim')
 call dein#add('osyo-manga/vim-brightest')
 call dein#add('w0ng/vim-hybrid')
 call dein#add('tomasr/molokai')
-call dein#add('elmindreda/vimcolors')
 " Git Support
 call dein#add('airblade/vim-gitgutter')
 call dein#add('tpope/vim-fugitive')
@@ -102,11 +103,13 @@ set gdefault
 "Color
 syntax on
 set t_Co=256
-autocmd ColorScheme * highlight Normal ctermbg=none
-autocmd ColorScheme * highlight LineNr ctermbg=none
+augroup ColorSetting
+	autocmd!
+	autocmd ColorScheme * highlight Normal ctermbg=none
+	autocmd ColorScheme * highlight LineNr ctermbg=none
+augroup END
 colorscheme hybrid
 " colorscheme molokai
-" colorscheme phosphor
 set background=dark
 hi Comment gui=NONE font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE  term=NONE ctermfg=59 ctermbg=NONE
 hi LineNr  gui=NONE font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE  term=NONE ctermfg=59 ctermbg=NONE
@@ -189,8 +192,9 @@ if &term =~ "xterm"
 endif
 
 "CursorRetune
-augroup vimrcEx
-	au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
+augroup CursorScript
+	autocmd!
+	autocmd BufRead * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
 augroup END
 
 "encryptionFile
@@ -305,26 +309,34 @@ endfunction
 
 "##### NERDTree #####
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
-autocmd FileType NERDTree nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
-autocmd FileType NERDTree inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 let NERDTreeShowHidden = 1
-" let g:NERDTreeMinimalUI=1
 let g:NERDTreeWinSize=30
 let g:NERDTreeWinPos="left"
 let g:NERDTreeIgnore=['\.clean$', '\.swp$', '\.bak$', '\~$', '\.DS_Store']
-autocmd vimenter * if !argc() | NERDTree | endif
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+augroup NERDTreeSetting
+	autocmd!
+	autocmd FileType NERDTree nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
+	autocmd FileType NERDTree inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
+	autocmd vimenter * if !argc() | NERDTree | endif
+	autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+augroup END
 
 "#####Commentout #####
 nmap ,, gcc
 vmap ,, gcc
 
 " ##### Swith #####
-nnoremap <Leader>n  :<C-u>Switch<CR>
+let g:switch_mapping = "\\"
+let g:switch_custom_definitions =[{'\(\k\+\)': '''\1''','''\(.\{-}\)''': '"\1"','"\(.\{-}\)"': '\1',},]
+
+"##### auto-ctag, tagbar #####
+let g:auto_ctags = 1
+let g:auto_ctags_directory_list = ['~/.vim', '.git', '.svn']
+nmap <F2> :TagbarToggle<CR>
 
 "##### Tweetvim #####
-nnoremap <F2> :TweetVimUserStream<CR>
-nnoremap <F3> :TweetVimCommandSay<CR>
+nnoremap <F3> :TweetVimUserStream<CR>
+nnoremap <F4> :TweetVimCommandSay<CR>
 let g:tweetvim_config_dir = expand('~/.vim/.tweetvim')
 let g:tweetvim_display_time = 1
 let g:tweetvim_open_buffer_cmd = '25vsplit'
