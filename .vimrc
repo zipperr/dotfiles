@@ -18,6 +18,7 @@ call dein#add('Shougo/dein.vim')
 call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
 call dein#add('Shougo/unite.vim')
 call dein#add('scrooloose/nerdtree')
+call dein#add('tyru/open-browser.vim')
 " Programming Support
 call dein#add('Shougo/neocomplcache.vim')
 call dein#add('Shougo/neosnippet.vim')
@@ -29,7 +30,7 @@ call dein#add('tomtom/tcomment_vim')
 call dein#add('AndrewRadev/switch.vim')
 call dein#add('soramugi/auto-ctags.vim')
 call dein#add('majutsushi/tagbar')
-" markdown
+" Markdown
 call dein#add('kannokanno/previm')
 " Theme / Interface
 call dein#add('itchyny/lightline.vim')
@@ -40,7 +41,6 @@ call dein#add('tomasr/molokai')
 call dein#add('airblade/vim-gitgutter')
 call dein#add('tpope/vim-fugitive')
 " Twitter
-call dein#add('tyru/open-browser.vim')
 call dein#add('basyura/TweetVim')
 call dein#add('basyura/twibill.vim')
 call dein#end()
@@ -77,6 +77,8 @@ set whichwrap=b,s,h,l,<,>,[,],~
 set mouse=a
 set scrolloff=3
 "CommandLine
+set laststatus=2
+" set statusline=%F%h\%=\%m%r%w[%{&ff},%{&fenc!=''?&fenc:&enc},%Y][%3l/%3L]
 set wildmenu
 set history=100
 set infercase
@@ -111,7 +113,7 @@ colorscheme hybrid
 set background=dark
 hi Comment gui=NONE font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE  term=NONE ctermfg=59 ctermbg=NONE
 hi LineNr  gui=NONE font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE  term=NONE ctermfg=59 ctermbg=NONE
-hi CursorLineNR gui=NONE font=NONE guifg=NONE guibg=NONE guisp=NONE cterm=NONE  term=NONE ctermfg=NONE ctermbg=NONE
+hi CursorLineNR  gui=NONE font=NONE guifg=#ffff00 guibg=NONE guisp=NONE cterm=NONE  term=NONE  ctermfg=226 ctermbg=NONE
 hi SpecialKey gui=NONE font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE  term=NONE ctermfg=59 ctermbg=NONE
 hi IncSearch gui=underline font=NONE guifg=NONE guibg=NONE guisp=NONE cterm=underline term=underline ctermfg=NONE ctermbg=NONE
 hi Search gui=underline font=NONE guifg=NONE guibg=NONE guisp=NONE cterm=underline term=underline ctermfg=NONE ctermbg=NONE
@@ -175,7 +177,10 @@ cmap w!! w !sudo tee % > /dev/null
 "##### Script #####
 "ZenkakuSpase
 highlight ZenkakuSpace term=underline cterm=reverse ctermfg=Red gui=reverse guifg=Red
-au BufNewFile,BufRead * match ZenkakuSpace /　/
+augroup ZenkakuSpaceScript
+	autocmd!
+	autocmd BufNewFile,BufRead * match ZenkakuSpace /　/
+augroup END
 
 "PasteIndent
 if &term =~ "xterm"
@@ -183,8 +188,8 @@ if &term =~ "xterm"
 	let &t_EI .= "\e[?2004l"
 	let &pastetoggle = "\e[201~"
 	function XTermPasteBegin(ret)
-	set paste
-	return a:ret
+		set paste
+		return a:ret
 	endfunction
 	inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
 endif
@@ -257,7 +262,6 @@ nnoremap <C-q> :QuickRun<CR>
 nnoremap <silent><ESC><ESC> :bw! \[quickrun\ output\]<CR>
 
 "##### lightline #####
-set laststatus=2
 let g:lightline = {
 	\'colorscheme': 'wombat',
 	\'active': {
