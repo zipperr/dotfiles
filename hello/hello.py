@@ -7,3 +7,6 @@ for int in range(1, 101):
 		print(str(int)+'Fizz')
 	else:
 		print(str(int))
+
+knights = {'gallahad': 'the pure', 'robin': 'the brave'}
+

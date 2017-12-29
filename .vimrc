@@ -20,7 +20,6 @@ call dein#add('Shougo/dein.vim')
 call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
 call dein#add('Shougo/unite.vim')
 call dein#add('scrooloose/nerdtree')
-call dein#add('tomtom/tcomment_vim')
 " Programming Support
 call dein#add('Shougo/neocomplcache.vim')
 call dein#add('Shougo/neosnippet.vim')
@@ -28,10 +27,14 @@ call dein#add('Shougo/neosnippet-snippets')
 call dein#add('scrooloose/syntastic')
 call dein#add('ujihisa/neco-look')
 call dein#add('thinca/vim-quickrun')
+call dein#add('tomtom/tcomment_vim')
+call dein#add('AndrewRadev/switch.vim')
 " Theme / Interface
-call dein#add('w0ng/vim-hybrid')
 call dein#add('itchyny/lightline.vim')
 call dein#add('osyo-manga/vim-brightest')
+call dein#add('w0ng/vim-hybrid')
+call dein#add('tomasr/molokai')
+call dein#add('elmindreda/vimcolors')
 " Git Support
 call dein#add('airblade/vim-gitgutter')
 call dein#add('tpope/vim-fugitive')
@@ -102,9 +105,12 @@ set t_Co=256
 autocmd ColorScheme * highlight Normal ctermbg=none
 autocmd ColorScheme * highlight LineNr ctermbg=none
 colorscheme hybrid
+" colorscheme molokai
+" colorscheme phosphor
 set background=dark
 hi Comment gui=NONE font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE  term=NONE ctermfg=59 ctermbg=NONE
-hi LineNr gui=NONE font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE  term=NONE ctermfg=59 ctermbg=NONE
+hi LineNr  gui=NONE font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE  term=NONE ctermfg=59 ctermbg=NONE
+hi CursorLineNR gui=NONE font=NONE guifg=NONE guibg=NONE guisp=NONE cterm=NONE  term=NONE ctermfg=NONE ctermbg=NONE
 hi SpecialKey gui=NONE font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE  term=NONE ctermfg=59 ctermbg=NONE
 hi IncSearch gui=underline font=NONE guifg=NONE guibg=NONE guisp=NONE cterm=underline term=underline ctermfg=NONE ctermbg=NONE
 hi Search gui=underline font=NONE guifg=NONE guibg=NONE guisp=NONE cterm=underline term=underline ctermfg=NONE ctermbg=NONE
@@ -115,6 +121,7 @@ set number
 hi clear CursorLine
 "Other
 set vb t_vb=
+set nrformats=alpha,octal,hex
 set lazyredraw
 set ttyfast
 set updatetime=10
@@ -137,6 +144,7 @@ nnoremap j gj
 nnoremap k gk
 nnoremap gj j
 nnoremap gk k
+nnoremap Y y$
 "InsertMode
 inoremap <silent> jj <ESC>
 inoremap { {}<Left>
@@ -310,6 +318,9 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 "#####Commentout #####
 nmap ,, gcc
 vmap ,, gcc
+
+" ##### Swith #####
+nnoremap <Leader>n  :<C-u>Switch<CR>
 
 "##### Tweetvim #####
 nnoremap <F2> :TweetVimUserStream<CR>
