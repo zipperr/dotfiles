@@ -29,9 +29,11 @@ set backspace=indent,eol,start
 set whichwrap=b,s,h,l,<,>,[,],~
 set mouse=a
 set scrolloff=3
-"CommandLine
+"StatusLine
 set laststatus=2
-set statusline=%F%h\%=\%m%r%w[%{&ff},%{&fenc!=''?&fenc:&enc},%Y][%3l/%3L]
+hi StatusLine gui=NONE guifg=Black guibg=DarkCyan cterm=NONE ctermfg=Black ctermbg=DarkCyan
+set statusline=%F%h\%m%r%w%=\[%{&ff},%{&fenc!=''?&fenc:&enc},%Y][%3l/%3L]
+"CommandLine
 set wildmenu
 set history=100
 set infercase
