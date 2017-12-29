@@ -50,7 +50,7 @@ augroup ColorSetting
 	autocmd ColorScheme * highlight Normal ctermbg=none
 	autocmd ColorScheme * highlight LineNr ctermbg=none
 augroup END
-" colorscheme hybrid
+colorscheme slate
 set background=dark
 hi Comment gui=NONE font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE  term=NONE ctermfg=59 ctermbg=NONE
 hi LineNr  gui=NONE font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE  term=NONE ctermfg=59 ctermbg=NONE
