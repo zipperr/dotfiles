@@ -6,9 +6,7 @@ let g:vimproc#download_windows_dll = 1
 let s:dein_dir = expand('~/.vim/dein')
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 if &runtimepath !~# '/dein.vim'
-if !isdirectory(s:dein_repo_dir)
-	execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
-	endif
+	if !isdirectory(s:dein_repo_dir)|execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir|endif
 	execute 'set runtimepath^=' . s:dein_repo_dir
 endif
 if dein#load_state(s:dein_dir)
@@ -31,6 +29,8 @@ call dein#add('tomtom/tcomment_vim')
 call dein#add('AndrewRadev/switch.vim')
 call dein#add('soramugi/auto-ctags.vim')
 call dein#add('majutsushi/tagbar')
+" markdown
+call dein#add('kannokanno/previm')
 " Theme / Interface
 call dein#add('itchyny/lightline.vim')
 call dein#add('osyo-manga/vim-brightest')
@@ -46,9 +46,7 @@ call dein#add('basyura/twibill.vim')
 call dein#end()
 call dein#save_state()
 endif
-if dein#check_install()
-	call dein#install()
-endif
+if dein#check_install()|call dein#install()|endif
 
 "##### DefaultSetting #####{{{
 "Encoding
@@ -329,10 +327,14 @@ vmap ,, gcc
 let g:switch_mapping = "\\"
 let g:switch_custom_definitions =[{'\(\k\+\)': '''\1''','''\(.\{-}\)''': '"\1"','"\(.\{-}\)"': '\1',},]
 
-"##### auto-ctag, tagbar #####
+"##### Auto-ctag, Tagbar #####
 let g:auto_ctags = 1
 let g:auto_ctags_directory_list = ['~/.vim', '.git', '.svn']
 nmap <F2> :TagbarToggle<CR>
+
+"##### Previm #####
+autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
+let g:previm_open_cmd = ''
 
 "##### Tweetvim #####
 nnoremap <F3> :TweetVimUserStream<CR>
@@ -364,12 +366,15 @@ let g:unite_source_menu_menus.shortcut.command_candidates = [
 	\[ "[web]Qiita", "OpenBrowser https://qiita.com" ],
 	\[ "[web]Wiki", "OpenBrowser https://ja.wikipedia.org" ],
 	\[ "[web]Slack", "OpenBrowser https://vim-jp.slack.com" ],
+	\[ "[vim]FileTree", "NERDTreeToggle" ],
+	\[ "[vim]TagBar", "TagbarToggle" ],
 	\[ "[vim]Twitter", "TweetVimUserStream" ],
 	\[ "[vim]Tweet", "TweetVimCommandSay" ],
 	\[ "[vim]SyntaxOn", "set syntax=on" ],
 	\[ "[vim]SyntaxOff", "set syntax=off" ],
 	\[ "[vim]BGdark", "set background=dark" ],
 	\[ "[vim]BGlight", "set background=light" ],
+	\[ "[vim]PreviewMarkdown", "PrevimOpen" ],
 	\[ "[vim]TweetVimNewToken", "TweetVimAccessToken" ],
 	\[ "[Snippet]MakeSnippet", "vsplit|NeoSnippetEdit" ],
 	\[ "[Snippet]DefaultSnippets", "Unite -silent -vertical -winwidth=30 neosnippet/runtime" ],
