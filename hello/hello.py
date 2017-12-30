@@ -6,7 +6,4 @@ for int in range(1, 101):
 	elif int%3 ==0:
 		print(str(int)+'Fizz')
 	else:
-		print(str(int))
-
-knights = {'gallahad': 'the pure', 'robin': 'the brave'}
-
+print(str(int))

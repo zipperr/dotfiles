@@ -1,6 +1,9 @@
 set encoding=utf-8
 scriptencoding utf-8
 let g:vimproc#download_windows_dll = 1
+augroup vimrc
+	autocmd!
+augroup END
 
 "##### Plugin #####
 let s:dein_dir = expand('~/.vim/dein')
@@ -95,11 +98,8 @@ set gdefault
 "Color
 syntax on
 set t_Co=256
-augroup ColorSetting
-	autocmd!
-	autocmd ColorScheme * highlight Normal ctermbg=none
-	autocmd ColorScheme * highlight LineNr ctermbg=none
-augroup END
+autocmd vimrc ColorScheme * highlight Normal ctermbg=none
+autocmd vimrc ColorScheme * highlight LineNr ctermbg=none
 colorscheme hybrid
 " colorscheme molokai
 set background=dark
@@ -113,12 +113,9 @@ hi MatchParen gui=underline font=NONE guifg=NONE guibg=NONE guisp=NONE cterm=und
 "StatusLine
 set laststatus=2
 " set statusline=%F%h\%m%r%w%=\[%{&ff},%{&fenc!=''?&fenc:&enc},%Y][%3l/%3L][%{strftime('%k:%M')}]
-" augroup StatuslineHighlight
-" 	autocmd!
-" 	au VimEnter * hi StatusLine gui=NONE guifg=Black guibg=DarkCyan cterm=NONE ctermfg=Black ctermbg=DarkCyan
-" 	au InsertEnter * hi StatusLine gui=NONE guifg=Black guibg=DarkGreen cterm=NONE ctermfg=Black ctermbg=DarkGreen
-" 	au InsertLeave * hi StatusLine gui=NONE guifg=Black guibg=DarkCyan cterm=NONE ctermfg=Black ctermbg=DarkCyan
-" augroup END
+"au vimrc VimEnter * hi StatusLine gui=NONE guifg=Black guibg=DarkCyan cterm=NONE ctermfg=Black ctermbg=DarkCyan
+"au vimrc InsertEnter * hi StatusLine gui=NONE guifg=Black guibg=DarkGreen cterm=NONE ctermfg=Black ctermbg=DarkGreen
+"au vimrc InsertLeave * hi StatusLine gui=NONE guifg=Black guibg=DarkCyan cterm=NONE ctermfg=Black ctermbg=DarkCyan
 "CursorLine
 set cursorline
 set number
@@ -157,6 +154,8 @@ nnoremap r <C-r>
 nnoremap Y y$
 nnoremap p p`]
 nnoremap <Enter> o<ESC>
+nnoremap <S-Left> <C-w><<CR>
+nnoremap <S-Right> <C-w>><CR>
 "InsertMode
 inoremap jj <ESC>
 inoremap { {}<Left>
@@ -186,16 +185,10 @@ cmap wb set binary noeol<CR> :wq<CR>
 "##### Script #####
 "HiglightZenkakuSpase
 hi ZenkakuSpace term=underline cterm=reverse ctermfg=Red gui=reverse guifg=Red
-augroup ZenkakuSpaceScript
-	autocmd!
-	autocmd BufNewFile,BufRead * match ZenkakuSpace /　/
-augroup END
+autocmd vimrc BufNewFile,BufRead * match ZenkakuSpace /　/
 
 "CursorRetune
-augroup CursorScript
-	autocmd!
-	autocmd BufRead * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
-augroup END
+autocmd vimrc BufRead * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
 
 "PasteIndent
 if &term =~ "xterm"
@@ -238,9 +231,6 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expan
 let g:neosnippet#snippets_directory='~/dotfiles/.vim/snippets/'
 
 "##### syntastic #####
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
 let g:syntastic_loc_list_height = 1
 let g:syntastic_aggregate_errors = 1
 let g:syntastic_always_populate_loc_list = 1
@@ -261,50 +251,50 @@ nnoremap <silent><ESC><ESC> :bw! \[quickrun\ output\]<CR>
 
 "##### lightline #####
 let g:lightline = {
-	\'colorscheme': 'wombat',
-	\'active': {
+ 	\'colorscheme': 'wombat',
+	\ 'active': {
 		\'left': [['mode', 'paste'], ['fugitive', 'readonly', 'filename', 'modified']],
-		\'right': [[ 'syntastic', 'lineinfo' ], ['percent'],[ 'fileformat', 'fileencoding', 'filetype']]},
-	\'component': {'readonly': '%{&readonly?"RO":""}',},
-	\'component_function': {
+		\'right': [[ 'lineinfo', 'syntastic' ], ['percent'],[ 'fileformat', 'fileencoding', 'filetype']]},
+	\'component': {'readonly': '%{&readonly?"RO":""}'},
+	\'component_function':{
 		\'fugitive': 'LightlineFugitive',
 		\'filename': 'LightlineFilename',
 		\'fileformat': 'LightlineFileformat',
 		\'filetype': 'LightlineFiletype',
 		\'fileencoding': 'LightlineFileencoding',
-		\'mode': 'LightlineMode',},
-	\'component_expand': {'syntastic': 'SyntasticStatuslineFlag',},
-	\'component_type': {'syntastic': 'error',}
-\}
+		\'syntastic': 'SyntasticStatuslineFlag',
+		\'mode': 'LightlineMode'},
+	\}
+let g:lightline.component = {'lineinfo': '%3l/%L'}
+
 function! LightlineFugitive()
 	return exists('*fugitive#head') ? fugitive#head() : ''
 endfunction
+
 function! LightlineFilename()
-let fname = expand('%:t')
-return fname == 'ControlP' && has_key(g:lightline, 'ctrlp_item') ? g:lightline.ctrlp_item :
-	\ fname =~ 'NERD_tree' ? '' :
+if winwidth(0) > 90|let fname = expand("%:p")|else|let fname = expand("%:t")|endif
+return fname =~ 'NERD_tree' ? '' :
 	\ &ft == 'unite' ? unite#get_status_string() :
 	\ ('' != fname ? fname : '[No Name]')
 endfunction
+
 function! LightlineFileformat()
-	return winwidth(0) > 70 ? &fileformat : ''
+	return winwidth(0) > 80 ? &fileformat : ''
 endfunction
+
 function! LightlineFiletype()
-	return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+	return winwidth(0) > 80 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
 endfunction
+
 function! LightlineFileencoding()
-	return winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
+	return winwidth(0) > 80 ? (&fenc !=# '' ? &fenc : &enc) : ''
 endfunction
+
 function! LightlineMode()
 	let fname = expand('%:t')
-	return fname == 'ControlP' ? 'CtrlP' :
-		\fname =~ 'NERD_tree' ? 'NERDTree' :
+	return fname =~ 'NERD_tree' ? 'NERDTree' :
 		\&ft == 'unite' ? 'Unite' :
-		\winwidth(0) > 30 ? lightline#mode() : ''
-endfunction
-function! s:syntastic()
-	SyntasticCheck
-	call lightline#update()
+		\winwidth(0) > 10 ? lightline#mode() : ''
 endfunction
 
 "#####Commentout #####
@@ -321,8 +311,8 @@ let g:auto_ctags_directory_list = ['~/.vim', '.git', '.svn']
 nmap <F2> :TagbarToggle<CR>
 
 "##### Previm #####
-autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
 let g:previm_open_cmd = ''
+autocmd vimrc BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
 
 "##### NERDTree #####
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
@@ -330,13 +320,10 @@ let NERDTreeShowHidden = 1
 let g:NERDTreeWinSize=30
 let g:NERDTreeWinPos="left"
 let g:NERDTreeIgnore=['\.clean$', '\.swp$', '\.bak$', '\~$', '\.DS_Store']
-augroup NERDTreeSetting
-	autocmd!
-	autocmd FileType NERDTree nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
-	autocmd FileType NERDTree inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
-	autocmd vimenter * if !argc() | NERDTree | endif
-	autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-augroup END
+autocmd vimrc FileType NERDTree nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
+autocmd vimrc FileType NERDTree inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
+autocmd vimrc vimenter * if !argc() | NERDTree | endif
+autocmd vimrc bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 "##### Tweetvim #####
 nnoremap <F3> :TweetVimUserStream<CR>
@@ -351,13 +338,10 @@ let g:tweetvim_tweet_per_page = 50
 let g:tweetvim_include_rts = 1
 " let $http_proxy	= 'http://xxx.xx.xx:8080'
 " let $HTTPS_PROXY	= 'http://xxx.xx.xx:8080'
-augroup TweetVimSetting
-	autocmd!
-	autocmd FileType tweetvim nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
-	autocmd FileType tweetvim inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
-	autocmd FileType tweetvim set nonumber
-	autocmd FileType tweetvim set noequalalways
-augroup END
+autocmd vimrc FileType tweetvim nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
+autocmd vimrc FileType tweetvim inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
+autocmd vimrc FileType tweetvim set nonumber
+autocmd vimrc FileType tweetvim set noequalalways
 
 "##### UniteMenu #####
 nnoremap <F1> :Unite -toggle -silent -vertical -winwidth=30 -wrap menu:shortcut<CR>
@@ -413,26 +397,17 @@ let g:unite_source_menu_menus.shortcut.command_candidates = [
 	\[ "[Edit]bashrc", "edit ~/.bashrc"],
 	\[ "[Edit]gitconf", "edit ~/.gitconfig"],
 \]
-augroup UniteSetting
-	autocmd!
-	autocmd FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
-	autocmd FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
-	autocmd FileType unite set noequalalways
-augroup END
+autocmd vimrc FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
+autocmd vimrc FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
+autocmd vimrc FileType unite set noequalalways
 
 "##### vim-ref #####
 let g:ref_source_webdict_sites = {
-\   'je': {
-\     'url': 'http://dictionary.infoseek.ne.jp/jeword/%s',
-\   },
-\   'ej': {
-\     'url': 'http://dictionary.infoseek.ne.jp/ejword/%s',
-\   },
-\   'wiki': {
-\     'url': 'http://ja.wikipedia.org/wiki/%s',
-\   },
-\ }
-let g:ref_source_webdict_sites.default = 'ja'
+	\'je': {'url': 'http://dictionary.infoseek.ne.jp/jeword/%s'},
+	\'ej': {'url': 'http://dictionary.infoseek.ne.jp/ejword/%s'},
+	\'wiki': {'url': 'http://ja.wikipedia.org/wiki/%s'},
+\}
+let g:ref_source_webdict_sites.default = 'wiki'
 function! g:ref_source_webdict_sites.je.filter(output)
 	return join(split(a:output, "\n")[15 :], "\n")
 endfunction
@@ -440,12 +415,9 @@ function! g:ref_source_webdict_sites.ej.filter(output)
 	return join(split(a:output, "\n")[15 :], "\n")
 endfunction
 function! g:ref_source_webdict_sites.wiki.filter(output)
-	return join(split(a:output, "\n")[17 :], "\n")
+	return join(split(a:output, "\n")[5 :], "\n")
 endfunction
-nmap <Leader><Leader> :<C-u>Ref webdict je<Space>
-augroup RefSetting
-	autocmd!
-	autocmd FileType ref-webdict nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
-	autocmd FileType ref-webdict inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
-	autocmd FileType ref-webdic set noequalalways
-augroup END
+nmap <Leader><Leader> :<C-u>Ref webdict<Space>
+autocmd vimrc FileType ref-webdict nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
+autocmd vimrc FileType ref-webdict inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
+autocmd vimrc FileType ref-webdict set noequalalways
