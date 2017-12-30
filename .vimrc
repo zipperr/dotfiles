@@ -26,6 +26,7 @@ call dein#add('Shougo/neosnippet-snippets')
 call dein#add('scrooloose/syntastic')
 call dein#add('ujihisa/neco-look')
 call dein#add('thinca/vim-quickrun')
+call dein#add('thinca/vim-ref')
 call dein#add('tomtom/tcomment_vim')
 call dein#add('AndrewRadev/switch.vim')
 call dein#add('soramugi/auto-ctags.vim')
@@ -148,16 +149,16 @@ noremap k gk
 noremap gj j
 noremap gk k
 noremap <Tab> %
-noremap <silent> p p`]
 "NormalMode
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :q<CR>
 nnoremap <C-w> <C-w><C-w>
 nnoremap r <C-r>
 nnoremap Y y$
+nnoremap p p`]
 nnoremap <Enter> o<ESC>
 "InsertMode
-inoremap <silent> jj <ESC>
+inoremap jj <ESC>
 inoremap { {}<Left>
 inoremap ( ()<Left>
 inoremap [ []<Left>
@@ -177,7 +178,7 @@ inoremap <<CR> <<CR>><Esc><S-o>
 inoremap , ,<space>
 "VisualMode
 vnoremap v $h
-vnoremap <silent> * "vy/\V<C-r>=substitute(escape(@v, '\/'), "\n", '\\n','g')<CR><CR>
+vnoremap * "vy/\V<C-r>=substitute(escape(@v, '\/'), "\n", '\\n','g')<CR><CR>
 "CommandlineMode
 cmap w!! w !sudo tee % > /dev/null
 cmap wb set binary noeol<CR> :wq<CR>
@@ -306,20 +307,6 @@ function! s:syntastic()
 	call lightline#update()
 endfunction
 
-"##### NERDTree #####
-nnoremap <silent><C-e> :NERDTreeToggle<CR>
-let NERDTreeShowHidden = 1
-let g:NERDTreeWinSize=30
-let g:NERDTreeWinPos="left"
-let g:NERDTreeIgnore=['\.clean$', '\.swp$', '\.bak$', '\~$', '\.DS_Store']
-augroup NERDTreeSetting
-	autocmd!
-	autocmd FileType NERDTree nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
-	autocmd FileType NERDTree inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
-	autocmd vimenter * if !argc() | NERDTree | endif
-	autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-augroup END
-
 "#####Commentout #####
 nmap ,, gcc
 vmap ,, gcc
@@ -337,6 +324,20 @@ nmap <F2> :TagbarToggle<CR>
 autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
 let g:previm_open_cmd = ''
 
+"##### NERDTree #####
+nnoremap <silent><C-e> :NERDTreeToggle<CR>
+let NERDTreeShowHidden = 1
+let g:NERDTreeWinSize=30
+let g:NERDTreeWinPos="left"
+let g:NERDTreeIgnore=['\.clean$', '\.swp$', '\.bak$', '\~$', '\.DS_Store']
+augroup NERDTreeSetting
+	autocmd!
+	autocmd FileType NERDTree nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
+	autocmd FileType NERDTree inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
+	autocmd vimenter * if !argc() | NERDTree | endif
+	autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+augroup END
+
 "##### Tweetvim #####
 nnoremap <F3> :TweetVimUserStream<CR>
 nnoremap <F4> :TweetVimCommandSay<CR>
@@ -348,13 +349,15 @@ let g:tweetvim_display_source = 0
 let g:tweetvim_async_post = 1
 let g:tweetvim_tweet_per_page = 50
 let g:tweetvim_include_rts = 1
+" let $http_proxy	= 'http://xxx.xx.xx:8080'
+" let $HTTPS_PROXY	= 'http://xxx.xx.xx:8080'
 augroup TweetVimSetting
 	autocmd!
+	autocmd FileType tweetvim nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
+	autocmd FileType tweetvim inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 	autocmd FileType tweetvim set nonumber
 	autocmd FileType tweetvim set noequalalways
 augroup END
-" let $http_proxy	= 'http://xxx.xx.xx:8080'
-" let $HTTPS_PROXY	= 'http://xxx.xx.xx:8080'
 
 "##### UniteMenu #####
 nnoremap <F1> :Unite -toggle -silent -vertical -winwidth=30 -wrap menu:shortcut<CR>
@@ -367,6 +370,7 @@ let g:unite_source_menu_menus.shortcut.command_candidates = [
 	\[ "[web]Qiita", "OpenBrowser https://qiita.com" ],
 	\[ "[web]Wiki", "OpenBrowser https://ja.wikipedia.org" ],
 	\[ "[web]Slack", "OpenBrowser https://vim-jp.slack.com" ],
+	\[ "[vim]IDEMode", "NERDTreeToggle |TagbarToggle" ],
 	\[ "[vim]FileTree", "NERDTreeToggle" ],
 	\[ "[vim]TagBar", "TagbarToggle" ],
 	\[ "[vim]Twitter", "TweetVimUserStream" ],
@@ -414,4 +418,34 @@ augroup UniteSetting
 	autocmd FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 	autocmd FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 	autocmd FileType unite set noequalalways
+augroup END
+
+"##### vim-ref #####
+let g:ref_source_webdict_sites = {
+\   'je': {
+\     'url': 'http://dictionary.infoseek.ne.jp/jeword/%s',
+\   },
+\   'ej': {
+\     'url': 'http://dictionary.infoseek.ne.jp/ejword/%s',
+\   },
+\   'wiki': {
+\     'url': 'http://ja.wikipedia.org/wiki/%s',
+\   },
+\ }
+let g:ref_source_webdict_sites.default = 'ja'
+function! g:ref_source_webdict_sites.je.filter(output)
+	return join(split(a:output, "\n")[15 :], "\n")
+endfunction
+function! g:ref_source_webdict_sites.ej.filter(output)
+	return join(split(a:output, "\n")[15 :], "\n")
+endfunction
+function! g:ref_source_webdict_sites.wiki.filter(output)
+	return join(split(a:output, "\n")[17 :], "\n")
+endfunction
+nmap <Leader><Leader> :<C-u>Ref webdict je<Space>
+augroup RefSetting
+	autocmd!
+	autocmd FileType ref-webdict nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
+	autocmd FileType ref-webdict inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
+	autocmd FileType ref-webdic set noequalalways
 augroup END
