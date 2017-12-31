@@ -1,6 +1,11 @@
-"Encoding
+"##### Stratup #####
 set encoding=utf-8
 scriptencoding utf-8
+augroup vimrc
+	autocmd!
+augroup END
+
+"Encoding
 set fileencodings=utf-8,cp932,euc-jp,sjis
 set fileformats=unix,dos,mac
 set ambiwidth=double
@@ -12,6 +17,8 @@ set softtabstop=4
 set autoindent
 set smartindent
 if v:version >= 800|set breakindent|endif
+"Runtimepath
+set runtimepath+=$HOME/.vim,$HOME/.vim/after
 "Invisibles
 set list
 set listchars=tab:>-,trail:-
@@ -45,12 +52,9 @@ set gdefault
 "Color
 syntax on
 set t_Co=256
-augroup ColorSetting
-	autocmd!
-	autocmd ColorScheme * highlight Normal ctermbg=none
-	autocmd ColorScheme * highlight LineNr ctermbg=none
-augroup END
-colorscheme slate
+autocmd vimrc ColorScheme * highlight Normal ctermbg=none
+autocmd vimrc ColorScheme * highlight LineNr ctermbg=none
+colorscheme hybrid
 set background=dark
 hi Comment gui=NONE font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE  term=NONE ctermfg=59 ctermbg=NONE
 hi LineNr  gui=NONE font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE  term=NONE ctermfg=59 ctermbg=NONE
@@ -62,12 +66,9 @@ hi MatchParen gui=underline font=NONE guifg=NONE guibg=NONE guisp=NONE cterm=und
 "StatusLine
 set laststatus=2
 set statusline=%F%h\%m%r%w%=\[%{&ff},%{&fenc!=''?&fenc:&enc},%Y][%3l/%3L][%{strftime('%k:%M')}]
-augroup StatuslineHighlight
-	autocmd!
-	au VimEnter * hi StatusLine gui=NONE guifg=Black guibg=DarkCyan cterm=NONE ctermfg=Black ctermbg=DarkCyan
-	au InsertEnter * hi StatusLine gui=NONE guifg=Black guibg=DarkGreen cterm=NONE ctermfg=Black ctermbg=DarkGreen
-	au InsertLeave * hi StatusLine gui=NONE guifg=Black guibg=DarkCyan cterm=NONE ctermfg=Black ctermbg=DarkCyan
-augroup END
+au vimrc VimEnter * hi StatusLine gui=NONE guifg=Black guibg=DarkCyan cterm=NONE ctermfg=Black ctermbg=DarkCyan
+au vimrc InsertEnter * hi StatusLine gui=NONE guifg=Black guibg=DarkGreen cterm=NONE ctermfg=Black ctermbg=DarkGreen
+au vimrc InsertLeave * hi StatusLine gui=NONE guifg=Black guibg=DarkCyan cterm=NONE ctermfg=Black ctermbg=DarkCyan
 "CursorLine
 set cursorline
 set number
@@ -98,16 +99,18 @@ noremap k gk
 noremap gj j
 noremap gk k
 noremap <Tab> %
-noremap <silent> p p`]
 "NormalMode
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :q<CR>
 nnoremap <C-w> <C-w><C-w>
 nnoremap r <C-r>
 nnoremap Y y$
+nnoremap p p`]
 nnoremap <Enter> o<ESC>
+nnoremap <S-Left> <C-w><<CR>
+nnoremap <S-Right> <C-w>><CR>
 "InsertMode
-inoremap <silent> jj <ESC>
+inoremap jj <ESC>
 inoremap { {}<Left>
 inoremap ( ()<Left>
 inoremap [ []<Left>
@@ -127,7 +130,7 @@ inoremap <<CR> <<CR>><Esc><S-o>
 inoremap , ,<space>
 "VisualMode
 vnoremap v $h
-vnoremap <silent> * "vy/\V<C-r>=substitute(escape(@v, '\/'), "\n", '\\n','g')<CR><CR>
+vnoremap * "vy/\V<C-r>=substitute(escape(@v, '\/'), "\n", '\\n','g')<CR><CR>
 "CommandlineMode
 cmap w!! w !sudo tee % > /dev/null
 cmap wb set binary noeol<CR> :wq<CR>
@@ -135,16 +138,10 @@ cmap wb set binary noeol<CR> :wq<CR>
 "##### Script #####
 "HiglightZenkakuSpase
 hi ZenkakuSpace term=underline cterm=reverse ctermfg=Red gui=reverse guifg=Red
-augroup ZenkakuSpaceScript
-	autocmd!
-	autocmd BufNewFile,BufRead * match ZenkakuSpace /　/
-augroup END
+autocmd vimrc BufNewFile,BufRead * match ZenkakuSpace /　/
 
 "CursorRetune
-augroup CursorScript
-	autocmd!
-	autocmd BufRead * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
-augroup END
+autocmd vimrc BufRead * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
 
 "PasteIndent
 if &term =~ "xterm"

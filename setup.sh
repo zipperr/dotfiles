@@ -1,7 +1,10 @@
 #!/bin/bash
 
-DOT_FILES=(.vimrc .bashrc .zshrc .git-prompt.sh .gitconfig .gitignore_global)
-for file in ${DOT_FILES[@]}
-do
-ln -s $HOME/dotfiles/$file $HOME/$file
-done
+ln -s $HOME/dotfiles/.vimrc $HOME/.vimrc
+ln -s $HOME/dotfiles/.bashrc $HOME/.bashrc
+ln -s $HOME/dotfiles/.zshrc $HOME/.zshrc
+ln -s $HOME/dotfiles/.git-prompt.sh $HOME/.git-prompt.sh
+ln -s $HOME/dotfiles/.gitconfig $HOME/.gitconfig
+ln -s $HOME/dotfiles/.gitignore_global $HOME/.gitignore_global
+mkdir -p $HOME/.vim/colors/
+ln -s $HOME/dotfiles/.vim/colors/hybrid.vim $HOME/.vim/colors/hybrid.vim

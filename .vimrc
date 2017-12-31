@@ -65,6 +65,8 @@ set softtabstop=4
 set autoindent
 set smartindent
 if v:version >= 800|set breakindent|endif
+"Runtimepath
+set runtimepath+=$HOME/.vim,$HOME/.vim/after
 "Invisibles
 set list
 set listchars=tab:>-,trail:-
