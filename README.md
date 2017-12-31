@@ -22,13 +22,6 @@ default-jre default-jdk php clisp mono lua groovy open-cobol
 ##  Gitbash
 [Gitbash Install](http://gitforwindows.org)  
 setup.bat  
-##  Cygwin
-Cygwin.bat  
-git clone https://github.com/transcode-open/apt-cyg.git  
-cd apt-cyg/  
-install apt-cyg /usr/local/bin  
-apt-cyg -m ftp://ftp.iij.ad.jp/pub/cygwin/ update  
-apt-cyg install python
 
 ##  vimMEMO
 | コマンド     | 操作                                                        |  
@@ -47,6 +40,7 @@ apt-cyg install python
 | C-w          | タブ間移動                                                  |  
 | C-q          | ソースコードを実行、出力                                    |  
 | ESC ESC      | バッファを閉じる(ショートカットリスト、ツリー、実行結果等)  |  
+| Space Space  | ブラウザーを開いてGoogle検索                                |  
 | visual-Enter | 選択範囲のテキストを整形する                                |  
 
 
@@ -60,7 +54,7 @@ ___
 vimproc(非同期処理)は、  
 **make, gccコマンド**がインストールされていることが前提  
 ___  
-Openbrowser、TweetVimは、  
+Openbrowser、TwitVimは、  
 **curlコマンド**がインストールされていることが前提  
 ___  
 auto-ctag, tagberは、  

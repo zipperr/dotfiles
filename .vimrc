@@ -316,7 +316,7 @@ nmap <F2> :TagbarToggle<CR>
 
 "##### Twitvim #####
 let twitvim_count = 100
-if has("mac")|let twitvim_browser_cmd = 'open'|else|let twitvim_browser_cmd = 'chrome.exe'|endif
+if has("mac")|let twitvim_browser_cmd = 'open'|endif
 nnoremap <F3> :vnew<CR>:FriendsTwitter<CR><C-w>j:q<CR>
 nnoremap <F4> :PosttoTwitter<CR>
 autocmd vimrc FileType twitvim nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
@@ -350,8 +350,6 @@ let g:unite_source_menu_menus.shortcut.command_candidates = [
 	\[ "[vim]IDEMode",              "NERDTreeToggle |TagbarToggle" ],
 	\[ "[vim]FileTree",             "NERDTreeToggle" ],
 	\[ "[vim]TagBar",               "TagbarToggle" ],
-	\[ "[vim]Twitter",              "TweetVimUserStream" ],
-	\[ "[vim]Tweet",                "TweetVimCommandSay" ],
 	\[ "[vim]SyntaxOn",             "set syntax=on" ],
 	\[ "[vim]SyntaxOff",            "set syntax=off" ],
 	\[ "[vim]BGdark",               "set background=dark" ],
