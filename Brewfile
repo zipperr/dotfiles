@@ -26,12 +26,8 @@ brew 'go'
 brew 'node'
 
 cask 'karabiner-elements'
-cask 'firefox'
-cask 'torbrowser'
 cask 'google-chrome'
 cask 'mplayerx'
-cask 'atom'
-cask 'bathyscaphe'
 cask 'java'
 
 mas 'Twitter', id: 409789998
