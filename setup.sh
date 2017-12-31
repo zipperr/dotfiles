@@ -6,5 +6,7 @@ ln -s $HOME/dotfiles/.zshrc $HOME/.zshrc
 ln -s $HOME/dotfiles/.git-prompt.sh $HOME/.git-prompt.sh
 ln -s $HOME/dotfiles/.gitconfig $HOME/.gitconfig
 ln -s $HOME/dotfiles/.gitignore_global $HOME/.gitignore_global
-mkdir -p $HOME/.vim/colors/
-ln -s $HOME/dotfiles/.vim/colors/hybrid.vim $HOME/.vim/colors/hybrid.vim
+mkdir -p $HOME/.vim
+ln -s $HOME/dotfiles/.vim/colors/ $HOME/.vim
+ln -s $HOME/dotfiles/.vim/template/ $HOME/.vim
+ln -s $HOME/dotfiles/.vim/snippets/ $HOME/.vim

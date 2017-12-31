@@ -29,6 +29,7 @@ call dein#add('Shougo/neosnippet-snippets')
 call dein#add('scrooloose/syntastic')
 call dein#add('ujihisa/neco-look')
 call dein#add('thinca/vim-quickrun')
+call dein#add('thinca/vim-template')
 call dein#add('tomtom/tcomment_vim')
 call dein#add('AndrewRadev/switch.vim')
 call dein#add('junegunn/vim-easy-align')
@@ -129,6 +130,7 @@ set lazyredraw
 set ttyfast
 set updatetime=10
 set shellslash
+set pumheight=5
 if v:version >= 704 | set cm=blowfish2 | elseif | set cm=zip | endif
 
 "##### KeyMapping #####
@@ -226,7 +228,7 @@ let g:neocomplcache_text_mode_filetypes             = {
 imap <expr><CR> neosnippet#expandable() ? "<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "<C-y>" : "<CR>"
 imap <expr><TAB> pumvisible() ? "<C-n>" : neosnippet#jumpable() ? "<Plug>(neosnippet_expand_or_jump)" : "<TAB>"
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-let g:neosnippet#snippets_directory='~/dotfiles/.vim/snippets/'
+let g:neosnippet#snippets_directory='~/.vim/snippets/'
 
 "##### syntastic #####
 let g:syntastic_loc_list_height          = 1
@@ -295,6 +297,13 @@ function! LightlineMode()
 		\winwidth(0) > 10 ? lightline#mode() : ''
 endfunction
 
+"##### Template #####
+autocmd vimrc User plugin-template-loaded call s:template_keywords()
+function! s:template_keywords()
+    silent! %s/<+DATE+>/\=strftime('%Y-%m-%d')/g
+    silent! %s/<+FILENAME+>/\=expand('%:r')/g
+endfunction
+
 "##### Openbrowser #####
 nnoremap <Leader><Leader> :OpenBrowserSearch<Space>
 
@@ -302,7 +311,7 @@ nnoremap <Leader><Leader> :OpenBrowserSearch<Space>
 nmap ,, gcc
 vmap ,, gcc
 
-" ##### Swith #####
+"##### Swith #####
 let g:switch_mapping = "\\"
 let g:switch_custom_definitions =[{'\(\k\+\)': '''\1''','''\(.\{-}\)''': '"\1"','"\(.\{-}\)"': '\1',},]
 

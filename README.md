@@ -19,7 +19,6 @@ aptコマンドメモ:node.js python3 python perl ruby golang gcc cpp g++
 default-jre default-jdk php clisp mono lua groovy open-cobol
 
 #  Windows
-##  Gitbash
 [Gitbash Install](http://gitforwindows.org)  
 setup.bat  
 
