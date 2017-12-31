@@ -44,6 +44,11 @@ call dein#add('tpope/vim-fugitive')
 " Twitter
 call dein#add('basyura/TweetVim')
 call dein#add('basyura/twibill.vim')
+
+
+call dein#add('twitvim/twitvim')
+
+
 call dein#end()
 call dein#save_state()
 endif
@@ -393,7 +398,15 @@ let g:unite_source_menu_menus.shortcut.command_candidates = [
 	\[ "[Edit]zshrc",               "edit ~/.zshrc"],
 	\[ "[Edit]bashrc",              "edit ~/.bashrc"],
 	\[ "[Edit]gitconf",             "edit ~/.gitconfig"],
+	\[ "[Twi]Setup",             "SetLoginTwitter"],
+	\[ "[Twi]Timeline",             "FriendsTwitter"],
+	\[ "[Twi]Tweet",             "PosttoTwitter"],
 \]
 autocmd vimrc FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 autocmd vimrc FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 autocmd vimrc FileType unite set noequalalways
+
+
+
+
+let twitvim_count = 40
