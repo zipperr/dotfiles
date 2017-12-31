@@ -16,34 +16,34 @@ if dein#load_state(s:dein_dir)
 	call dein#begin(s:dein_dir)
 
 "##### PluginList #####
-call dein#add('Shougo/dein.vim')
+call dein#add('Shougo/dein.vim')                        " プラグイン管理
 " Utility
-call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
-call dein#add('Shougo/unite.vim')
-call dein#add('scrooloose/nerdtree')
-call dein#add('tyru/open-browser.vim')
+call dein#add('Shougo/vimproc.vim', {'build' : 'make'}) " 非同期処理
+call dein#add('Shougo/unite.vim')                       " 統合ユーザーインターフェース
+call dein#add('scrooloose/nerdtree')                    " ファイルツリー
+call dein#add('tyru/open-browser.vim')                  " ブラウザを開く
 " Programming Support
-call dein#add('Shougo/neocomplcache.vim')
-call dein#add('Shougo/neosnippet.vim')
-call dein#add('Shougo/neosnippet-snippets')
-call dein#add('scrooloose/syntastic')
-call dein#add('ujihisa/neco-look')
-call dein#add('thinca/vim-quickrun')
-call dein#add('tomtom/tcomment_vim')
-call dein#add('AndrewRadev/switch.vim')
-call dein#add('junegunn/vim-easy-align')
-call dein#add('soramugi/auto-ctags.vim')
-call dein#add('majutsushi/tagbar')
-call dein#add('aperezdc/vim-template')
+call dein#add('Shougo/neocomplcache.vim')               " 補完
+call dein#add('Shougo/neosnippet.vim')                  " スニペット
+call dein#add('Shougo/neosnippet-snippets')             " デフォルトスニペット
+call dein#add('scrooloose/syntastic')                   " 構文チェック
+call dein#add('ujihisa/neco-look')                      " 英単語補完
+call dein#add('thinca/vim-quickrun')                    " コードを実行
+call dein#add('tomtom/tcomment_vim')                    " コメントアウトトグル
+call dein#add('AndrewRadev/switch.vim')                 " リテラル変換
+call dein#add('junegunn/vim-easy-align')                " 整形
+call dein#add('soramugi/auto-ctags.vim')                " 自動タグ生成
+call dein#add('majutsushi/tagbar')                      " タグ一覧
+call dein#add('aperezdc/vim-template')                  " テンプレート
 " Theme / Interface
-call dein#add('itchyny/lightline.vim')
-call dein#add('osyo-manga/vim-brightest')
-call dein#add('w0ng/vim-hybrid')
+call dein#add('itchyny/lightline.vim')                  " ステータスライン
+call dein#add('osyo-manga/vim-brightest')               " カーソル下の単語をハイライト
+call dein#add('w0ng/vim-hybrid')                        " カラースキーマ
 " Git Support
-call dein#add('airblade/vim-gitgutter')
-call dein#add('tpope/vim-fugitive')
+call dein#add('airblade/vim-gitgutter')                 " 差分表示
+call dein#add('tpope/vim-fugitive')                     " Git操作
 " Twitter
-call dein#add('twitvim/twitvim')
+call dein#add('twitvim/twitvim')                        " Twitter
 call dein#end()
 call dein#save_state()
 endif
@@ -314,6 +314,9 @@ let g:switch_custom_definitions =[{'\(\k\+\)': '''\1''','''\(.\{-}\)''': '"\1"',
 
 "##### Easy-Align #####
 vmap <Enter> <Plug>(EasyAlign)*
+
+"##### Brightest #####
+let g:brightest#ignore_syntax_list = [ "Statement" ]
 
 "##### Auto-ctag, Tagbar #####
 let g:auto_ctags = 1
