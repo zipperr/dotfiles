@@ -29,12 +29,12 @@ call dein#add('Shougo/neosnippet-snippets')
 call dein#add('scrooloose/syntastic')
 call dein#add('ujihisa/neco-look')
 call dein#add('thinca/vim-quickrun')
-call dein#add('thinca/vim-template')
 call dein#add('tomtom/tcomment_vim')
 call dein#add('AndrewRadev/switch.vim')
 call dein#add('junegunn/vim-easy-align')
 call dein#add('soramugi/auto-ctags.vim')
 call dein#add('majutsushi/tagbar')
+call dein#add('aperezdc/vim-template')
 " Theme / Interface
 call dein#add('itchyny/lightline.vim')
 call dein#add('osyo-manga/vim-brightest')
@@ -297,15 +297,12 @@ function! LightlineMode()
 		\winwidth(0) > 10 ? lightline#mode() : ''
 endfunction
 
-"##### Template #####
-autocmd vimrc User plugin-template-loaded call s:template_keywords()
-function! s:template_keywords()
-    silent! %s/<+DATE+>/\=strftime('%Y-%m-%d')/g
-    silent! %s/<+FILENAME+>/\=expand('%:r')/g
-endfunction
-
 "##### Openbrowser #####
 nnoremap <Leader><Leader> :OpenBrowserSearch<Space>
+
+"##### Template #####
+let g:email = "ktaniuchi@hal21.co.jp"
+let g:user = "Kento Taniuchi"
 
 "#####Commentout #####
 nmap ,, gcc
