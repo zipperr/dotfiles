@@ -359,6 +359,7 @@ let g:unite_source_menu_menus.shortcut.command_candidates = [
 	\[ "[Git]GitStatus",            "Gstatus"],
 	\[ "[Git]GitAdd",               "Gwrite"],
 	\[ "[Git]GitCommit",            "Gcommit"],
+	\[ "[Git]GitPush",              "Git push origin master"],
 	\[ "[Git]GitDiff",              "Gdiff"],
 	\[ "[Git]GitBlame",             "Gblame"],
 	\[ "[vim]IDEMode",              "NERDTreeToggle |TagbarToggle" ],
