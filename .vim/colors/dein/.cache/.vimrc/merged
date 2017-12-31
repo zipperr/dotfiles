@@ -1,2 +1,0 @@
-100
-['AndrewRadev/switch.vim', 'Shougo/dein.vim', 'Shougo/neocomplcache.vim', 'Shougo/neosnippet-snippets', 'Shougo/neosnippet.vim', 'Shougo/unite.vim', 'Shougo/vimproc.vim', 'airblade/vim-gitgutter', 'itchyny/lightline.vim', 'junegunn/vim-easy-align', 'majutsushi/tagbar', 'osyo-manga/vim-brightest', 'scrooloose/nerdtree', 'scrooloose/syntastic', 'soramugi/auto-ctags.vim', 'thinca/vim-quickrun', 'thinca/vim-template', 'tomtom/tcomment_vim', 'tpope/vim-fugitive', 'twitvim/twitvim', 'tyru/open-browser.vim', 'ujihisa/neco-look', 'w0ng/vim-hybrid']
