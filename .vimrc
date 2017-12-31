@@ -102,19 +102,19 @@ autocmd vimrc ColorScheme * highlight Normal ctermbg=none
 autocmd vimrc ColorScheme * highlight LineNr ctermbg=none
 colorscheme hybrid
 set background=dark
-hi Comment gui=NONE font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE  term=NONE ctermfg=59 ctermbg=NONE
-hi LineNr  gui=NONE font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE  term=NONE ctermfg=59 ctermbg=NONE
-hi CursorLineNR  gui=NONE font=NONE guifg=#ffff00 guibg=NONE guisp=NONE cterm=NONE  term=NONE  ctermfg=226 ctermbg=NONE
-hi SpecialKey gui=NONE font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE  term=NONE ctermfg=59 ctermbg=NONE
-hi IncSearch gui=underline font=NONE guifg=NONE guibg=NONE guisp=NONE cterm=underline term=underline ctermfg=NONE ctermbg=NONE
-hi Search gui=underline font=NONE guifg=NONE guibg=NONE guisp=NONE cterm=underline term=underline ctermfg=NONE ctermbg=NONE
-hi MatchParen gui=underline font=NONE guifg=NONE guibg=NONE guisp=NONE cterm=underline term=underline ctermfg=NONE ctermbg=NONE
+hi Comment      gui=NONE      font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE      term=NONE      ctermfg=59   ctermbg=NONE
+hi LineNr       gui=NONE      font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE      term=NONE      ctermfg=59   ctermbg=NONE
+hi CursorLineNR gui=NONE      font=NONE guifg=#ffff00 guibg=NONE guisp=NONE cterm=NONE      term=NONE      ctermfg=226  ctermbg=NONE
+hi SpecialKey   gui=NONE      font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE      term=NONE      ctermfg=59   ctermbg=NONE
+hi IncSearch    gui=underline font=NONE guifg=NONE    guibg=NONE guisp=NONE cterm=underline term=underline ctermfg=NONE ctermbg=NONE
+hi Search       gui=underline font=NONE guifg=NONE    guibg=NONE guisp=NONE cterm=underline term=underline ctermfg=NONE ctermbg=NONE
+hi MatchParen   gui=underline font=NONE guifg=NONE    guibg=NONE guisp=NONE cterm=underline term=underline ctermfg=NONE ctermbg=NONE
 "StatusLine
 set laststatus=2
 " set statusline=%F%h\%m%r%w%=\[%{&ff},%{&fenc!=''?&fenc:&enc},%Y][%3l/%3L][%{strftime('%k:%M')}]
-"au vimrc VimEnter * hi StatusLine gui=NONE guifg=Black guibg=DarkCyan cterm=NONE ctermfg=Black ctermbg=DarkCyan
-"au vimrc InsertEnter * hi StatusLine gui=NONE guifg=Black guibg=DarkGreen cterm=NONE ctermfg=Black ctermbg=DarkGreen
-"au vimrc InsertLeave * hi StatusLine gui=NONE guifg=Black guibg=DarkCyan cterm=NONE ctermfg=Black ctermbg=DarkCyan
+" au vimrc VimEnter    * hi StatusLine gui=NONE guifg=Black guibg=DarkCyan  cterm=NONE ctermfg=Black ctermbg=DarkCyan
+" au vimrc InsertEnter * hi StatusLine gui=NONE guifg=Black guibg=DarkGreen cterm=NONE ctermfg=Black ctermbg=DarkGreen
+" au vimrc InsertLeave * hi StatusLine gui=NONE guifg=Black guibg=DarkCyan  cterm=NONE ctermfg=Black ctermbg=DarkCyan
 "CursorLine
 set cursorline
 set number
@@ -202,23 +202,23 @@ if &term =~ "xterm"
 endif
 
 "##### Neocomplcache #####
-let g:neocomplcache_enable_at_startup = 1
-let g:NeoComplCache_SmartCase = 1
-let g:neocomplcache_enable_underbar_completion = 1
-let g:NeoComplCache_PreviousKeywordCompletion = 1
-let g:NeoComplCache_EnableCamelCaseCompletion = 1
-let g:NeoComplCache_EnableUnderbarCompletion = 1
-let g:neocomplcache_max_list = 10
-let g:neocomplcache_auto_completion_start_length = 1
-let g:neocomplcache_manual_completion_start_length = 0
-let g:neocomplcache_min_keyword_length = 2
-let g:neocomplcache_min_syntax_length = 3
-let g:neocomplcache_enable_ignore_case = 1
-let g:neocomplcache_enable_smart_case = 1
-let g:neocomplcache_enable_camel_case_completion = 0
+let g:neocomplcache_enable_at_startup               = 1
+let g:NeoComplCache_SmartCase                       = 1
+let g:neocomplcache_enable_underbar_completion      = 1
+let g:NeoComplCache_PreviousKeywordCompletion       = 1
+let g:NeoComplCache_EnableCamelCaseCompletion       = 1
+let g:NeoComplCache_EnableUnderbarCompletion        = 1
+let g:neocomplcache_max_list                        = 10
+let g:neocomplcache_auto_completion_start_length    = 1
+let g:neocomplcache_manual_completion_start_length  = 0
+let g:neocomplcache_min_keyword_length              = 2
+let g:neocomplcache_min_syntax_length               = 3
+let g:neocomplcache_enable_ignore_case              = 1
+let g:neocomplcache_enable_smart_case               = 1
+let g:neocomplcache_enable_camel_case_completion    = 0
 let g:neocomplcache_enable_at_startuple_auto_select = 1
-let g:neocomplcache_enable_insert_char_pre = 1
-let g:neocomplcache_text_mode_filetypes = {
+let g:neocomplcache_enable_insert_char_pre          = 1
+let g:neocomplcache_text_mode_filetypes             = {
 	\'rst':1,'markdown':1,'gitrebase':1,'gitcommit':1,'vcs-commit':1,'text':1,'tex': 1,
 	\'plaintex': 1,'help':1,'vim' :1,'zsh':1,'python':1,
 \}
@@ -230,13 +230,13 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expan
 let g:neosnippet#snippets_directory='~/dotfiles/.vim/snippets/'
 
 "##### syntastic #####
-let g:syntastic_loc_list_height = 1
-let g:syntastic_aggregate_errors = 1
+let g:syntastic_loc_list_height          = 1
+let g:syntastic_aggregate_errors         = 1
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_enable_signs = 1
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+let g:syntastic_enable_signs             = 1
+let g:syntastic_auto_loc_list            = 0
+let g:syntastic_check_on_open            = 1
+let g:syntastic_check_on_wq              = 0
 
 "##### quickrun #####
 let g:quickrun_config = {"_" : {
@@ -252,17 +252,17 @@ nnoremap <silent><ESC><ESC> :bw! \[quickrun\ output\]<CR>
 let g:lightline = {
  	\'colorscheme': 'wombat',
 	\ 'active': {
-		\'left': [['mode', 'paste'], ['fugitive', 'readonly', 'filename', 'modified']],
+		\'left':  [['mode', 'paste'], ['fugitive', 'readonly', 'filename', 'modified']],
 		\'right': [[ 'lineinfo', 'syntastic' ], ['percent'],[ 'fileformat', 'fileencoding', 'filetype']]},
 	\'component': {'readonly': '%{&readonly?"RO":""}'},
 	\'component_function':{
-		\'fugitive': 'LightlineFugitive',
-		\'filename': 'LightlineFilename',
-		\'fileformat': 'LightlineFileformat',
-		\'filetype': 'LightlineFiletype',
+		\'fugitive':     'LightlineFugitive',
+		\'filename':     'LightlineFilename',
+		\'fileformat':   'LightlineFileformat',
+		\'filetype':     'LightlineFiletype',
 		\'fileencoding': 'LightlineFileencoding',
-		\'syntastic': 'SyntasticStatuslineFlag',
-		\'mode': 'LightlineMode'},
+		\'syntastic':    'SyntasticStatuslineFlag',
+		\'mode':         'LightlineMode'},
 	\}
 let g:lightline.component = {'lineinfo': '%3l/%L'}
 
@@ -315,9 +315,9 @@ nmap <F2> :TagbarToggle<CR>
 "##### NERDTree #####
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
 let NERDTreeShowHidden = 1
-let g:NERDTreeWinSize=30
-let g:NERDTreeWinPos="left"
-let g:NERDTreeIgnore=['\.clean$', '\.swp$', '\.bak$', '\~$', '\.DS_Store']
+let g:NERDTreeWinSize  = 30
+let g:NERDTreeWinPos   = "left"
+let g:NERDTreeIgnore   = ['\.clean$', '\.swp$', '\.bak$', '\~$', '\.DS_Store']
 autocmd vimrc FileType NERDTree nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 autocmd vimrc FileType NERDTree inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 autocmd vimrc vimenter * if !argc() | NERDTree | endif
@@ -326,14 +326,14 @@ autocmd vimrc bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTr
 "##### Tweetvim #####
 nnoremap <F3> :TweetVimUserStream<CR>
 nnoremap <F4> :TweetVimCommandSay<CR>
-let g:tweetvim_config_dir = expand('~/.vim/.tweetvim')
-let g:tweetvim_display_time = 1
-let g:tweetvim_open_buffer_cmd = '25vsplit'
+let g:tweetvim_config_dir        = expand('~/.vim/.tweetvim')
+let g:tweetvim_display_time      = 1
+let g:tweetvim_open_buffer_cmd   = '25vsplit'
 let g:tweetvim_display_separator = 0
-let g:tweetvim_display_source = 0
-let g:tweetvim_async_post = 1
-let g:tweetvim_tweet_per_page = 50
-let g:tweetvim_include_rts = 1
+let g:tweetvim_display_source    = 0
+let g:tweetvim_async_post        = 1
+let g:tweetvim_tweet_per_page    = 50
+let g:tweetvim_include_rts       = 1
 " let $http_proxy	= 'http://xxx.xx.xx:8080'
 " let $HTTPS_PROXY	= 'http://xxx.xx.xx:8080'
 autocmd vimrc FileType tweetvim nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
@@ -346,53 +346,53 @@ nnoremap <F1> :Unite -toggle -silent -vertical -winwidth=30 -wrap menu:shortcut<
 let g:unite_source_menu_menus = get(g:,'unite_source_menu_menus',{})
 let g:unite_source_menu_menus.shortcut = {"description" : "shortcut",}
 let g:unite_source_menu_menus.shortcut.command_candidates = [
-	\[ "[web]Github", "OpenBrowser https://github.com/zipperr" ],
-	\[ "[web]Google", "OpenBrowser https://www.google.co.jp" ],
-	\[ "[web]GoogleDrive", "OpenBrowser https://drive.google.com" ],
-	\[ "[web]Qiita", "OpenBrowser https://qiita.com" ],
-	\[ "[web]Wiki", "OpenBrowser https://ja.wikipedia.org" ],
-	\[ "[web]Slack", "OpenBrowser https://vim-jp.slack.com" ],
-	\[ "[vim]IDEMode", "NERDTreeToggle |TagbarToggle" ],
-	\[ "[vim]FileTree", "NERDTreeToggle" ],
-	\[ "[vim]TagBar", "TagbarToggle" ],
-	\[ "[vim]Twitter", "TweetVimUserStream" ],
-	\[ "[vim]Tweet", "TweetVimCommandSay" ],
-	\[ "[vim]SyntaxOn", "set syntax=on" ],
-	\[ "[vim]SyntaxOff", "set syntax=off" ],
-	\[ "[vim]BGdark", "set background=dark" ],
-	\[ "[vim]BGlight", "set background=light" ],
-	\[ "[vim]TweetVimNewToken", "TweetVimAccessToken" ],
-	\[ "[Snippet]MakeSnippet", "vsplit|NeoSnippetEdit" ],
-	\[ "[Snippet]DefaultSnippets", "Unite -silent -vertical -winwidth=30 neosnippet/runtime" ],
+	\[ "[web]Github",               "OpenBrowser https://github.com/zipperr" ],
+	\[ "[web]Google",               "OpenBrowser https://www.google.co.jp" ],
+	\[ "[web]GoogleDrive",          "OpenBrowser https://drive.google.com" ],
+	\[ "[web]Qiita",                "OpenBrowser https://qiita.com" ],
+	\[ "[web]Wiki",                 "OpenBrowser https://ja.wikipedia.org" ],
+	\[ "[web]Slack",                "OpenBrowser https://vim-jp.slack.com" ],
+	\[ "[vim]IDEMode",              "NERDTreeToggle |TagbarToggle" ],
+	\[ "[vim]FileTree",             "NERDTreeToggle" ],
+	\[ "[vim]TagBar",               "TagbarToggle" ],
+	\[ "[vim]Twitter",              "TweetVimUserStream" ],
+	\[ "[vim]Tweet",                "TweetVimCommandSay" ],
+	\[ "[vim]SyntaxOn",             "set syntax=on" ],
+	\[ "[vim]SyntaxOff",            "set syntax=off" ],
+	\[ "[vim]BGdark",               "set background=dark" ],
+	\[ "[vim]BGlight",              "set background=light" ],
+	\[ "[vim]TweetVimNewToken",     "TweetVimAccessToken" ],
+	\[ "[Snippet]MakeSnippet",      "vsplit|NeoSnippetEdit" ],
+	\[ "[Snippet]DefaultSnippets",  "Unite -silent -vertical -winwidth=30 neosnippet/runtime" ],
 	\[ "[Snippet]OriginalSnippets", "Unite -silent -vertical -winwidth=30 neosnippet/user" ],
-	\[ "[File]Tab > Space", "set expandtab|retab 4" ],
-	\[ "[File]Space > Tab", "set noexpandtab | retab! 4" ],
-	\[ "[File]Open_UTF8", "e ++enc=utf-8" ],
-	\[ "[File]Open_ShiftJis", "e ++enc=cp932" ],
-	\[ "[File]Open_euc-jp", "e ++enc=euc-jp" ],
-	\[ "[File]Open_iso-2022-jp", "e ++enc=iso-2022-jp" ],
-	\[ "[File]Open_Dos", "e ++ff=dos" ],
-	\[ "[File]Open_Mac", "e ++ff=mac" ],
-	\[ "[File]Open_Unix", "e ++ff=unix" ],
-	\[ "[File]Set_UTF8", "set fenc=utf-8" ],
-	\[ "[File]Set_ShiftJis", "set fenc=cp932" ],
-	\[ "[File]Set_euc-jp", "set fenc=euc-jp" ],
-	\[ "[File]Set_iso-2022-jp", "set fenc=iso-2022-jp" ],
-	\[ "[File]Set_Dos", "set ff=dos" ],
-	\[ "[File]Set_Mac", "set ff=mac" ],
-	\[ "[File]Set_Unix", "set ff=unix" ],
-	\[ "[File]EOLdelete", "set binary noeol|wq" ],
-	\[ "[Toggle]Number", "set number!" ],
-	\[ "[Toggle]BreakIndent", "set breakindent!" ],
-	\[ "[Toggle]CursorColumn", "set cursorcolumn!" ],
-	\[ "[Toggle]CursorLine", "set cursorline!" ],
-	\[ "[Toggle]HilightSeach", "set hlsearch!" ],
-	\[ "[Toggle]ShowMatch", "set showmatch!" ],
-	\[ "[Toggle]Wrap", "set wrap!" ],
-	\[ "[Edit]vimrc", "edit $MYVIMRC"],
-	\[ "[Edit]zshrc", "edit ~/.zshrc"],
-	\[ "[Edit]bashrc", "edit ~/.bashrc"],
-	\[ "[Edit]gitconf", "edit ~/.gitconfig"],
+	\[ "[File]Tab > Space",         "set expandtab|retab 4" ],
+	\[ "[File]Space > Tab",         "set noexpandtab | retab! 4" ],
+	\[ "[File]Open_UTF8",           "e ++enc=utf-8" ],
+	\[ "[File]Open_ShiftJis",       "e ++enc=cp932" ],
+	\[ "[File]Open_euc-jp",         "e ++enc=euc-jp" ],
+	\[ "[File]Open_iso-2022-jp",    "e ++enc=iso-2022-jp" ],
+	\[ "[File]Open_Dos",            "e ++ff=dos" ],
+	\[ "[File]Open_Mac",            "e ++ff=mac" ],
+	\[ "[File]Open_Unix",           "e ++ff=unix" ],
+	\[ "[File]Set_UTF8",            "set fenc=utf-8" ],
+	\[ "[File]Set_ShiftJis",        "set fenc=cp932" ],
+	\[ "[File]Set_euc-jp",          "set fenc=euc-jp" ],
+	\[ "[File]Set_iso-2022-jp",     "set fenc=iso-2022-jp" ],
+	\[ "[File]Set_Dos",             "set ff=dos" ],
+	\[ "[File]Set_Mac",             "set ff=mac" ],
+	\[ "[File]Set_Unix",            "set ff=unix" ],
+	\[ "[File]EOLdelete",           "set binary noeol|wq" ],
+	\[ "[Toggle]Number",            "set number!" ],
+	\[ "[Toggle]BreakIndent",       "set breakindent!" ],
+	\[ "[Toggle]CursorColumn",      "set cursorcolumn!" ],
+	\[ "[Toggle]CursorLine",        "set cursorline!" ],
+	\[ "[Toggle]HilightSeach",      "set hlsearch!" ],
+	\[ "[Toggle]ShowMatch",         "set showmatch!" ],
+	\[ "[Toggle]Wrap",              "set wrap!" ],
+	\[ "[Edit]vimrc",               "edit $MYVIMRC"],
+	\[ "[Edit]zshrc",               "edit ~/.zshrc"],
+	\[ "[Edit]bashrc",              "edit ~/.bashrc"],
+	\[ "[Edit]gitconf",             "edit ~/.gitconfig"],
 \]
 autocmd vimrc FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 autocmd vimrc FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
