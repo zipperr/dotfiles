@@ -31,6 +31,7 @@ call dein#add('ujihisa/neco-look')
 call dein#add('thinca/vim-quickrun')
 call dein#add('tomtom/tcomment_vim')
 call dein#add('AndrewRadev/switch.vim')
+call dein#add('junegunn/vim-easy-align')
 call dein#add('soramugi/auto-ctags.vim')
 call dein#add('majutsushi/tagbar')
 " Theme / Interface
@@ -46,6 +47,7 @@ call dein#add('basyura/twibill.vim')
 call dein#end()
 call dein#save_state()
 endif
+
 if dein#check_install()|call dein#install()|endif
 
 "##### DefaultSetting #####{{{
@@ -302,6 +304,9 @@ vmap ,, gcc
 let g:switch_mapping = "\\"
 let g:switch_custom_definitions =[{'\(\k\+\)': '''\1''','''\(.\{-}\)''': '"\1"','"\(.\{-}\)"': '\1',},]
 
+"##### Easy-Align #####
+vmap <Enter> <Plug>(EasyAlign)*
+
 "##### Auto-ctag, Tagbar #####
 let g:auto_ctags = 1
 let g:auto_ctags_directory_list = ['~/.vim', '.git', '.svn']
@@ -356,7 +361,6 @@ let g:unite_source_menu_menus.shortcut.command_candidates = [
 	\[ "[vim]SyntaxOff", "set syntax=off" ],
 	\[ "[vim]BGdark", "set background=dark" ],
 	\[ "[vim]BGlight", "set background=light" ],
-	\[ "[vim]PreviewMarkdown", "PrevimOpen" ],
 	\[ "[vim]TweetVimNewToken", "TweetVimAccessToken" ],
 	\[ "[Snippet]MakeSnippet", "vsplit|NeoSnippetEdit" ],
 	\[ "[Snippet]DefaultSnippets", "Unite -silent -vertical -winwidth=30 neosnippet/runtime" ],
