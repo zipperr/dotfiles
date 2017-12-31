@@ -15,6 +15,7 @@ brew 'screenfetch'
 brew 'mysql'
 brew 'openssl'
 brew 'w3m'
+brew 'ctags'
 
 brew 'mono'
 brew 'python'
@@ -24,11 +25,14 @@ brew 'ruby'
 brew 'go'
 brew 'node'
 
+cask 'karabiner-elements'
+cask 'firefox'
+cask 'torbrowser'
+cask 'google-chrome'
 cask 'mplayerx'
 cask 'atom'
 cask 'bathyscaphe'
 cask 'java'
-cask 'docker'
 
 mas 'Twitter', id: 409789998
 mas 'LINE', id: 539883307
