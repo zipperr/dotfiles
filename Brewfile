@@ -28,6 +28,7 @@ brew 'node'
 cask 'karabiner-elements'
 cask 'google-chrome'
 cask 'mplayerx'
+cask 'virtualbox'
 cask 'java'
 
 mas 'Twitter', id: 409789998
