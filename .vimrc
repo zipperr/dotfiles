@@ -29,18 +29,14 @@ call dein#add('Shougo/neosnippet-snippets')
 call dein#add('scrooloose/syntastic')
 call dein#add('ujihisa/neco-look')
 call dein#add('thinca/vim-quickrun')
-call dein#add('thinca/vim-ref')
 call dein#add('tomtom/tcomment_vim')
 call dein#add('AndrewRadev/switch.vim')
 call dein#add('soramugi/auto-ctags.vim')
 call dein#add('majutsushi/tagbar')
-" Markdown
-call dein#add('kannokanno/previm')
 " Theme / Interface
 call dein#add('itchyny/lightline.vim')
 call dein#add('osyo-manga/vim-brightest')
 call dein#add('w0ng/vim-hybrid')
-call dein#add('tomasr/molokai')
 " Git Support
 call dein#add('airblade/vim-gitgutter')
 call dein#add('tpope/vim-fugitive')
@@ -103,7 +99,6 @@ set t_Co=256
 autocmd vimrc ColorScheme * highlight Normal ctermbg=none
 autocmd vimrc ColorScheme * highlight LineNr ctermbg=none
 colorscheme hybrid
-" colorscheme molokai
 set background=dark
 hi Comment gui=NONE font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE  term=NONE ctermfg=59 ctermbg=NONE
 hi LineNr  gui=NONE font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE  term=NONE ctermfg=59 ctermbg=NONE
@@ -312,10 +307,6 @@ let g:auto_ctags = 1
 let g:auto_ctags_directory_list = ['~/.vim', '.git', '.svn']
 nmap <F2> :TagbarToggle<CR>
 
-"##### Previm #####
-let g:previm_open_cmd = ''
-autocmd vimrc BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
-
 "##### NERDTree #####
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
 let NERDTreeShowHidden = 1
@@ -402,24 +393,3 @@ let g:unite_source_menu_menus.shortcut.command_candidates = [
 autocmd vimrc FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 autocmd vimrc FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 autocmd vimrc FileType unite set noequalalways
-
-"##### vim-ref #####
-let g:ref_source_webdict_sites = {
-	\'je': {'url': 'http://dictionary.infoseek.ne.jp/jeword/%s'},
-	\'ej': {'url': 'http://dictionary.infoseek.ne.jp/ejword/%s'},
-	\'wiki': {'url': 'http://ja.wikipedia.org/wiki/%s'},
-\}
-let g:ref_source_webdict_sites.default = 'wiki'
-function! g:ref_source_webdict_sites.je.filter(output)
-	return join(split(a:output, "\n")[15 :], "\n")
-endfunction
-function! g:ref_source_webdict_sites.ej.filter(output)
-	return join(split(a:output, "\n")[15 :], "\n")
-endfunction
-function! g:ref_source_webdict_sites.wiki.filter(output)
-	return join(split(a:output, "\n")[5 :], "\n")
-endfunction
-nmap <Leader><Leader> :<C-u>Ref webdict<Space>
-autocmd vimrc FileType ref-webdict nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
-autocmd vimrc FileType ref-webdict inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
-autocmd vimrc FileType ref-webdict set noequalalways
