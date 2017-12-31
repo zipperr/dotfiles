@@ -370,6 +370,8 @@ let g:unite_source_menu_menus.shortcut.command_candidates = [
 	\[ "[vim]SyntaxOff",            "set syntax=off" ],
 	\[ "[vim]BGdark",               "set background=dark" ],
 	\[ "[vim]BGlight",              "set background=light" ],
+	\[ "[vim]BrightOn",             "BrightestEnable" ],
+	\[ "[vim]BrightOff",            "BrightestDisable" ],
 	\[ "[Snippet]MakeSnippet",      "vsplit|NeoSnippetEdit" ],
 	\[ "[Snippet]DefaultSnippets",  "Unite -silent -vertical -winwidth=30 neosnippet/runtime" ],
 	\[ "[Snippet]OriginalSnippets", "Unite -silent -vertical -winwidth=30 neosnippet/user" ],
