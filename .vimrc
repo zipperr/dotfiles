@@ -42,17 +42,10 @@ call dein#add('w0ng/vim-hybrid')
 call dein#add('airblade/vim-gitgutter')
 call dein#add('tpope/vim-fugitive')
 " Twitter
-call dein#add('basyura/TweetVim')
-call dein#add('basyura/twibill.vim')
-
-
 call dein#add('twitvim/twitvim')
-
-
 call dein#end()
 call dein#save_state()
 endif
-
 if dein#check_install()|call dein#install()|endif
 
 "##### DefaultSetting #####{{{
@@ -160,6 +153,7 @@ nnoremap p p`]
 nnoremap <Enter> o<ESC>
 nnoremap <S-Left> <C-w><<CR>
 nnoremap <S-Right> <C-w>><CR>
+nnoremap <Leader>v :<C-u>vsp<CR>z+ :set scrollbind<CR><C-w><C-w>:set scrollbind<CR>
 "InsertMode
 inoremap jj <ESC>
 inoremap { {}<Left>
@@ -301,6 +295,9 @@ function! LightlineMode()
 		\winwidth(0) > 10 ? lightline#mode() : ''
 endfunction
 
+"##### Openbrowser #####
+nnoremap <Leader><Leader> :OpenBrowserSearch<Space>
+
 "#####Commentout #####
 nmap ,, gcc
 vmap ,, gcc
@@ -317,6 +314,14 @@ let g:auto_ctags = 1
 let g:auto_ctags_directory_list = ['~/.vim', '.git', '.svn']
 nmap <F2> :TagbarToggle<CR>
 
+"##### Twitvim #####
+let twitvim_count = 100
+if has("mac")|let twitvim_browser_cmd = 'open'|else|let twitvim_browser_cmd = 'chrome.exe'|endif
+nnoremap <F3> :vnew<CR>:FriendsTwitter<CR><C-w>j:q<CR>
+nnoremap <F4> :PosttoTwitter<CR>
+autocmd vimrc FileType twitvim nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
+autocmd vimrc FileType twitvim inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
+
 "##### NERDTree #####
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
 let NERDTreeShowHidden = 1
@@ -327,24 +332,6 @@ autocmd vimrc FileType NERDTree nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 autocmd vimrc FileType NERDTree inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 autocmd vimrc vimenter * if !argc() | NERDTree | endif
 autocmd vimrc bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-"##### Tweetvim #####
-nnoremap <F3> :TweetVimUserStream<CR>
-nnoremap <F4> :TweetVimCommandSay<CR>
-let g:tweetvim_config_dir        = expand('~/.vim/.tweetvim')
-let g:tweetvim_display_time      = 1
-let g:tweetvim_open_buffer_cmd   = '25vsplit'
-let g:tweetvim_display_separator = 0
-let g:tweetvim_display_source    = 0
-let g:tweetvim_async_post        = 1
-let g:tweetvim_tweet_per_page    = 50
-let g:tweetvim_include_rts       = 1
-" let $http_proxy	= 'http://xxx.xx.xx:8080'
-" let $HTTPS_PROXY	= 'http://xxx.xx.xx:8080'
-autocmd vimrc FileType tweetvim nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
-autocmd vimrc FileType tweetvim inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
-autocmd vimrc FileType tweetvim set nonumber
-autocmd vimrc FileType tweetvim set noequalalways
 
 "##### UniteMenu #####
 nnoremap <F1> :Unite -toggle -silent -vertical -winwidth=30 -wrap menu:shortcut<CR>
@@ -357,6 +344,9 @@ let g:unite_source_menu_menus.shortcut.command_candidates = [
 	\[ "[web]Qiita",                "OpenBrowser https://qiita.com" ],
 	\[ "[web]Wiki",                 "OpenBrowser https://ja.wikipedia.org" ],
 	\[ "[web]Slack",                "OpenBrowser https://vim-jp.slack.com" ],
+	\[ "[Twitter]Timeline",         "FriendsTwitter"],
+	\[ "[Twitter]Tweet",            "PosttoTwitter"],
+	\[ "[Twitter]Setup",            "SetLoginTwitter"],
 	\[ "[vim]IDEMode",              "NERDTreeToggle |TagbarToggle" ],
 	\[ "[vim]FileTree",             "NERDTreeToggle" ],
 	\[ "[vim]TagBar",               "TagbarToggle" ],
@@ -366,7 +356,6 @@ let g:unite_source_menu_menus.shortcut.command_candidates = [
 	\[ "[vim]SyntaxOff",            "set syntax=off" ],
 	\[ "[vim]BGdark",               "set background=dark" ],
 	\[ "[vim]BGlight",              "set background=light" ],
-	\[ "[vim]TweetVimNewToken",     "TweetVimAccessToken" ],
 	\[ "[Snippet]MakeSnippet",      "vsplit|NeoSnippetEdit" ],
 	\[ "[Snippet]DefaultSnippets",  "Unite -silent -vertical -winwidth=30 neosnippet/runtime" ],
 	\[ "[Snippet]OriginalSnippets", "Unite -silent -vertical -winwidth=30 neosnippet/user" ],
@@ -398,15 +387,7 @@ let g:unite_source_menu_menus.shortcut.command_candidates = [
 	\[ "[Edit]zshrc",               "edit ~/.zshrc"],
 	\[ "[Edit]bashrc",              "edit ~/.bashrc"],
 	\[ "[Edit]gitconf",             "edit ~/.gitconfig"],
-	\[ "[Twi]Setup",             "SetLoginTwitter"],
-	\[ "[Twi]Timeline",             "FriendsTwitter"],
-	\[ "[Twi]Tweet",             "PosttoTwitter"],
 \]
 autocmd vimrc FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 autocmd vimrc FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 autocmd vimrc FileType unite set noequalalways
-
-
-
-
-let twitvim_count = 40
