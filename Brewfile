@@ -26,12 +26,9 @@ brew 'go'
 brew 'node'
 
 cask 'karabiner-elements'
-cask 'google-chrome'
 cask 'mplayerx'
-cask 'virtualbox'
 cask 'java'
 
 mas 'Twitter', id: 409789998
 mas 'LINE', id: 539883307
-mas 'Xcode', id: 497799835
 mas 'The Unarchiver', id: 425424353
