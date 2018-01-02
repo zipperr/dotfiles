@@ -26,14 +26,12 @@ call dein#add('tyru/open-browser.vim')                  " ブラウザを開く
 call dein#add('Shougo/neocomplcache.vim')               " 補完
 call dein#add('Shougo/neosnippet.vim')                  " スニペット
 call dein#add('Shougo/neosnippet-snippets')             " デフォルトスニペット
-call dein#add('scrooloose/syntastic')                   " 構文チェック
 call dein#add('ujihisa/neco-look')                      " 英単語補完
+call dein#add('scrooloose/syntastic')                   " 構文チェック
 call dein#add('thinca/vim-quickrun')                    " コードを実行
 call dein#add('tomtom/tcomment_vim')                    " コメントアウトトグル
 call dein#add('AndrewRadev/switch.vim')                 " リテラル変換
 call dein#add('junegunn/vim-easy-align')                " 整形
-call dein#add('soramugi/auto-ctags.vim')                " 自動タグ生成
-call dein#add('majutsushi/tagbar')                      " タグ一覧
 call dein#add('aperezdc/vim-template')                  " テンプレート
 " Theme / Interface
 call dein#add('itchyny/lightline.vim')                  " ステータスライン
@@ -318,11 +316,6 @@ vmap <Enter> <Plug>(EasyAlign)*
 "##### Brightest #####
 let g:brightest#ignore_syntax_list = [ "Statement" ]
 
-"##### Auto-ctag, Tagbar #####
-let g:auto_ctags = 1
-let g:auto_ctags_directory_list = ['~/.vim', '.git', '.svn']
-nmap <F2> :TagbarToggle<CR>
-
 "##### Twitvim #####
 let twitvim_count = 100
 if has("mac")|let twitvim_browser_cmd = 'open'|endif
@@ -367,9 +360,7 @@ let g:unite_source_menu_menus.shortcut.command_candidates = [
 	\[ "[Git]GitAddCommitPush",     "Gwrite | Gcommit -am 'Update' | Git push origin master"],
 	\[ "[Git]GitDiff",              "Gdiff"],
 	\[ "[Git]GitBlame",             "Gblame"],
-	\[ "[vim]IDEMode",              "NERDTreeToggle |TagbarToggle" ],
 	\[ "[vim]FileTree",             "NERDTreeToggle" ],
-	\[ "[vim]TagBar",               "TagbarToggle" ],
 	\[ "[vim]SyntaxOn",             "set syntax=on" ],
 	\[ "[vim]SyntaxOff",            "set syntax=off" ],
 	\[ "[vim]BGdark",               "set background=dark" ],
