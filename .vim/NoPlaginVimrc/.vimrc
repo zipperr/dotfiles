@@ -85,6 +85,7 @@ set lazyredraw
 set ttyfast
 set updatetime=10
 set shellslash
+set pumheight=5
 if v:version >= 704 | set cm=blowfish2 | elseif | set cm=zip | endif
 
 "##### KeyMapping #####
@@ -109,24 +110,9 @@ nnoremap p p`]
 nnoremap <Enter> o<ESC>
 nnoremap <S-Left> <C-w><<CR>
 nnoremap <S-Right> <C-w>><CR>
+nnoremap <Leader>v :,$s/検索文字/置換後文字/gc
 "InsertMode
 inoremap jj <ESC>
-inoremap { {}<Left>
-inoremap ( ()<Left>
-inoremap [ []<Left>
-inoremap < <><Left>
-inoremap ' ''<Left>
-inoremap " ""<Left>
-inoremap "" ""
-inoremap '' ''
-inoremap () ()
-inoremap [] []
-inoremap {} {}
-inoremap <> <>
-inoremap {<CR> {<CR>}<Esc><S-o>
-inoremap (<CR> (<CR>)<Esc><S-o>
-inoremap [<CR> [<CR>]<Esc><S-o>
-inoremap <<CR> <<CR>><Esc><S-o>
 inoremap , ,<space>
 "VisualMode
 vnoremap v $h
