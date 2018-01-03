@@ -19,13 +19,14 @@ if dein#load_state(s:dein_dir)
 call dein#add('Shougo/dein.vim')                        " プラグイン管理
 " Utility
 call dein#add('Shougo/vimproc.vim', {'build' : 'make'}) " 非同期処理
-call dein#add('Shougo/unite.vim')                       " 統合ユーザーインターフェース
+call dein#add('Shougo/unite.vim')                       " ランチャー
 call dein#add('scrooloose/nerdtree')                    " ファイルツリー
 call dein#add('tyru/open-browser.vim')                  " ブラウザを開く
 " Programming Support
 call dein#add('Shougo/neocomplcache.vim')               " 補完
 call dein#add('Shougo/neosnippet.vim')                  " スニペット
 call dein#add('Shougo/neosnippet-snippets')             " デフォルトスニペット
+call dein#add('Townk/vim-autoclose')                    " 閉じ括弧補完
 call dein#add('ujihisa/neco-look')                      " 英単語補完
 call dein#add('scrooloose/syntastic')                   " 構文チェック
 call dein#add('thinca/vim-quickrun')                    " コードを実行
@@ -153,25 +154,9 @@ nnoremap p p`]
 nnoremap <Enter> o<ESC>
 nnoremap <S-Left> <C-w><<CR>
 nnoremap <S-Right> <C-w>><CR>
-nnoremap <Leader>v :<C-u>vsp<CR>z+ :set scrollbind<CR><C-w><C-w>:set scrollbind<CR>
+nnoremap <Leader>v :%s/検索文字/置換後/gc
 "InsertMode
 inoremap jj <ESC>
-inoremap { {}<Left>
-inoremap ( ()<Left>
-inoremap [ []<Left>
-inoremap < <><Left>
-inoremap ' ''<Left>
-inoremap " ""<Left>
-inoremap "" ""
-inoremap '' ''
-inoremap () ()
-inoremap [] []
-inoremap {} {}
-inoremap <> <>
-inoremap {<CR> {<CR>}<Esc><S-o>
-inoremap (<CR> (<CR>)<Esc><S-o>
-inoremap [<CR> [<CR>]<Esc><S-o>
-inoremap <<CR> <<CR>><Esc><S-o>
 inoremap , ,<space>
 "VisualMode
 vnoremap v $h
@@ -308,7 +293,12 @@ vmap ,, gcc
 
 "##### Swith #####
 let g:switch_mapping = "\\"
-let g:switch_custom_definitions =[{'\(\k\+\)': '''\1''','''\(.\{-}\)''': '"\1"','"\(.\{-}\)"': '\1',},]
+let g:switch_custom_definitions =
+\	[
+\	{'\(\k\+\)': '''\1''',
+\	'''\(.\{-}\)''': '"\1"',
+\	'"\(.\{-}\)"': '\1',},
+\	]
 
 "##### Easy-Align #####
 vmap <Enter> <Plug>(EasyAlign)*
@@ -319,8 +309,8 @@ let g:brightest#ignore_syntax_list = [ "Statement" ]
 "##### Twitvim #####
 let twitvim_count = 100
 if has("mac")|let twitvim_browser_cmd = 'open'|endif
-nnoremap <F3> :vnew<CR>:FriendsTwitter<CR><C-w>j:q<CR>
-nnoremap <F4> :PosttoTwitter<CR>
+nnoremap <F2> :vnew<CR>:FriendsTwitter<CR><C-w>j:q<CR>
+nnoremap <F3> :PosttoTwitter<CR>
 autocmd vimrc FileType twitvim nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 autocmd vimrc FileType twitvim inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 
