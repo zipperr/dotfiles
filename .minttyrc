@@ -2,3 +2,5 @@ BoldAsFont=-1
 Font=Ricty Diminished
 FontHeight=11
 FontSmoothing=full
+CursorType=block
+CursorColour=255,0,255
