@@ -102,7 +102,7 @@ colorscheme hybrid
 set background=dark
 hi Comment      gui=NONE      font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE      term=NONE      ctermfg=59   ctermbg=NONE
 hi LineNr       gui=NONE      font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE      term=NONE      ctermfg=59   ctermbg=NONE
-hi CursorLineNR gui=NONE      font=NONE guifg=#000000 guibg=#dadada guisp=NONE cterm=NONE      term=NONE      ctermfg=16   ctermbg=253
+hi CursorLineNR gui=NONE      font=NONE guifg=#000000 guibg=#dadada guisp=NONE cterm=NONE   term=NONE      ctermfg=16   ctermbg=253
 " hi SpecialKey   gui=NONE      font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE      term=NONE      ctermfg=59   ctermbg=NONE
 " hi IncSearch    gui=underline font=NONE guifg=NONE    guibg=NONE guisp=NONE cterm=underline term=underline ctermfg=NONE ctermbg=NONE
 " hi Search       gui=underline font=NONE guifg=NONE    guibg=NONE guisp=NONE cterm=underline term=underline ctermfg=NONE ctermbg=NONE
