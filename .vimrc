@@ -47,6 +47,13 @@ call dein#add('airblade/vim-gitgutter')                 " 差分表示
 call dein#add('tpope/vim-fugitive')                     " Git操作
 " Twitter
 call dein#add('twitvim/twitvim')                        " Twitter
+
+
+call dein#add('basyura/TweetVim')
+call dein#add('basyura/twibill.vim')
+
+
+
 call dein#end()
 call dein#save_state()
 endif
@@ -397,3 +404,23 @@ let g:unite_source_menu_menus.shortcut.command_candidates = [
 autocmd vimrc FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 autocmd vimrc FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 autocmd vimrc FileType unite set noequalalways
+
+
+"##### Tweetvim #####
+nnoremap <F4> :TweetVimUserStream<CR>
+nnoremap <F5> :TweetVimCommandSay<CR>
+let g:tweetvim_config_dir = expand('~/.vim/.tweetvim')
+let g:tweetvim_display_time = 1
+let g:tweetvim_open_buffer_cmd = '25vsplit'
+let g:tweetvim_display_separator = 0
+let g:tweetvim_display_source = 0
+let g:tweetvim_async_post = 1
+let g:tweetvim_tweet_per_page = 50
+let g:tweetvim_include_rts = 1
+augroup TweetVimSetting
+	autocmd!
+	autocmd FileType tweetvim set nonumber
+	autocmd FileType tweetvim set noequalalways
+augroup END
+" let $http_proxy	= 'http://xxx.xx.xx:8080'
+" let $HTTPS_PROXY	= 'http://xxx.xx.xx:8080'
