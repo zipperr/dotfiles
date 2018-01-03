@@ -1,0 +1,468 @@
+
+
+times in msec
+ clock   self+sourced   self:  sourced script
+ clock   elapsed:              other lines
+
+000.008  000.008: --- VIM STARTING ---
+000.125  000.117: Allocated generic buffers
+000.533  000.408: locale set
+000.538  000.005: clipboard setup
+000.548  000.010: window checked
+001.529  000.981: inits 1
+001.539  000.010: parsing arguments
+001.540  000.001: expanding arguments
+006.074  004.534: shell init
+006.409  000.335: Termcap init
+006.427  000.018: inits 2
+006.585  000.158: init highlight
+007.333  000.212  000.212: sourcing /Users/zip/.vim/dein/repos/github.com/Shougo/dein.vim/autoload/dein.vim
+007.904  000.368  000.368: sourcing /Users/zip/.vim/dein/state_vim.vim
+008.396  000.272  000.272: sourcing /Users/zip/.vim/dein/repos/github.com/Shougo/dein.vim/autoload/dein/autoload.vim
+009.040  000.526  000.526: sourcing /Users/zip/.vim/dein/repos/github.com/Shougo/dein.vim/autoload/dein/util.vim
+010.826  000.837  000.837: sourcing /usr/local/share/vim/vim80/syntax/syncolor.vim
+010.957  001.078  000.241: sourcing /usr/local/share/vim/vim80/syntax/synload.vim
+020.187  000.057  000.057: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/ftdetect/ftdetect.vim
+020.374  009.316  009.259: sourcing /usr/local/share/vim/vim80/filetype.vim
+020.434  010.683  000.289: sourcing /usr/local/share/vim/vim80/syntax/syntax.vim
+020.958  000.186  000.186: sourcing /usr/local/share/vim/vim80/syntax/syncolor.vim
+021.319  000.181  000.181: sourcing /usr/local/share/vim/vim80/syntax/syncolor.vim
+023.018  002.498  002.131: sourcing /Users/zip/.vim/colors/hybrid.vim
+023.520  000.176  000.176: sourcing /usr/local/share/vim/vim80/syntax/syncolor.vim
+023.902  000.179  000.179: sourcing /usr/local/share/vim/vim80/syntax/syncolor.vim
+025.624  002.528  002.173: sourcing /Users/zip/.vim/colors/hybrid.vim
+033.198  026.361  009.274: sourcing $HOME/.vimrc
+033.206  000.260: sourcing vimrc file(s)
+033.556  000.084  000.084: sourcing /Users/zip/.vim/dein/repos/github.com/Shougo/vimproc.vim/plugin/vimproc.vim
+035.878  000.882  000.882: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/AutoClose.vim
+036.130  000.203  000.203: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/brightest.vim
+036.379  000.208  000.208: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/easy_align.vim
+040.011  003.594  003.594: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/fugitive.vim
+040.669  000.107  000.107: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/gitgutter/highlight.vim
+041.509  001.453  001.346: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/gitgutter.vim
+041.655  000.101  000.101: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/lightline.vim
+041.857  000.109  000.109: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/neocomplcache/buffer_complete.vim
+041.949  000.053  000.053: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/neocomplcache/dictionary_complete.vim
+042.038  000.052  000.052: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/neocomplcache/include_complete.vim
+042.125  000.051  000.051: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/neocomplcache/syntax_complete.vim
+042.212  000.050  000.050: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/neocomplcache/tags_complete.vim
+042.689  000.441  000.441: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/neocomplcache.vim
+042.956  000.227  000.227: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/neosnippet.vim
+043.607  000.165  000.165: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/nerdtree.vim
+044.932  000.534  000.534: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/lib/nerdtree/path.vim
+045.160  000.143  000.143: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/lib/nerdtree/menu_controller.vim
+045.335  000.096  000.096: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/lib/nerdtree/menu_item.vim
+045.537  000.125  000.125: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/lib/nerdtree/key_map.vim
+045.855  000.242  000.242: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/lib/nerdtree/bookmark.vim
+046.187  000.251  000.251: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/lib/nerdtree/tree_file_node.vim
+046.703  000.437  000.437: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/lib/nerdtree/tree_dir_node.vim
+047.015  000.233  000.233: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/lib/nerdtree/opener.vim
+047.353  000.261  000.261: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/lib/nerdtree/creator.vim
+047.495  000.064  000.064: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/lib/nerdtree/flag_set.vim
+047.734  000.162  000.162: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/lib/nerdtree/nerdtree.vim
+048.154  000.345  000.345: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/lib/nerdtree/ui.vim
+048.271  000.040  000.040: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/lib/nerdtree/event.vim
+048.404  000.057  000.057: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/lib/nerdtree/notifier.vim
+048.952  000.465  000.465: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/nerdtree/ui_glue.vim
+064.221  000.124  000.124: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/nerdtree_plugin/exec_menuitem.vim
+064.885  000.621  000.621: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/nerdtree_plugin/fs_menu.vim
+065.006  022.011  017.646: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/NERD_tree.vim
+065.639  000.591  000.591: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/openbrowser.vim
+065.808  000.126  000.126: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/quickrun.vim
+066.199  000.352  000.352: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/switch.vim
+066.307  000.066  000.066: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/syntastic/autoloclist.vim
+066.512  000.070  000.070: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/syntastic/balloons.vim
+066.649  000.049  000.049: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/syntastic/checker.vim
+066.728  000.036  000.036: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/syntastic/cursor.vim
+066.804  000.033  000.033: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/syntastic/highlighting.vim
+066.876  000.034  000.034: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/syntastic/loclist.vim
+066.944  000.032  000.032: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/syntastic/modemap.vim
+067.021  000.039  000.039: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/syntastic/notifiers.vim
+067.095  000.038  000.038: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/syntastic/registry.vim
+067.163  000.033  000.033: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/syntastic/signs.vim
+068.210  000.790  000.790: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/syntastic/util.vim
+082.101  000.282  000.282: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/syntastic/autoloclist.vim
+082.292  000.125  000.125: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/syntastic/balloons.vim
+083.186  000.855  000.855: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/syntastic/checker.vim
+083.680  000.392  000.392: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/syntastic/cursor.vim
+084.043  000.287  000.287: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/syntastic/highlighting.vim
+085.393  001.272  001.272: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/syntastic/loclist.vim
+085.759  000.283  000.283: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/syntastic/modemap.vim
+086.000  000.179  000.179: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/syntastic/notifiers.vim
+087.056  000.996  000.996: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/syntastic/registry.vim
+087.287  000.176  000.176: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/syntastic/signs.vim
+088.750  021.551  015.914: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/syntastic.vim
+092.909  004.071  004.071: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/tcomment.vim
+093.636  000.670  000.670: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/templates.vim
+094.645  000.964  000.964: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/twitvim.vim
+095.243  000.370  000.370: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/unite/custom.vim
+095.357  000.666  000.296: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/unite/bookmark.vim
+095.530  000.130  000.130: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/unite/buffer.vim
+095.687  000.118  000.118: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/unite/window.vim
+095.953  000.228  000.228: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/unite.vim
+096.622  000.078  000.078: sourcing /usr/local/share/vim/vim80/plugin/getscriptPlugin.vim
+096.889  000.227  000.227: sourcing /usr/local/share/vim/vim80/plugin/gzip.vim
+097.200  000.272  000.272: sourcing /usr/local/share/vim/vim80/plugin/logiPat.vim
+097.264  000.023  000.023: sourcing /usr/local/share/vim/vim80/plugin/manpager.vim
+097.510  000.208  000.208: sourcing /usr/local/share/vim/vim80/plugin/matchparen.vim
+098.151  000.601  000.601: sourcing /usr/local/share/vim/vim80/plugin/netrwPlugin.vim
+098.238  000.028  000.028: sourcing /usr/local/share/vim/vim80/plugin/rrhelper.vim
+098.328  000.042  000.042: sourcing /usr/local/share/vim/vim80/plugin/spellfile.vim
+098.573  000.180  000.180: sourcing /usr/local/share/vim/vim80/plugin/tarPlugin.vim
+098.736  000.116  000.116: sourcing /usr/local/share/vim/vim80/plugin/tohtml.vim
+098.994  000.212  000.212: sourcing /usr/local/share/vim/vim80/plugin/vimballPlugin.vim
+099.383  000.329  000.329: sourcing /usr/local/share/vim/vim80/plugin/zipPlugin.vim
+099.413  004.475: loading plugins
+099.498  000.085: loading packages
+099.559  000.061: loading after plugins
+099.575  000.016: inits 3
+099.832  000.257: reading viminfo
+099.947  000.115: setting raw mode
+099.958  000.011: start termcap
+100.039  000.081: clearing screen
+101.157  000.723  000.723: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/lightline.vim
+102.215  000.085  000.085: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/lightline/tab.vim
+102.906  000.274  000.274: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/lightline/colorscheme.vim
+103.554  001.147  000.873: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/lightline/colorscheme/wombat.vim
+108.066  000.266  000.266: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/syntastic/log.vim
+108.176  005.916: opening buffers
+111.863  000.250  000.250: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/gitgutter.vim
+112.340  000.273  000.273: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/gitgutter/utility.vim
+112.796  000.170  000.170: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/gitgutter/hunk.vim
+113.270  004.401: BufEnter autocommands
+113.273  000.003: editing files in windows
+117.406  000.339  000.339: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/syntax/nerdtree.vim
+148.263  034.651: VimEnter autocommands
+148.266  000.003: before starting main loop
+148.596  000.048  000.048: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/vital.vim
+148.970  000.050  000.050: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/vital/_brightest.vim
+149.647  000.495  000.495: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/vital/brightest.vim
+150.514  000.619  000.619: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/vital/_brightest/Data/String.vim
+151.639  000.505  000.505: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/vital/_brightest/Data/List.vim
+153.491  000.593  000.593: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/vital/_brightest/Coaster/Buffer.vim
+154.247  000.250  000.250: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/vital/_brightest/Coaster/Search.vim
+155.162  000.292  000.292: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/vital/_brightest/Coaster/Buffer/Object.vim
+156.212  000.612  000.612: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/vital/_brightest/Coaster/Highlight.vim
+156.908  000.134  000.134: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/vital/_brightest/Coaster/Window.vim
+157.441  000.213  000.213: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/vital/_brightest/Vim/Buffer.vim
+158.264  000.480  000.480: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/vital/_brightest/Prelude.vim
+159.056  000.285  000.285: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/vital/_brightest/Vim/Guard.vim
+159.859  000.204  000.204: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/vital/_brightest/Data/Dict.vim
+160.535  000.235  000.235: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/vital/_brightest/Gift.vim
+161.190  000.229  000.229: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/vital/_brightest/Gift/Window.vim
+161.725  000.137  000.137: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/vital/_brightest/Gift/Tabpage.vim
+162.649  014.261  008.880: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/brightest.vim
+163.086  000.559: first screen update
+163.088  000.002: --- VIM STARTED ---
+
+
+times in msec
+ clock   self+sourced   self:  sourced script
+ clock   elapsed:              other lines
+
+000.007  000.007: --- VIM STARTING ---
+000.121  000.114: Allocated generic buffers
+000.454  000.333: locale set
+000.458  000.004: clipboard setup
+000.467  000.009: window checked
+000.988  000.521: inits 1
+000.994  000.006: parsing arguments
+000.995  000.001: expanding arguments
+004.884  003.889: shell init
+005.249  000.365: Termcap init
+005.266  000.017: inits 2
+005.593  000.327: init highlight
+007.010  000.343  000.343: sourcing /Users/zip/.vim/dein/repos/github.com/Shougo/dein.vim/autoload/dein.vim
+007.635  000.397  000.397: sourcing /Users/zip/.vim/dein/state_vim.vim
+008.043  000.269  000.269: sourcing /Users/zip/.vim/dein/repos/github.com/Shougo/dein.vim/autoload/dein/autoload.vim
+008.941  000.768  000.768: sourcing /Users/zip/.vim/dein/repos/github.com/Shougo/dein.vim/autoload/dein/util.vim
+010.978  000.956  000.956: sourcing /usr/local/share/vim/vim80/syntax/syncolor.vim
+011.289  001.381  000.425: sourcing /usr/local/share/vim/vim80/syntax/synload.vim
+018.210  000.030  000.030: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/ftdetect/ftdetect.vim
+018.329  006.858  006.828: sourcing /usr/local/share/vim/vim80/filetype.vim
+018.384  008.624  000.385: sourcing /usr/local/share/vim/vim80/syntax/syntax.vim
+018.904  000.184  000.184: sourcing /usr/local/share/vim/vim80/syntax/syncolor.vim
+019.256  000.181  000.181: sourcing /usr/local/share/vim/vim80/syntax/syncolor.vim
+021.963  003.500  003.135: sourcing /Users/zip/.vim/colors/hybrid.vim
+023.285  000.469  000.469: sourcing /usr/local/share/vim/vim80/syntax/syncolor.vim
+023.944  000.334  000.334: sourcing /usr/local/share/vim/vim80/syntax/syncolor.vim
+027.122  004.943  004.140: sourcing /Users/zip/.vim/colors/hybrid.vim
+036.062  029.938  011.094: sourcing $HOME/.vimrc
+036.075  000.544: sourcing vimrc file(s)
+036.427  000.080  000.080: sourcing /Users/zip/.vim/dein/repos/github.com/Shougo/vimproc.vim/plugin/vimproc.vim
+038.756  000.893  000.893: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/AutoClose.vim
+039.000  000.200  000.200: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/brightest.vim
+039.250  000.209  000.209: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/easy_align.vim
+042.933  003.644  003.644: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/fugitive.vim
+043.616  000.112  000.112: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/gitgutter/highlight.vim
+044.454  001.474  001.362: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/gitgutter.vim
+044.608  000.106  000.106: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/lightline.vim
+044.743  000.094  000.094: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/neocomplcache/buffer_complete.vim
+044.834  000.053  000.053: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/neocomplcache/dictionary_complete.vim
+044.927  000.056  000.056: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/neocomplcache/include_complete.vim
+045.016  000.052  000.052: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/neocomplcache/syntax_complete.vim
+045.103  000.050  000.050: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/neocomplcache/tags_complete.vim
+045.583  000.444  000.444: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/neocomplcache.vim
+045.849  000.227  000.227: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/neosnippet.vim
+046.506  000.170  000.170: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/nerdtree.vim
+047.852  000.542  000.542: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/lib/nerdtree/path.vim
+048.084  000.146  000.146: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/lib/nerdtree/menu_controller.vim
+048.262  000.098  000.098: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/lib/nerdtree/menu_item.vim
+048.464  000.124  000.124: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/lib/nerdtree/key_map.vim
+048.791  000.249  000.249: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/lib/nerdtree/bookmark.vim
+049.123  000.251  000.251: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/lib/nerdtree/tree_file_node.vim
+049.637  000.434  000.434: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/lib/nerdtree/tree_dir_node.vim
+049.949  000.232  000.232: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/lib/nerdtree/opener.vim
+050.288  000.260  000.260: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/lib/nerdtree/creator.vim
+050.431  000.064  000.064: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/lib/nerdtree/flag_set.vim
+050.666  000.155  000.155: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/lib/nerdtree/nerdtree.vim
+051.087  000.346  000.346: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/lib/nerdtree/ui.vim
+051.199  000.036  000.036: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/lib/nerdtree/event.vim
+051.333  000.057  000.057: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/lib/nerdtree/notifier.vim
+051.954  000.537  000.537: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/nerdtree/ui_glue.vim
+067.323  000.123  000.123: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/nerdtree_plugin/exec_menuitem.vim
+068.169  000.804  000.804: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/nerdtree_plugin/fs_menu.vim
+068.397  022.509  017.881: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/NERD_tree.vim
+069.085  000.636  000.636: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/openbrowser.vim
+069.259  000.126  000.126: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/quickrun.vim
+069.658  000.358  000.358: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/switch.vim
+069.735  000.033  000.033: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/syntastic/autoloclist.vim
+069.802  000.029  000.029: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/syntastic/balloons.vim
+069.869  000.030  000.030: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/syntastic/checker.vim
+069.934  000.029  000.029: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/syntastic/cursor.vim
+070.002  000.032  000.032: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/syntastic/highlighting.vim
+070.070  000.033  000.033: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/syntastic/loclist.vim
+070.135  000.030  000.030: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/syntastic/modemap.vim
+070.202  000.031  000.031: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/syntastic/notifiers.vim
+070.275  000.037  000.037: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/syntastic/registry.vim
+070.346  000.032  000.032: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/syntastic/signs.vim
+071.391  000.794  000.794: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/syntastic/util.vim
+084.964  000.280  000.280: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/syntastic/autoloclist.vim
+085.203  000.171  000.171: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/syntastic/balloons.vim
+085.697  000.434  000.434: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/syntastic/checker.vim
+085.918  000.182  000.182: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/syntastic/cursor.vim
+086.095  000.139  000.139: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/syntastic/highlighting.vim
+086.674  000.541  000.541: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/syntastic/loclist.vim
+086.880  000.168  000.168: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/syntastic/modemap.vim
+087.032  000.115  000.115: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/syntastic/notifiers.vim
+087.588  000.519  000.519: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/syntastic/registry.vim
+087.787  000.160  000.160: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/syntastic/signs.vim
+088.795  018.413  014.910: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/syntastic.vim
+092.177  003.332  003.332: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/tcomment.vim
+092.973  000.750  000.750: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/templates.vim
+093.989  000.965  000.965: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/twitvim.vim
+094.786  000.511  000.511: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/unite/custom.vim
+094.906  000.871  000.360: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/unite/bookmark.vim
+095.122  000.168  000.168: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/unite/buffer.vim
+095.281  000.120  000.120: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/unite/window.vim
+095.554  000.235  000.235: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/unite.vim
+096.238  000.082  000.082: sourcing /usr/local/share/vim/vim80/plugin/getscriptPlugin.vim
+096.503  000.224  000.224: sourcing /usr/local/share/vim/vim80/plugin/gzip.vim
+096.819  000.276  000.276: sourcing /usr/local/share/vim/vim80/plugin/logiPat.vim
+096.884  000.024  000.024: sourcing /usr/local/share/vim/vim80/plugin/manpager.vim
+097.133  000.211  000.211: sourcing /usr/local/share/vim/vim80/plugin/matchparen.vim
+097.801  000.626  000.626: sourcing /usr/local/share/vim/vim80/plugin/netrwPlugin.vim
+097.903  000.031  000.031: sourcing /usr/local/share/vim/vim80/plugin/rrhelper.vim
+098.001  000.045  000.045: sourcing /usr/local/share/vim/vim80/plugin/spellfile.vim
+098.247  000.196  000.196: sourcing /usr/local/share/vim/vim80/plugin/tarPlugin.vim
+098.418  000.121  000.121: sourcing /usr/local/share/vim/vim80/plugin/tohtml.vim
+098.928  000.462  000.462: sourcing /usr/local/share/vim/vim80/plugin/vimballPlugin.vim
+099.266  000.245  000.245: sourcing /usr/local/share/vim/vim80/plugin/zipPlugin.vim
+099.301  004.302: loading plugins
+099.388  000.087: loading packages
+099.446  000.058: loading after plugins
+099.460  000.014: inits 3
+099.705  000.245: reading viminfo
+099.766  000.061: setting raw mode
+099.782  000.016: start termcap
+099.823  000.041: clearing screen
+100.684  000.579  000.579: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/lightline.vim
+101.724  000.082  000.082: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/lightline/tab.vim
+102.434  000.278  000.278: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/lightline/colorscheme.vim
+103.094  001.178  000.900: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/lightline/colorscheme/wombat.vim
+107.639  000.272  000.272: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/syntastic/log.vim
+107.746  005.812: opening buffers
+111.392  000.246  000.246: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/gitgutter.vim
+111.860  000.260  000.260: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/gitgutter/utility.vim
+112.345  000.170  000.170: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/gitgutter/hunk.vim
+112.821  004.399: BufEnter autocommands
+112.824  000.003: editing files in windows
+116.898  000.340  000.340: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/syntax/nerdtree.vim
+151.839  038.675: VimEnter autocommands
+151.842  000.003: before starting main loop
+152.198  000.051  000.051: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/vital.vim
+152.574  000.050  000.050: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/vital/_brightest.vim
+153.273  000.518  000.518: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/vital/brightest.vim
+154.417  000.887  000.887: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/vital/_brightest/Data/String.vim
+156.090  000.482  000.482: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/vital/_brightest/Data/List.vim
+157.387  000.435  000.435: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/vital/_brightest/Coaster/Buffer.vim
+158.129  000.218  000.218: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/vital/_brightest/Coaster/Search.vim
+158.912  000.284  000.284: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/vital/_brightest/Coaster/Buffer/Object.vim
+159.918  000.597  000.597: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/vital/_brightest/Coaster/Highlight.vim
+160.506  000.135  000.135: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/vital/_brightest/Coaster/Window.vim
+161.033  000.213  000.213: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/vital/_brightest/Vim/Buffer.vim
+161.854  000.485  000.485: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/vital/_brightest/Prelude.vim
+162.658  000.284  000.284: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/vital/_brightest/Vim/Guard.vim
+163.337  000.183  000.183: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/vital/_brightest/Data/Dict.vim
+163.991  000.220  000.220: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/vital/_brightest/Gift.vim
+164.662  000.231  000.231: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/vital/_brightest/Gift/Window.vim
+165.191  000.133  000.133: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/vital/_brightest/Gift/Tabpage.vim
+166.163  014.195  008.789: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/brightest.vim
+166.597  000.560: first screen update
+166.599  000.002: --- VIM STARTED ---
+
+
+times in msec
+ clock   self+sourced   self:  sourced script
+ clock   elapsed:              other lines
+
+000.007  000.007: --- VIM STARTING ---
+000.120  000.113: Allocated generic buffers
+000.475  000.355: locale set
+000.480  000.005: clipboard setup
+000.490  000.010: window checked
+001.015  000.525: inits 1
+001.021  000.006: parsing arguments
+001.022  000.001: expanding arguments
+004.818  003.796: shell init
+005.322  000.504: Termcap init
+005.345  000.023: inits 2
+005.532  000.187: init highlight
+007.012  000.524  000.524: sourcing /Users/zip/.vim/dein/repos/github.com/Shougo/dein.vim/autoload/dein.vim
+007.636  000.387  000.387: sourcing /Users/zip/.vim/dein/state_vim.vim
+008.040  000.269  000.269: sourcing /Users/zip/.vim/dein/repos/github.com/Shougo/dein.vim/autoload/dein/autoload.vim
+008.945  000.780  000.780: sourcing /Users/zip/.vim/dein/repos/github.com/Shougo/dein.vim/autoload/dein/util.vim
+011.758  001.073  001.073: sourcing /usr/local/share/vim/vim80/syntax/syncolor.vim
+011.895  001.395  000.322: sourcing /usr/local/share/vim/vim80/syntax/synload.vim
+020.163  000.053  000.053: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/ftdetect/ftdetect.vim
+020.344  008.346  008.293: sourcing /usr/local/share/vim/vim80/filetype.vim
+020.431  010.218  000.477: sourcing /usr/local/share/vim/vim80/syntax/syntax.vim
+021.842  000.466  000.466: sourcing /usr/local/share/vim/vim80/syntax/syncolor.vim
+022.721  000.445  000.445: sourcing /usr/local/share/vim/vim80/syntax/syncolor.vim
+026.498  005.802  004.891: sourcing /Users/zip/.vim/colors/hybrid.vim
+027.660  000.351  000.351: sourcing /usr/local/share/vim/vim80/syntax/syncolor.vim
+028.304  000.325  000.325: sourcing /usr/local/share/vim/vim80/syntax/syncolor.vim
+030.994  004.189  003.513: sourcing /Users/zip/.vim/colors/hybrid.vim
+038.486  032.452  010.283: sourcing $HOME/.vimrc
+038.493  000.509: sourcing vimrc file(s)
+038.884  000.080  000.080: sourcing /Users/zip/.vim/dein/repos/github.com/Shougo/vimproc.vim/plugin/vimproc.vim
+041.217  000.907  000.907: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/AutoClose.vim
+041.470  000.205  000.205: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/brightest.vim
+041.719  000.208  000.208: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/easy_align.vim
+045.375  003.618  003.618: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/fugitive.vim
+046.044  000.111  000.111: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/gitgutter/highlight.vim
+046.889  001.469  001.358: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/gitgutter.vim
+047.040  000.107  000.107: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/lightline.vim
+047.173  000.093  000.093: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/neocomplcache/buffer_complete.vim
+047.264  000.053  000.053: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/neocomplcache/dictionary_complete.vim
+047.353  000.052  000.052: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/neocomplcache/include_complete.vim
+047.446  000.057  000.057: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/neocomplcache/syntax_complete.vim
+047.533  000.050  000.050: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/neocomplcache/tags_complete.vim
+048.007  000.438  000.438: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/neocomplcache.vim
+048.275  000.227  000.227: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/neosnippet.vim
+048.918  000.164  000.164: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/nerdtree.vim
+050.243  000.535  000.535: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/lib/nerdtree/path.vim
+050.477  000.148  000.148: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/lib/nerdtree/menu_controller.vim
+050.660  000.103  000.103: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/lib/nerdtree/menu_item.vim
+050.867  000.127  000.127: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/lib/nerdtree/key_map.vim
+051.183  000.238  000.238: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/lib/nerdtree/bookmark.vim
+051.516  000.252  000.252: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/lib/nerdtree/tree_file_node.vim
+052.034  000.438  000.438: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/lib/nerdtree/tree_dir_node.vim
+052.345  000.232  000.232: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/lib/nerdtree/opener.vim
+052.684  000.262  000.262: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/lib/nerdtree/creator.vim
+052.827  000.064  000.064: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/lib/nerdtree/flag_set.vim
+053.057  000.153  000.153: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/lib/nerdtree/nerdtree.vim
+053.543  000.410  000.410: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/lib/nerdtree/ui.vim
+053.673  000.045  000.045: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/lib/nerdtree/event.vim
+053.809  000.058  000.058: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/lib/nerdtree/notifier.vim
+054.364  000.471  000.471: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/nerdtree/ui_glue.vim
+071.261  000.130  000.130: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/nerdtree_plugin/exec_menuitem.vim
+072.053  000.750  000.750: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/nerdtree_plugin/fs_menu.vim
+072.175  023.862  019.282: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/NERD_tree.vim
+072.905  000.688  000.688: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/openbrowser.vim
+073.075  000.124  000.124: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/quickrun.vim
+073.475  000.361  000.361: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/switch.vim
+073.551  000.032  000.032: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/syntastic/autoloclist.vim
+073.709  000.058  000.058: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/syntastic/balloons.vim
+073.788  000.034  000.034: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/syntastic/checker.vim
+073.919  000.044  000.044: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/syntastic/cursor.vim
+074.013  000.033  000.033: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/syntastic/highlighting.vim
+074.085  000.035  000.035: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/syntastic/loclist.vim
+074.151  000.031  000.031: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/syntastic/modemap.vim
+074.217  000.031  000.031: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/syntastic/notifiers.vim
+074.287  000.035  000.035: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/syntastic/registry.vim
+074.355  000.033  000.033: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/syntastic/signs.vim
+075.461  000.852  000.852: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/syntastic/util.vim
+091.191  000.255  000.255: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/syntastic/autoloclist.vim
+091.450  000.192  000.192: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/syntastic/balloons.vim
+092.096  000.586  000.586: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/syntastic/checker.vim
+092.412  000.254  000.254: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/syntastic/cursor.vim
+092.692  000.220  000.220: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/syntastic/highlighting.vim
+093.486  000.734  000.734: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/syntastic/loclist.vim
+093.699  000.174  000.174: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/syntastic/modemap.vim
+093.852  000.115  000.115: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/syntastic/notifiers.vim
+094.407  000.518  000.518: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/syntastic/registry.vim
+094.608  000.162  000.162: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/syntastic/signs.vim
+095.572  021.182  017.120: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/syntastic.vim
+099.307  003.687  003.687: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/tcomment.vim
+100.034  000.666  000.666: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/templates.vim
+101.293  001.215  001.215: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/twitvim.vim
+101.892  000.364  000.364: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/unite/custom.vim
+102.007  000.665  000.301: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/unite/bookmark.vim
+102.215  000.166  000.166: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/unite/buffer.vim
+102.376  000.123  000.123: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/unite/window.vim
+102.642  000.228  000.228: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/plugin/unite.vim
+103.319  000.079  000.079: sourcing /usr/local/share/vim/vim80/plugin/getscriptPlugin.vim
+103.588  000.229  000.229: sourcing /usr/local/share/vim/vim80/plugin/gzip.vim
+103.894  000.267  000.267: sourcing /usr/local/share/vim/vim80/plugin/logiPat.vim
+103.958  000.024  000.024: sourcing /usr/local/share/vim/vim80/plugin/manpager.vim
+104.203  000.207  000.207: sourcing /usr/local/share/vim/vim80/plugin/matchparen.vim
+104.873  000.630  000.630: sourcing /usr/local/share/vim/vim80/plugin/netrwPlugin.vim
+104.980  000.044  000.044: sourcing /usr/local/share/vim/vim80/plugin/rrhelper.vim
+105.078  000.048  000.048: sourcing /usr/local/share/vim/vim80/plugin/spellfile.vim
+105.322  000.189  000.189: sourcing /usr/local/share/vim/vim80/plugin/tarPlugin.vim
+105.485  000.114  000.114: sourcing /usr/local/share/vim/vim80/plugin/tohtml.vim
+105.732  000.200  000.200: sourcing /usr/local/share/vim/vim80/plugin/vimballPlugin.vim
+106.003  000.215  000.215: sourcing /usr/local/share/vim/vim80/plugin/zipPlugin.vim
+106.035  004.399: loading plugins
+106.114  000.079: loading packages
+106.172  000.058: loading after plugins
+106.186  000.014: inits 3
+106.442  000.256: reading viminfo
+106.505  000.063: setting raw mode
+106.521  000.016: start termcap
+106.567  000.046: clearing screen
+107.464  000.576  000.576: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/lightline.vim
+108.588  000.081  000.081: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/lightline/tab.vim
+109.273  000.268  000.268: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/lightline/colorscheme.vim
+109.929  001.150  000.882: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/lightline/colorscheme/wombat.vim
+114.445  000.287  000.287: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/syntastic/log.vim
+114.557  005.896: opening buffers
+118.201  000.258  000.258: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/gitgutter.vim
+118.679  000.260  000.260: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/gitgutter/utility.vim
+119.160  000.192  000.192: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/gitgutter/hunk.vim
+119.658  004.391: BufEnter autocommands
+119.661  000.003: editing files in windows
+123.845  000.348  000.348: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/syntax/nerdtree.vim
+156.416  036.407: VimEnter autocommands
+156.425  000.009: before starting main loop
+157.489  000.102  000.102: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/vital.vim
+158.069  000.060  000.060: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/vital/_brightest.vim
+158.889  000.615  000.615: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/vital/brightest.vim
+159.922  000.700  000.700: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/vital/_brightest/Data/String.vim
+161.351  000.656  000.656: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/vital/_brightest/Data/List.vim
+162.906  000.657  000.657: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/vital/_brightest/Coaster/Buffer.vim
+163.988  000.327  000.327: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/vital/_brightest/Coaster/Search.vim
+165.194  000.431  000.431: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/vital/_brightest/Coaster/Buffer/Object.vim
+166.734  000.916  000.916: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/vital/_brightest/Coaster/Highlight.vim
+167.452  000.131  000.131: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/vital/_brightest/Coaster/Window.vim
+167.985  000.211  000.211: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/vital/_brightest/Vim/Buffer.vim
+168.805  000.481  000.481: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/vital/_brightest/Prelude.vim
+169.597  000.285  000.285: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/vital/_brightest/Vim/Guard.vim
+170.266  000.180  000.180: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/vital/_brightest/Data/Dict.vim
+170.915  000.216  000.216: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/vital/_brightest/Gift.vim
+171.631  000.291  000.291: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/vital/_brightest/Gift/Window.vim
+172.981  000.337  000.337: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/vital/_brightest/Gift/Tabpage.vim
+174.999  018.136  011.540: sourcing /Users/zip/.vim/dein/.cache/.vimrc/.dein/autoload/brightest.vim
+175.819  001.258: first screen update
+175.822  000.003: --- VIM STARTED ---
