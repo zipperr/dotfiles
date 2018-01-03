@@ -119,7 +119,7 @@ set laststatus=2
 " au vimrc InsertEnter * hi StatusLine gui=NONE guifg=Black guibg=DarkGreen cterm=NONE ctermfg=Black ctermbg=DarkGreen
 " au vimrc InsertLeave * hi StatusLine gui=NONE guifg=Black guibg=DarkCyan  cterm=NONE ctermfg=Black ctermbg=DarkCyan
 "CursorLine
-set cursorline
+" set cursorline
 set number
 "CommandLine
 set showcmd
