@@ -154,7 +154,7 @@ nnoremap p p`]
 nnoremap <Enter> o<ESC>
 nnoremap <S-Left> <C-w><<CR>
 nnoremap <S-Right> <C-w>><CR>
-nnoremap <Leader>v :%s/検索文字/置換後/gc
+nnoremap <Leader>v :,$s/検索文字/置換後文字/gc
 "InsertMode
 inoremap jj <ESC>
 inoremap , ,<space>
