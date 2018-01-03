@@ -36,37 +36,17 @@ call dein#add('junegunn/vim-easy-align')                " 整形
 call dein#add('aperezdc/vim-template')                  " テンプレート
 " Theme / Interface
 call dein#add('itchyny/lightline.vim')                  " ステータスライン
-call dein#add('osyo-manga/vim-brightest')               " カーソル下の単語をハイライト
-call dein#add('w0ng/vim-hybrid')                        " カラースキーマ
+call dein#add('w0ng/vim-hybrid')
+call dein#add('nanotech/jellybeans.vim')
+call dein#add('jpo/vim-railscasts-theme')
+call dein#add('AlessandroYorba/Sierra')
+call dein#add('KabbAmine/yowish.vim')
+call dein#add('sickill/vim-monokai')
 " Git Support
 call dein#add('airblade/vim-gitgutter')                 " 差分表示
 call dein#add('tpope/vim-fugitive')                     " Git操作
 " Twitter
 call dein#add('twitvim/twitvim')                        " Twitter
-
-
-call dein#add('ujihisa/unite-colorscheme')
-call dein#add('tomasr/molokai')
-call dein#add('effreyiacono/vim-colors-wombat')
-call dein#add('nanotech/jellybeans.vim') "良い
-call dein#add('vim-scripts/Lucius')
-call dein#add('vim-scripts/Zenburn')
-call dein#add('jpo/vim-railscasts-theme') "?
-call dein#add('gosukiwi/vim-atom-dark')
-call dein#add('arcticicestudio/nord-vim')
-call dein#add('AlessandroYorba/Sierra') "?
-call dein#add('KabbAmine/yowish.vim') "?
-call dein#add('vim-scripts/pyte')
-call dein#add('beigebrucewayne/skull-vim')
-call dein#add('GGalizzi/cake-vim')
-call dein#add('sonjapeterson/1989.vim')
-call dein#add('vim-scripts/chlordane.vim')
-call dein#add('atelierbram/Base2Tone-vim')
-call dein#add('Donearm/Ubaryd')
-call dein#add('sickill/vim-monokai') "良い
-call dein#add('sjl/badwolf')
-call dein#add('drewtempelmeyer/palenight.vim') "良い
-
 call dein#end()
 call dein#save_state()
 endif
@@ -122,13 +102,13 @@ syntax on
 set t_Co=256
 autocmd vimrc ColorScheme * highlight Normal ctermbg=none
 autocmd vimrc ColorScheme * highlight LineNr ctermbg=none
-" colorscheme hybrid
 colorscheme monokai
+" hybrid, jellybeans, railscasts, Sierra, yowish, monokai
 set background=dark
 hi Comment      gui=NONE      font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE      term=NONE      ctermfg=59   ctermbg=NONE
 hi LineNr       gui=NONE      font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE      term=NONE      ctermfg=59   ctermbg=NONE
-hi CursorLineNR gui=NONE      font=NONE guifg=#000000 guibg=#dadada guisp=NONE cterm=NONE   term=NONE      ctermfg=16   ctermbg=253
-" hi SpecialKey   gui=NONE      font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE      term=NONE      ctermfg=59   ctermbg=NONE
+" hi CursorLineNR gui=NONE      font=NONE guifg=#000000 guibg=#dadada guisp=NONE cterm=NONE   term=NONE      ctermfg=16   ctermbg=253
+hi SpecialKey   gui=NONE      font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE      term=NONE      ctermfg=59   ctermbg=NONE
 " hi IncSearch    gui=underline font=NONE guifg=NONE    guibg=NONE guisp=NONE cterm=underline term=underline ctermfg=NONE ctermbg=NONE
 " hi Search       gui=underline font=NONE guifg=NONE    guibg=NONE guisp=NONE cterm=underline term=underline ctermfg=NONE ctermbg=NONE
 " hi MatchParen   gui=underline font=NONE guifg=NONE    guibg=NONE guisp=NONE cterm=underline term=underline ctermfg=NONE ctermbg=NONE
@@ -141,7 +121,6 @@ set laststatus=2
 "CursorLine
 set cursorline
 set number
-hi clear CursorLine
 "CommandLine
 set showcmd
 set wildmenu
