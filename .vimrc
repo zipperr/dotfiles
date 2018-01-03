@@ -38,7 +38,6 @@ call dein#add('aperezdc/vim-template')                  " テンプレート
 call dein#add('itchyny/lightline.vim')                  " ステータスライン
 call dein#add('osyo-manga/vim-brightest')               " カーソル下の単語をハイライト
 call dein#add('w0ng/vim-hybrid')                        " カラースキーマ
-call dein#add('nightsense/office')
 " Git Support
 call dein#add('airblade/vim-gitgutter')                 " 差分表示
 call dein#add('tpope/vim-fugitive')                     " Git操作
@@ -100,11 +99,10 @@ set t_Co=256
 autocmd vimrc ColorScheme * highlight Normal ctermbg=none
 autocmd vimrc ColorScheme * highlight LineNr ctermbg=none
 colorscheme hybrid
-" colorscheme office-dark
 set background=dark
 hi Comment      gui=NONE      font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE      term=NONE      ctermfg=59   ctermbg=NONE
 hi LineNr       gui=NONE      font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE      term=NONE      ctermfg=59   ctermbg=NONE
-hi CursorLineNR gui=NONE      font=NONE guifg=#ffff00 guibg=NONE guisp=NONE cterm=NONE      term=NONE      ctermfg=226  ctermbg=NONE
+hi CursorLineNR gui=NONE      font=NONE guifg=#000000 guibg=#dadada guisp=NONE cterm=NONE      term=NONE      ctermfg=16   ctermbg=253
 " hi SpecialKey   gui=NONE      font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE      term=NONE      ctermfg=59   ctermbg=NONE
 " hi IncSearch    gui=underline font=NONE guifg=NONE    guibg=NONE guisp=NONE cterm=underline term=underline ctermfg=NONE ctermbg=NONE
 " hi Search       gui=underline font=NONE guifg=NONE    guibg=NONE guisp=NONE cterm=underline term=underline ctermfg=NONE ctermbg=NONE
