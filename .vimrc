@@ -281,6 +281,7 @@ function! LightlineMode()
 endfunction
 
 "##### Openbrowser #####
+let g:openbrowser_use_vimproc=0
 nnoremap <Leader><Leader> :OpenBrowserSearch<Space>
 
 "##### Template #####
