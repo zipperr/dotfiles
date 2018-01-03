@@ -16,7 +16,7 @@ if dein#load_state(s:dein_dir)
 	call dein#begin(s:dein_dir)
 
 "##### PluginList #####
-call dein#add('Shougo/dein.vim')                        " プラグイン管理
+call dein#add("Shougo/dein.vim")                        " プラグイン管理
 " Utility
 call dein#add('Shougo/vimproc.vim', {'build' : 'make'}) " 非同期処理
 call dein#add('Shougo/unite.vim')                       " ランチャー
@@ -119,7 +119,8 @@ set laststatus=2
 " au vimrc InsertEnter * hi StatusLine gui=NONE guifg=Black guibg=DarkGreen cterm=NONE ctermfg=Black ctermbg=DarkGreen
 " au vimrc InsertLeave * hi StatusLine gui=NONE guifg=Black guibg=DarkCyan  cterm=NONE ctermfg=Black ctermbg=DarkCyan
 "CursorLine
-" set cursorline
+set cursorline
+hi clear CursorLine
 set number
 "CommandLine
 set showcmd
@@ -308,13 +309,10 @@ let g:switch_custom_definitions =
 "##### Easy-Align #####
 vmap <Enter> <Plug>(EasyAlign)*
 
-"##### Brightest #####
-let g:brightest#ignore_syntax_list = [ "Statement" ]
-
 "##### Twitvim #####
 let twitvim_count = 100
 if has("mac")|let twitvim_browser_cmd = 'open'|endif
-nnoremap <F2> :vnew<CR>:FriendsTwitter<CR><C-w>j:q<CR>
+nnoremap <F2> :40vnew<CR>:FriendsTwitter<CR><C-w>j:q<CR>
 nnoremap <F3> :PosttoTwitter<CR>
 autocmd vimrc FileType twitvim nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 autocmd vimrc FileType twitvim inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
