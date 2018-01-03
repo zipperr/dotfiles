@@ -43,6 +43,30 @@ call dein#add('airblade/vim-gitgutter')                 " 差分表示
 call dein#add('tpope/vim-fugitive')                     " Git操作
 " Twitter
 call dein#add('twitvim/twitvim')                        " Twitter
+
+
+call dein#add('ujihisa/unite-colorscheme')
+call dein#add('tomasr/molokai')
+call dein#add('effreyiacono/vim-colors-wombat')
+call dein#add('nanotech/jellybeans.vim') "良い
+call dein#add('vim-scripts/Lucius')
+call dein#add('vim-scripts/Zenburn')
+call dein#add('jpo/vim-railscasts-theme') "?
+call dein#add('gosukiwi/vim-atom-dark')
+call dein#add('arcticicestudio/nord-vim')
+call dein#add('AlessandroYorba/Sierra') "?
+call dein#add('KabbAmine/yowish.vim') "?
+call dein#add('vim-scripts/pyte')
+call dein#add('beigebrucewayne/skull-vim')
+call dein#add('GGalizzi/cake-vim')
+call dein#add('sonjapeterson/1989.vim')
+call dein#add('vim-scripts/chlordane.vim')
+call dein#add('atelierbram/Base2Tone-vim')
+call dein#add('Donearm/Ubaryd')
+call dein#add('sickill/vim-monokai') "良い
+call dein#add('sjl/badwolf')
+call dein#add('drewtempelmeyer/palenight.vim') "良い
+
 call dein#end()
 call dein#save_state()
 endif
@@ -98,7 +122,8 @@ syntax on
 set t_Co=256
 autocmd vimrc ColorScheme * highlight Normal ctermbg=none
 autocmd vimrc ColorScheme * highlight LineNr ctermbg=none
-colorscheme hybrid
+" colorscheme hybrid
+colorscheme monokai
 set background=dark
 hi Comment      gui=NONE      font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE      term=NONE      ctermfg=59   ctermbg=NONE
 hi LineNr       gui=NONE      font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE      term=NONE      ctermfg=59   ctermbg=NONE
