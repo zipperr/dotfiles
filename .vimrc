@@ -34,6 +34,9 @@ call dein#add('tomtom/tcomment_vim')                    " コメントアウト�
 call dein#add('AndrewRadev/switch.vim')                 " リテラル変換
 call dein#add('junegunn/vim-easy-align')                " 整形
 call dein#add('aperezdc/vim-template')                  " テンプレート
+call dein#add('kannokanno/previm')                      " Markdownプレビュー
+call dein#add('vim-scripts/YankRing.vim')               "ヤンク履歴補完
+call dein#add('sjl/gundo.vim')
 " Theme / Interface
 call dein#add('itchyny/lightline.vim')                  " ステータスライン
 call dein#add('w0ng/vim-hybrid')
@@ -103,7 +106,7 @@ syntax on
 set t_Co=256
 autocmd vimrc ColorScheme * highlight Normal ctermbg=none
 autocmd vimrc ColorScheme * highlight LineNr ctermbg=none
-colorscheme lucius
+colorscheme monokai
 " hybrid, jellybeans, railscasts, Sierra, yowish, monokai, lucius
 set background=dark
 hi Comment      gui=NONE      font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE      term=NONE      ctermfg=59   ctermbg=NONE
@@ -292,6 +295,10 @@ endfunction
 let g:openbrowser_use_vimproc=0
 nnoremap <Leader><Leader> :OpenBrowserSearch<Space>
 
+"##### Previm #####
+autocmd vimrc BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
+nnoremap <Leader>p :PrevimOpen<CR>
+
 "##### Template #####
 let g:email = "ktaniuchi@hal21.co.jp"
 let g:user = "Kento Taniuchi"
@@ -363,6 +370,7 @@ let g:unite_source_menu_menus.shortcut.command_candidates = [
 	\[ "[vim]BGlight",              "set background=light" ],
 	\[ "[vim]BrightOn",             "BrightestEnable" ],
 	\[ "[vim]BrightOff",            "BrightestDisable" ],
+	\[ "[Markdown]PrevimOpen",      "PrevimOpen" ],
 	\[ "[Snippet]MakeSnippet",      "vsplit|NeoSnippetEdit" ],
 	\[ "[Snippet]DefaultSnippets",  "Unite -silent -vertical -winwidth=30 neosnippet/runtime" ],
 	\[ "[Snippet]OriginalSnippets", "Unite -silent -vertical -winwidth=30 neosnippet/user" ],
@@ -398,3 +406,5 @@ let g:unite_source_menu_menus.shortcut.command_candidates = [
 autocmd vimrc FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 autocmd vimrc FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 autocmd vimrc FileType unite set noequalalways
+
+nmap <Leader>u :<C-u>GundoToggle<CR>
