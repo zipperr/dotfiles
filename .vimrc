@@ -42,6 +42,7 @@ call dein#add('jpo/vim-railscasts-theme')
 call dein#add('AlessandroYorba/Sierra')
 call dein#add('KabbAmine/yowish.vim')
 call dein#add('sickill/vim-monokai')
+call dein#add('jonathanfilip/vim-lucius')
 " Git Support
 call dein#add('airblade/vim-gitgutter')                 " 差分表示
 call dein#add('tpope/vim-fugitive')                     " Git操作
@@ -102,12 +103,12 @@ syntax on
 set t_Co=256
 autocmd vimrc ColorScheme * highlight Normal ctermbg=none
 autocmd vimrc ColorScheme * highlight LineNr ctermbg=none
-colorscheme monokai
-" hybrid, jellybeans, railscasts, Sierra, yowish, monokai
+colorscheme lucius
+" hybrid, jellybeans, railscasts, Sierra, yowish, monokai, lucius
 set background=dark
 hi Comment      gui=NONE      font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE      term=NONE      ctermfg=59   ctermbg=NONE
 hi LineNr       gui=NONE      font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE      term=NONE      ctermfg=59   ctermbg=NONE
-" hi CursorLineNR gui=NONE      font=NONE guifg=#000000 guibg=#dadada guisp=NONE cterm=NONE   term=NONE      ctermfg=16   ctermbg=253
+hi CursorLineNR gui=NONE      font=NONE guifg=#000000 guibg=#dadada guisp=NONE cterm=NONE   term=NONE      ctermfg=16   ctermbg=253
 hi SpecialKey   gui=NONE      font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE      term=NONE      ctermfg=59   ctermbg=NONE
 " hi IncSearch    gui=underline font=NONE guifg=NONE    guibg=NONE guisp=NONE cterm=underline term=underline ctermfg=NONE ctermbg=NONE
 " hi Search       gui=underline font=NONE guifg=NONE    guibg=NONE guisp=NONE cterm=underline term=underline ctermfg=NONE ctermbg=NONE
@@ -159,13 +160,15 @@ nnoremap p p`]
 nnoremap <Enter> o<ESC>
 nnoremap <S-Left> <C-w><<CR>
 nnoremap <S-Right> <C-w>><CR>
-nnoremap <Leader>v :,$s/検索文字/置換後文字/gc
+nnoremap <Leader>v :<C-u>vsp<CR>z+ :set scrollbind<CR><C-w><C-w>:set scrollbind<CR>
+nnoremap <Leader>b :,$s/検索文字/置換後文字/gc<Left><Left><Left>
 "InsertMode
 inoremap jj <ESC>
 inoremap , ,<space>
 "VisualMode
 vnoremap v $h
 vnoremap * "vy/\V<C-r>=substitute(escape(@v, '\/'), "\n", '\\n','g')<CR><CR>
+vnoremap / "xy:,$s/<C-R>=escape(@x, '\\/.*$^~[]')<CR>//gc<Left><Left><Left>
 "CommandlineMode
 cmap w!! w !sudo tee % > /dev/null
 cmap wb set binary noeol<CR> :wq<CR>
