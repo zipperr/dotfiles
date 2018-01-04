@@ -35,8 +35,7 @@ call dein#add('AndrewRadev/switch.vim')                 " リテラル変換
 call dein#add('junegunn/vim-easy-align')                " 整形
 call dein#add('aperezdc/vim-template')                  " テンプレート
 call dein#add('kannokanno/previm')                      " Markdownプレビュー
-call dein#add('vim-scripts/YankRing.vim')               "ヤンク履歴補完
-call dein#add('sjl/gundo.vim')
+call dein#add('vim-scripts/YankRing.vim')               " ヤンク履歴補完
 " Theme / Interface
 call dein#add('itchyny/lightline.vim')                  " ステータスライン
 call dein#add('w0ng/vim-hybrid')
@@ -297,6 +296,12 @@ nnoremap <Leader><Leader> :OpenBrowserSearch<Space>
 
 "##### Previm #####
 autocmd vimrc BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
+if has("mac")
+	let g:previm_open_cmd = ''
+elseif
+	let g:previm_open_cmd = 'C:\\Program\ Files\ (x86)\\Google\\Chrome\\Application\\chrome.exe'
+endif
+
 nnoremap <Leader>p :PrevimOpen<CR>
 
 "##### Template #####
@@ -406,5 +411,3 @@ let g:unite_source_menu_menus.shortcut.command_candidates = [
 autocmd vimrc FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 autocmd vimrc FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 autocmd vimrc FileType unite set noequalalways
-
-nmap <Leader>u :<C-u>GundoToggle<CR>
