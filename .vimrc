@@ -38,13 +38,13 @@ call dein#add('kannokanno/previm')                      " Markdownプレビュ�
 call dein#add('vim-scripts/YankRing.vim')               " ヤンク履歴補完
 " Theme / Interface
 call dein#add('itchyny/lightline.vim')                  " ステータスライン
-call dein#add('w0ng/vim-hybrid')
-call dein#add('nanotech/jellybeans.vim')
-call dein#add('jpo/vim-railscasts-theme')
-call dein#add('AlessandroYorba/Sierra')
-call dein#add('sickill/vim-monokai')
-call dein#add('jonathanfilip/vim-lucius')
-call dein#add('AlessandroYorba/Despacio')
+call dein#add('w0ng/vim-hybrid')                        " hybrid
+call dein#add('nanotech/jellybeans.vim')                " jellybeans
+call dein#add('jpo/vim-railscasts-theme')               " railscasts
+call dein#add('AlessandroYorba/Sierra')                 " Sierra
+call dein#add('sickill/vim-monokai')                    " monokai
+call dein#add('jonathanfilip/vim-lucius')               " lucius
+call dein#add('AlessandroYorba/Despacio')               " despacio
 " Git Support
 call dein#add('airblade/vim-gitgutter')                 " 差分表示
 call dein#add('tpope/vim-fugitive')                     " Git操作
@@ -95,6 +95,7 @@ set showmatch
 set matchtime=0
 set matchpairs+=<:>,「:」,『:』,（:）,【:】,《:》,〈:〉,［:］,‘:’,“:”
 "Search
+set hlsearch
 set incsearch
 set ignorecase
 set smartcase
@@ -110,11 +111,11 @@ colorscheme monokai
 set background=dark
 hi Comment      gui=NONE      font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE      term=NONE      ctermfg=59   ctermbg=NONE
 hi LineNr       gui=NONE      font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE      term=NONE      ctermfg=59   ctermbg=NONE
-hi CursorLineNR gui=NONE      font=NONE guifg=#000000 guibg=#dadada guisp=NONE cterm=NONE   term=NONE      ctermfg=16   ctermbg=253
+" hi CursorLineNR gui=NONE      font=NONE guifg=#000000 guibg=#dadada guisp=NONE cterm=NONE   term=NONE      ctermfg=16   ctermbg=253
 hi SpecialKey   gui=NONE      font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE      term=NONE      ctermfg=59   ctermbg=NONE
-" hi IncSearch    gui=underline font=NONE guifg=NONE    guibg=NONE guisp=NONE cterm=underline term=underline ctermfg=NONE ctermbg=NONE
-" hi Search       gui=underline font=NONE guifg=NONE    guibg=NONE guisp=NONE cterm=underline term=underline ctermfg=NONE ctermbg=NONE
-" hi MatchParen   gui=underline font=NONE guifg=NONE    guibg=NONE guisp=NONE cterm=underline term=underline ctermfg=NONE ctermbg=NONE
+hi IncSearch    gui=underline font=NONE guifg=NONE    guibg=NONE guisp=NONE cterm=underline term=underline ctermfg=NONE ctermbg=NONE
+hi Search       gui=underline font=NONE guifg=NONE    guibg=NONE guisp=NONE cterm=underline term=underline ctermfg=NONE ctermbg=NONE
+hi MatchParen   gui=underline font=NONE guifg=NONE    guibg=NONE guisp=NONE cterm=underline term=underline ctermfg=NONE ctermbg=NONE
 "StatusLine
 set laststatus=2
 " set statusline=%F%h\%m%r%w%=\[%{&ff},%{&fenc!=''?&fenc:&enc},%Y][%3l/%3L][%{strftime('%k:%M')}]
@@ -153,6 +154,13 @@ noremap gj j
 noremap gk k
 noremap <Tab> %
 "NormalMode
+nnoremap <C-L> :noh<C-L><CR>
+nnoremap n nzz
+nnoremap N Nzz
+nnoremap * *zz
+nnoremap # #zz
+nnoremap g* g*zz
+nnoremap g# g#zz
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :q<CR>
 nnoremap <C-w> <C-w><C-w>
@@ -160,8 +168,10 @@ nnoremap r <C-r>
 nnoremap Y y$
 nnoremap p p`]
 nnoremap <Enter> o<ESC>
-nnoremap <S-Left> <C-w><<CR>
+nnoremap <S-Left>  <C-w><<CR>
 nnoremap <S-Right> <C-w>><CR>
+nnoremap <S-Up>    <C-w>-<CR>
+nnoremap <S-Down>  <C-w>+<CR>
 nnoremap <Leader>v :<C-u>vsp<CR>z+ :set scrollbind<CR><C-w><C-w>:set scrollbind<CR>
 nnoremap <Leader>b :,$s/検索文字/置換後文字/gc<Left><Left><Left>
 "InsertMode
@@ -174,6 +184,8 @@ vnoremap / "xy:,$s/<C-R>=escape(@x, '\\/.*$^~[]')<CR>//gc<Left><Left><Left>
 "CommandlineMode
 cmap w!! w !sudo tee % > /dev/null
 cmap wb set binary noeol<CR> :wq<CR>
+cnoremap <expr> /  getcmdtype() == '/' ? '\/' : '/'
+cnoremap <expr> ?  getcmdtype() == '?' ? '\?' : '?'
 
 "##### Script #####
 "HiglightZenkakuSpase
@@ -321,7 +333,7 @@ vmap <Enter> <Plug>(EasyAlign)*
 "##### Twitvim #####
 let twitvim_count = 100
 if has("mac")|let twitvim_browser_cmd = 'open'|endif
-nnoremap <F2> :40vnew<CR>:FriendsTwitter<CR><C-w>j:q<CR>
+nnoremap <F2> :50vnew<CR>:FriendsTwitter<CR><C-w>j:q<CR>
 nnoremap <F3> :PosttoTwitter<CR>
 autocmd vimrc FileType twitvim nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 autocmd vimrc FileType twitvim inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
