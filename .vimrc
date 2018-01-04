@@ -139,6 +139,7 @@ set ttyfast
 set updatetime=10
 set shellslash
 set pumheight=5
+set helplang=ja,en
 if v:version >= 704 | set cm=blowfish2 | elseif | set cm=zip | endif
 
 "##### KeyMapping #####
@@ -168,10 +169,10 @@ nnoremap r <C-r>
 nnoremap Y y$
 nnoremap p p`]
 nnoremap <Enter> o<ESC>
-nnoremap <S-Left>  <C-w><<CR>
-nnoremap <S-Right> <C-w>><CR>
-nnoremap <S-Up>    <C-w>-<CR>
-nnoremap <S-Down>  <C-w>+<CR>
+nnoremap <S-Left>  <C-w>><CR>
+nnoremap <S-Right> <C-w><<CR>
+nnoremap <S-Up>    <C-w>+<CR>
+nnoremap <S-Down>  <C-w>-<CR>
 nnoremap <Leader>v :<C-u>vsp<CR>z+ :set scrollbind<CR><C-w><C-w>:set scrollbind<CR>
 nnoremap <Leader>b :,$s/検索文字/置換後文字/gc<Left><Left><Left>
 "InsertMode
