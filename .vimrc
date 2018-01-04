@@ -42,9 +42,9 @@ call dein#add('w0ng/vim-hybrid')
 call dein#add('nanotech/jellybeans.vim')
 call dein#add('jpo/vim-railscasts-theme')
 call dein#add('AlessandroYorba/Sierra')
-call dein#add('KabbAmine/yowish.vim')
 call dein#add('sickill/vim-monokai')
 call dein#add('jonathanfilip/vim-lucius')
+call dein#add('AlessandroYorba/Despacio')
 " Git Support
 call dein#add('airblade/vim-gitgutter')                 " 差分表示
 call dein#add('tpope/vim-fugitive')                     " Git操作
@@ -106,7 +106,7 @@ set t_Co=256
 autocmd vimrc ColorScheme * highlight Normal ctermbg=none
 autocmd vimrc ColorScheme * highlight LineNr ctermbg=none
 colorscheme monokai
-" hybrid, jellybeans, railscasts, Sierra, yowish, monokai, lucius
+" hybrid, jellybeans, railscasts, Sierra, monokai, lucius, despacio
 set background=dark
 hi Comment      gui=NONE      font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE      term=NONE      ctermfg=59   ctermbg=NONE
 hi LineNr       gui=NONE      font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE      term=NONE      ctermfg=59   ctermbg=NONE
@@ -296,12 +296,6 @@ nnoremap <Leader><Leader> :OpenBrowserSearch<Space>
 
 "##### Previm #####
 autocmd vimrc BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
-if has("mac")
-	let g:previm_open_cmd = ''
-elseif
-	let g:previm_open_cmd = 'C:\\Program\ Files\ (x86)\\Google\\Chrome\\Application\\chrome.exe'
-endif
-
 nnoremap <Leader>p :PrevimOpen<CR>
 
 "##### Template #####
