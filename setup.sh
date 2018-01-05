@@ -9,3 +9,4 @@ ln -s $HOME/dotfiles/.gitignore_global $HOME/.gitignore_global
 mkdir -p $HOME/.vim
 ln -s $HOME/dotfiles/.vim/colors/ $HOME/.vim
 ln -s $HOME/dotfiles/.vim/snippets/ $HOME/.vim
+ln -s $HOME/dotfiles/.vim/templates/ $HOME/.vim

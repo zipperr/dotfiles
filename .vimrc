@@ -33,7 +33,6 @@ call dein#add("thinca/vim-quickrun")                    " コードを実行
 call dein#add("tomtom/tcomment_vim")                    " コメントアウトトグル
 call dein#add("AndrewRadev/switch.vim")                 " リテラル変換
 call dein#add("junegunn/vim-easy-align")                " 整形
-call dein#add("aperezdc/vim-template")                  " テンプレート
 call dein#add("kannokanno/previm")                      " Markdownプレビュー
 call dein#add("vim-scripts/YankRing.vim")               " ヤンク履歴補完
 " Theme / Interface
@@ -170,10 +169,11 @@ nnoremap r <C-r>
 nnoremap Y y$
 nnoremap p p`]
 nnoremap <Enter> o<ESC>
-nnoremap <S-Left>  <C-w>><CR>
-nnoremap <S-Right> <C-w><<CR>
-nnoremap <S-Up>    <C-w>+<CR>
-nnoremap <S-Down>  <C-w>-<CR>
+nnoremap wj 5<C-W>+
+nnoremap wk 5<C-W>-
+nnoremap wh 5<C-W>>
+nnoremap wl 5<C-W><
+nnoremap <Leader>s :<C-u>sp<CR>
 nnoremap <Leader>v :<C-u>vsp<CR>z+ :set scrollbind<CR><C-w><C-w>:set scrollbind<CR>
 nnoremap <Leader>b :,$s/検索文字/置換後文字/gc<Left><Left><Left>
 "InsertMode
@@ -188,6 +188,38 @@ cmap w!! w !sudo tee % > /dev/null
 cmap wb set binary noeol<CR> :wq<CR>
 cnoremap <expr> /  getcmdtype() == '/' ? '\/' : '/'
 cnoremap <expr> ?  getcmdtype() == '?' ? '\?' : '?'
+"ArrowKeys
+noremap  <Up>    <Nop>
+noremap  <Down>  <Nop>
+noremap  <Left>  <Nop>
+noremap  <Right> <Nop>
+inoremap <Up>    <Nop>
+inoremap <Down>  <Nop>
+inoremap <Left>  <Nop>
+inoremap <Right> <Nop>
+
+"##### Template #####
+let s:load_templates_dir='~/.vim/templates'
+let s:load_templates_command="0read ".s:load_templates_dir
+autocmd vimrc BufNewFile *.c        execute s:load_templates_command."/template.c"
+autocmd vimrc BufNewFile *.coffee   execute s:load_templates_command."/template.coffee"
+autocmd vimrc BufNewFile *.cpp      execute s:load_templates_command."/template.cpp"
+autocmd vimrc BufNewFile *.cs       execute s:load_templates_command."/template.cs"
+autocmd vimrc BufNewFile *.css      execute s:load_templates_command."/template.css"
+autocmd vimrc BufNewFile *.d        execute s:load_templates_command."/template.d"
+autocmd vimrc BufNewFile Dockerfile execute s:load_templates_command."/template.Dockerfile"
+autocmd vimrc BufNewFile *.erl      execute s:load_templates_command."/template.erl"
+autocmd vimrc BufNewFile *.f90      execute s:load_templates_command."/template.f90"
+autocmd vimrc BufNewFile *.go       execute s:load_templates_command."/template.go"
+autocmd vimrc BufNewFile *.html     execute s:load_templates_command."/template.html"
+autocmd vimrc BufNewFile *.java     execute s:load_templates_command."/template.java"
+autocmd vimrc BufNewFile *.js       execute s:load_templates_command."/template.js"
+autocmd vimrc BufNewFile *.php      execute s:load_templates_command."/template.php"
+autocmd vimrc BufNewFile *.pl       execute s:load_templates_command."/template.pl"
+autocmd vimrc BufNewFile *.py       execute s:load_templates_command."/template.py"
+autocmd vimrc BufNewFile *.rb       execute s:load_templates_command."/template.rb"
+autocmd vimrc BufNewFile *.sh       execute s:load_templates_command."/template.sh"
+autocmd vimrc BufNewFile *.xml      execute s:load_templates_command."/template.xml"
 
 "##### Script #####
 "HiglightZenkakuSpase
@@ -221,6 +253,7 @@ let g:neocomplcache_auto_completion_start_length    = 1
 let g:neocomplcache_manual_completion_start_length  = 0
 let g:neocomplcache_min_keyword_length              = 2
 let g:neocomplcache_min_syntax_length               = 3
+let g:neocomplcache_enable_auto_select              = 0
 let g:neocomplcache_enable_ignore_case              = 1
 let g:neocomplcache_enable_smart_case               = 1
 let g:neocomplcache_enable_camel_case_completion    = 0
@@ -311,10 +344,6 @@ nnoremap <Leader><Leader> :OpenBrowserSearch<Space>
 "##### Previm #####
 autocmd vimrc BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
 nnoremap <Leader>p :PrevimOpen<CR>
-
-"##### Template #####
-let g:email = "ktaniuchi@hal21.co.jp"
-let g:user = "Kento Taniuchi"
 
 "#####Commentout #####
 nmap ,, gcc
