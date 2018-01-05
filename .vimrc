@@ -221,6 +221,9 @@ autocmd vimrc BufNewFile *.rb                       execute s:load_templates_com
 autocmd vimrc BufNewFile *.sh                       execute s:load_templates_command."/template.sh"
 autocmd vimrc BufNewFile *.xml                      execute s:load_templates_command."/template.xml"
 autocmd vimrc BufNewFile *.{md,mdwn,mkd,mkdn,mark*} execute s:load_templates_command."/template.md"
+autocmd vimrc BufNewFile *.bat                      execute s:load_templates_command."/template.bat"
+autocmd vimrc BufNewFile *.json                     execute s:load_templates_command."/template.json"
+autocmd vimrc BufNewFile *.yml                      execute s:load_templates_command."/template.yml"
 
 "##### Script #####
 "HiglightZenkakuSpase
@@ -350,6 +353,9 @@ nnoremap <Leader>p :PrevimOpen<CR>
 nmap ,, gcc
 vmap ,, gcc
 
+"##### Yunkring #####
+let g:yankring_history_dir = '~/.vim'
+
 "##### Swith #####
 let g:switch_mapping = "\\"
 let g:switch_custom_definitions =
@@ -364,6 +370,8 @@ vmap <Enter> <Plug>(EasyAlign)*
 
 "##### Twitvim #####
 let twitvim_count = 100
+let twitvim_token_file = expand('~/.vim/.twitvim.token')
+
 if has("mac")|let twitvim_browser_cmd = 'open'|endif
 nnoremap <F2> :40vnew<CR>:FriendsTwitter<CR><C-w>j:q<CR>
 nnoremap <F3> :PosttoTwitter<CR>
