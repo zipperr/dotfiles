@@ -18,6 +18,7 @@ export TERM=xterm-256color
 autoload -U colors && colors
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 export PATH=$HOME/bin:/usr/local/bin:$PATH
+setopt nonomatch
 #vimでC-q, C-s
 stty stop undef
 stty start undef
@@ -47,6 +48,11 @@ alias g='git'
 alias server='python -m SimpleHTTPServer'
 alias server3='python -m http.server'
 alias w3="w3m -B"
+#blog
+function pos() {command bundle exec rake new_post["$1"]}
+alias wri="vi ./source/_posts/"
+alias dep="bundle exec rake gen_deploy"
+alias pre="bundle exec rake preview"
 
 ##### Completion ####
 autoload -U compinit

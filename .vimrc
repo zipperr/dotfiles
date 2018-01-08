@@ -402,6 +402,7 @@ let g:unite_source_menu_menus = get(g:,'unite_source_menu_menus',{})
 let g:unite_source_menu_menus.shortcut = {"description" : "shortcut",}
 let g:unite_source_menu_menus.shortcut.command_candidates = [
 	\[ "[web]Github",               "OpenBrowser https://github.com/zipperr" ],
+	\[ "[web]GitPage",              "OpenBrowser https://zipperr.github.io" ],
 	\[ "[web]Google",               "OpenBrowser https://www.google.co.jp" ],
 	\[ "[web]GoogleDrive",          "OpenBrowser https://drive.google.com" ],
 	\[ "[web]Qiita",                "OpenBrowser https://qiita.com" ],
