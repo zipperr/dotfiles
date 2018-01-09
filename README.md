@@ -20,7 +20,7 @@ default-jre default-jdk php clisp mono lua groovy open-cobol
 
 #  Windows
 [Cygwin Install](https://cygwin.com/install.html)  
-vim、git、zsh、curl、make、util-linux、wgetあたりをインストール  
+vim、git、zsh、curl、make、wgetあたりをインストール  
 git clone https://github.com/zipperr/dotfiles  
 zsh
 desk
