@@ -53,7 +53,7 @@ function pos() {command bundle exec rake new_post["$1"]}
 alias wri="vi ./source/_posts/"
 alias dep="bundle exec rake gen_deploy"
 alias pre="bundle exec rake preview"
-alias desk='cd cygdrive/c/Users/zipee/Desktop'
+alias desk='cd /cygdrive/c/Users/zipee/Desktop'
 
 ##### Completion ####
 autoload -U compinit
