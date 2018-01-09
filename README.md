@@ -20,10 +20,11 @@ default-jre default-jdk php clisp mono lua groovy open-cobol
 
 #  Windows
 [Cygwin Install](https://cygwin.com/install.html)  
-vim、git、zsh、curl、make、wgetあたりをインストール  
+vim、git、zsh、curl、make、wget、python2あたりをインストール  
 git clone https://github.com/zipperr/dotfiles  
-zsh
-desk
+vimrcのquickrunでproc部分をコメントアウト  
+zsh  
+desk  
 
 ##  vimMEMO
 | コマンド     | 操作                                                        |  
