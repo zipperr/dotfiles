@@ -41,6 +41,7 @@ alias g='git'
 alias ..='cd ..'
 alias server='python -m SimpleHTTPServer'
 alias server3='python -m http.server'
+alias desk='cd cygdrive/c/Users/zipee/Desktop'
 
 #(時間)[ユーザ名@ホスト名][場所][ブランチ名]
 source $HOME/.git-prompt.sh
