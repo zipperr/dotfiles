@@ -298,7 +298,7 @@ let g:lightline = {
  	\'colorscheme': 'wombat',
 	\ 'active': {
 		\'left':  [['mode', 'paste'], ['fugitive', 'readonly', 'filename', 'modified']],
-		\'right': [[ 'lineinfo', 'syntastic' ], ['percent'],[ 'fileformat', 'fileencoding', 'filetype']]},
+		\'right': [[ 'youbi', 'syntastic' ], ['lineinfo'],[ 'fileformat', 'fileencoding', 'filetype']]},
 	\'component': {'readonly': '%{&readonly?"RO":""}'},
 	\'component_function':{
 		\'fugitive':     'LightlineFugitive',
@@ -307,6 +307,7 @@ let g:lightline = {
 		\'filetype':     'LightlineFiletype',
 		\'fileencoding': 'LightlineFileencoding',
 		\'syntastic':    'SyntasticStatuslineFlag',
+		\'youbi':    'Youbi',
 		\'mode':         'LightlineMode'},
 	\}
 let g:lightline.component = {'lineinfo': '%3l/%L'}
@@ -339,6 +340,12 @@ function! LightlineMode()
 	return fname =~ 'NERD_tree' ? 'NERDTree' :
 		\&ft == 'unite' ? 'Unite' :
 		\winwidth(0) > 10 ? lightline#mode() : ''
+endfunction
+
+function! Youbi()
+	let weeks = [ "(日)", "(月)", "(火)", "(水)", "(木)", "(金)", "(土)" ]
+	let wday = strftime("%w")
+	return strftime('%Y/%m/%d').weeks[wday].strftime(' %H:%M')
 endfunction
 
 "##### Openbrowser #####
