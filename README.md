@@ -19,8 +19,11 @@ aptコマンドメモ:node.js python3 python perl ruby golang gcc cpp g++
 default-jre default-jdk php clisp mono lua groovy open-cobol
 
 #  Windows
-[Gitbash Install](http://gitforwindows.org)  
-setup.bat  
+[Cygwin Install](https://cygwin.com/install.html)  
+vim、git、zsh、curl、make、util-linux、wgetあたりをインストール  
+git clone https://github.com/zipperr/dotfiles  
+zsh
+desk
 
 ##  vimMEMO
 | コマンド     | 操作                                                        |  
