@@ -401,7 +401,6 @@ let g:unite_source_menu_menus.shortcut.command_candidates = [
 	\[ "[Git]GitDiff",              "Gdiff"],
 	\[ "[Git]GitBlame",             "Gblame"],
 	\[ "[vim]FileTree",             "NERDTreeToggle" ],
-	\[ "[vim]UniteColorScheme",     "Unite -silent -vertical -winwidth=30 colorscheme -auto-preview" ],
 	\[ "[vim]SyntaxOn",             "set syntax=on" ],
 	\[ "[vim]SyntaxOff",            "set syntax=off" ],
 	\[ "[vim]BGdark",               "set background=dark" ],

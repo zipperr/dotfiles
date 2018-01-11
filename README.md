@@ -26,6 +26,25 @@ vimrcのquickrunでproc部分をコメントアウト
 zsh  
 desk  
 
+# setup.sh(bat)実行後のファイル構成
+```
+~
+├── .vimrc
+├── .bashrc
+├── .zshrc
+├── .minttyrc
+├── .gitconfig
+├── .gitignore_global
+├── .git-prompt
+├── /.vim
+│   ├── /colors
+│   ├── /snippet
+│   ├── /templeates
+│   ├── /tmp
+│   └── /dein
+└── /dotfiles
+```
+
 ##  vimMEMO
 | コマンド     | 操作                                                        |  
 | :--------:   | :---------------------------------------------------------: |  
@@ -36,8 +55,6 @@ desk
 | ,,           | コメントアウト(トグル)                                      |  
 | \            | 文字列のリテラル(", ')や論理値(True, False)を変える         |  
 | F1           | ショートカットリストを開く(トグル)                          |  
-| F2           | ツイッターを開く                                            |  
-| F3           | ツイートする                                                |  
 | C-e          | ファイルツリーを開く(トグル)                                |  
 | C-w          | タブ間移動                                                  |  
 | C-q          | ソースコードを実行、出力                                    |  
