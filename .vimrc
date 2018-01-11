@@ -15,7 +15,6 @@ endif
 if dein#load_state(s:dein_dir)
 	call dein#begin(s:dein_dir)
 
-
 "##### PluginList #####
 call dein#add("Shougo/dein.vim")                        " プラグイン管理
 " Utility
@@ -36,9 +35,9 @@ call dein#add("AndrewRadev/switch.vim")                 " リテラル変換
 call dein#add("junegunn/vim-easy-align")                " 整形
 call dein#add("kannokanno/previm")                      " Markdownプレビュー
 call dein#add("vim-scripts/YankRing.vim")               " ヤンク履歴補完
+call dein#add("kchmck/vim-coffee-script")               " coffeescriptのシンタックスハイライト
 " Theme / Interface
 call dein#add("itchyny/lightline.vim")                  " ステータスライン
-call dein#add("ujihisa/unite-colorscheme")              " ColorSchemeプレビュー
 call dein#add("w0ng/vim-hybrid")                        " hybrid
 call dein#add("nanotech/jellybeans.vim")                " jellybeans
 call dein#add("jpo/vim-railscasts-theme")               " railscasts
@@ -73,7 +72,6 @@ set listchars=tab:>-,trail:-
 set nobackup
 set noswapfile
 set viminfo+=n~/.vim/tmp/viminfo.txt
-set noundofile
 set undodir=~/.vim/tmp
 set undofile
 "Move
@@ -395,11 +393,6 @@ let g:unite_source_menu_menus.shortcut.command_candidates = [
 	\[ "[web]GoogleDrive",          "OpenBrowser https://drive.google.com" ],
 	\[ "[web]Qiita",                "OpenBrowser https://qiita.com" ],
 	\[ "[web]Wiki",                 "OpenBrowser https://ja.wikipedia.org" ],
-	\[ "[web]Slack",                "OpenBrowser https://vim-jp.slack.com" ],
-	\[ "[web]Vim Awesome",          "OpenBrowser https://vimawesome.com" ],
-	\[ "[web]ColorSwat",            "OpenBrowser http://colorswat.ch/vim/" ],
-	\[ "[web]VimColors",            "OpenBrowser http://vimcolors.com" ],
-	\[ "[web]Xterm256 color",       "OpenBrowser http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim" ],
 	\[ "[Git]GitStatus",            "Gstatus"],
 	\[ "[Git]GitAdd",               "Gwrite"],
 	\[ "[Git]GitCommit",            "Gcommit"],

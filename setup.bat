@@ -11,4 +11,5 @@ XCOPY %HOMEPATH%"\dotfiles\.vim\templates" %HOMEPATH%"\.vim\templates" /D /S /R 
 XCOPY %HOMEPATH%"\dotfiles\.vim\dll\vimproc_cygwin.dll" %HOMEPATH%"\.vim\dein\repos\github.com\Shougo\vimproc.vim\lib\" /D /S /R /I /K /Y
 XCOPY %HOMEPATH%"\dotfiles\.vim\dll\vimproc_win32.dll" %HOMEPATH%"\.vim\dein\repos\github.com\Shougo\vimproc.vim\lib\" /D /S /R /I /K /Y
 XCOPY %HOMEPATH%"\dotfiles\.vim\dll\vimproc_win64.dll" %HOMEPATH%"\.vim\dein\repos\github.com\Shougo\vimproc.vim\lib\" /D /S /R /I /K /Y
+MKDIR %HOMEPATH%"\.vim\tmp
 exit 0
