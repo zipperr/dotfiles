@@ -15,6 +15,7 @@ endif
 if dein#load_state(s:dein_dir)
 	call dein#begin(s:dein_dir)
 
+
 "##### PluginList #####
 call dein#add("Shougo/dein.vim")                        " プラグイン管理
 " Utility
@@ -41,15 +42,10 @@ call dein#add("ujihisa/unite-colorscheme")              " ColorSchemeプレビ�
 call dein#add("w0ng/vim-hybrid")                        " hybrid
 call dein#add("nanotech/jellybeans.vim")                " jellybeans
 call dein#add("jpo/vim-railscasts-theme")               " railscasts
-call dein#add("AlessandroYorba/Sierra")                 " Sierra
 call dein#add("sickill/vim-monokai")                    " monokai
-call dein#add("jonathanfilip/vim-lucius")               " lucius
-call dein#add("AlessandroYorba/Despacio")               " despacio
 " Git Support
 call dein#add("airblade/vim-gitgutter")                 " 差分表示
 call dein#add("tpope/vim-fugitive")                     " Git操作
-" Twitter
-call dein#add("twitvim/twitvim")                        " Twitter
 call dein#end()
 call dein#save_state()
 endif
@@ -76,8 +72,10 @@ set listchars=tab:>-,trail:-
 "SwapFile
 set nobackup
 set noswapfile
-set viminfo+=n~/.vim/viminfo.txt
+set viminfo+=n~/.vim/tmp/viminfo.txt
 set noundofile
+set undodir=~/.vim/tmp
+set undofile
 "Move
 set virtualedit=onemore
 set wrap
@@ -361,7 +359,7 @@ nmap ,, gcc
 vmap ,, gcc
 
 "##### Yunkring #####
-let g:yankring_history_dir = '~/.vim'
+let g:yankring_history_dir = '~/.vim/tmp/'
 
 "##### Swith #####
 let g:switch_mapping = "\\"
@@ -374,23 +372,6 @@ let g:switch_custom_definitions =
 
 "##### Easy-Align #####
 vmap <Enter> <Plug>(EasyAlign)*
-
-"##### Twitvim #####
-let twitvim_count = 100
-let twitvim_token_file = expand('~/.vim/.twitvim.token')
-
-if has("mac")|let twitvim_browser_cmd = 'open'|endif
-nnoremap <F2> :40vnew<CR>:FriendsTwitter<CR><C-w>j:q<CR>
-nnoremap <F3> :PosttoTwitter<CR>
-nnoremap <Leader>t :RefreshTwitter<CR>
-autocmd vimrc FileType twitvim nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
-autocmd vimrc FileType twitvim inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
-autocmd vimrc FileType twitvim call s:twitvim_my_settings()
-function! s:twitvim_my_settings()
-	set nonumber
-	set wrap
-	set whichwrap=b,s,h,l,<,>,[,]
-endfunction
 
 "##### NERDTree #####
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
@@ -419,9 +400,6 @@ let g:unite_source_menu_menus.shortcut.command_candidates = [
 	\[ "[web]ColorSwat",            "OpenBrowser http://colorswat.ch/vim/" ],
 	\[ "[web]VimColors",            "OpenBrowser http://vimcolors.com" ],
 	\[ "[web]Xterm256 color",       "OpenBrowser http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim" ],
-	\[ "[Twitter]Timeline",         "FriendsTwitter"],
-	\[ "[Twitter]Tweet",            "PosttoTwitter"],
-	\[ "[Twitter]Setup",            "SetLoginTwitter"],
 	\[ "[Git]GitStatus",            "Gstatus"],
 	\[ "[Git]GitAdd",               "Gwrite"],
 	\[ "[Git]GitCommit",            "Gcommit"],
