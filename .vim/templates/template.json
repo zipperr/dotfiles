@@ -1,7 +1,7 @@
 {
-	"foo": [ 1, null ],
-	"baz": {
-		"foo": [ true, "bar" ],
-		"baz": "qux"
-	}
+    "foo": [ 1, null ],
+    "baz": {
+        "foo": [ true, "bar" ],
+        "baz": "qux"
+    }
 }

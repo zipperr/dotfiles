@@ -1,20 +1,20 @@
 snippet FizzBuzz
 abbr fizzbuzz
 options head
-	class ${1:#:filename}{
-		public static void main(String[] args){
-			for(int i = 1; i <= num; i++){
-				String out = "";
-				if(i % 3 ==  0){
-					out = "Fizz";
-				}
-				if(i % 5 == 0){
-					out += "Buzz";
-				}
-				else if(out.length() == 0){
-					out += i;
-				}
-				System.out.println(out);
-			}
-		}
-	}
+    class ${1:#:filename}{
+        public static void main(String[] args){
+            for(int i = 1; i <= num; i++){
+                String out = "";
+                if(i % 3 ==  0){
+                    out = "Fizz";
+                }
+                if(i % 5 == 0){
+                    out += "Buzz";
+                }
+                else if(out.length() == 0){
+                    out += i;
+                }
+                System.out.println(out);
+            }
+        }
+    }
