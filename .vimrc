@@ -2,18 +2,18 @@ set encoding=utf-8
 scriptencoding utf-8
 let g:vimproc#download_windows_dll = 1
 augroup vimrc
-	autocmd!
+    autocmd!
 augroup END
 
 "##### Plugin #####
 let s:dein_dir = expand('~/.vim/dein')
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 if &runtimepath !~# '/dein.vim'
-	if !isdirectory(s:dein_repo_dir)|execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir|endif
-	execute 'set runtimepath^=' . s:dein_repo_dir
+    if !isdirectory(s:dein_repo_dir)|execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir|endif
+    execute 'set runtimepath^=' . s:dein_repo_dir
 endif
 if dein#load_state(s:dein_dir)
-	call dein#begin(s:dein_dir)
+    call dein#begin(s:dein_dir)
 
 "##### PluginList #####
 call dein#add("Shougo/dein.vim")                        " プラグイン管理
@@ -35,6 +35,7 @@ call dein#add("AndrewRadev/switch.vim")                 " リテラル変換
 call dein#add("junegunn/vim-easy-align")                " 整形
 call dein#add("kannokanno/previm")                      " Markdownプレビュー
 call dein#add("vim-scripts/YankRing.vim")               " ヤンク履歴補完
+call dein#add('Yggdroot/indentLine')                    " インデント可視化
 call dein#add("kchmck/vim-coffee-script")               " coffeescriptのシンタックスハイライト
 " Theme / Interface
 call dein#add("itchyny/lightline.vim")                  " ステータスライン
@@ -57,6 +58,7 @@ set fileformats=unix,dos,mac
 set ambiwidth=double
 if v:version >= 704|set nofixeol|endif
 "Indent
+set expandtab
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
@@ -231,14 +233,14 @@ autocmd vimrc BufRead * if line("'\"") > 0 && line("'\"") <= line("$") | exe "no
 
 "PasteIndent
 if &term =~ "xterm"
-	let &t_SI .= "\e[?2004h"
-	let &t_EI .= "\e[?2004l"
-	let &pastetoggle = "\e[201~"
-	function XTermPasteBegin(ret)
-		set paste
-		return a:ret
-	endfunction
-	inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
+    let &t_SI .= "\e[?2004h"
+    let &t_EI .= "\e[?2004l"
+    let &pastetoggle = "\e[201~"
+    function XTermPasteBegin(ret)
+        set paste
+        return a:ret
+    endfunction
+    inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
 endif
 
 "##### Neocomplcache #####
@@ -260,8 +262,8 @@ let g:neocomplcache_enable_camel_case_completion    = 0
 let g:neocomplcache_enable_at_startuple_auto_select = 1
 let g:neocomplcache_enable_insert_char_pre          = 1
 let g:neocomplcache_text_mode_filetypes             = {
-	\'rst':1,'markdown':1,'gitrebase':1,'gitcommit':1,'vcs-commit':1,'text':1,'tex': 1,
-	\'plaintex': 1,'help':1,'vim' :1,'zsh':1,'python':1,
+    \'rst':1,'markdown':1,'gitrebase':1,'gitcommit':1,'vcs-commit':1,'text':1,'tex': 1,
+    \'plaintex': 1,'help':1,'vim' :1,'zsh':1,'python':1,
 \}
 
 "##### Neosnippet #####
@@ -281,9 +283,9 @@ let g:syntastic_check_on_wq              = 0
 
 "##### quickrun #####
 let g:quickrun_config = {"_" : {
-	\"runner" : "vimproc","runner/vimproc/updatetime" : 60,
-	\"outputter" : "error","outputter/error/success" : "buffer","outputter/error/error" : "buffer",
-	\"outputter/buffer/split" : ":vertical 35","outputter/buffer/close_on_empty" : 0
+    \"runner" : "vimproc","runner/vimproc/updatetime" : 60,
+    \"outputter" : "error","outputter/error/success" : "buffer","outputter/error/error" : "buffer",
+    \"outputter/buffer/split" : ":vertical 35","outputter/buffer/close_on_empty" : 0
 \}}
 set splitright
 nnoremap <C-q> :QuickRun<CR>
@@ -291,57 +293,57 @@ nnoremap <silent><ESC><ESC> :bw! \[quickrun\ output\]<CR>
 
 "##### lightline #####
 let g:lightline = {
- 	\'colorscheme': 'wombat',
-	\ 'active': {
-		\'left':  [['mode', 'paste'], ['fugitive', 'readonly', 'filename', 'modified']],
-		\'right': [[ 'youbi', 'syntastic' ], ['lineinfo'],[ 'fileformat', 'fileencoding', 'filetype']]},
-	\'component': {'readonly': '%{&readonly?"RO":""}'},
-	\'component_function':{
-		\'fugitive':     'LightlineFugitive',
-		\'filename':     'LightlineFilename',
-		\'fileformat':   'LightlineFileformat',
-		\'filetype':     'LightlineFiletype',
-		\'fileencoding': 'LightlineFileencoding',
-		\'syntastic':    'SyntasticStatuslineFlag',
-		\'youbi':    'Youbi',
-		\'mode':         'LightlineMode'},
-	\}
+    \'colorscheme': 'wombat',
+    \ 'active': {
+        \'left':  [['mode', 'paste'], ['fugitive', 'readonly', 'filename', 'modified']],
+        \'right': [[ 'youbi', 'syntastic' ], ['lineinfo'],[ 'fileformat', 'fileencoding', 'filetype']]},
+    \'component': {'readonly': '%{&readonly?"RO":""}'},
+    \'component_function':{
+        \'fugitive':     'LightlineFugitive',
+        \'filename':     'LightlineFilename',
+        \'fileformat':   'LightlineFileformat',
+        \'filetype':     'LightlineFiletype',
+        \'fileencoding': 'LightlineFileencoding',
+        \'syntastic':    'SyntasticStatuslineFlag',
+        \'youbi':    'Youbi',
+        \'mode':         'LightlineMode'},
+    \}
 let g:lightline.component = {'lineinfo': '%3l/%L'}
 
 function! LightlineFugitive()
-	return exists('*fugitive#head') ? fugitive#head() : ''
+    return exists('*fugitive#head') ? fugitive#head() : ''
 endfunction
 
 function! LightlineFilename()
 if winwidth(0) > 90|let fname = expand("%:p")|else|let fname = expand("%:t")|endif
 return fname =~ 'NERD_tree' ? '' :
-	\ &ft == 'unite' ? unite#get_status_string() :
-	\ ('' != fname ? fname : '[No Name]')
+    \ &ft == 'unite' ? unite#get_status_string() :
+    \ ('' != fname ? fname : '[No Name]')
 endfunction
 
 function! LightlineFileformat()
-	return winwidth(0) > 80 ? &fileformat : ''
+    return winwidth(0) > 80 ? &fileformat : ''
 endfunction
 
 function! LightlineFiletype()
-	return winwidth(0) > 80 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+    return winwidth(0) > 80 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
 endfunction
 
 function! LightlineFileencoding()
-	return winwidth(0) > 80 ? (&fenc !=# '' ? &fenc : &enc) : ''
+    return winwidth(0) > 80 ? (&fenc !=# '' ? &fenc : &enc) : ''
 endfunction
 
 function! LightlineMode()
-	let fname = expand('%:t')
-	return fname =~ 'NERD_tree' ? 'NERDTree' :
-		\&ft == 'unite' ? 'Unite' :
-		\winwidth(0) > 10 ? lightline#mode() : ''
+    let fname = expand('%:t')
+    return fname =~ 'NERD_tree' ? 'NERDTree' :
+        \&ft == 'unite' ? 'Unite' :
+        \winwidth(0) > 10 ? lightline#mode() : ''
 endfunction
 
 function! Youbi()
-	let weeks = [ "(日)", "(月)", "(火)", "(水)", "(木)", "(金)", "(土)" ]
-	let wday = strftime("%w")
-	return strftime('%Y/%m/%d').weeks[wday].strftime(' %H:%M')
+    let weeks = [ "(日)", "(月)", "(火)", "(水)", "(木)", "(金)", "(土)" ]
+    let wday = strftime("%w")
+    return strftime('%Y/%m/%d').weeks[wday].strftime(' %H:%M')
 endfunction
 
 "##### Openbrowser #####
@@ -362,11 +364,11 @@ let g:yankring_history_dir = '~/.vim/tmp/'
 "##### Swith #####
 let g:switch_mapping = "\\"
 let g:switch_custom_definitions =
-\	[
-\	{'\(\k\+\)': '''\1''',
-\	'''\(.\{-}\)''': '"\1"',
-\	'"\(.\{-}\)"': '\1',},
-\	]
+\   [
+\   {'\(\k\+\)': '''\1''',
+\   '''\(.\{-}\)''': '"\1"',
+\   '"\(.\{-}\)"': '\1',},
+\   ]
 
 "##### Easy-Align #####
 vmap <Enter> <Plug>(EasyAlign)*
@@ -387,58 +389,58 @@ nnoremap <F1> :Unite -toggle -silent -vertical -winwidth=30 -wrap menu:shortcut<
 let g:unite_source_menu_menus = get(g:,'unite_source_menu_menus',{})
 let g:unite_source_menu_menus.shortcut = {"description" : "shortcut",}
 let g:unite_source_menu_menus.shortcut.command_candidates = [
-	\[ "[web]Github",               "OpenBrowser https://github.com/zipperr" ],
-	\[ "[web]GitPage",              "OpenBrowser https://zipperr.github.io" ],
-	\[ "[web]Google",               "OpenBrowser https://www.google.co.jp" ],
-	\[ "[web]GoogleDrive",          "OpenBrowser https://drive.google.com" ],
-	\[ "[web]Qiita",                "OpenBrowser https://qiita.com" ],
-	\[ "[web]Wiki",                 "OpenBrowser https://ja.wikipedia.org" ],
-	\[ "[Git]GitStatus",            "Gstatus"],
-	\[ "[Git]GitAdd",               "Gwrite"],
-	\[ "[Git]GitCommit",            "Gcommit"],
-	\[ "[Git]GitPush",              "Git push origin master"],
-	\[ "[Git]GitAddCommitPush",     "Gwrite | Gcommit -am 'Update' | Git push origin master"],
-	\[ "[Git]GitDiff",              "Gdiff"],
-	\[ "[Git]GitBlame",             "Gblame"],
-	\[ "[vim]FileTree",             "NERDTreeToggle" ],
-	\[ "[vim]SyntaxOn",             "set syntax=on" ],
-	\[ "[vim]SyntaxOff",            "set syntax=off" ],
-	\[ "[vim]BGdark",               "set background=dark" ],
-	\[ "[vim]BGlight",              "set background=light" ],
-	\[ "[vim]BrightOn",             "BrightestEnable" ],
-	\[ "[vim]BrightOff",            "BrightestDisable" ],
-	\[ "[Markdown]PrevimOpen",      "PrevimOpen" ],
-	\[ "[Snippet]MakeSnippet",      "vsplit|NeoSnippetEdit" ],
-	\[ "[Snippet]DefaultSnippets",  "Unite -silent -vertical -winwidth=30 neosnippet/runtime" ],
-	\[ "[Snippet]OriginalSnippets", "Unite -silent -vertical -winwidth=30 neosnippet/user" ],
-	\[ "[File]Tab > Space",         "set expandtab|retab 4" ],
-	\[ "[File]Space > Tab",         "set noexpandtab | retab! 4" ],
-	\[ "[File]Open_UTF8",           "e ++enc=utf-8" ],
-	\[ "[File]Open_ShiftJis",       "e ++enc=cp932" ],
-	\[ "[File]Open_euc-jp",         "e ++enc=euc-jp" ],
-	\[ "[File]Open_iso-2022-jp",    "e ++enc=iso-2022-jp" ],
-	\[ "[File]Open_Dos",            "e ++ff=dos" ],
-	\[ "[File]Open_Mac",            "e ++ff=mac" ],
-	\[ "[File]Open_Unix",           "e ++ff=unix" ],
-	\[ "[File]Set_UTF8",            "set fenc=utf-8" ],
-	\[ "[File]Set_ShiftJis",        "set fenc=cp932" ],
-	\[ "[File]Set_euc-jp",          "set fenc=euc-jp" ],
-	\[ "[File]Set_iso-2022-jp",     "set fenc=iso-2022-jp" ],
-	\[ "[File]Set_Dos",             "set ff=dos" ],
-	\[ "[File]Set_Mac",             "set ff=mac" ],
-	\[ "[File]Set_Unix",            "set ff=unix" ],
-	\[ "[File]EOLdelete",           "set binary noeol|wq" ],
-	\[ "[Toggle]Number",            "set number!" ],
-	\[ "[Toggle]BreakIndent",       "set breakindent!" ],
-	\[ "[Toggle]CursorColumn",      "set cursorcolumn!" ],
-	\[ "[Toggle]CursorLine",        "set cursorline!" ],
-	\[ "[Toggle]HilightSeach",      "set hlsearch!" ],
-	\[ "[Toggle]ShowMatch",         "set showmatch!" ],
-	\[ "[Toggle]Wrap",              "set wrap!" ],
-	\[ "[Edit]vimrc",               "edit $MYVIMRC"],
-	\[ "[Edit]zshrc",               "edit ~/.zshrc"],
-	\[ "[Edit]bashrc",              "edit ~/.bashrc"],
-	\[ "[Edit]gitconf",             "edit ~/.gitconfig"],
+    \[ "[web]Github",               "OpenBrowser https://github.com/zipperr" ],
+    \[ "[web]GitPage",              "OpenBrowser https://zipperr.github.io" ],
+    \[ "[web]Google",               "OpenBrowser https://www.google.co.jp" ],
+    \[ "[web]GoogleDrive",          "OpenBrowser https://drive.google.com" ],
+    \[ "[web]Qiita",                "OpenBrowser https://qiita.com" ],
+    \[ "[web]Wiki",                 "OpenBrowser https://ja.wikipedia.org" ],
+    \[ "[Git]GitStatus",            "Gstatus"],
+    \[ "[Git]GitAdd",               "Gwrite"],
+    \[ "[Git]GitCommit",            "Gcommit"],
+    \[ "[Git]GitPush",              "Git push origin master"],
+    \[ "[Git]GitAddCommitPush",     "Gwrite | Gcommit -am 'Update' | Git push origin master"],
+    \[ "[Git]GitDiff",              "Gdiff"],
+    \[ "[Git]GitBlame",             "Gblame"],
+    \[ "[vim]FileTree",             "NERDTreeToggle" ],
+    \[ "[vim]SyntaxOn",             "set syntax=on" ],
+    \[ "[vim]SyntaxOff",            "set syntax=off" ],
+    \[ "[vim]BGdark",               "set background=dark" ],
+    \[ "[vim]BGlight",              "set background=light" ],
+    \[ "[vim]BrightOn",             "BrightestEnable" ],
+    \[ "[vim]BrightOff",            "BrightestDisable" ],
+    \[ "[Markdown]PrevimOpen",      "PrevimOpen" ],
+    \[ "[Snippet]MakeSnippet",      "vsplit|NeoSnippetEdit" ],
+    \[ "[Snippet]DefaultSnippets",  "Unite -silent -vertical -winwidth=30 neosnippet/runtime" ],
+    \[ "[Snippet]OriginalSnippets", "Unite -silent -vertical -winwidth=30 neosnippet/user" ],
+    \[ "[File]Tab > Space",         "set expandtab|retab 4" ],
+    \[ "[File]Space > Tab",         "set noexpandtab | retab! 4" ],
+    \[ "[File]Open_UTF8",           "e ++enc=utf-8" ],
+    \[ "[File]Open_ShiftJis",       "e ++enc=cp932" ],
+    \[ "[File]Open_euc-jp",         "e ++enc=euc-jp" ],
+    \[ "[File]Open_iso-2022-jp",    "e ++enc=iso-2022-jp" ],
+    \[ "[File]Open_Dos",            "e ++ff=dos" ],
+    \[ "[File]Open_Mac",            "e ++ff=mac" ],
+    \[ "[File]Open_Unix",           "e ++ff=unix" ],
+    \[ "[File]Set_UTF8",            "set fenc=utf-8" ],
+    \[ "[File]Set_ShiftJis",        "set fenc=cp932" ],
+    \[ "[File]Set_euc-jp",          "set fenc=euc-jp" ],
+    \[ "[File]Set_iso-2022-jp",     "set fenc=iso-2022-jp" ],
+    \[ "[File]Set_Dos",             "set ff=dos" ],
+    \[ "[File]Set_Mac",             "set ff=mac" ],
+    \[ "[File]Set_Unix",            "set ff=unix" ],
+    \[ "[File]EOLdelete",           "set binary noeol|wq" ],
+    \[ "[Toggle]Number",            "set number!" ],
+    \[ "[Toggle]BreakIndent",       "set breakindent!" ],
+    \[ "[Toggle]CursorColumn",      "set cursorcolumn!" ],
+    \[ "[Toggle]CursorLine",        "set cursorline!" ],
+    \[ "[Toggle]HilightSeach",      "set hlsearch!" ],
+    \[ "[Toggle]ShowMatch",         "set showmatch!" ],
+    \[ "[Toggle]Wrap",              "set wrap!" ],
+    \[ "[Edit]vimrc",               "edit $MYVIMRC"],
+    \[ "[Edit]zshrc",               "edit ~/.zshrc"],
+    \[ "[Edit]bashrc",              "edit ~/.bashrc"],
+    \[ "[Edit]gitconf",             "edit ~/.gitconfig"],
 \]
 autocmd vimrc FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 autocmd vimrc FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
