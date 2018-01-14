@@ -146,7 +146,7 @@ let g:mapleader = "\<Space>"
 noremap J 20j
 noremap K 20k
 noremap L $
-noremap H ^
+noremap H 0
 noremap j gj
 noremap k gk
 noremap gj j
