@@ -2,7 +2,7 @@ set encoding=utf-8
 scriptencoding utf-8
 let g:vimproc#download_windows_dll = 1
 augroup vimrc
-autocmd!
+    autocmd!
 augroup END
 
 "##### Plugin #####
@@ -30,18 +30,15 @@ call dein#add("Townk/vim-autoclose")                    " 閉じ括弧補完
 call dein#add("ujihisa/neco-look")                      " 英単語補完
 call dein#add("scrooloose/syntastic")                   " 構文チェック
 call dein#add("thinca/vim-quickrun")                    " コード実行
+call dein#add('Yggdroot/indentLine')                    " インデント可視化
 call dein#add("tomtom/tcomment_vim")                    " コメントアウトトグル
 call dein#add("AndrewRadev/switch.vim")                 " リテラル変換
 call dein#add("junegunn/vim-easy-align")                " 整形
 call dein#add("kannokanno/previm")                      " Markdownプレビュー
-call dein#add("vim-scripts/YankRing.vim")               " ヤンク履歴補完
-call dein#add('Yggdroot/indentLine')                    " インデント可視化
 call dein#add("kchmck/vim-coffee-script")               " coffeescriptのシンタックスハイライト
 " Theme / Interface
 call dein#add("itchyny/lightline.vim")                  " ステータスライン
 call dein#add("w0ng/vim-hybrid")                        " hybrid
-call dein#add("nanotech/jellybeans.vim")                " jellybeans
-call dein#add("jpo/vim-railscasts-theme")               " railscasts
 call dein#add("sickill/vim-monokai")                    " monokai
 " Git Support
 call dein#add("airblade/vim-gitgutter")                 " 差分表示
@@ -80,7 +77,6 @@ set viminfo+=n~/.vim/tmp/viminfo.txt
 set undodir=~/.vim/tmp
 set undofile
 "Move
-set virtualedit=onemore
 set wrap
 set backspace=indent,eol,start
 set whichwrap=b,s,h,l,<,>,[,],~
@@ -170,10 +166,10 @@ nnoremap r <C-r>
 nnoremap Y y$
 nnoremap p p`]
 nnoremap <Enter> o<ESC>
-nnoremap wj 5<C-W>+
-nnoremap wk 5<C-W>-
-nnoremap wh 5<C-W>>
-nnoremap wl 5<C-W><
+nnoremap wj 10<C-W>+
+nnoremap wk 10<C-W>-
+nnoremap wh 10<C-W>>
+nnoremap wl 10<C-W><
 nnoremap <Leader>s :<C-u>sp<CR>
 nnoremap <Leader>v :<C-u>vsp<CR>z+ :set scrollbind<CR><C-w><C-w>:set scrollbind<CR>
 nnoremap <Leader>b :,$s/検索文字/置換後文字/gc<Left><Left><Left>
@@ -323,13 +319,26 @@ for w in reverse(range(1, winnr('$')))
 endfor
 endfunction
 
+"C-v = v
+xnoremap <expr> I MultipleInsersion('I')
+xnoremap <expr> A MultipleInsersion('A')
+function! MultipleInsersion(next_key)
+  if mode() ==# 'v'
+    return "\<C-v>" . a:next_key
+  elseif mode() ==# 'V'
+    return "\<C-v>0o$" . a:next_key
+  else
+    return a:next_key
+  endif
+endfunction
+
 "##### Neocomplcache #####
 let g:neocomplcache_enable_at_startup               = 1
-let g:NeoComplCache_SmartCase                       = 1
+let g:neocomplcache_smartcase                       = 1
 let g:neocomplcache_enable_underbar_completion      = 1
-let g:NeoComplCache_PreviousKeywordCompletion       = 1
-let g:NeoComplCache_EnableCamelCaseCompletion       = 1
-let g:NeoComplCache_EnableUnderbarCompletion        = 1
+let g:neocomplcache_previouskeywordcompletion       = 1
+let g:neocomplcache_enablecamelcasecompletion       = 1
+let g:neocomplcache_enableunderbarcompletion        = 1
 let g:neocomplcache_max_list                        = 10
 let g:neocomplcache_auto_completion_start_length    = 1
 let g:neocomplcache_manual_completion_start_length  = 0
@@ -338,7 +347,7 @@ let g:neocomplcache_min_syntax_length               = 3
 let g:neocomplcache_enable_auto_select              = 0
 let g:neocomplcache_enable_ignore_case              = 1
 let g:neocomplcache_enable_smart_case               = 1
-let g:neocomplcache_enable_camel_case_completion    = 0
+let g:neocomplcache_enable_camel_case_completion    = 1
 let g:neocomplcache_enable_at_startuple_auto_select = 1
 let g:neocomplcache_enable_insert_char_pre          = 1
 let g:neocomplcache_text_mode_filetypes             = {
@@ -451,9 +460,6 @@ nnoremap <Leader>p :PrevimOpen<CR>
 "#####Commentout #####
 nmap ,, gcc
 vmap ,, gcc
-
-"##### Yunkring #####
-let g:yankring_history_dir = '~/.vim/tmp/'
 
 "##### Swith #####
 let g:switch_mapping = "\\"
