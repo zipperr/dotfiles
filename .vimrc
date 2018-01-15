@@ -2,18 +2,18 @@ set encoding=utf-8
 scriptencoding utf-8
 let g:vimproc#download_windows_dll = 1
 augroup vimrc
-    autocmd!
+autocmd!
 augroup END
 
 "##### Plugin #####
 let s:dein_dir = expand('~/.vim/dein')
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 if &runtimepath !~# '/dein.vim'
-    if !isdirectory(s:dein_repo_dir)|execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir|endif
-    execute 'set runtimepath^=' . s:dein_repo_dir
-endif
-if dein#load_state(s:dein_dir)
-    call dein#begin(s:dein_dir)
+if !isdirectory(s:dein_repo_dir)|execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir|endif
+execute 'set runtimepath^=' . s:dein_repo_dir
+    endif
+    if dein#load_state(s:dein_dir)
+call dein#begin(s:dein_dir)
 
 "##### PluginList #####
 call dein#add("Shougo/dein.vim")                        " プラグイン管理
@@ -29,7 +29,7 @@ call dein#add("Shougo/neosnippet-snippets")             " デフォルトスニ�
 call dein#add("Townk/vim-autoclose")                    " 閉じ括弧補完
 call dein#add("ujihisa/neco-look")                      " 英単語補完
 call dein#add("scrooloose/syntastic")                   " 構文チェック
-call dein#add("thinca/vim-quickrun")                    " コードを実行
+call dein#add("thinca/vim-quickrun")                    " コード実行
 call dein#add("tomtom/tcomment_vim")                    " コメントアウトトグル
 call dein#add("AndrewRadev/switch.vim")                 " リテラル変換
 call dein#add("junegunn/vim-easy-align")                " 整形
@@ -46,6 +46,8 @@ call dein#add("sickill/vim-monokai")                    " monokai
 " Git Support
 call dein#add("airblade/vim-gitgutter")                 " 差分表示
 call dein#add("tpope/vim-fugitive")                     " Git操作
+" Twitter
+call dein#add("twitvim/twitvim")                        " Twitter
 call dein#end()
 call dein#save_state()
 endif
@@ -59,6 +61,7 @@ set ambiwidth=double
 if v:version >= 704|set nofixeol|endif
 "Indent
 set expandtab
+set smarttab
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
@@ -243,6 +246,83 @@ if &term =~ "xterm"
     inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
 endif
 
+" DeleteFile
+function! DeleteMe(force)
+    if a:force || !&modified
+    let filename = expand('%')
+    bdelete!
+call delete(filename)
+    else
+    echomsg 'File modified'
+    endif
+    endfunction
+command! -bang -nargs=0 DeleteMe call DeleteMe(<bang>0)
+
+" RenamemeFile
+function! RenameMe(newFileName)
+  let currentFileName = expand('%')
+  execute 'saveas ' . a:newFileName
+  call delete(currentFileName)
+endfunction
+command! -nargs=1 RenameMe call RenameMe(<q-args>)
+
+" Removeunwantedspaces
+function! RemoveUnwantedSpaces()
+    let pos_save = getpos('.')
+    try
+    keeppatterns %s/\s\+$//e
+    while 1
+    let lastline = getline('$')
+    if lastline =~ '^\s*$' && line('$') != 1
+    $delete
+    else
+        break
+      endif
+    endwhile
+  finally
+    call setpos('.', pos_save)
+  endtry
+endfunction
+command! -nargs=0 RemoveUnwantedSpaces call RemoveUnwantedSpaces()
+
+" Copyfullpath
+command! CopyFullPath let @+ = expand('%:p')
+
+" CloseAnyOther
+nnoremap <ESC><ESC> :<C-u>call CloseAnyOther()<CR>
+function! CloseAnyOther()
+let w = 0
+let w:current_win = 1
+for w in reverse(range(1, winnr('$')))
+    let ft = getwinvar(w, '&filetype')
+        let bt = getwinvar(w, '&buftype')
+        let bufnr = winbufnr(w)
+        let name = bufname(bufnr)
+        if (ft ==# 'quickrun' && name ==# 'QuickRunOut')
+        \||(ft ==# 'NERDTree')
+        \||(ft ==# 'unite')
+        \||(ft ==# 'vimfiler')
+        \||(ft ==# 'vimshell')
+        \||(ft ==# 'twitvim')
+        \||(name =~# '^fugitive:')
+        \||(bt ==# 'help')
+        \||(bt ==# 'quickfix')
+        \||(bt ==# 'nofile')
+        execute w . 'wincmd w'
+        q
+        break
+        endif
+        endfor
+        for w in range(1, winnr('$'))
+            let was_current = getwinvar(w, 'current_win')
+            if was_current
+                execute w . 'wincmd w'
+                unlet w:current_win
+                break
+            endif
+endfor
+endfunction
+
 "##### Neocomplcache #####
 let g:neocomplcache_enable_at_startup               = 1
 let g:NeoComplCache_SmartCase                       = 1
@@ -289,7 +369,6 @@ let g:quickrun_config = {"_" : {
 \}}
 set splitright
 nnoremap <C-q> :QuickRun<CR>
-nnoremap <silent><ESC><ESC> :bw! \[quickrun\ output\]<CR>
 
 "##### lightline #####
 let g:lightline = {
@@ -350,6 +429,21 @@ endfunction
 let g:openbrowser_use_vimproc=0
 nnoremap <Leader><Leader> :OpenBrowserSearch<Space>
 
+"##### Twitvim #####
+let twitvim_count = 100
+let twitvim_token_file = expand('~/.vim/tmp/.twitvim.token')
+
+if has("mac")|let twitvim_browser_cmd = 'open'|endif
+nnoremap <F2> :40vnew<CR>:FriendsTwitter<CR><C-w>j:q<CR>
+nnoremap <F3> :PosttoTwitter<CR>
+nnoremap <Leader>t :RefreshTwitter<CR>
+autocmd vimrc FileType twitvim call s:twitvim_my_settings()
+function! s:twitvim_my_settings()
+    set nonumber
+    set wrap
+    set whichwrap=b,s,h,l,<,>,[,]
+endfunction
+
 "##### Previm #####
 autocmd vimrc BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
 nnoremap <Leader>p :PrevimOpen<CR>
@@ -379,8 +473,6 @@ let NERDTreeShowHidden = 1
 let g:NERDTreeWinSize  = 30
 let g:NERDTreeWinPos   = "left"
 let g:NERDTreeIgnore   = ['\.clean$', '\.swp$', '\.bak$', '\~$', '\.DS_Store']
-autocmd vimrc FileType NERDTree nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
-autocmd vimrc FileType NERDTree inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 autocmd vimrc vimenter * if !argc() | NERDTree | endif
 autocmd vimrc bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
@@ -395,6 +487,9 @@ let g:unite_source_menu_menus.shortcut.command_candidates = [
     \[ "[web]GoogleDrive",          "OpenBrowser https://drive.google.com" ],
     \[ "[web]Qiita",                "OpenBrowser https://qiita.com" ],
     \[ "[web]Wiki",                 "OpenBrowser https://ja.wikipedia.org" ],
+    \[ "[Twitter]Timeline",         "FriendsTwitter"],
+    \[ "[Twitter]Tweet",            "PosttoTwitter"],
+    \[ "[Twitter]Setup",            "SetLoginTwitter"],
     \[ "[Git]GitStatus",            "Gstatus"],
     \[ "[Git]GitAdd",               "Gwrite"],
     \[ "[Git]GitCommit",            "Gcommit"],
@@ -441,7 +536,5 @@ let g:unite_source_menu_menus.shortcut.command_candidates = [
     \[ "[Edit]zshrc",               "edit ~/.zshrc"],
     \[ "[Edit]bashrc",              "edit ~/.bashrc"],
     \[ "[Edit]gitconf",             "edit ~/.gitconfig"],
-\]
-autocmd vimrc FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
-autocmd vimrc FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
+    \]
 autocmd vimrc FileType unite set noequalalways
