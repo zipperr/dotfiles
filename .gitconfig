@@ -22,6 +22,7 @@
     re  = reset HEAD
     cm  = commit
     cmm = "!f(){ git commit -m $1;};f"
+    cmre = reset --soft HEAD^
     pu  = push
     b   = branch
     fe  = fetch
