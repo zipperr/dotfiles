@@ -18,10 +18,10 @@
 [alias]
     st  = status
     a   = add
-    aa  = add .
+    ad  = add .
     re  = reset HEAD
     cm  = commit
-    cmm = commit -m
+    cmm = "!f(){ git commit -m $1;};f"
     pu  = push
     b   = branch
     fe  = fetch
