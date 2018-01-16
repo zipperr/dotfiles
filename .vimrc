@@ -159,20 +159,21 @@ nnoremap * *zz
 nnoremap # #zz
 nnoremap g* g*zz
 nnoremap g# g#zz
-nnoremap <Leader>w :w<CR>
-nnoremap <Leader>q :q<CR>
 nnoremap <C-w> <C-w><C-w>
 nnoremap r <C-r>
 nnoremap Y y$
 nnoremap p p`]
-nnoremap <Enter> o<ESC>
+" nnoremap <Enter> o<ESC>
 nnoremap wj 10<C-W>+
 nnoremap wk 10<C-W>-
 nnoremap wh 10<C-W>>
 nnoremap wl 10<C-W><
+nnoremap <Leader>w :w<CR>
+nnoremap <Leader>q :q<CR>
 nnoremap <Leader>s :<C-u>sp<CR>
-nnoremap <Leader>v :<C-u>vsp<CR>z+ :set scrollbind<CR><C-w><C-w>:set scrollbind<CR>
-nnoremap <Leader>b :,$s/検索文字/置換後文字/gc<Left><Left><Left>
+nnoremap <Leader>v :<C-u>vsp<CR>
+nnoremap <Leader>/ :,$s/検索文字/置換後文字/gc<Left><Left><Left>
+nnoremap <Leader>g :vim  **/* <Left><Left><Left><Left><Left><Left>
 "InsertMode
 inoremap jj <ESC>
 inoremap , ,<space>
@@ -475,12 +476,25 @@ vmap <Enter> <Plug>(EasyAlign)*
 
 "##### NERDTree #####
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
-let NERDTreeShowHidden = 1
+let g:NERDTreeQuitOnOpen = 1
+let g:NERDTreeDirArrows  = 0
+let g:NERDTreeShowHidden = 1
 let g:NERDTreeWinSize  = 30
 let g:NERDTreeWinPos   = "left"
 let g:NERDTreeIgnore   = ['\.clean$', '\.swp$', '\.bak$', '\~$', '\.DS_Store']
 autocmd vimrc vimenter * if !argc() | NERDTree | endif
 autocmd vimrc bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+"##### Netrw ######
+" let g:netrw_banner = 0
+" let g:netrw_liststyle = 3
+" let g:netrw_browse_split = 4
+" let g:netrw_altv = 1
+" let g:netrw_winsize = 12
+" augroup ProjectDrawer
+"   autocmd!
+"   autocmd VimEnter * :Vexplore
+" augroup END
 
 "##### UniteMenu #####
 nnoremap <F1> :Unite -toggle -silent -vertical -winwidth=30 -wrap menu:shortcut<CR>
@@ -530,6 +544,8 @@ let g:unite_source_menu_menus.shortcut.command_candidates = [
     \[ "[File]Set_Dos",             "set ff=dos" ],
     \[ "[File]Set_Mac",             "set ff=mac" ],
     \[ "[File]Set_Unix",            "set ff=unix" ],
+    \[ "[File]^M delete",           "%s///g" ],
+    \[ "[File]^M replace",          "%s//\r/g" ],
     \[ "[File]EOLdelete",           "set binary noeol|wq" ],
     \[ "[Toggle]Number",            "set number!" ],
     \[ "[Toggle]BreakIndent",       "set breakindent!" ],
