@@ -16,17 +16,21 @@
     status = auto
     branch = auto
 [alias]
-    st = status
-    a = add
-    aa = add -A
-    cm = commit
+    st  = status
+    a   = add
+    aa  = add .
+    re  = reset HEAD
+    cm  = commit
     cmm = commit -m
-    pu = push
-    b = branch
-    co = checkout
-    cb = checkout -b
-    sm = submodule
-    di = diff
+    pu  = push
+    b   = branch
+    fe  = fetch
+    co  = checkout
+    coo = checkout .
+    cob = "!f(){ git checkout -b $1 origin/$1;};f"
+    sm  = submodule
+    di  = diff
+    bl  = "!f(){ git blame $1;};f"
 [filter "lfs"]
     smudge = git-lfs smudge -- %f
     process = git-lfs filter-process

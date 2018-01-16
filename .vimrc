@@ -163,7 +163,7 @@ nnoremap <C-w> <C-w><C-w>
 nnoremap r <C-r>
 nnoremap Y y$
 nnoremap p p`]
-" nnoremap <Enter> o<ESC>
+nnoremap O o<Esc>
 nnoremap wj 10<C-W>+
 nnoremap wk 10<C-W>-
 nnoremap wh 10<C-W>>
@@ -298,8 +298,6 @@ for w in reverse(range(1, winnr('$')))
         if (ft ==# 'quickrun' && name ==# 'QuickRunOut')
         \||(ft ==# 'NERDTree')
         \||(ft ==# 'unite')
-        \||(ft ==# 'vimfiler')
-        \||(ft ==# 'vimshell')
         \||(ft ==# 'twitvim')
         \||(name =~# '^fugitive:')
         \||(bt ==# 'help')
