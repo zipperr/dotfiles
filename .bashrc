@@ -50,7 +50,7 @@ alias desk='cd /cygdrive/c/Users/taniuchi/Desktop'
 
 #grep
 function grep() {
-    find ./ -type f -print | xargs grep -n $1 /dev/null
+    find ./ -type f -print | xargs grep -n --color=auto $1 /dev/null
 }
 
 #(時間)[ユーザ名@ホスト名][場所][ブランチ名]

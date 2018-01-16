@@ -491,7 +491,7 @@ autocmd vimrc bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTr
 " let g:netrw_winsize = 12
 " augroup ProjectDrawer
 "   autocmd!
-"   autocmd VimEnter * :Vexplore
+"   autocmd vimrc VimEnter * :Vexplore
 " augroup END
 
 "##### UniteMenu #####

@@ -56,7 +56,7 @@ alias pre="bundle exec rake preview"
 alias desk='cd /cygdrive/c/Users/taniuchi/Desktop'
 
 #grep
-function grep() {find ./ -type f -print | xargs grep -n $1 /dev/null}
+function grep() {find ./ -type f -print | xargs grep -n --color=auto $1 /dev/null}
 
 ##### Completion ####
 autoload -U compinit
