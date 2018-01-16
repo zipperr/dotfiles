@@ -1,6 +1,7 @@
 #!/bin/bash
 ln -s $HOME/dotfiles/.vimrc $HOME/.vimrc
 ln -s $HOME/dotfiles/.bashrc $HOME/.bashrc
+ln -s $HOME/dotfiles/.bash_completion $HOME/.bash_completion
 ln -s $HOME/dotfiles/.zshrc $HOME/.zshrc
 ln -s $HOME/dotfiles/.git-prompt.sh $HOME/.git-prompt.sh
 ln -s $HOME/dotfiles/.gitconfig $HOME/.gitconfig

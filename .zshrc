@@ -55,6 +55,9 @@ alias dep="bundle exec rake gen_deploy"
 alias pre="bundle exec rake preview"
 alias desk='cd /cygdrive/c/Users/taniuchi/Desktop'
 
+#grep
+function grep() {find ./ -type f -print | xargs grep -n $1 /dev/null}
+
 ##### Completion ####
 autoload -U compinit
 compinit -u
@@ -105,12 +108,7 @@ if [ $UID = 0 ]; then
     SAVEHIST=0
 fi
 
-##### L-prompt #####
-SPROMPT="もしかして: %r  (y, n, a, e)-> "
-PROMPT="%{${fg[cyan]}%}(%T)[%n@%m]%{%{$reset_color%}%}"   #(時間)[ユーザ名@ホスト名]
-
-##### R-prompt #####
-RPROMPT="%{${fg[cyan]}%}[%~]%{${reset_color}%}"
+# PROMPT
 autoload -Uz vcs_info
 setopt prompt_subst
 zstyle ':vcs_info:git:*' check-for-changes true
@@ -119,7 +117,9 @@ zstyle ':vcs_info:git:*' unstagedstr "%F{red}+"
 zstyle ':vcs_info:*' formats "%F{green}%c%u[%b]%f"
 zstyle ':vcs_info:*' actionformats '[%b|%a]'
 precmd () { vcs_info }
-RPROMPT=$RPROMPT'${vcs_info_msg_0_}'
+SPROMPT="もしかして: %r  (y, n, a, e)-> "
+PROMPT='%{${fg[cyan]}%}(%T)[%n@%m][%~]%{%{$reset_color%}%}${vcs_info_msg_0_}
+$ '
 
 ##### cdしたらlsする #####
 chpwd() {
