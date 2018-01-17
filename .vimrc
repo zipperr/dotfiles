@@ -242,7 +242,7 @@ autocmd vimrc BufRead * if line("'\"") > 0 && line("'\"") <= line("$") | exe "no
 " QuickMemo
 let weeks = [ "(日)", "(月)", "(火)", "(水)", "(木)", "(金)", "(土)" ]
 let wday = strftime("%w")
-nnoremap <C-m> :vs ~/Desktop/memo.txt<CR>o<C-r>=strftime('%Y/%m/%d').weeks[wday].strftime(' %H:%M')<CR><ESC>:w<CR>
+nnoremap <C-m> :vs ~/Desktop/memo.txt<CR>Go<C-r>=strftime('%Y/%m/%d').weeks[wday].strftime(' %H:%M')<CR><ESC>:w<CR>
 
 "PasteIndent
 if &term =~ "xterm"
@@ -466,6 +466,7 @@ function! s:twitvim_my_settings()
 endfunction
 
 "##### Previm #####
+let g:previm_open_cmd = ''
 autocmd vimrc BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
 nnoremap <Leader>p :PrevimOpen<CR>
 
