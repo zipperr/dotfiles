@@ -19,8 +19,7 @@
     st   = status
     a    = add
     ad   = add -A
-    re   = reset HEAD
-    # cm  = commit
+    adre = reset HEAD
     cm   = "!f(){ git commit -m $1;};f"
     cmre = reset --soft HEAD^
     pu   = push
