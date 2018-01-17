@@ -1,4 +1,279 @@
-n
+set encoding=utf-8
+scriptencoding utf-8
+let g:vimproc#download_windows_dll = 1
+augroup vimrc
+    autocmd!
+augroup END
+
+"##### Plugin #####
+let s:dein_dir = expand('~/.vim/dein')
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+if &runtimepath !~# '/dein.vim'
+if !isdirectory(s:dein_repo_dir)|execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir|endif
+execute 'set runtimepath^=' . s:dein_repo_dir
+    endif
+    if dein#load_state(s:dein_dir)
+call dein#begin(s:dein_dir)
+
+"##### PluginList #####
+call dein#add("Shougo/dein.vim")                        " プラグイン管理
+" Utility
+call dein#add("Shougo/vimproc.vim", {'build' : 'make'}) " 非同期処理
+call dein#add("Shougo/unite.vim")                       " ランチャー
+call dein#add('Shougo/neomru.vim')                      " 最近開いたファイルリスト
+call dein#add("scrooloose/nerdtree")                    " ファイルツリー
+call dein#add("tyru/open-browser.vim")                  " ブラウザを開く
+" Programming Support
+call dein#add("Shougo/neocomplcache.vim")               " 補完
+call dein#add("Shougo/neosnippet.vim")                  " スニペット
+call dein#add("Shougo/neosnippet-snippets")             " デフォルトスニペット
+call dein#add("Townk/vim-autoclose")                    " 閉じ括弧補完
+call dein#add("ujihisa/neco-look")                      " 英単語補完
+call dein#add("scrooloose/syntastic")                   " 構文チェック
+call dein#add("thinca/vim-quickrun")                    " コード実行
+call dein#add('Yggdroot/indentLine')                    " インデント可視化
+call dein#add("tomtom/tcomment_vim")                    " コメントアウトトグル
+call dein#add("AndrewRadev/switch.vim")                 " リテラル変換
+call dein#add("junegunn/vim-easy-align")                " 整形
+call dein#add("kannokanno/previm")                      " Markdownプレビュー
+call dein#add("kchmck/vim-coffee-script")               " coffeescriptのシンタックスハイライト
+" Theme / Interface
+call dein#add("itchyny/lightline.vim")                  " ステータスライン
+call dein#add("w0ng/vim-hybrid")                        " hybrid
+call dein#add("sickill/vim-monokai")                    " monokai
+" Git Support
+call dein#add("airblade/vim-gitgutter")                 " 差分表示
+call dein#add("tpope/vim-fugitive")                     " Git操作
+" Twitter
+call dein#add("twitvim/twitvim")                        " Twitter
+call dein#end()
+call dein#save_state()
+endif
+if dein#check_install()|call dein#install()|endif
+
+"##### BasicSetting #####
+"Encoding
+set fileencodings=utf-8,cp932,euc-jp,sjis
+set fileformats=unix,dos,mac
+set ambiwidth=double
+if v:version >= 704|set nofixeol|endif
+"Indent
+set expandtab
+set smarttab
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set autoindent
+set smartindent
+if v:version >= 800|set breakindent|endif
+"Runtimepath
+set runtimepath+=$HOME/.vim,$HOME/.vim/after
+"Invisibles
+set list
+set listchars=tab:>-,trail:-
+"SwapFile
+set nobackup
+set noswapfile
+set viminfo+=n~/.vim/tmp/viminfo.txt
+set undodir=~/.vim/tmp
+set undofile
+"Move
+set wrap
+set backspace=indent,eol,start
+set whichwrap=b,s,h,l,<,>,[,],~
+set mouse=a
+set scrolloff=5
+"Clipboard
+set clipboard=unnamed,autoselect
+nnoremap x "_x
+nnoremap dd "_dd
+vnoremap pp "0p
+"Matchpair
+set showmatch
+set matchtime=0
+set matchpairs+=<:>,「:」,『:』,（:）,【:】,《:》,〈:〉,［:］,‘:’,“:”
+"Search
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+set wrapscan
+set gdefault
+"Color
+syntax on
+set t_Co=256
+autocmd vimrc ColorScheme * highlight Normal ctermbg=none
+autocmd vimrc ColorScheme * highlight LineNr ctermbg=none
+colorscheme monokai
+" hybrid, jellybeans, railscasts, Sierra, monokai, lucius, despacio
+set background=dark
+hi Comment      gui=NONE      font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE      term=NONE      ctermfg=59   ctermbg=NONE
+hi LineNr       gui=NONE      font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE      term=NONE      ctermfg=59   ctermbg=NONE
+" hi CursorLineNR gui=NONE      font=NONE guifg=#000000 guibg=#dadada guisp=NONE cterm=NONE   term=NONE      ctermfg=16   ctermbg=253
+" hi SpecialKey   gui=NONE      font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE      term=NONE      ctermfg=59   ctermbg=NONE
+" hi IncSearch    gui=underline font=NONE guifg=NONE    guibg=NONE guisp=NONE cterm=underline term=underline ctermfg=NONE ctermbg=NONE
+" hi Search       gui=underline font=NONE guifg=NONE    guibg=NONE guisp=NONE cterm=underline term=underline ctermfg=NONE ctermbg=NONE
+" hi MatchParen   gui=underline font=NONE guifg=NONE    guibg=NONE guisp=NONE cterm=underline term=underline ctermfg=NONE ctermbg=NONE
+"StatusLine
+set laststatus=2
+" set statusline=%F%h\%m%r%w%=\[%{&ff},%{&fenc!=''?&fenc:&enc},%Y][%3l/%3L][%{strftime('%k:%M')}]
+" au vimrc VimEnter    * hi StatusLine gui=NONE guifg=Black guibg=DarkCyan  cterm=NONE ctermfg=Black ctermbg=DarkCyan
+" au vimrc InsertEnter * hi StatusLine gui=NONE guifg=Black guibg=DarkGreen cterm=NONE ctermfg=Black ctermbg=DarkGreen
+" au vimrc InsertLeave * hi StatusLine gui=NONE guifg=Black guibg=DarkCyan  cterm=NONE ctermfg=Black ctermbg=DarkCyan
+"CursorLine
+set cursorline
+hi clear CursorLine
+set number
+"CommandLine
+set showcmd
+set wildmenu
+set history=100
+set infercase
+"Other
+set vb t_vb=
+set nrformats=alpha,octal,hex
+set lazyredraw
+set ttyfast
+set updatetime=10
+set shellslash
+set pumheight=5
+set helplang=ja,en
+if v:version >= 704 | set cm=blowfish2 | elseif | set cm=zip | endif
+
+"##### KeyMapping #####
+let g:mapleader = "\<Space>"
+"NormalMode+VisualMode
+noremap J 20j
+noremap K 20k
+noremap L $
+noremap H 0
+noremap j gj
+noremap k gk
+noremap gj j
+noremap gk k
+noremap <Tab> %
+"NormalMode
+nnoremap <C-L> :noh<C-L><CR>
+nnoremap n nzz
+nnoremap N Nzz
+nnoremap * *zz
+nnoremap # #zz
+nnoremap g* g*zz
+nnoremap g# g#zz
+nnoremap <C-w> <C-w><C-w>
+nnoremap r <C-r>
+nnoremap Y y$
+nnoremap p p`]
+nnoremap O o<Esc>
+nnoremap wj 10<C-W>+
+nnoremap wk 10<C-W>-
+nnoremap wh 10<C-W>>
+nnoremap wl 10<C-W><
+nnoremap <Leader>w :w<CR>
+nnoremap <Leader>q :q<CR>
+nnoremap <Leader>s :<C-u>sp<CR>
+nnoremap <Leader>v :<C-u>vsp<CR>
+nnoremap <Leader>/ :,$s/検索文字/置換後文字/gc<Left><Left><Left>
+nnoremap <Leader>g :vim  **/* <Left><Left><Left><Left><Left><Left>
+"InsertMode
+inoremap jj <ESC>
+inoremap , ,<space>
+"VisualMode
+vnoremap v $h
+vnoremap * "vy/\V<C-r>=substitute(escape(@v, '\/'), "\n", '\\n','g')<CR><CR>
+vnoremap / "xy:,$s/<C-R>=escape(@x, '\\/.*$^~[]')<CR>//gc<Left><Left><Left>
+vnoremap [ "zdi[<C-R>z]<ESC>
+vnoremap ( "zdi(<C-R>z)<ESC>
+vnoremap { "zdi{<C-R>z}<ESC>
+vnoremap < "zdi<<C-R>z><ESC>
+vnoremap " "zdi"<C-R>z"<ESC>
+vnoremap ' "zdi'<C-R>z'<ESC>
+vnoremap ` "zdi`<C-R>z`<ESC>
+"CommandlineMode
+cmap w!! w !sudo tee % > /dev/null
+cmap wb set binary noeol<CR> :wq<CR>
+cnoremap <expr> /  getcmdtype() == '/' ? '\/' : '/'
+cnoremap <expr> ?  getcmdtype() == '?' ? '\?' : '?'
+"ArrowKeys
+noremap  <Up>    <Nop>
+noremap  <Down>  <Nop>
+noremap  <Left>  <Nop>
+noremap  <Right> <Nop>
+inoremap <Up>    <Nop>
+inoremap <Down>  <Nop>
+inoremap <Left>  <Nop>
+inoremap <Right> <Nop>
+
+"##### Template #####
+let s:load_templates_dir='~/.vim/templates'
+let s:load_templates_command="0read ".s:load_templates_dir
+autocmd vimrc BufNewFile *.c                        execute s:load_templates_command."/template.c"
+autocmd vimrc BufNewFile *.coffee                   execute s:load_templates_command."/template.coffee"
+autocmd vimrc BufNewFile *.cpp                      execute s:load_templates_command."/template.cpp"
+autocmd vimrc BufNewFile *.cs                       execute s:load_templates_command."/template.cs"
+autocmd vimrc BufNewFile *.css                      execute s:load_templates_command."/template.css"
+autocmd vimrc BufNewFile *.d                        execute s:load_templates_command."/template.d"
+autocmd vimrc BufNewFile Dockerfile                 execute s:load_templates_command."/template.Dockerfile"
+autocmd vimrc BufNewFile *.erl                      execute s:load_templates_command."/template.erl"
+autocmd vimrc BufNewFile *.f90                      execute s:load_templates_command."/template.f90"
+autocmd vimrc BufNewFile *.go                       execute s:load_templates_command."/template.go"
+autocmd vimrc BufNewFile *.html                     execute s:load_templates_command."/template.html"
+autocmd vimrc BufNewFile *.java                     execute s:load_templates_command."/template.java"
+autocmd vimrc BufNewFile *.js                       execute s:load_templates_command."/template.js"
+autocmd vimrc BufNewFile *.php                      execute s:load_templates_command."/template.php"
+autocmd vimrc BufNewFile *.pl                       execute s:load_templates_command."/template.pl"
+autocmd vimrc BufNewFile *.py                       execute s:load_templates_command."/template.py"
+autocmd vimrc BufNewFile *.rb                       execute s:load_templates_command."/template.rb"
+autocmd vimrc BufNewFile *.sh                       execute s:load_templates_command."/template.sh"
+autocmd vimrc BufNewFile *.xml                      execute s:load_templates_command."/template.xml"
+autocmd vimrc BufNewFile *.{md,mdwn,mkd,mkdn,mark*} execute s:load_templates_command."/template.md"
+autocmd vimrc BufNewFile *.bat                      execute s:load_templates_command."/template.bat"
+autocmd vimrc BufNewFile *.json                     execute s:load_templates_command."/template.json"
+autocmd vimrc BufNewFile *.yml                      execute s:load_templates_command."/template.yml"
+
+"##### Script #####
+"HiglightZenkakuSpase
+hi ZenkakuSpace term=underline cterm=reverse ctermfg=Red gui=reverse guifg=Red
+autocmd vimrc BufNewFile,BufRead * match ZenkakuSpace /　/
+
+"CursorRetune
+autocmd vimrc BufRead * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
+
+" QuickMemo
+let weeks = [ "(日)", "(月)", "(火)", "(水)", "(木)", "(金)", "(土)" ]
+let wday = strftime("%w")
+nnoremap <C-m> :vs ~/Desktop/memo.txt<CR>o<C-r>=strftime('%Y/%m/%d').weeks[wday].strftime(' %H:%M')<CR><ESC>:w<CR>
+
+"PasteIndent
+if &term =~ "xterm"
+    let &t_SI .= "\e[?2004h"
+    let &t_EI .= "\e[?2004l"
+    let &pastetoggle = "\e[201~"
+    function XTermPasteBegin(ret)
+        set paste
+        return a:ret
+    endfunction
+    inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
+endif
+
+" DeleteFile
+function! DeleteMe(force)
+    if a:force || !&modified
+    let filename = expand('%')
+    bdelete!
+call delete(filename)
+    else
+    echomsg 'File modified'
+    endif
+    endfunction
+command! -bang -nargs=0 DeleteMe call DeleteMe(<bang>0)
+
+" RenamemeFile
+function! RenameMe(newFileName)
+  let currentFileName = expand('%')
+  execute 'saveas ' . a:newFileName
+  call delete(currentFileName)
+endfunction
 command! -nargs=1 RenameMe call RenameMe(<q-args>)
 
 " Removeunwantedspaces
