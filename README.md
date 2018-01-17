@@ -63,6 +63,7 @@ desk
 | C-q          | ソースコードを実行、出力                                    |  
 | ESC ESC      | バッファを閉じる(ショートカットリスト、ツリー、実行結果等)  |  
 | Space Space  | ブラウザーを開いてGoogle検索                                |  
+| Space p      | 開いているMarkdownファイルのプレビューをブラウザで開く      |  
 | visual-Enter | 選択範囲のテキストを整形する                                |  
 
 
