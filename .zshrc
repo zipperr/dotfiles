@@ -48,6 +48,8 @@ alias g='git'
 alias server='python -m SimpleHTTPServer'
 alias server3='python -m http.server'
 alias w3="w3m -B"
+alias ip='ipconfig /all'
+
 #blog
 function pos() {command bundle exec rake new_post["$1"]}
 alias wri="vi ./source/_posts/"
