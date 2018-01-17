@@ -18,11 +18,11 @@
 [alias]
     st   = status
     a    = add
-    ad   = add .
+    ad   = add -A
     re   = reset HEAD
     # cm  = commit
     cm   = "!f(){ git commit -m $1;};f"
-    cmre = reset    --soft HEAD^
+    cmre = reset --soft HEAD^
     pu   = push
     b    = branch
     fe   = fetch
