@@ -175,12 +175,6 @@ nnoremap <Leader>q :q<CR>
 nnoremap <Leader>s :<C-u>sp<CR>
 nnoremap <Leader>v :<C-u>vsp<CR>
 nnoremap <Leader>/ :,$s/検索文字/置換後文字/gc<Left><Left><Left>
-
-autocmd QuickFixCmdPost *grep* cwindow
-set grepprg=grep\ -rnIH\ --exclude-dir=.svn\ --exclude-dir=.git\ -r
-nnoremap <expr> <Leader>g ':vimgrep /\<' . expand('<cword>') . '\>/j **/*.' . expand('%:e')
-nnoremap <expr> <Leader>G ':sil grep! ' . expand('<cword>') . ' *'
-
 "InsertMode
 inoremap <C-j> <Down>
 inoremap <C-k> <Up>
@@ -216,6 +210,11 @@ inoremap <Up>    <Nop>
 inoremap <Down>  <Nop>
 inoremap <Left>  <Nop>
 inoremap <Right> <Nop>
+"grep
+autocmd QuickFixCmdPost *grep* cwindow
+set grepprg=grep\ -rnIH\ --exclude-dir=.svn\ --exclude-dir=.git\ -r
+nnoremap <expr> <Leader>g ':vimgrep /\<' . expand('<cword>') . '\>/j **/*.' . expand('%:e')
+nnoremap <expr> <Leader>G ':sil grep! ' . expand('<cword>') . ' *'
 
 "##### Template #####
 let s:load_templates_dir='~/.vim/templates'
@@ -366,7 +365,7 @@ let g:unite_source_menu_menus.shortcut = {"description" : "shortcut",}
 let g:unite_source_menu_menus.shortcut.command_candidates = [
     \[ "[Git]GitStatus",            "Gstatus"],
     \[ "[Git]GitCommit",            "Gcommit"],
-    \[ "[Git]GitPush",              "git push"],
+    \[ "[Git]GitPush",              "Git push"],
     \[ "[Git]GitDiff",              "Gdiff"],
     \[ "[Git]GitBlame",             "Gblame"],
     \[ "[Git]GitAddCommitPush",     "Gwrite | Gcommit -am 'Update' | Git push"],
