@@ -531,6 +531,7 @@ nnoremap <F1> :Unite -toggle -silent -vertical -winwidth=30 -wrap menu:shortcut<
 let g:unite_source_menu_menus = get(g:,'unite_source_menu_menus',{})
 let g:unite_source_menu_menus.shortcut = {"description" : "shortcut",}
 let g:unite_source_menu_menus.shortcut.command_candidates = [
+    \[ "[web]localhost:8000",       "OpenBrowser http://localhost:8000" ],
     \[ "[web]Github",               "OpenBrowser https://github.com/zipperr" ],
     \[ "[web]GitPage",              "OpenBrowser https://zipperr.github.io" ],
     \[ "[web]Google",               "OpenBrowser https://www.google.co.jp" ],
@@ -589,3 +590,8 @@ let g:unite_source_menu_menus.shortcut.command_candidates = [
     \[ "[Edit]bashrc",              "edit ~/.bashrc"],
     \[ "[Edit]gitconf",             "edit ~/.gitconfig"],
     \]
+
+" VimShell -toggle -popup
+" VimShellPop -toggle 
+let g:vimshell_prompt = "$ "
+let g:vimshell_user_prompt = 'getcwd()'
