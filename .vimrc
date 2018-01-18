@@ -175,7 +175,12 @@ nnoremap <Leader>q :q<CR>
 nnoremap <Leader>s :<C-u>sp<CR>
 nnoremap <Leader>v :<C-u>vsp<CR>
 nnoremap <Leader>/ :,$s/検索文字/置換後文字/gc<Left><Left><Left>
-nnoremap <Leader>g :vim  **/* <Left><Left><Left><Left><Left><Left>
+
+autocmd QuickFixCmdPost *grep* cwindow
+set grepprg=grep\ -rnIH\ --exclude-dir=.svn\ --exclude-dir=.git\ -r
+nnoremap <expr> <Leader>g ':vimgrep /\<' . expand('<cword>') . '\>/j **/*.' . expand('%:e')
+nnoremap <expr> <Leader>G ':sil grep! ' . expand('<cword>') . ' *'
+
 "InsertMode
 inoremap <C-j> <Down>
 inoremap <C-k> <Up>
@@ -195,11 +200,11 @@ vnoremap " "zdi"<C-R>z"<ESC>
 vnoremap ' "zdi'<C-R>z'<ESC>
 vnoremap ` "zdi`<C-R>z`<ESC>
 "CommandlineMode
-cmap w!! w !sudo tee % > /dev/null
-cmap wb set binary noeol<CR> :wq<CR>
-cmap W wa
-cmap Q qa
-cmap WQ wqa
+cmap w!!<CR> w !sudo tee % > /dev/null<CR>
+cmap wb<CR> set binary noeol<CR>:wq<CR>
+cmap W<CR> wa<CR>
+cmap Q<CR> qa<CR>
+cmap WQ<CR> wqa<CR>
 cnoremap <expr> /  getcmdtype() == '/' ? '\/' : '/'
 cnoremap <expr> ?  getcmdtype() == '?' ? '\?' : '?'
 "ArrowKeys
@@ -361,7 +366,7 @@ let g:unite_source_menu_menus.shortcut = {"description" : "shortcut",}
 let g:unite_source_menu_menus.shortcut.command_candidates = [
     \[ "[Git]GitStatus",            "Gstatus"],
     \[ "[Git]GitCommit",            "Gcommit"],
-    \[ "[Git]GitPush",              "Git push"],
+    \[ "[Git]GitPush",              "sil git push"],
     \[ "[Git]GitDiff",              "Gdiff"],
     \[ "[Git]GitBlame",             "Gblame"],
     \[ "[Git]GitAddCommitPush",     "Gwrite | Gcommit -am 'Update' | Git push"],
