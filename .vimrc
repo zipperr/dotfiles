@@ -19,6 +19,7 @@ call dein#begin(s:dein_dir)
 call dein#add("Shougo/dein.vim")                        " プラグイン管理
 " Utility
 call dein#add("Shougo/vimproc.vim", {'build' : 'make'}) " 非同期処理
+call dein#add('Shougo/vimshell.vim')
 call dein#add("Shougo/unite.vim")                       " ランチャー
 call dein#add('Shougo/neomru.vim')                      " 最近開いたファイルリスト
 call dein#add("scrooloose/nerdtree")                    " ファイルツリー
@@ -176,6 +177,10 @@ nnoremap <Leader>v :<C-u>vsp<CR>
 nnoremap <Leader>/ :,$s/検索文字/置換後文字/gc<Left><Left><Left>
 nnoremap <Leader>g :vim  **/* <Left><Left><Left><Left><Left><Left>
 "InsertMode
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-h> <Left>
+inoremap <C-l> <Right>
 inoremap jj <ESC>
 inoremap , ,<space>
 "VisualMode
@@ -192,6 +197,9 @@ vnoremap ` "zdi`<C-R>z`<ESC>
 "CommandlineMode
 cmap w!! w !sudo tee % > /dev/null
 cmap wb set binary noeol<CR> :wq<CR>
+cmap W wa
+cmap Q qa
+cmap WQ wqa
 cnoremap <expr> /  getcmdtype() == '/' ? '\/' : '/'
 cnoremap <expr> ?  getcmdtype() == '?' ? '\?' : '?'
 "ArrowKeys
@@ -466,7 +474,6 @@ function! s:twitvim_my_settings()
 endfunction
 
 "##### Previm #####
-let g:previm_open_cmd = ''
 autocmd vimrc BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
 nnoremap <Leader>p :PrevimOpen<CR>
 
