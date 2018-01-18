@@ -577,3 +577,4 @@ vmap ,, gcc
 
 "##### Easy-Align #####
 vmap <Enter> <Plug>(EasyAlign)*
+
