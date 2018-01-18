@@ -212,9 +212,9 @@ inoremap <Left>  <Nop>
 inoremap <Right> <Nop>
 "grep
 autocmd QuickFixCmdPost *grep* cwindow
-set grepprg=grep\ -rnIH\ --exclude-dir=.svn\ --exclude-dir=.git\ -r
+set grepprg=grep\ -rnIH\ --exclude-dir=.svn\ --exclude-dir=.git
 nnoremap <expr> <Leader>g ':vimgrep /\<' . expand('<cword>') . '\>/j **/*.' . expand('%:e')
-nnoremap <expr> <Leader>G ':sil grep! ' . expand('<cword>') . ' *'
+nnoremap <expr> <Leader>G ':sil grep! ' . expand('<cword>') . ' .* *'
 
 "##### Template #####
 let s:load_templates_dir='~/.vim/templates'
