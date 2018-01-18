@@ -65,7 +65,7 @@ desk
 | Space Space  | ブラウザーを開いてGoogle検索                                |  
 | Space p      | 開いているMarkdownファイルのプレビューをブラウザで開く      |  
 | visual-Enter | 選択範囲のテキストを整形する                                |  
-
+| :Gstatus     | -でaddファイルを選択、Cでコミット                           |  
 
 ___  
 Synstatic(構文チェック), Quickrun(コード実行)は、  

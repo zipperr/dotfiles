@@ -358,12 +358,12 @@ let g:unite_source_menu_menus = get(g:,'unite_source_menu_menus',{})
 let g:unite_source_menu_menus.shortcut = {"description" : "shortcut",}
 let g:unite_source_menu_menus.shortcut.command_candidates = [
     \[ "[Git]GitStatus",            "Gstatus"],
-    \[ "[Git]GitAdd",               "Gwrite"],
     \[ "[Git]GitCommit",            "Gcommit"],
-    \[ "[Git]GitPush",              "Git push origin master"],
-    \[ "[Git]GitAddCommitPush",     "Gwrite | Gcommit -am 'Update' | Git push origin master"],
+    \[ "[Git]GitPush",              "Git push"],
     \[ "[Git]GitDiff",              "Gdiff"],
     \[ "[Git]GitBlame",             "Gblame"],
+    \[ "[Git]GitAddCommitPush",     "Gwrite | Gcommit -am 'Update' | Git push origin master"],
+    \[ "[Git]GitAdd",               "Gwrite"],
     \[ "[web]localhost:8000",       "OpenBrowser http://localhost:8000" ],
     \[ "[web]Github",               "OpenBrowser https://github.com/zipperr" ],
     \[ "[web]GitPage",              "OpenBrowser https://zipperr.github.io" ],
