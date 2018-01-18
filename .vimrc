@@ -364,7 +364,7 @@ let g:unite_source_menu_menus.shortcut.command_candidates = [
     \[ "[Git]GitPush",              "Git push"],
     \[ "[Git]GitDiff",              "Gdiff"],
     \[ "[Git]GitBlame",             "Gblame"],
-    \[ "[Git]GitAddCommitPush",     "Gwrite | Gcommit -am 'Update' | Git push origin master"],
+    \[ "[Git]GitAddCommitPush",     "Gwrite | Gcommit -am 'Update' | Git push"],
     \[ "[Git]GitAdd",               "Gwrite"],
     \[ "[web]localhost:8000",       "OpenBrowser http://localhost:8000" ],
     \[ "[web]Github",               "OpenBrowser https://github.com/zipperr" ],
