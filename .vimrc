@@ -366,7 +366,7 @@ let g:unite_source_menu_menus.shortcut = {"description" : "shortcut",}
 let g:unite_source_menu_menus.shortcut.command_candidates = [
     \[ "[Git]GitStatus",            "Gstatus"],
     \[ "[Git]GitCommit",            "Gcommit"],
-    \[ "[Git]GitPush",              "sil git push"],
+    \[ "[Git]GitPush",              "git push"],
     \[ "[Git]GitDiff",              "Gdiff"],
     \[ "[Git]GitBlame",             "Gblame"],
     \[ "[Git]GitAddCommitPush",     "Gwrite | Gcommit -am 'Update' | Git push"],
