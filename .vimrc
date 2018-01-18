@@ -247,11 +247,6 @@ autocmd vimrc BufNewFile,BufRead * match ZenkakuSpace /　/
 "CursorRetune
 autocmd vimrc BufRead * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
 
-" QuickMemo
-let weeks = [ "(日)", "(月)", "(火)", "(水)", "(木)", "(金)", "(土)" ]
-let wday = strftime("%w")
-nnoremap <C-m> :vs ~/Desktop/memo.txt<CR>Go<C-r>=strftime('%Y/%m/%d').weeks[wday].strftime(' %H:%M')<CR><ESC>:w<CR>
-
 "C-v = v
 xnoremap <expr> I MultipleInsersion('I')
 xnoremap <expr> A MultipleInsersion('A')
@@ -577,4 +572,3 @@ vmap ,, gcc
 
 "##### Easy-Align #####
 vmap <Enter> <Plug>(EasyAlign)*
-
