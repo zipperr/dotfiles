@@ -1,6 +1,6 @@
 set encoding=utf-8
 scriptencoding utf-8
-filetype plugin indent on
+filetype on
 let g:vimproc#download_windows_dll = 1
 augroup vimrc
     autocmd!
@@ -231,7 +231,7 @@ autocmd vimrc FileType java              setlocal omnifunc=javacomplete#Complete
 autocmd vimrc FileType css               setlocal omnifunc=csscomplete#CompleteCSS
 autocmd vimrc FileType html,markdown     setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd vimrc FileType javascript,coffee setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd vimrc FileType python            setlocal omnifunc=pythoncomplete#Complete
+autocmd vimrc FileType python            setlocal omnifunc=pythoncomplete#Complete completeopt-=preview
 autocmd vimrc FileType xml               setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd vimrc Filetype php               setlocal omnifunc=phpcomplete#CompletePHP
 autocmd vimrc FileType c                 setlocal omnifunc=ccomplete#Complete
