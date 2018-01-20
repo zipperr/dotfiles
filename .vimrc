@@ -20,7 +20,7 @@ call dein#add("Shougo/dein.vim")                        " プラグイン管理
 " Utility
 call dein#add("Shougo/vimproc.vim", {'build' : 'make'}) " 非同期処理
 call dein#add("Shougo/unite.vim")                       " ランチャー
-call dein#add('Shougo/neomru.vim')                      " 最近開いたファイルリスト
+call dein#add("Shougo/neomru.vim")                      " 最近開いたファイルリスト
 call dein#add("scrooloose/nerdtree")                    " ファイルツリー
 call dein#add("tyru/open-browser.vim")                  " ブラウザを開く
 " Programming Support
@@ -31,7 +31,8 @@ call dein#add("Townk/vim-autoclose")                    " 閉じ括弧補完
 call dein#add("ujihisa/neco-look")                      " 英単語補完
 call dein#add("scrooloose/syntastic")                   " 構文チェック
 call dein#add("thinca/vim-quickrun")                    " コード実行
-call dein#add('Yggdroot/indentLine')                    " インデント可視化
+call dein#add("Yggdroot/indentLine")                    " インデント可視化
+call dein#add("elzr/vim-json")                          " json用インデント
 call dein#add("tomtom/tcomment_vim")                    " コメントアウトトグル
 call dein#add("AndrewRadev/switch.vim")                 " リテラル変換
 call dein#add("junegunn/vim-easy-align")                " 整形
@@ -79,6 +80,7 @@ set undodir=~/.vim/tmp
 set undofile
 "Move
 set wrap
+set display=lastline
 set backspace=indent,eol,start
 set whichwrap=b,s,h,l,<,>,[,],~
 set mouse=a
@@ -115,6 +117,9 @@ hi LineNr       gui=NONE      font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cter
 " hi IncSearch    gui=underline font=NONE guifg=NONE    guibg=NONE guisp=NONE cterm=underline term=underline ctermfg=NONE ctermbg=NONE
 " hi Search       gui=underline font=NONE guifg=NONE    guibg=NONE guisp=NONE cterm=underline term=underline ctermfg=NONE ctermbg=NONE
 " hi MatchParen   gui=underline font=NONE guifg=NONE    guibg=NONE guisp=NONE cterm=underline term=underline ctermfg=NONE ctermbg=NONE
+" hi Pmenu ctermbg=8
+" hi PmenuSel ctermbg=1
+" hi PmenuSbar ctermbg=0
 "StatusLine
 set laststatus=2
 " set statusline=%F%h\%m%r%w%=\[%{&ff},%{&fenc!=''?&fenc:&enc},%Y][%3l/%3L][%{strftime('%k:%M')}]
@@ -447,8 +452,20 @@ let g:neocomplcache_enable_at_startuple_auto_select = 1
 let g:neocomplcache_enable_insert_char_pre          = 1
 let g:neocomplcache_text_mode_filetypes             = {
     \'rst':1,'markdown':1,'gitrebase':1,'gitcommit':1,'vcs-commit':1,'text':1,'tex': 1,
-    \'plaintex': 1,'help':1,'vim' :1,'zsh':1,'python':1,
+    \'plaintex': 1,'help':1,'vim' :1,'zsh':1,
 \}
+autocmd vimrc FileType java          setlocal omnifunc=javacomplete#Complete
+autocmd vimrc FileType css           setlocal omnifunc=csscomplete#CompleteCSS
+autocmd vimrc FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd vimrc FileType javascript    setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd vimrc FileType python        setlocal omnifunc=pythoncomplete#Complete
+autocmd vimrc FileType xml           setlocal omnifunc=xmlcomplete#CompleteTags
+autocmd vimrc Filetype php           setlocal omnifunc=phpcomplete#CompletePHP
+autocmd vimrc FileType c             setlocal omnifunc=ccomplete#Complete
+autocmd vimrc FileType ruby          setlocal omnifunc=rubycomplete#Complete
+if !exists('g:neocomplcache_force_omni_patterns')
+    let g:neocomplcache_force_omni_patterns = {}
+endif
 
 "##### Neosnippet #####
 imap <expr><CR> neosnippet#expandable() ? "<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "<C-y>" : "<CR>"
@@ -571,6 +588,7 @@ endfunction
 "##### Openbrowser #####
 let g:openbrowser_use_vimproc=0
 nnoremap <Leader><Leader> :OpenBrowserSearch<Space>
+nnoremap <Leader>h :OpenBrowser<Space>http://localhost:8000<CR>
 
 "##### Previm #####
 autocmd vimrc BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
@@ -582,3 +600,6 @@ vmap ,, gcc
 
 "##### Easy-Align #####
 vmap <Enter> <Plug>(EasyAlign)*
+
+"##### vim-json #####
+let g:vim_json_syntax_conceal = 0
