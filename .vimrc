@@ -1,5 +1,6 @@
 set encoding=utf-8
 scriptencoding utf-8
+filetype plugin indent on
 let g:vimproc#download_windows_dll = 1
 augroup vimrc
     autocmd!
@@ -52,7 +53,7 @@ call dein#save_state()
 endif
 if dein#check_install()|call dein#install()|endif
 
-"##### BasicSetting #####
+"##### BasicOption #####
 "Encoding
 set fileencodings=utf-8,cp932,euc-jp,sjis
 set fileformats=unix,dos,mac
@@ -224,6 +225,24 @@ autocmd vimrc QuickFixCmdPost *grep* cwindow
 set grepprg=grep\ -rnIH\ --exclude-dir=.svn\ --exclude-dir=.git
 nnoremap <expr> <Leader>g ':vimgrep /\<' . expand('<cword>') . '\>/j **/*.' . expand('%:e')
 nnoremap <expr> <Leader>G ':sil grep! ' . expand('<cword>') . ' .* *'
+
+"##### Omnicompletion #####
+autocmd vimrc FileType java              setlocal omnifunc=javacomplete#Complete
+autocmd vimrc FileType css               setlocal omnifunc=csscomplete#CompleteCSS
+autocmd vimrc FileType html,markdown     setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd vimrc FileType javascript,coffee setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd vimrc FileType python            setlocal omnifunc=pythoncomplete#Complete
+autocmd vimrc FileType xml               setlocal omnifunc=xmlcomplete#CompleteTags
+autocmd vimrc Filetype php               setlocal omnifunc=phpcomplete#CompletePHP
+autocmd vimrc FileType c                 setlocal omnifunc=ccomplete#Complete
+autocmd vimrc FileType ruby              setlocal omnifunc=rubycomplete#Complete
+autocmd vimrc FileType go                setlocal omnifunc=gocomplete#Complete
+if has("autocmd") && exists("+omnifunc")
+    autocmd vimrc Filetype *
+    \if &omnifunc == "" |
+        \setlocal omnifunc=syntaxcomplete#Complete |
+    \endif
+endif
 
 "##### Template #####
 let s:load_templates_dir='~/.vim/templates'
@@ -452,17 +471,7 @@ let g:neocomplcache_enable_at_startuple_auto_select = 1
 let g:neocomplcache_enable_insert_char_pre          = 1
 let g:neocomplcache_text_mode_filetypes             = {
     \'rst':1,'markdown':1,'gitrebase':1,'gitcommit':1,'vcs-commit':1,'text':1,'tex': 1,
-    \'plaintex': 1,'help':1,'vim' :1,'zsh':1,
-\}
-autocmd vimrc FileType java          setlocal omnifunc=javacomplete#Complete
-autocmd vimrc FileType css           setlocal omnifunc=csscomplete#CompleteCSS
-autocmd vimrc FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd vimrc FileType javascript    setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd vimrc FileType python        setlocal omnifunc=pythoncomplete#Complete
-autocmd vimrc FileType xml           setlocal omnifunc=xmlcomplete#CompleteTags
-autocmd vimrc Filetype php           setlocal omnifunc=phpcomplete#CompletePHP
-autocmd vimrc FileType c             setlocal omnifunc=ccomplete#Complete
-autocmd vimrc FileType ruby          setlocal omnifunc=rubycomplete#Complete
+    \'plaintex': 1,'help':1,'vim' :1,'zsh':1,}
 if !exists('g:neocomplcache_force_omni_patterns')
     let g:neocomplcache_force_omni_patterns = {}
 endif
