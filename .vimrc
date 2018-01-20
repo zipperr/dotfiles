@@ -453,33 +453,28 @@ let g:unite_source_menu_menus.shortcut.command_candidates = [
 
 "##### Neocomplcache #####
 let g:neocomplcache_enable_at_startup               = 1
-let g:neocomplcache_smartcase                       = 1
-let g:neocomplcache_enable_underbar_completion      = 1
-let g:neocomplcache_previouskeywordcompletion       = 1
-let g:neocomplcache_enablecamelcasecompletion       = 1
-let g:neocomplcache_enableunderbarcompletion        = 1
 let g:neocomplcache_max_list                        = 10
 let g:neocomplcache_auto_completion_start_length    = 1
-let g:neocomplcache_manual_completion_start_length  = 0
+let g:neocomplcache_manual_completion_start_length  = 1
 let g:neocomplcache_min_keyword_length              = 2
-let g:neocomplcache_min_syntax_length               = 3
-let g:neocomplcache_enable_auto_select              = 0
+let g:neocomplcache_min_syntax_length               = 2
 let g:neocomplcache_enable_ignore_case              = 1
 let g:neocomplcache_enable_smart_case               = 1
 let g:neocomplcache_enable_camel_case_completion    = 1
-let g:neocomplcache_enable_at_startuple_auto_select = 1
+let g:neocomplcache_enable_underbar_completion      = 1
 let g:neocomplcache_enable_insert_char_pre          = 1
 let g:neocomplcache_text_mode_filetypes             = {
     \'rst':1,'markdown':1,'gitrebase':1,'gitcommit':1,'vcs-commit':1,'text':1,'tex': 1,
     \'plaintex': 1,'help':1,'vim' :1,'zsh':1,}
-if !exists('g:neocomplcache_force_omni_patterns')
-    let g:neocomplcache_force_omni_patterns = {}
+if !exists('g:neocomplcache_omni_patterns')
+    let g:neocomplcache_omni_patterns = {}
 endif
 
 "##### Neosnippet #####
-imap <expr><CR> neosnippet#expandable() ? "<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "<C-y>" : "<CR>"
-imap <expr><TAB> pumvisible() ? "<C-n>" : neosnippet#jumpable() ? "<Plug>(neosnippet_expand_or_jump)" : "<TAB>"
+imap <expr><TAB> pumvisible() ? "\<Down>" : neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+imap <expr><S-TAB> pumvisible() ? "\<Up>" : "<S-TAB>"
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+imap <expr><CR> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? neocomplcache#close_popup() : "\<CR>"
 let g:neosnippet#snippets_directory='~/.vim/snippets/'
 
 "##### syntastic #####
