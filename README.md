@@ -25,6 +25,8 @@ git clone https://github.com/zipperr/dotfiles
 vimrcのquickrunでproc部分をコメントアウト  
 zsh  
 desk  
+  
+[Gitbash Install](http://gitforwindows.org)  
 
 # setup.sh(bat)実行後のファイル構成
 ```
