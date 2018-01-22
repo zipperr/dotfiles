@@ -43,7 +43,7 @@ call dein#add("kchmck/vim-coffee-script")               " coffeescriptのシン�
 call dein#add("itchyny/lightline.vim")                  " ステータスライン
 call dein#add("w0ng/vim-hybrid")                        " hybrid
 call dein#add('morhetz/gruvbox')                        " gruvbox
-call dein#add('altercation/vim-colors-solarized')
+call dein#add('sickill/vim-monokai')                    " monokai
 " Git Support
 call dein#add("airblade/vim-gitgutter")                 " 差分表示
 call dein#add("tpope/vim-fugitive")                     " Git操作
@@ -109,8 +109,8 @@ syntax on
 set t_Co=256
 autocmd vimrc ColorScheme * highlight Normal ctermbg=none
 autocmd vimrc ColorScheme * highlight LineNr ctermbg=none
-colorscheme gruvbox
-" hybrid, jellybeans, railscasts, Sierra, monokai, lucius, despacio, gruvbox
+colorscheme monokai
+" hybrid, railscasts, monokai, gruvbox
 set background=dark
 hi Comment      gui=NONE      font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE      term=NONE      ctermfg=59   ctermbg=NONE
 hi LineNr       gui=NONE      font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE      term=NONE      ctermfg=59   ctermbg=NONE
@@ -608,5 +608,3 @@ vmap <Enter> <Plug>(EasyAlign)*
 
 "##### vim-json #####
 let g:vim_json_syntax_conceal = 0
-
-" set termguicolors

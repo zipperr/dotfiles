@@ -1,7 +1,7 @@
 BoldAsFont=-1
 Font=Ricty Diminished
 FontHeight=11
-FontSmoothing=partial
+FontSmoothing=full
 CursorType=block
 CursorColour=255,0,255
 Term=xterm-256color
