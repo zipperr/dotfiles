@@ -42,7 +42,8 @@ call dein#add("kchmck/vim-coffee-script")               " coffeescriptのシン�
 " Theme / Interface
 call dein#add("itchyny/lightline.vim")                  " ステータスライン
 call dein#add("w0ng/vim-hybrid")                        " hybrid
-call dein#add("sickill/vim-monokai")                    " monokai
+call dein#add('morhetz/gruvbox')                        " gruvbox
+call dein#add('altercation/vim-colors-solarized')
 " Git Support
 call dein#add("airblade/vim-gitgutter")                 " 差分表示
 call dein#add("tpope/vim-fugitive")                     " Git操作
@@ -108,8 +109,8 @@ syntax on
 set t_Co=256
 autocmd vimrc ColorScheme * highlight Normal ctermbg=none
 autocmd vimrc ColorScheme * highlight LineNr ctermbg=none
-colorscheme monokai
-" hybrid, jellybeans, railscasts, Sierra, monokai, lucius, despacio
+colorscheme gruvbox
+" hybrid, jellybeans, railscasts, Sierra, monokai, lucius, despacio, gruvbox
 set background=dark
 hi Comment      gui=NONE      font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE      term=NONE      ctermfg=59   ctermbg=NONE
 hi LineNr       gui=NONE      font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE      term=NONE      ctermfg=59   ctermbg=NONE
@@ -471,10 +472,10 @@ if !exists('g:neocomplcache_omni_patterns')
 endif
 
 "##### Neosnippet #####
-imap <expr><TAB> pumvisible() ? "\<Down>" : neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-imap <expr><S-TAB> pumvisible() ? "\<Up>" : "<S-TAB>"
+imap <expr><CR> neosnippet#expandable() ? "<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "<C-y>" : "<CR>"
+imap <expr><TAB> pumvisible() ? "<C-n>" : neosnippet#jumpable() ? "<Plug>(neosnippet_expand_or_jump)" : "<TAB>"
+imap <expr><S-TAB> pumvisible() ? "<C-k>" : neosnippet#jumpable() ? "<Plug>(neosnippet_expand_or_jump)" : "<S-TAB>"
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-imap <expr><CR> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? neocomplcache#close_popup() : "\<CR>"
 let g:neosnippet#snippets_directory='~/.vim/snippets/'
 
 "##### syntastic #####
@@ -607,3 +608,5 @@ vmap <Enter> <Plug>(EasyAlign)*
 
 "##### vim-json #####
 let g:vim_json_syntax_conceal = 0
+
+" set termguicolors

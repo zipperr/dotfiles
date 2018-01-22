@@ -4,3 +4,4 @@ FontHeight=11
 FontSmoothing=partial
 CursorType=block
 CursorColour=255,0,255
+Term=xterm-256color
