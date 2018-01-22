@@ -58,8 +58,8 @@ alias pre="bundle exec rake preview"
 alias desk='cd /cygdrive/c/Users/taniuchi/Desktop'
 
 #grep
-function grep() {find ./ -type f -print | xargs grep -n --color=auto $1 /dev/null}
-function grep() {find . -name '*' |xargs grep --color=always -s -I -n $1 | awk '{print substr($0, 1, 50) "..." substr($0, length($0) - 50, length($0))}'}
+function grep() {find . -name '*' -print0 |xargs -0 grep --color=always -s -I -n $1 | awk '{print substr($0, 1, 50) "..." substr($0, length($0) - 50, length($0))}'}
+
 ##### Completion ####
 autoload -U compinit
 compinit -u
