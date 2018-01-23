@@ -10,10 +10,12 @@ augroup END
 let s:dein_dir = expand('~/.vim/dein')
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 if &runtimepath !~# '/dein.vim'
-if !isdirectory(s:dein_repo_dir)|execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir|endif
-execute 'set runtimepath^=' . s:dein_repo_dir
+    if !isdirectory(s:dein_repo_dir)
+        execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
     endif
-    if dein#load_state(s:dein_dir)
+execute 'set runtimepath^=' . s:dein_repo_dir
+endif
+if dein#load_state(s:dein_dir)
 call dein#begin(s:dein_dir)
 
 "##### PluginList #####
@@ -52,14 +54,18 @@ call dein#add("twitvim/twitvim")                        " Twitter
 call dein#end()
 call dein#save_state()
 endif
-if dein#check_install()|call dein#install()|endif
+if dein#check_install()
+    call dein#install()
+endif
 
 "##### BasicOption #####
 "Encoding
 set fileencodings=utf-8,cp932,euc-jp,sjis
 set fileformats=unix,dos,mac
 set ambiwidth=double
-if v:version >= 704|set nofixeol|endif
+if v:version >= 704
+    set nofixeol
+endif
 "Indent
 set expandtab
 set smarttab
@@ -68,7 +74,9 @@ set shiftwidth=4
 set softtabstop=4
 set autoindent
 set smartindent
-if v:version >= 800|set breakindent|endif
+if v:version >= 800
+    set breakindent
+endif
 "Runtimepath
 set runtimepath+=$HOME/.vim,$HOME/.vim/after
 "Invisibles
@@ -146,7 +154,11 @@ set updatetime=10
 set shellslash
 set pumheight=5
 set helplang=ja,en
-if v:version >= 704 | set cm=blowfish2 | elseif | set cm=zip | endif
+if v:version >= 704
+    set cm=blowfish2
+elseif
+    set cm=zip
+endif
 
 "##### KeyMapping #####
 let g:mapleader = "\<Space>"
@@ -385,9 +397,9 @@ endfunction
 "##### Unite #####
 autocmd vimrc FileType unite set noequalalways
 let g:neomru#time_format = "%Y/%m/%d %H:%M:%S"
-noremap <C-P> :Unite buffer<CR>
-noremap <C-N> :Unite -buffer-name=file file<CR>
-noremap <C-Z> :Unite file_mru<CR>
+noremap <C-P> :Unite -toggle -silent -winheight=8 buffer<CR>
+noremap <C-N> :Unite -toggle -silent -winheight=8 -buffer-name=file file<CR>
+noremap <C-Z> :Unite -toggle -silent -winheight=8 file_mru<CR>
 nnoremap <F1> :Unite -toggle -silent -vertical -winwidth=30 -wrap menu:shortcut<CR>
 let g:unite_source_menu_menus = get(g:,'unite_source_menu_menus',{})
 let g:unite_source_menu_menus.shortcut = {"description" : "shortcut",}
@@ -544,7 +556,11 @@ function! LightlineFugitive()
 endfunction
 
 function! LightlineFilename()
-if winwidth(0) > 90|let fname = expand("%:p")|else|let fname = expand("%:t")|endif
+if winwidth(0) > 90
+    let fname = expand("%:p")
+else
+    let fname = expand("%:t")
+endif
 return fname =~ 'NERD_tree' ? '' :
     \ &ft == 'unite' ? unite#get_status_string() :
     \ ('' != fname ? fname : '[No Name]')
@@ -579,7 +595,9 @@ endfunction
 let twitvim_count = 100
 let twitvim_token_file = expand('~/.vim/tmp/.twitvim.token')
 
-if has("mac")|let twitvim_browser_cmd = 'open'|endif
+if has("mac")
+    let twitvim_browser_cmd = 'open'
+endif
 nnoremap <F2> :40vnew<CR>:FriendsTwitter<CR><C-w>j:q<CR>
 nnoremap <F3> :PosttoTwitter<CR>
 nnoremap <Leader>t :RefreshTwitter<CR>
