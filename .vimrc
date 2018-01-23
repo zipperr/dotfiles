@@ -161,7 +161,7 @@ noremap gj j
 noremap gk k
 noremap <Tab> %
 "NormalMode
-nnoremap <C-L> :noh<C-L><CR>
+nnoremap <C-l> :<C-u>nohlsearch<CR><C-l>
 nnoremap n nzz
 nnoremap N Nzz
 nnoremap * *zz
@@ -181,7 +181,7 @@ nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :q<CR>
 nnoremap <Leader>s :<C-u>sp<CR>
 nnoremap <Leader>v :<C-u>vsp<CR>
-nnoremap <Leader>/ :,$s/検索文字/置換後文字/gc<Left><Left><Left>
+nnoremap <Leader>/ :,$s/置換前/置換後/gc<Left><Left><Left>
 "InsertMode
 inoremap <C-j> <Down>
 inoremap <C-k> <Up>
