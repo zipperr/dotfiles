@@ -109,7 +109,7 @@ syntax on
 set t_Co=256
 autocmd vimrc ColorScheme * highlight Normal ctermbg=none
 autocmd vimrc ColorScheme * highlight LineNr ctermbg=none
-colorscheme monokai
+colorscheme gruvbox
 " hybrid, railscasts, monokai, gruvbox
 set background=dark
 hi Comment      gui=NONE      font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE      term=NONE      ctermfg=59   ctermbg=NONE
@@ -224,8 +224,8 @@ inoremap <Right> <Nop>
 "grep
 autocmd vimrc QuickFixCmdPost *grep* cwindow
 set grepprg=grep\ -rnIH\ --exclude-dir=.svn\ --exclude-dir=.git
-nnoremap <expr> <Leader>g ':vimgrep /\<' . expand('<cword>') . '\>/j **/*.' . expand('%:e')
-nnoremap <expr> <Leader>G ':sil grep! ' . expand('<cword>') . ' .* *'
+nnoremap <Leader>g :vimgrep //j **/*<left><left><left><left><left><left><left>
+nnoremap <Leader>G :sil grep!  .* *<left><left><left><left><left>
 
 "##### Omnicompletion #####
 autocmd vimrc FileType java              setlocal omnifunc=javacomplete#Complete

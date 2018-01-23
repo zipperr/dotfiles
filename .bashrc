@@ -51,7 +51,7 @@ alias desk='cd /cygdrive/c/Users/taniuchi/Desktop'
 
 #grep
 function grep() {
-    find . -name '*' -print0 |xargs -0 grep --color=always -s -I -n $1 | awk '{print substr($0, 0, 300) "..."}'
+    find . -name '*' -print0 |xargs -0 grep --color=always -s -I -n $1 | awk '{print substr($0, 0, 200) "..."}'
 }
 
 #(時間)[ユーザ名@ホスト名][場所][ブランチ名]
