@@ -203,6 +203,8 @@ inoremap jj <ESC>
 inoremap , ,<space>
 "VisualMode
 vnoremap v $h
+vnoremap <bs> d
+vnoremap <delete> d
 vnoremap * "vy/\V<C-r>=substitute(escape(@v, '\/'), "\n", '\\n','g')<CR><CR>
 vnoremap / "xy:,$s/<C-R>=escape(@x, '\\/.*$^~[]')<CR>//gc<Left><Left><Left>
 vnoremap [ "zdi[<C-R>z]<ESC>
@@ -358,6 +360,15 @@ command! -nargs=0 RemoveUnwantedSpaces call RemoveUnwantedSpaces()
 
 " Copyfullpath
 command! CopyFullPath let @+ = expand('%:p')
+
+" OpenAnyFile
+command! -bang -bar -complete=file -nargs=? Utf8 edit<bang> ++enc=utf-8 <args>
+command! -bang -bar -complete=file -nargs=? Jis edit<bang> ++enc=iso-2022-jp <args>
+command! -bang -bar -complete=file -nargs=? Sjis edit<bang> ++enc=cp932 <args>
+command! -bang -bar -complete=file -nargs=? Euc edit<bang> ++enc=euc-jp <args>
+command! -bang -bar -complete=file -nargs=? Unix edit<bang> ++fileformat=unix <args>
+command! -bang -bar -complete=file -nargs=? Dos edit<bang> ++fileformat=dos <args>
+command! -bang -bar -complete=file -nargs=? Mac edit<bang> ++fileformat=mac <args>
 
 " CloseAnyOther
 nnoremap <ESC><ESC> :<C-u>call CloseAnyOther()<CR>
@@ -618,9 +629,9 @@ nnoremap <Leader>h :OpenBrowser<Space>http://localhost:8000<CR>
 autocmd vimrc BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
 nnoremap <Leader>p :PrevimOpen<CR>
 
-"#####Commentout #####
+"##### Commentout #####
 nmap ,, gcc
-vmap ,, gcc
+vmap ,, gc
 
 "##### Easy-Align #####
 vmap <Enter> <Plug>(EasyAlign)*
