@@ -191,8 +191,8 @@ nnoremap wh 10<C-W>>
 nnoremap wl 10<C-W><
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :q<CR>
-nnoremap <Leader>s :<C-u>sp<CR>
-nnoremap <Leader>v :<C-u>vsp<CR>
+nnoremap <Leader>s :<C-u>new<CR>
+nnoremap <Leader>v :<C-u>vne<CR>
 nnoremap <Leader>/ :,$s/置換前/置換後/gc<Left><Left><Left>
 "InsertMode
 inoremap <C-j> <Down>
@@ -376,6 +376,7 @@ for w in reverse(range(1, winnr('$')))
         \||(ft ==# 'gitcommit')
         \||(name =~# '^fugitive:')
         \||(name =~# 'fugitiveblame')
+        \||(name ==# '')
         \||(bt ==# 'help')
         \||(bt ==# 'quickfix')
         \||(bt ==# 'nofile')
