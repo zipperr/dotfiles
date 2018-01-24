@@ -369,6 +369,7 @@ command! -bang -bar -complete=file -nargs=? Euc edit<bang> ++enc=euc-jp <args>
 command! -bang -bar -complete=file -nargs=? Unix edit<bang> ++fileformat=unix <args>
 command! -bang -bar -complete=file -nargs=? Dos edit<bang> ++fileformat=dos <args>
 command! -bang -bar -complete=file -nargs=? Mac edit<bang> ++fileformat=mac <args>
+command! DeleteCR %s///g
 
 " CloseAnyOther
 nnoremap <ESC><ESC> :<C-u>call CloseAnyOther()<CR>
@@ -622,7 +623,7 @@ endfunction
 
 "##### Openbrowser #####
 let g:openbrowser_use_vimproc=0
-nnoremap <Leader><Leader> :OpenBrowserSearch<Space>
+nnoremap <Leader>s :OpenBrowserSearch<Space>
 nnoremap <Leader>h :OpenBrowser<Space>http://localhost:8000<CR>
 
 "##### Previm #####
@@ -630,8 +631,8 @@ autocmd vimrc BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdow
 nnoremap <Leader>p :PrevimOpen<CR>
 
 "##### Commentout #####
-nmap ,, gcc
-vmap ,, gc
+nmap <Leader><Leader> gcc
+vmap <Leader><Leader> gc
 
 "##### Easy-Align #####
 vmap <Enter> <Plug>(EasyAlign)*

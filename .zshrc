@@ -19,9 +19,11 @@ autoload -U colors && colors
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 setopt nonomatch
-#vimでC-q, C-s
+#vim用設定
 stty stop undef
 stty start undef
+export KEYTIMEOUT=1
+
 ##### alias #####
 if [ "$(uname)" = 'Darwin' ]; then
     alias ls='ls -a -G'
