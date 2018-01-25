@@ -31,7 +31,6 @@ call dein#add("tyru/open-browser.vim")                  " ブラウザを開く
 call dein#add("Shougo/neocomplcache.vim")               " 補完
 call dein#add("Shougo/neosnippet.vim")                  " スニペット
 call dein#add("Shougo/neosnippet-snippets")             " デフォルトスニペット
-call dein#add("Townk/vim-autoclose")                    " 閉じ括弧補完
 call dein#add("ujihisa/neco-look")                      " 英単語補完
 call dein#add("scrooloose/syntastic")                   " 構文チェック
 call dein#add("thinca/vim-quickrun")                    " コード実行
@@ -42,11 +41,11 @@ call dein#add("AndrewRadev/switch.vim")                 " リテラル変換
 call dein#add("junegunn/vim-easy-align")                " 整形
 call dein#add("kannokanno/previm")                      " Markdownプレビュー
 call dein#add("kchmck/vim-coffee-script")               " coffeescriptのシンタックスハイライト
+call dein#add("Townk/vim-autoclose")                    " 閉じ括弧補完
 " Theme / Interface
 call dein#add("itchyny/lightline.vim")                  " ステータスライン
 call dein#add("w0ng/vim-hybrid")                        " hybrid
 call dein#add('morhetz/gruvbox')                        " gruvbox
-call dein#add('sickill/vim-monokai')                    " monokai
 " Git Support
 call dein#add("airblade/vim-gitgutter")                 " 差分表示
 call dein#add("tpope/vim-fugitive")                     " Git操作
@@ -234,10 +233,10 @@ noremap <Up>    :<C-u>echoerr "Don't use that key!"<CR>
 noremap <Down>  :<C-u>echoerr "Don't use that key!"<CR>
 noremap <Left>  :<C-u>echoerr "Don't use that key!"<CR>
 noremap <Right> :<C-u>echoerr "Don't use that key!"<CR>
-inoremap <Up>    <ESC>:<C-u>echoerr "Don't use that key!"<CR>
-inoremap <Down>  <ESC>:<C-u>echoerr "Don't use that key!"<CR>
-inoremap <Left>  <ESC>:<C-u>echoerr "Don't use that key!"<CR>
-inoremap <Right> <ESC>:<C-u>echoerr "Don't use that key!"<CR>
+inoremap <Up>    <Right><ESC>
+inoremap <Down>  <Right><ESC>
+inoremap <Left>  <Right><ESC>:<C-u>echoerr "Don't use that key!"<CR>
+inoremap <Right> <Right><ESC>:<C-u>echoerr "Don't use that key!"<CR>
 "grep
 autocmd vimrc QuickFixCmdPost *grep* cwindow
 set grepprg=grep\ -rnIH\ --exclude-dir=.svn\ --exclude-dir=.git
