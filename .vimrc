@@ -6,7 +6,7 @@ augroup vimrc
     autocmd!
 augroup END
 
-"##### Plugin #####
+"{{{----- Plugin -----
 let s:dein_dir = expand('~/.vim/dein')
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 if &runtimepath !~# '/dein.vim'
@@ -18,7 +18,8 @@ endif
 if dein#load_state(s:dein_dir)
 call dein#begin(s:dein_dir)
 
-"##### PluginList #####
+"}}}
+"{{{----- Plugin List -----
 call dein#add("Shougo/dein.vim")                        " プラグイン管理
 " Utility
 call dein#add("Shougo/vimproc.vim", {'build' : 'make'}) " 非同期処理
@@ -58,13 +59,14 @@ if dein#check_install()
     call dein#install()
 endif
 
-"##### BasicOption #####
+"}}}
+"{{{----- General Settings -----
 "Encoding
 set fileencodings=utf-8,cp932,euc-jp,sjis
 set fileformats=unix,dos,mac
 set ambiwidth=double
-if v:version >= 704
-    set nofixeol
+if (v:version == 704 && has("patch785")) || v:version >= 705
+    set nofixendofline
 endif
 "Indent
 set expandtab
@@ -74,7 +76,7 @@ set shiftwidth=4
 set softtabstop=4
 set autoindent
 set smartindent
-if v:version >= 800
+if (v:version == 704 && has("patch338")) || v:version >= 705
     set breakindent
 endif
 "Runtimepath
@@ -118,7 +120,6 @@ set t_Co=256
 autocmd vimrc ColorScheme * highlight Normal ctermbg=none
 autocmd vimrc ColorScheme * highlight LineNr ctermbg=none
 colorscheme gruvbox
-" hybrid, railscasts, monokai, gruvbox
 set background=dark
 hi Comment      gui=NONE      font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE      term=NONE      ctermfg=59   ctermbg=NONE
 hi LineNr       gui=NONE      font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE      term=NONE      ctermfg=59   ctermbg=NONE
@@ -154,13 +155,15 @@ set updatetime=10
 set shellslash
 set pumheight=5
 set helplang=ja,en
+set foldmethod=marker
 if v:version >= 704
     set cm=blowfish2
 elseif
     set cm=zip
 endif
 
-"##### KeyMapping #####
+"}}}
+"{{{----- Key Mapping -----
 let g:mapleader = "\<Space>"
 "NormalMode+VisualMode
 noremap J 20j
@@ -227,21 +230,22 @@ cnoremap <C-l> <Right>
 cnoremap <expr> /  getcmdtype() == '/' ? '\/' : '/'
 cnoremap <expr> ?  getcmdtype() == '?' ? '\?' : '?'
 "ArrowKeys
-noremap  <Up>    <Nop>
-noremap  <Down>  <Nop>
-noremap  <Left>  <Nop>
-noremap  <Right> <Nop>
-inoremap <Up>    <Nop>
-inoremap <Down>  <Nop>
-inoremap <Left>  <Nop>
-inoremap <Right> <Nop>
+noremap <Up>    :<C-u>echoerr "Don't use that key!"<CR>
+noremap <Down>  :<C-u>echoerr "Don't use that key!"<CR>
+noremap <Left>  :<C-u>echoerr "Don't use that key!"<CR>
+noremap <Right> :<C-u>echoerr "Don't use that key!"<CR>
+inoremap <Up>    <ESC>:<C-u>echoerr "Don't use that key!"<CR>
+inoremap <Down>  <ESC>:<C-u>echoerr "Don't use that key!"<CR>
+inoremap <Left>  <ESC>:<C-u>echoerr "Don't use that key!"<CR>
+inoremap <Right> <ESC>:<C-u>echoerr "Don't use that key!"<CR>
 "grep
 autocmd vimrc QuickFixCmdPost *grep* cwindow
 set grepprg=grep\ -rnIH\ --exclude-dir=.svn\ --exclude-dir=.git
 nnoremap <Leader>g :vimgrep //j **/*<left><left><left><left><left><left><left>
 nnoremap <Leader>G :sil grep!  .* *<left><left><left><left><left>
 
-"##### Omnicompletion #####
+"}}}
+"{{{----- Omni Completion -----
 autocmd vimrc FileType java              setlocal omnifunc=javacomplete#Complete
 autocmd vimrc FileType css               setlocal omnifunc=csscomplete#CompleteCSS
 autocmd vimrc FileType html,markdown     setlocal omnifunc=htmlcomplete#CompleteTags
@@ -259,7 +263,8 @@ if has("autocmd") && exists("+omnifunc")
     \endif
 endif
 
-"##### Template #####
+"}}}
+"{{{----- Templates -----
 let s:load_templates_dir='~/.vim/templates'
 let s:load_templates_command="0read ".s:load_templates_dir
 autocmd vimrc BufNewFile *.c                        execute s:load_templates_command."/template.c"
@@ -286,7 +291,8 @@ autocmd vimrc BufNewFile *.bat                      execute s:load_templates_com
 autocmd vimrc BufNewFile *.json                     execute s:load_templates_command."/template.json"
 autocmd vimrc BufNewFile *.yml                      execute s:load_templates_command."/template.yml"
 
-"##### Script #####
+"}}}
+"{{{----- Scripts -----
 "HiglightZenkakuSpase
 hi ZenkakuSpace term=underline cterm=reverse ctermfg=Red gui=reverse guifg=Red
 autocmd vimrc BufNewFile,BufRead * match ZenkakuSpace /　/
@@ -407,7 +413,8 @@ for w in reverse(range(1, winnr('$')))
 endfor
 endfunction
 
-"##### Unite #####
+"}}}
+"{{{----- Unite -----
 autocmd vimrc FileType unite set noequalalways
 let g:neomru#time_format = "%Y/%m/%d %H:%M:%S"
 noremap <C-P> :Unite -toggle -silent -winheight=8 buffer<CR>
@@ -477,7 +484,8 @@ let g:unite_source_menu_menus.shortcut.command_candidates = [
     \[ "[Edit]gitconf",             "edit ~/.gitconfig"],
     \]
 
-"##### Neocomplcache #####
+"}}}
+"{{{----- Neocomplcache -----
 let g:neocomplcache_enable_at_startup               = 1
 let g:neocomplcache_max_list                        = 10
 let g:neocomplcache_auto_completion_start_length    = 1
@@ -496,14 +504,16 @@ if !exists('g:neocomplcache_omni_patterns')
     let g:neocomplcache_omni_patterns = {}
 endif
 
-"##### Neosnippet #####
+"}}}
+"{{{----- Neosnippet -----
 imap <expr><CR> neosnippet#expandable() ? "<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "<C-y>" : "<CR>"
 imap <expr><TAB> pumvisible() ? "<C-n>" : neosnippet#jumpable() ? "<Plug>(neosnippet_expand_or_jump)" : "<TAB>"
 imap <expr><S-TAB> pumvisible() ? "<C-k>" : neosnippet#jumpable() ? "<Plug>(neosnippet_expand_or_jump)" : "<S-TAB>"
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 let g:neosnippet#snippets_directory='~/.vim/snippets/'
 
-"##### syntastic #####
+"}}}
+"{{{----- Syntastic -----
 let g:syntastic_loc_list_height          = 1
 let g:syntastic_aggregate_errors         = 1
 let g:syntastic_always_populate_loc_list = 1
@@ -512,7 +522,8 @@ let g:syntastic_auto_loc_list            = 0
 let g:syntastic_check_on_open            = 1
 let g:syntastic_check_on_wq              = 0
 
-"##### NERDTree #####
+"}}}
+"{{{----- NERDTree -----
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
 let g:NERDTreeQuitOnOpen = 1
 let g:NERDTreeDirArrows  = 0
@@ -523,7 +534,8 @@ let g:NERDTreeIgnore   = ['\.clean$', '\.swp$', '\.bak$', '\~$', '\.DS_Store']
 autocmd vimrc vimenter * if !argc() | NERDTree | endif
 autocmd vimrc bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-"##### quickrun #####
+"}}}
+"{{{----- Quickrun -----
 nnoremap <C-q> :QuickRun<CR>
 let g:quickrun_config = {"_" : {
     \"runner" : "vimproc","runner/vimproc/updatetime" : 60,
@@ -531,7 +543,8 @@ let g:quickrun_config = {"_" : {
     \"outputter/buffer/split" : ":vertical 35","outputter/buffer/close_on_empty" : 0
 \}}
 
-"##### swith #####
+"}}}
+"{{{----- Swith -----
 let g:switch_mapping = "\\"
 let g:switch_custom_definitions =
 \   [
@@ -545,7 +558,8 @@ let g:switch_custom_definitions =
 \   {'\(\k\+\)': '''\1''','''\(.\{-}\)''': '"\1"','"\(.\{-}\)"': '\1',},
 \   ]
 
-"##### lightline #####
+"}}}
+"{{{----- Lightline -----
 let g:lightline = {
     \'colorscheme': 'wombat',
     \ 'active': {
@@ -604,7 +618,8 @@ function! Youbi()
     return strftime('%Y/%m/%d').weeks[wday].strftime(' %H:%M')
 endfunction
 
-"##### Twitvim #####
+"}}}
+"{{{----- Twitvim -----
 let twitvim_count = 100
 let twitvim_token_file = expand('~/.vim/tmp/.twitvim.token')
 
@@ -621,21 +636,28 @@ function! s:twitvim_my_settings()
     set whichwrap=b,s,h,l,<,>,[,]
 endfunction
 
-"##### Openbrowser #####
+"}}}
+"{{{----- Openbrowser -----
 let g:openbrowser_use_vimproc=0
 nnoremap <Leader>s :OpenBrowserSearch<Space>
 nnoremap <Leader>h :OpenBrowser<Space>http://localhost:8000<CR>
 
-"##### Previm #####
+"}}}
+"{{{----- Previm -----
 autocmd vimrc BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
 nnoremap <Leader>p :PrevimOpen<CR>
 
-"##### Commentout #####
+"}}}
+"{{{----- Commentout -----
 nmap <Leader><Leader> gcc
 vmap <Leader><Leader> gc
 
-"##### Easy-Align #####
+"}}}
+"{{{----- Easy-Align -----
 vmap <Enter> <Plug>(EasyAlign)*
 
-"##### vim-json #####
+"}}}
+"{{{----- Vim-json -----
 let g:vim_json_syntax_conceal = 0
+
+"}}}
