@@ -32,18 +32,20 @@ call dein#add("Shougo/neocomplcache.vim")               " 補完
 call dein#add("Shougo/neosnippet.vim")                  " スニペット
 call dein#add("Shougo/neosnippet-snippets")             " デフォルトスニペット
 call dein#add("ujihisa/neco-look")                      " 英単語補完
+call dein#add("Townk/vim-autoclose")                    " 閉じ括弧補完
 call dein#add("scrooloose/syntastic")                   " 構文チェック
 call dein#add("thinca/vim-quickrun")                    " コード実行
-call dein#add("Yggdroot/indentLine")                    " インデント可視化
-call dein#add("elzr/vim-json")                          " json用インデント
 call dein#add("tomtom/tcomment_vim")                    " コメントアウトトグル
 call dein#add("AndrewRadev/switch.vim")                 " リテラル変換
 call dein#add("junegunn/vim-easy-align")                " 整形
 call dein#add("kannokanno/previm")                      " Markdownプレビュー
 call dein#add("kchmck/vim-coffee-script")               " coffeescriptのシンタックスハイライト
-call dein#add("Townk/vim-autoclose")                    " 閉じ括弧補完
+call dein#add('othree/yajs.vim')                        " javascriptES6のシンタックスハイライト
 " Theme / Interface
 call dein#add("itchyny/lightline.vim")                  " ステータスライン
+call dein#add("Yggdroot/indentLine")                    " インデント可視化
+call dein#add("elzr/vim-json")                          " json用インデント
+call dein#add('osyo-manga/vim-over')                    " 置換プレビュー
 call dein#add("w0ng/vim-hybrid")                        " hybrid
 call dein#add('morhetz/gruvbox')                        " gruvbox
 " Git Support
@@ -122,8 +124,7 @@ colorscheme gruvbox
 set background=dark
 hi Comment      gui=NONE      font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE      term=NONE      ctermfg=59   ctermbg=NONE
 hi LineNr       gui=NONE      font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE      term=NONE      ctermfg=59   ctermbg=NONE
-" hi CursorLineNR gui=NONE      font=NONE guifg=#000000 guibg=#dadada guisp=NONE cterm=NONE   term=NONE      ctermfg=16   ctermbg=253
-" hi SpecialKey   gui=NONE      font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE      term=NONE      ctermfg=59   ctermbg=NONE
+hi SpecialKey   gui=NONE      font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE      term=NONE      ctermfg=59   ctermbg=NONE
 " hi IncSearch    gui=underline font=NONE guifg=NONE    guibg=NONE guisp=NONE cterm=underline term=underline ctermfg=NONE ctermbg=NONE
 " hi Search       gui=underline font=NONE guifg=NONE    guibg=NONE guisp=NONE cterm=underline term=underline ctermfg=NONE ctermbg=NONE
 " hi MatchParen   gui=underline font=NONE guifg=NONE    guibg=NONE guisp=NONE cterm=underline term=underline ctermfg=NONE ctermbg=NONE
@@ -136,9 +137,6 @@ set laststatus=2
 " au vimrc VimEnter    * hi StatusLine gui=NONE guifg=Black guibg=DarkCyan  cterm=NONE ctermfg=Black ctermbg=DarkCyan
 " au vimrc InsertEnter * hi StatusLine gui=NONE guifg=Black guibg=DarkGreen cterm=NONE ctermfg=Black ctermbg=DarkGreen
 " au vimrc InsertLeave * hi StatusLine gui=NONE guifg=Black guibg=DarkCyan  cterm=NONE ctermfg=Black ctermbg=DarkCyan
-"CursorLine
-set cursorline
-hi clear CursorLine
 set number
 "CommandLine
 set showcmd
@@ -147,10 +145,11 @@ set history=100
 set infercase
 "Other
 set vb t_vb=
+set ttimeoutlen=1
 set nrformats=alpha,octal,hex
 set lazyredraw
 set ttyfast
-set updatetime=10
+set updatetime=1000
 set shellslash
 set pumheight=5
 set helplang=ja,en
@@ -415,6 +414,10 @@ endfunction
 "}}}
 "{{{----- Unite -----
 autocmd vimrc FileType unite set noequalalways
+autocmd vimrc FileType unite nnoremap <silent><buffer><expr> i unite#do_action('split')
+autocmd vimrc FileType unite inoremap <silent><buffer><expr> i unite#do_action('split')
+autocmd vimrc FileType unite nnoremap <silent><buffer><expr> s unite#do_action('vsplit')
+autocmd vimrc FileType unite inoremap <silent><buffer><expr> s unite#do_action('vsplit')
 let g:neomru#time_format = "%Y/%m/%d %H:%M:%S"
 noremap <C-P> :Unite -toggle -silent -winheight=8 buffer<CR>
 noremap <C-N> :Unite -toggle -silent -winheight=8 -buffer-name=file file<CR>
@@ -660,3 +663,9 @@ vmap <Enter> <Plug>(EasyAlign)*
 let g:vim_json_syntax_conceal = 0
 
 "}}}
+"{{{----- Vim-over -----
+nnoremap <Leader>/ :OverCommandLine<CR>%s///<Left><Left>
+
+"}}}
+
+
