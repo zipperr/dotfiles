@@ -194,7 +194,7 @@ nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :q<CR>
 nnoremap <Leader>s :<C-u>new<CR>
 nnoremap <Leader>v :<C-u>vne<CR>
-nnoremap <Leader>/ :,$s/置換前/置換後/gc<Left><Left><Left>
+nnoremap <Leader>/ :%s/置換前/置換後/<Left>
 "InsertMode
 inoremap <C-j> <Down>
 inoremap <C-k> <Up>
@@ -207,7 +207,7 @@ vnoremap v $h
 vnoremap <bs> d
 vnoremap <delete> d
 vnoremap * "vy/\V<C-r>=substitute(escape(@v, '\/'), "\n", '\\n','g')<CR><CR>
-vnoremap / "xy:,$s/<C-R>=escape(@x, '\\/.*$^~[]')<CR>//gc<Left><Left><Left>
+vnoremap / "xy:%s/<C-R>=escape(@x, '\\/.*$^~[]')<CR>//<Left>
 vnoremap [ "zdi[<C-R>z]<ESC>
 vnoremap ( "zdi(<C-R>z)<ESC>
 vnoremap { "zdi{<C-R>z}<ESC>
@@ -354,13 +354,13 @@ command! -nargs=0 RemoveUnwantedSpaces call RemoveUnwantedSpaces()
 command! CopyFullPath let @+ = expand('%:p')
 
 " OpenAnyFile
-command! -bang -bar -complete=file -nargs=? Utf8 edit<bang> ++enc=utf-8 <args>
-command! -bang -bar -complete=file -nargs=? Jis edit<bang> ++enc=iso-2022-jp <args>
-command! -bang -bar -complete=file -nargs=? Sjis edit<bang> ++enc=cp932 <args>
-command! -bang -bar -complete=file -nargs=? Euc edit<bang> ++enc=euc-jp <args>
+command! -bang -bar -complete=file -nargs=? Utf8 edit<bang> ++enc=utf-8       <args>
+command! -bang -bar -complete=file -nargs=? Jis  edit<bang> ++enc=iso-2022-jp <args>
+command! -bang -bar -complete=file -nargs=? Sjis edit<bang> ++enc=cp932       <args>
+command! -bang -bar -complete=file -nargs=? Euc  edit<bang> ++enc=euc-jp      <args>
 command! -bang -bar -complete=file -nargs=? Unix edit<bang> ++fileformat=unix <args>
-command! -bang -bar -complete=file -nargs=? Dos edit<bang> ++fileformat=dos <args>
-command! -bang -bar -complete=file -nargs=? Mac edit<bang> ++fileformat=mac <args>
+command! -bang -bar -complete=file -nargs=? Dos  edit<bang> ++fileformat=dos  <args>
+command! -bang -bar -complete=file -nargs=? Mac  edit<bang> ++fileformat=mac  <args>
 command! DeleteCR %s///g
 
 " CloseAnyOther
