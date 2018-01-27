@@ -86,7 +86,7 @@ set runtimepath+=$HOME/.vim,$HOME/.vim/after
 set list
 set listchars=tab:>-,trail:-
 "SwapFile
-set updatetime=1000
+set updatetime=300
 set nobackup
 set noswapfile
 set viminfo+=n~/.vim/tmp/viminfo.txt
@@ -492,8 +492,8 @@ let g:neocomplcache_enable_at_startup               = 1
 let g:neocomplcache_max_list                        = 10
 let g:neocomplcache_auto_completion_start_length    = 1
 let g:neocomplcache_manual_completion_start_length  = 1
-let g:neocomplcache_min_keyword_length              = 2
-let g:neocomplcache_min_syntax_length               = 2
+let g:neocomplcache_min_keyword_length              = 1
+let g:neocomplcache_min_syntax_length               = 1
 let g:neocomplcache_enable_ignore_case              = 1
 let g:neocomplcache_enable_smart_case               = 1
 let g:neocomplcache_enable_camel_case_completion    = 1
@@ -671,3 +671,7 @@ nnoremap <Leader>/ :OverCommandLine<CR>%s///<Left><Left>
 let g:AutoClosePairs_add = "<> |"" |'' |"
 
 "}}}
+let &t_ti .= "\e[?7727h"
+let &t_te .= "\e[?7727l"
+noremap <special> <Esc>O[ <Esc>
+noremap! <special> <Esc>O[ <Esc>
