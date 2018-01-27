@@ -39,8 +39,8 @@ call dein#add("tomtom/tcomment_vim")                    " コメントアウト�
 call dein#add("AndrewRadev/switch.vim")                 " リテラル変換
 call dein#add("junegunn/vim-easy-align")                " 整形
 call dein#add("kannokanno/previm")                      " Markdownプレビュー
-call dein#add("kchmck/vim-coffee-script")               " coffeescriptのシンタックスハイライト
-call dein#add('othree/yajs.vim')                        " javascriptES6のシンタックスハイライト
+call dein#add("kchmck/vim-coffee-script")               " coffeescript用シンタックス
+call dein#add('othree/yajs.vim')                        " javascriptES6用シンタックス
 " Theme / Interface
 call dein#add("itchyny/lightline.vim")                  " ステータスライン
 call dein#add("Yggdroot/indentLine")                    " インデント可視化
@@ -310,21 +310,6 @@ function! MultipleInsersion(next_key)
         return a:next_key
     endif
 endfunction
-
-"PasteIndent
-if &term =~ "xterm"
-    let &t_ti .= "\e[?2004h"
-    let &t_te .= "\e[?2004l"
-    let &pastetoggle = "\e[201~"
-    function XTermPasteBegin(ret)
-        set paste
-        return a:ret
-    endfunction
-    noremap <special> <expr> <Esc>[200~ XTermPasteBegin("0i")
-    inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
-    cnoremap <special> <Esc>[200~ <nop>
-    cnoremap <special> <Esc>[201~ <nop>
-endif
 
 " DeleteFile
 function! DeleteMe(force)
