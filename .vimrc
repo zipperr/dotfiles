@@ -86,6 +86,7 @@ set runtimepath+=$HOME/.vim,$HOME/.vim/after
 set list
 set listchars=tab:>-,trail:-
 "SwapFile
+set updatetime=1000
 set nobackup
 set noswapfile
 set viminfo+=n~/.vim/tmp/viminfo.txt
@@ -145,11 +146,10 @@ set history=100
 set infercase
 "Other
 set vb t_vb=
-set ttimeoutlen=1
+set timeout timeoutlen=700 ttimeoutlen=1
 set nrformats=alpha,octal,hex
 set lazyredraw
 set ttyfast
-set updatetime=1000
 set shellslash
 set pumheight=5
 set helplang=ja,en
@@ -667,5 +667,7 @@ let g:vim_json_syntax_conceal = 0
 nnoremap <Leader>/ :OverCommandLine<CR>%s///<Left><Left>
 
 "}}}
+"{{{----- AutoClose -----
+let g:AutoClosePairs_add = "<> |"" |'' |"
 
-
+"}}}
