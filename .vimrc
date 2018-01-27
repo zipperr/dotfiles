@@ -379,14 +379,14 @@ command! -bang -bar -complete=file -nargs=? Mac edit<bang> ++fileformat=mac <arg
 command! DeleteCR %s///g
 
 " CloseAnyOther
-if has("mac")
-    nnoremap <Esc><Esc> :<C-u>call CloseAnyOther()<CR>
-else
+if (has("win64")|| has("win32unix")||has("win32"))
     let &t_ti .= "\e[?7727h"
     let &t_te .= "\e[?7727l"
     noremap <special> <Esc>O[ <Esc>
     noremap! <special> <Esc>O[ <Esc>
     nnoremap <special> <Esc>O[<Esc>O[ :<C-u>call CloseAnyOther()<CR>
+else
+    nnoremap <Esc><Esc> :<C-u>call CloseAnyOther()<CR>
 endif
 
 function! CloseAnyOther()
