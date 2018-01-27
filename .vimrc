@@ -381,7 +381,7 @@ command! DeleteCR %s///g
 " CloseAnyOther
 if has("mac")
     nnoremap <Esc><Esc> :<C-u>call CloseAnyOther()<CR>
-elseif
+else
     let &t_ti .= "\e[?7727h"
     let &t_te .= "\e[?7727l"
     noremap <special> <Esc>O[ <Esc>
