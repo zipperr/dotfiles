@@ -12,7 +12,8 @@ brew bundle
 chsh -s /bin/zsh   
 
 #  Linux
-sudo apt-get install zsh vim git make gcc  
+sudo apt-get install zsh vim git make gcc w3m  
+sudo yum install zsh vim git make gcc w3m  
 chsh -s /usr/bin/zsh
 
 aptコマンドメモ:node.js python3 python perl ruby golang gcc cpp g++  
@@ -33,6 +34,7 @@ default-jre default-jdk php clisp mono lua groovy open-cobol
 | `F1`            | ショートカットリストを開く(トグル)                         |
 | `F2`            | ツイッターを開く                                           |
 | `F3`            | ツイートする                                               |
+| `F4`            | W3mでGoogle検索                                            |
 | `C-e`           | ファイルツリーを開く(トグル)                               |
 | `C-z`           | 最近開いたファイルのリスト                                 |
 | `C-w`           | タブ間移動                                                 |
@@ -58,3 +60,6 @@ vimproc(非同期処理)は、
 ___  
 Openbrowser、TwitVimは、  
 **curlコマンド**がインストールされていることが前提  
+___  
+W3mVimは、  
+**w3mコマンド**がインストールされていることが前提  
