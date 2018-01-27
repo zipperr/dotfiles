@@ -144,9 +144,14 @@ set showcmd
 set wildmenu
 set history=100
 set infercase
+"#ESCkey
+set timeout timeoutlen=700 ttimeoutlen=1
+let &t_ti .= "\e[?7727h"
+let &t_te .= "\e[?7727l"
+noremap <special> <Esc>O[ <Esc>
+noremap! <special> <Esc>O[ <Esc>
 "Other
 set vb t_vb=
-set timeout timeoutlen=700 ttimeoutlen=1
 set nrformats=alpha,octal,hex
 set lazyredraw
 set ttyfast
@@ -302,25 +307,28 @@ autocmd vimrc BufRead * if line("'\"") > 0 && line("'\"") <= line("$") | exe "no
 xnoremap <expr> I MultipleInsersion('I')
 xnoremap <expr> A MultipleInsersion('A')
 function! MultipleInsersion(next_key)
-  if mode() ==# 'v'
-    return "\<C-v>" . a:next_key
-  elseif mode() ==# 'V'
-    return "\<C-v>0o$" . a:next_key
-  else
-    return a:next_key
-  endif
+    if mode() ==# 'v'
+        return "\<C-v>" . a:next_key
+    elseif mode() ==# 'V'
+        return "\<C-v>0o$" . a:next_key
+    else
+        return a:next_key
+    endif
 endfunction
 
 "PasteIndent
 if &term =~ "xterm"
-    let &t_SI .= "\e[?2004h"
-    let &t_EI .= "\e[?2004l"
+    let &t_ti .= "\e[?2004h"
+    let &t_te .= "\e[?2004l"
     let &pastetoggle = "\e[201~"
     function XTermPasteBegin(ret)
         set paste
         return a:ret
     endfunction
+    noremap <special> <expr> <Esc>[200~ XTermPasteBegin("0i")
     inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
+    cnoremap <special> <Esc>[200~ <nop>
+    cnoremap <special> <Esc>[201~ <nop>
 endif
 
 " DeleteFile
@@ -337,9 +345,9 @@ command! -bang -nargs=0 DeleteMe call DeleteMe(<bang>0)
 
 " RenamemeFile
 function! RenameMe(newFileName)
-  let currentFileName = expand('%')
-  execute 'saveas ' . a:newFileName
-  call delete(currentFileName)
+    let currentFileName = expand('%')
+    execute 'saveas ' . a:newFileName
+    call delete(currentFileName)
 endfunction
 command! -nargs=1 RenameMe call RenameMe(<q-args>)
 
@@ -347,18 +355,18 @@ command! -nargs=1 RenameMe call RenameMe(<q-args>)
 function! RemoveUnwantedSpaces()
     let pos_save = getpos('.')
     try
-    keeppatterns %s/\s\+$//e
-    while 1
-    let lastline = getline('$')
-    if lastline =~ '^\s*$' && line('$') != 1
-    $delete
-    else
-        break
-      endif
-    endwhile
-  finally
-    call setpos('.', pos_save)
-  endtry
+        keeppatterns %s/\s\+$//e
+        while 1
+            let lastline = getline('$')
+            if lastline =~ '^\s*$' && line('$') != 1
+                $delete
+            else
+                break
+            endif
+        endwhile
+    finally
+        call setpos('.', pos_save)
+    endtry
 endfunction
 command! -nargs=0 RemoveUnwantedSpaces call RemoveUnwantedSpaces()
 
@@ -671,7 +679,3 @@ nnoremap <Leader>/ :OverCommandLine<CR>%s///<Left><Left>
 let g:AutoClosePairs_add = "<> |"" |'' |"
 
 "}}}
-let &t_ti .= "\e[?7727h"
-let &t_te .= "\e[?7727l"
-noremap <special> <Esc>O[ <Esc>
-noremap! <special> <Esc>O[ <Esc>
