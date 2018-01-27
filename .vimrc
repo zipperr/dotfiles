@@ -144,13 +144,8 @@ set showcmd
 set wildmenu
 set history=100
 set infercase
-"#ESCkey
-set timeout timeoutlen=700 ttimeoutlen=1
-let &t_ti .= "\e[?7727h"
-let &t_te .= "\e[?7727l"
-noremap <special> <Esc>O[ <Esc>
-noremap! <special> <Esc>O[ <Esc>
 "Other
+set timeout timeoutlen=700 ttimeoutlen=1
 set vb t_vb=
 set nrformats=alpha,octal,hex
 set lazyredraw
@@ -384,7 +379,16 @@ command! -bang -bar -complete=file -nargs=? Mac edit<bang> ++fileformat=mac <arg
 command! DeleteCR %s///g
 
 " CloseAnyOther
-nnoremap <ESC><ESC> :<C-u>call CloseAnyOther()<CR>
+if has("mac")
+    nnoremap <Esc><Esc> :<C-u>call CloseAnyOther()<CR>
+elseif
+    let &t_ti .= "\e[?7727h"
+    let &t_te .= "\e[?7727l"
+    noremap <special> <Esc>O[ <Esc>
+    noremap! <special> <Esc>O[ <Esc>
+    nnoremap <special> <Esc>O[<Esc>O[ :<C-u>call CloseAnyOther()<CR>
+endif
+
 function! CloseAnyOther()
 let w = 0
 let w:current_win = 1
