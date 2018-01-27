@@ -154,12 +154,15 @@ set shellslash
 set pumheight=5
 set helplang=ja,en
 set foldmethod=marker
-if v:version >= 704
-    set cm=blowfish2
-elseif
-    set cm=zip
+if has('cryptv')
+    if v:version > 704 || v:version == 704 && has('patch401')
+        set cryptmethod=blowfish2
+    elseif v:version >= 703
+        set cryptmethod=blowfish
+    else
+        set cryptmethod=zip
+    endif
 endif
-
 "}}}
 "{{{----- Key Mapping -----
 let g:mapleader = "\<Space>"
