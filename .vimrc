@@ -48,18 +48,18 @@ call dein#add("w0ng/vim-hybrid")                        " hybrid
 call dein#add('morhetz/gruvbox')                        " gruvbox
 " Depends
 if executable('git')
-    call dein#add("airblade/vim-gitgutter")                 " 差分表示
-    call dein#add("tpope/vim-fugitive")                     " Git操作
+    call dein#add("airblade/vim-gitgutter") " 差分表示
+    call dein#add("tpope/vim-fugitive")     " Git操作
 endif
 if executable('curl')
-    call dein#add("tyru/open-browser.vim")                  " ブラウザを開く
-    call dein#add("twitvim/twitvim")                        " Twitter
+    call dein#add("tyru/open-browser.vim")  " ブラウザを開く
+    call dein#add("twitvim/twitvim")        " Twitter
 endif
 if executable('look')
-    call dein#add("ujihisa/neco-look")                      " 英単語補完
+    call dein#add("ujihisa/neco-look")      " 英単語補完
 endif
 if executable('w3m')
-    call dein#add('yuratomo/w3m.vim')                       " WebBrowser
+    call dein#add('yuratomo/w3m.vim')       " WebBrowser
 endif
 call dein#end()
 call dein#save_state()
@@ -97,8 +97,8 @@ set listchars=tab:>-,trail:-
 set updatetime=300
 set nobackup
 set noswapfile
-set viminfo+=n~/.vim/tmp/viminfo.txt
-set undodir=~/.vim/tmp
+set viminfo+=n~/.vim/viminfo.txt
+set undodir=~/.vim
 set undofile
 "Move
 set wrap
