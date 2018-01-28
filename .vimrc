@@ -26,12 +26,10 @@ call dein#add("Shougo/vimproc.vim", {'build' : 'make'}) " 非同期処理
 call dein#add("Shougo/unite.vim")                       " ランチャー
 call dein#add("Shougo/neomru.vim")                      " 最近開いたファイルリスト
 call dein#add("scrooloose/nerdtree")                    " ファイルツリー
-call dein#add("tyru/open-browser.vim")                  " ブラウザを開く
 " Programming Support
 call dein#add("Shougo/neocomplcache.vim")               " 補完
 call dein#add("Shougo/neosnippet.vim")                  " スニペット
 call dein#add("Shougo/neosnippet-snippets")             " デフォルトスニペット
-call dein#add("ujihisa/neco-look")                      " 英単語補完
 call dein#add("Townk/vim-autoclose")                    " 閉じ括弧補完
 call dein#add("scrooloose/syntastic")                   " 構文チェック
 call dein#add("thinca/vim-quickrun")                    " コード実行
@@ -48,12 +46,21 @@ call dein#add("elzr/vim-json")                          " json用インデント
 call dein#add('osyo-manga/vim-over')                    " 置換プレビュー
 call dein#add("w0ng/vim-hybrid")                        " hybrid
 call dein#add('morhetz/gruvbox')                        " gruvbox
-" Git Support
-call dein#add("airblade/vim-gitgutter")                 " 差分表示
-call dein#add("tpope/vim-fugitive")                     " Git操作
-" Twitter
-call dein#add("twitvim/twitvim")                        " Twitter
-call dein#add('yuratomo/w3m.vim')                       " WebBrowser
+" Depends
+if executable('git')
+    call dein#add("airblade/vim-gitgutter")                 " 差分表示
+    call dein#add("tpope/vim-fugitive")                     " Git操作
+endif
+if executable('curl')
+    call dein#add("tyru/open-browser.vim")                  " ブラウザを開く
+    call dein#add("twitvim/twitvim")                        " Twitter
+endif
+if executable('look')
+    call dein#add("ujihisa/neco-look")                      " 英単語補完
+endif
+if executable('w3m')
+    call dein#add('yuratomo/w3m.vim')                       " WebBrowser
+endif
 call dein#end()
 call dein#save_state()
 endif
