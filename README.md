@@ -47,19 +47,3 @@ default-jre default-jdk php clisp mono lua groovy open-cobol
 | `Space` `G`     | 外部grep サブディレクトリ内のファイルも再帰的に検索        |
 | `visual-Enter`  | 選択範囲のテキストを整形する                               |
 | `:Gstatus`      | -でaddファイルを選択、Cでコミット                          |
-
-___  
-Synstatic(構文チェック), Quickrun(コード実行)は、  
-該当の**プログラム言語**がインストールされていることが前提  
-___  
-neko-look(英文補完)は、  
-**lookコマンド**がインストールされていることが前提  
-___  
-vimproc(非同期処理)は、  
-**make, gccコマンド**がインストールされていることが前提  
-___  
-Openbrowser、TwitVimは、  
-**curlコマンド**がインストールされていることが前提  
-___  
-W3mVimは、  
-**w3mコマンド**がインストールされていることが前提  
