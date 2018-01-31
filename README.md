@@ -34,7 +34,6 @@ default-jre default-jdk php clisp mono lua groovy open-cobol
 | `F1`            | ショートカットリストを開く(トグル)                         |
 | `F2`            | ツイッターを開く                                           |
 | `F3`            | ツイートする                                               |
-| `F4`            | W3mでGoogle検索                                            |
 | `C-e`           | ファイルツリーを開く(トグル)                               |
 | `C-z`           | 最近開いたファイルのリスト                                 |
 | `C-w`           | タブ間移動                                                 |
@@ -46,4 +45,3 @@ default-jre default-jdk php clisp mono lua groovy open-cobol
 | `Space` `g`     | 内部grep サブディレクトリ内のファイルも再帰的に検索        |
 | `Space` `G`     | 外部grep サブディレクトリ内のファイルも再帰的に検索        |
 | `visual-Enter`  | 選択範囲のテキストを整形する                               |
-| `:Gstatus`      | -でaddファイルを選択、Cでコミット                          |

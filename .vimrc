@@ -58,9 +58,6 @@ endif
 if executable('look')
     call dein#add("ujihisa/neco-look")      " 英単語補完
 endif
-if executable('w3m')
-    call dein#add('yuratomo/w3m.vim')       " WebBrowser
-endif
 call dein#end()
 call dein#save_state()
 endif
@@ -448,7 +445,6 @@ let g:unite_source_menu_menus.shortcut.command_candidates = [
     \[ "[web]GoogleDrive",          "OpenBrowser https://drive.google.com"],
     \[ "[web]Qiita",                "OpenBrowser https://qiita.com"],
     \[ "[web]Wiki",                 "OpenBrowser https://ja.wikipedia.org"],
-    \[ "[w3m]Google",               ":W3mVSplit<CR>"],
     \[ "[Twitter]Timeline",         "FriendsTwitter"],
     \[ "[Twitter]Tweet",            "PosttoTwitter"],
     \[ "[Twitter]Setup",            "SetLoginTwitter"],
@@ -681,12 +677,5 @@ nnoremap <Leader>/ :OverCommandLine<CR>%s///<Left><Left>
 "}}}
 "{{{----- AutoClose -----
 let g:AutoClosePairs_add = "<> |"" |'' |"
-
-"}}}
-"{{{----- W3m -----
-nnoremap <F4> :W3mVSplit google<CR>
-nnoremap <F5> :W3mVSplit http://menu.5ch.net/bbsmenu.html<CR>
-let g:w3m#homepage = "http://www.google.co.jp/"
-let g:w3m#lang = 'ja_JP'
 
 "}}}
