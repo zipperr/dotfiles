@@ -168,6 +168,7 @@ if has('cryptv')
         set cryptmethod=zip
     endif
 endif
+
 "}}}
 "{{{----- Key Mapping -----
 let g:mapleader = "\<Space>"
