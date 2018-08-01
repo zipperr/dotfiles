@@ -7,7 +7,7 @@ augroup END
 
 "----- Plugin Setting-----
 if (v:version >= 800 && executable('git')) "deinはversion8.0以下をサポートしない
-    let g:vimproc#download_windows_dll = 1
+    " let g:vimproc#download_windows_dll = 1
     let s:dein_dir = expand('~/.vim/dein')
     let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
     if &runtimepath !~# '/dein.vim'
@@ -21,7 +21,9 @@ if (v:version >= 800 && executable('git')) "deinはversion8.0以下をサポー�
         call dein#begin(s:dein_dir)
         " Utility
         call dein#add("Shougo/dein.vim")            " プラグイン管理
-        call dein#add("Shougo/vimproc.vim", {'build' : 'make'}) " 非同期処理
+        if executable('make')
+            call dein#add("Shougo/vimproc.vim", {'build' : 'make'}) " 非同期処理
+        endif
         call dein#add("Shougo/unite.vim")           " ランチャー
         call dein#add("Shougo/neomru.vim")          " 最近開いたファイルリスト
         call dein#add("scrooloose/nerdtree")        " ファイルツリー
@@ -272,10 +274,11 @@ nnoremap <Leader>h :OpenBrowser<Space>http://localhost:8000<CR>
 "{{{----- Quickrun -----
 nnoremap <C-q> :QuickRun<CR>
 let g:quickrun_config = {"_" : {
-    \"runner" : "vimproc","runner/vimproc/updatetime" : 60,
+    \ 'runner': 'job',
     \"outputter" : "error","outputter/error/success" : "buffer","outputter/error/error" : "buffer",
     \"outputter/buffer/split" : ":vertical 35","outputter/buffer/close_on_empty" : 0
 \}}
+let g:quickrun_config['python.python3'] = {'command' : 'python3'}
 "}}}
 "{{{----- gruvbox -----
 colorscheme gruvbox

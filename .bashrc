@@ -30,6 +30,10 @@ else
     alias ls='ls -a  --color=auto'
 fi
 
+if [ "$(expr substr $(uname -s) 1 5)" == "MINGW" ]; then
+    alias python='winpty python.exe'
+fi
+
 alias la='ls -CFal'
 alias mv='mv -i'
 alias rm='rm -i'
