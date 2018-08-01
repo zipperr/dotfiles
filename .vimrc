@@ -7,17 +7,21 @@ augroup END
 
 "----- Plugin -----
 let s:dein_dir = expand('~/.vim/dein')
+" dein.vim 本体
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
-if &runtimepath !~# '/dein.vim'
-    if !isdirectory(s:dein_repo_dir)
-        execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
-    endif
-execute 'set runtimepath^=' . s:dein_repo_dir
-endif
-if dein#load_state(s:dein_dir)
-call dein#begin(s:dein_dir)
 
-"----- Plugin List -----
+" dein.vim がなければ github から落としてくる
+if &runtimepath !~# '/dein.vim'
+  if !isdirectory(s:dein_repo_dir)
+    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+  endif
+  execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
+endif
+
+" 設定開始
+if dein#load_state(s:dein_dir)
+  call dein#begin(s:dein_dir)
+
 call dein#add("Shougo/dein.vim")                        " プラグイン管理
 " Utility
 call dein#add("scrooloose/nerdtree")                    " ファイルツリー
@@ -28,11 +32,14 @@ call dein#add("itchyny/lightline.vim")                  " ステータスライ�
 call dein#add("Yggdroot/indentLine")                    " インデント可視化
 call dein#add('morhetz/gruvbox')                        " gruvbox
 
-call dein#end()
-call dein#save_state()
+  " 設定終了
+  call dein#end()
+  call dein#save_state()
 endif
+
+" もし、未インストールものものがあったらインストール
 if dein#check_install()
-    call dein#install()
+  call dein#install()
 endif
 
 "----- General Settings -----
