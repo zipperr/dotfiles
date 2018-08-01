@@ -38,7 +38,7 @@ if (v:version >= 800 && executable('git')) "deinはversion8.0以下をサポー�
         " Theme / Interface
         call dein#add("itchyny/lightline.vim")      " ステータスライン
         call dein#add("Yggdroot/indentLine")        " インデント可視化
-        call dein#add('morhetz/gruvbox')            " gruvbox
+        call dein#add('morhetz/gruvbox')            " カラースキーマ
         " Depends
         if executable('curl')
             call dein#add("tyru/open-browser.vim")  " ブラウザを開く
@@ -133,12 +133,12 @@ let g:AutoClosePairs_add = "<> |"" |'' |"
 "}}}
 "{{{----- Twitvim -----
 let twitvim_count = 100
-let twitvim_token_file = expand('~/.vim/tmp/.twitvim.token')
+let twitvim_token_file = expand('~/.vim/.twitvim.token')
 if has("mac")
     let twitvim_browser_cmd = 'open'
 endif
-nnoremap <F2> :40vnew<CR>:FriendsTwitter<CR><C-w>j:q<CR>
-nnoremap <F3> :PosttoTwitter<CR>
+nnoremap <C-t> :40vnew<CR>:FriendsTwitter<CR><C-w>j:q<CR>
+nnoremap T :PosttoTwitter<CR>
 nnoremap <Leader>t :RefreshTwitter<CR>
 autocmd vimrc FileType twitvim call s:twitvim_my_settings()
 function! s:twitvim_my_settings()
@@ -157,7 +157,7 @@ let g:neomru#time_format = "%Y/%m/%d %H:%M:%S"
 noremap <C-P> :Unite -toggle -silent -winheight=8 buffer<CR>
 noremap <C-N> :Unite -toggle -silent -winheight=8 -buffer-name=file file<CR>
 noremap <C-Z> :Unite -toggle -silent -winheight=8 file_mru<CR>
-nnoremap <F1> :Unite -toggle -silent -vertical -winwidth=30 -wrap menu:shortcut<CR>
+nnoremap <C-S> :Unite -toggle -silent -vertical -winwidth=30 -wrap menu:shortcut<CR>
 let g:unite_source_menu_menus = get(g:,'unite_source_menu_menus',{})
 let g:unite_source_menu_menus.shortcut = {"description" : "shortcut",}
 let g:unite_source_menu_menus.shortcut.command_candidates = [
@@ -264,6 +264,17 @@ let g:openbrowser_use_vimproc=0
 nnoremap <Leader>s :OpenBrowserSearch<Space>
 nnoremap <Leader>h :OpenBrowser<Space>http://localhost:8000<CR>
 "}}}
+"{{{----- Quickrun -----
+nnoremap <C-q> :QuickRun<CR>
+let g:quickrun_config = {"_" : {
+    \"runner" : "vimproc","runner/vimproc/updatetime" : 60,
+    \"outputter" : "error","outputter/error/success" : "buffer","outputter/error/error" : "buffer",
+    \"outputter/buffer/split" : ":vertical 35","outputter/buffer/close_on_empty" : 0
+\}}
+"}}}
+"{{{----- gruvbox -----
+colorscheme gruvbox
+"}}}
 endif
 
 "----- General Settings -----
@@ -326,7 +337,6 @@ syntax on
 set t_Co=256
 autocmd vimrc ColorScheme * highlight Normal ctermbg=none
 autocmd vimrc ColorScheme * highlight LineNr ctermbg=none
-colorscheme gruvbox
 set background=dark
 hi Comment      gui=NONE      font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE      term=NONE      ctermfg=59   ctermbg=NONE
 hi LineNr       gui=NONE      font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE      term=NONE      ctermfg=59   ctermbg=NONE
@@ -449,34 +459,6 @@ if has("autocmd") && exists("+omnifunc")
     \endif
 endif
 
-"----- Templates -----
-let s:load_templates_dir='~/.vim/templates'
-let s:load_templates_command="0read ".s:load_templates_dir
-autocmd vimrc BufNewFile *.c    execute s:load_templates_command."/template.c"
-autocmd vimrc BufNewFile *.coffee execute s:load_templates_command."/template.coffee"
-autocmd vimrc BufNewFile *.cpp  execute s:load_templates_command."/template.cpp"
-autocmd vimrc BufNewFile *.cs   execute s:load_templates_command."/template.cs"
-autocmd vimrc BufNewFile *.css  execute s:load_templates_command."/template.css"
-autocmd vimrc BufNewFile *.d    execute s:load_templates_command."/template.d"
-autocmd vimrc BufNewFile Dockerfile execute s:load_templates_command."/template.Dockerfile"
-autocmd vimrc BufNewFile *.erl  execute s:load_templates_command."/template.erl"
-autocmd vimrc BufNewFile *.f90  execute s:load_templates_command."/template.f90"
-autocmd vimrc BufNewFile *.go   execute s:load_templates_command."/template.go"
-autocmd vimrc BufNewFile *.html execute s:load_templates_command."/template.html"
-autocmd vimrc BufNewFile *.java execute s:load_templates_command."/template.java"
-autocmd vimrc BufNewFile *.js   execute s:load_templates_command."/template.js"
-autocmd vimrc BufNewFile *.php  execute s:load_templates_command."/template.php"
-autocmd vimrc BufNewFile *.pl   execute s:load_templates_command."/template.pl"
-autocmd vimrc BufNewFile *.py   execute s:load_templates_command."/template.py"
-autocmd vimrc BufNewFile *.rb   execute s:load_templates_command."/template.rb"
-autocmd vimrc BufNewFile *.sh   execute s:load_templates_command."/template.sh"
-autocmd vimrc BufNewFile *.xml  execute s:load_templates_command."/template.xml"
-autocmd vimrc BufNewFile *.{md,mdwn,mkd,mkdn,mark*} execute s:load_templates_command."/template.md"
-autocmd vimrc BufNewFile *.bat  execute s:load_templates_command."/template.bat"
-autocmd vimrc BufNewFile *.json execute s:load_templates_command."/template.json"
-autocmd vimrc BufNewFile *.yml  execute s:load_templates_command."/template.yml"
-
-"}}}
 "----- Scripts -----
 "HiglightZenkakuSpase
 hi ZenkakuSpace term=underline cterm=reverse ctermfg=Red gui=reverse guifg=Red
