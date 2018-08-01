@@ -1,7 +1,0 @@
-{
-    "foo": [ 1, null ],
-    "baz": {
-        "foo": [ true, "bar" ],
-        "baz": "qux"
-    }
-}

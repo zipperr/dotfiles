@@ -16,6 +16,7 @@ if (v:version >= 800 && executable('git')) "deinはversion8.0以下をサポー�
         endif
     execute 'set runtimepath^=' . s:dein_repo_dir
     endif
+
     if dein#load_state(s:dein_dir)
         call dein#begin(s:dein_dir)
         " Utility
@@ -28,6 +29,7 @@ if (v:version >= 800 && executable('git')) "deinはversion8.0以下をサポー�
         call dein#add("Shougo/neocomplcache.vim")   " 補完
         call dein#add("Shougo/neosnippet.vim")      " スニペット
         call dein#add("Shougo/neosnippet-snippets") " デフォルトスニペット
+        call dein#add("honza/vim-snippets")         " 追加スニペット
         call dein#add("scrooloose/syntastic")       " 構文チェック
         call dein#add("thinca/vim-quickrun")        " コード実行
         call dein#add("tomtom/tcomment_vim")        " コメントアウトトグル
@@ -35,6 +37,7 @@ if (v:version >= 800 && executable('git')) "deinはversion8.0以下をサポー�
         call dein#add("Townk/vim-autoclose")        " 閉じ括弧補完
         call dein#add("airblade/vim-gitgutter")     " 差分表示
         call dein#add("tpope/vim-fugitive")         " Git操作
+        call dein#add('zipperr/vim-template')       " テンプレート
         " Theme / Interface
         call dein#add("itchyny/lightline.vim")      " ステータスライン
         call dein#add("Yggdroot/indentLine")        " インデント可視化
@@ -43,6 +46,9 @@ if (v:version >= 800 && executable('git')) "deinはversion8.0以下をサポー�
         if executable('curl')
             call dein#add("tyru/open-browser.vim")  " ブラウザを開く
             call dein#add("twitvim/twitvim")        " Twitter
+        endif
+        if executable('look')
+            call dein#add("ujihisa/neco-look")      " 英単語補完
         endif
         call dein#end()
         call dein#save_state()
@@ -245,7 +251,6 @@ imap <expr><CR> neosnippet#expandable() ? "<Plug>(neosnippet_expand_or_jump)" : 
 imap <expr><TAB> pumvisible() ? "<C-n>" : neosnippet#jumpable() ? "<Plug>(neosnippet_expand_or_jump)" : "<TAB>"
 imap <expr><S-TAB> pumvisible() ? "<C-k>" : neosnippet#jumpable() ? "<Plug>(neosnippet_expand_or_jump)" : "<S-TAB>"
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-let g:neosnippet#snippets_directory='~/.vim/snippets/'
 "}}}
 "{{{----- Syntastic -----
 let g:syntastic_loc_list_height          = 1
@@ -274,6 +279,38 @@ let g:quickrun_config = {"_" : {
 "}}}
 "{{{----- gruvbox -----
 colorscheme gruvbox
+"}}}
+"{{{----- snipmate -----
+let g:neosnippet#disable_runtime_snippets = {'_' : 1}
+let g:neosnippet#enable_snipmate_compatibility = 1
+let g:neosnippet#snippets_directory='~/.vim/dein/repos/github.com/honza/vim-snippets/snippets'
+"}}}
+"{{{----- template -----
+let s:load_templates_dir='~/.vim/dein/repos/github.com/zipperr/vim-template/templates'
+let s:load_templates_command="0read ".s:load_templates_dir
+autocmd vimrc BufNewFile *.c                        execute s:load_templates_command."/template.c"
+autocmd vimrc BufNewFile *.coffee                   execute s:load_templates_command."/template.coffee"
+autocmd vimrc BufNewFile *.cpp                      execute s:load_templates_command."/template.cpp"
+autocmd vimrc BufNewFile *.cs                       execute s:load_templates_command."/template.cs"
+autocmd vimrc BufNewFile *.css                      execute s:load_templates_command."/template.css"
+autocmd vimrc BufNewFile *.d                        execute s:load_templates_command."/template.d"
+autocmd vimrc BufNewFile Dockerfile                 execute s:load_templates_command."/template.Dockerfile"
+autocmd vimrc BufNewFile *.erl                      execute s:load_templates_command."/template.erl"
+autocmd vimrc BufNewFile *.f90                      execute s:load_templates_command."/template.f90"
+autocmd vimrc BufNewFile *.go                       execute s:load_templates_command."/template.go"
+autocmd vimrc BufNewFile *.html                     execute s:load_templates_command."/template.html"
+autocmd vimrc BufNewFile *.java                     execute s:load_templates_command."/template.java"
+autocmd vimrc BufNewFile *.js                       execute s:load_templates_command."/template.js"
+autocmd vimrc BufNewFile *.php                      execute s:load_templates_command."/template.php"
+autocmd vimrc BufNewFile *.pl                       execute s:load_templates_command."/template.pl"
+autocmd vimrc BufNewFile *.py                       execute s:load_templates_command."/template.py"
+autocmd vimrc BufNewFile *.rb                       execute s:load_templates_command."/template.rb"
+autocmd vimrc BufNewFile *.sh                       execute s:load_templates_command."/template.sh"
+autocmd vimrc BufNewFile *.xml                      execute s:load_templates_command."/template.xml"
+autocmd vimrc BufNewFile *.{md,mdwn,mkd,mkdn,mark*} execute s:load_templates_command."/template.md"
+autocmd vimrc BufNewFile *.bat                      execute s:load_templates_command."/template.bat"
+autocmd vimrc BufNewFile *.json                     execute s:load_templates_command."/template.json"
+autocmd vimrc BufNewFile *.yml                      execute s:load_templates_command."/template.yml"
 "}}}
 endif
 
