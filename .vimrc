@@ -16,14 +16,10 @@ if (v:version >= 800 && executable('git')) "deinはversion8.0以下をサポー�
         endif
     execute 'set runtimepath^=' . s:dein_repo_dir
     endif
-
     if dein#load_state(s:dein_dir)
         call dein#begin(s:dein_dir)
         " Utility
         call dein#add("Shougo/dein.vim")            " プラグイン管理
-        if executable('make')
-            call dein#add("Shougo/vimproc.vim", {'build' : 'make'}) " 非同期処理
-        endif
         call dein#add("Shougo/unite.vim")           " ランチャー
         call dein#add("Shougo/neomru.vim")          " 最近開いたファイルリスト
         call dein#add("scrooloose/nerdtree")        " ファイルツリー
@@ -32,25 +28,25 @@ if (v:version >= 800 && executable('git')) "deinはversion8.0以下をサポー�
         call dein#add("Shougo/neosnippet.vim")      " スニペット
         call dein#add("Shougo/neosnippet-snippets") " デフォルトスニペット
         call dein#add("honza/vim-snippets")         " 追加スニペット
-        call dein#add("scrooloose/syntastic")       " 構文チェック
+        call dein#add('zipperr/vim-template')       " テンプレート
+        call dein#add("w0rp/ale")                   " 構文チェック
         call dein#add("thinca/vim-quickrun")        " コード実行
         call dein#add("tomtom/tcomment_vim")        " コメントアウトトグル
         call dein#add("junegunn/vim-easy-align")    " 整形
         call dein#add("Townk/vim-autoclose")        " 閉じ括弧補完
         call dein#add("airblade/vim-gitgutter")     " 差分表示
         call dein#add("tpope/vim-fugitive")         " Git操作
-        call dein#add('zipperr/vim-template')       " テンプレート
         " Theme / Interface
         call dein#add("itchyny/lightline.vim")      " ステータスライン
         call dein#add("Yggdroot/indentLine")        " インデント可視化
         call dein#add('morhetz/gruvbox')            " カラースキーマ
         " Depends
+        if executable('make')
+            call dein#add("Shougo/vimproc.vim", {'build' : 'make'}) " 非同期処理
+        endif
         if executable('curl')
             call dein#add("tyru/open-browser.vim")  " ブラウザを開く
             call dein#add("twitvim/twitvim")        " Twitter
-        endif
-        if executable('look')
-            call dein#add("ujihisa/neco-look")      " 英単語補完
         endif
         call dein#end()
         call dein#save_state()
@@ -58,6 +54,7 @@ if (v:version >= 800 && executable('git')) "deinはversion8.0以下をサポー�
     if dein#check_install()
         call dein#install()
     endif
+
 "{{{----- NERDTree -----
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
 let g:NERDTreeQuitOnOpen = 1
@@ -241,9 +238,9 @@ let g:neocomplcache_enable_smart_case               = 1
 let g:neocomplcache_enable_camel_case_completion    = 1
 let g:neocomplcache_enable_underbar_completion      = 1
 let g:neocomplcache_enable_insert_char_pre          = 1
-let g:neocomplcache_text_mode_filetypes             = {
-    \'rst':1,'markdown':1,'gitrebase':1,'gitcommit':1,'vcs-commit':1,'text':1,'tex': 1,
-    \'plaintex': 1,'help':1,'vim' :1,'zsh':1,}
+" let g:neocomplcache_text_mode_filetypes             = {
+"     \'rst':1,'markdown':1,'gitrebase':1,'gitcommit':1,'vcs-commit':1,'text':1,'tex': 1,
+"     \'plaintex': 1,'help':1,'vim' :1,'zsh':1,}
 if !exists('g:neocomplcache_omni_patterns')
     let g:neocomplcache_omni_patterns = {}
 endif
@@ -254,18 +251,6 @@ imap <expr><TAB> pumvisible() ? "<C-n>" : neosnippet#jumpable() ? "<Plug>(neosni
 imap <expr><S-TAB> pumvisible() ? "<C-k>" : neosnippet#jumpable() ? "<Plug>(neosnippet_expand_or_jump)" : "<S-TAB>"
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 "}}}
-"{{{----- Syntastic -----
-let g:syntastic_loc_list_height          = 1
-let g:syntastic_aggregate_errors         = 1
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_enable_signs             = 1
-let g:syntastic_auto_loc_list            = 0
-let g:syntastic_check_on_open            = 1
-let g:syntastic_check_on_wq              = 0
-if executable('eslint')
-    let g:syntastic_javascript_checkers = ['eslint']
-endif
-"}}}
 "{{{----- Openbrowser -----
 let g:openbrowser_use_vimproc=0
 nnoremap <Leader>s :OpenBrowserSearch<Space>
@@ -274,7 +259,7 @@ nnoremap <Leader>h :OpenBrowser<Space>http://localhost:8000<CR>
 "{{{----- Quickrun -----
 nnoremap <C-q> :QuickRun<CR>
 let g:quickrun_config = {"_" : {
-    \ 'runner': 'job',
+    \"runner": "job",
     \"outputter" : "error","outputter/error/success" : "buffer","outputter/error/error" : "buffer",
     \"outputter/buffer/split" : ":vertical 35","outputter/buffer/close_on_empty" : 0
 \}}
@@ -288,7 +273,7 @@ let g:neosnippet#disable_runtime_snippets = {'_' : 1}
 let g:neosnippet#enable_snipmate_compatibility = 1
 let g:neosnippet#snippets_directory='~/.vim/dein/repos/github.com/honza/vim-snippets/snippets'
 "}}}
-"{{{----- template -----
+"{{{----- vim-template -----
 let s:load_templates_dir='~/.vim/dein/repos/github.com/zipperr/vim-template/templates'
 let s:load_templates_command="0read ".s:load_templates_dir
 autocmd vimrc BufNewFile *.c                        execute s:load_templates_command."/template.c"
