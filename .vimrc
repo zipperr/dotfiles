@@ -36,9 +36,10 @@ if (v:version >= 800 && executable('git')) "deinはversion8.0以下をサポー�
         call dein#add("Townk/vim-autoclose")        " 閉じ括弧補完
         call dein#add("airblade/vim-gitgutter")     " Git差分表示
         call dein#add("tpope/vim-fugitive")         " Git操作
-        call dein#add("elzr/vim-json")                          " json用インデント
+        call dein#add("elzr/vim-json")              " json用インデント
         " Theme / Interface
         call dein#add("itchyny/lightline.vim")      " ステータスライン
+        call dein#add("maximbaz/lightline-ale")     " ステータスラインにエラー数を表示
         call dein#add("Yggdroot/indentLine")        " インデント可視化
         call dein#add('morhetz/gruvbox')            " カラースキーマ
         " Depends
@@ -70,10 +71,34 @@ autocmd vimrc bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTr
 "{{{----- Lightline -----
 let g:lightline = {
     \'colorscheme': 'wombat',
-    \ 'active': {
-        \'left':  [['mode', 'paste'], ['fugitive', 'readonly', 'filename', 'modified']],
-        \'right': [[ 'youbi', 'syntastic' ], ['lineinfo'],[ 'fileformat', 'fileencoding', 'filetype']]},
-    \'component': {'readonly': '%{&readonly?"RO":""}'},
+    \'active': {
+        \'left':  [
+            \['mode', 'paste'],
+            \['fugitive', 'readonly', 'filename', 'modified'],
+            \['linter_checking', 'linter_errors', 'linter_warnings']
+        \],
+        \'right': [
+            \['youbi', 'syntastic' ],
+            \['lineinfo'],
+            \['fileformat', 'fileencoding', 'filetype']
+        \]
+    \},
+    \'component': {
+        \'readonly': '%{&readonly?"RO":""}',
+        \'lineinfo': '%3l/%L'
+    \},
+    \'component_expand': {
+      \ 'linter_checking': 'lightline#ale#checking',
+      \ 'linter_warnings': 'lightline#ale#warnings',
+      \ 'linter_errors':   'lightline#ale#errors',
+      \ 'linter_ok':       'lightline#ale#ok'
+    \},
+    \'component_type': {
+      \ 'linter_checking': 'left',
+      \ 'linter_warnings': 'warning',
+      \ 'linter_errors':   'error',
+      \ 'linter_ok':       'left'
+    \},
     \'component_function':{
         \'fugitive':     'LightlineFugitive',
         \'filename':     'LightlineFilename',
@@ -81,17 +106,18 @@ let g:lightline = {
         \'filetype':     'LightlineFiletype',
         \'fileencoding': 'LightlineFileencoding',
         \'syntastic':    'SyntasticStatuslineFlag',
-        \'youbi':    'Youbi',
+        \'youbi':        'Youbi',
         \'mode':         'LightlineMode'},
     \}
-let g:lightline.component = {'lineinfo': '%3l/%L'}
+
+let g:ale_statusline_format = ['E%d', 'W%d', 'ok']
 
 function! LightlineFugitive()
     return exists('*fugitive#head') ? fugitive#head() : ''
 endfunction
 
 function! LightlineFilename()
-if winwidth(0) > 90
+if winwidth('.') > 90
     let fname = expand("%:p")
 else
     let fname = expand("%:t")
@@ -102,28 +128,28 @@ return fname =~ 'NERD_tree' ? '' :
 endfunction
 
 function! LightlineFileformat()
-    return winwidth(0) > 80 ? &fileformat : ''
+    return winwidth('.') > 70 ? &fileformat : ''
 endfunction
 
 function! LightlineFiletype()
-    return winwidth(0) > 80 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+    return winwidth('.') > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
 endfunction
 
 function! LightlineFileencoding()
-    return winwidth(0) > 80 ? (&fenc !=# '' ? &fenc : &enc) : ''
+    return winwidth('.') > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
 endfunction
 
 function! LightlineMode()
     let fname = expand('%:t')
     return fname =~ 'NERD_tree' ? 'NERDTree' :
         \&ft == 'unite' ? 'Unite' :
-        \winwidth(0) > 10 ? lightline#mode() : ''
+        \lightline#mode()
 endfunction
 
 function! Youbi()
     let weeks = [ "(日)", "(月)", "(火)", "(水)", "(木)", "(金)", "(土)" ]
     let wday = strftime("%w")
-    return strftime('%Y/%m/%d').weeks[wday].strftime(' %H:%M')
+    return winwidth('.') > 50 ? strftime('%Y/%m/%d').weeks[wday].strftime(' %H:%M') : ''
 endfunction
 "}}}
 "{{{----- Commentout -----
@@ -290,7 +316,7 @@ autocmd vimrc BufNewFile *.json                     execute s:load_templates_com
 autocmd vimrc BufNewFile *.yml                      execute s:load_templates_command."/template.yml"
 "}}}
 "{{{----- Vim-json -----
- let g:vim_json_syntax_conceal = 0
+let g:vim_json_syntax_conceal = 0
 "}}}
 endif
 
