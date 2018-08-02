@@ -113,7 +113,7 @@ let g:lightline = {
 let g:ale_statusline_format = ['E%d', 'W%d', 'ok']
 
 function! LightlineFugitive()
-    return exists('*fugitive#head') ? fugitive#head() : ''
+    return winwidth('.') > 50 ? (exists('*fugitive#head') ? fugitive#head() : '') : ''
 endfunction
 
 function! LightlineFilename()
@@ -381,9 +381,9 @@ set t_Co=256
 autocmd vimrc ColorScheme * highlight Normal ctermbg=none
 autocmd vimrc ColorScheme * highlight LineNr ctermbg=none
 set background=dark
-hi Comment      gui=NONE      font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE      term=NONE      ctermfg=59   ctermbg=NONE
-hi LineNr       gui=NONE      font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE      term=NONE      ctermfg=59   ctermbg=NONE
-hi SpecialKey   gui=NONE      font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE      term=NONE      ctermfg=59   ctermbg=NONE
+hi Comment    gui=NONE font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE term=NONE ctermfg=59 ctermbg=NONE
+hi LineNr     gui=NONE font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE term=NONE ctermfg=59 ctermbg=NONE
+hi SpecialKey gui=NONE font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE term=NONE ctermfg=59 ctermbg=NONE
 "StatusLine
 set laststatus=2
 set number
