@@ -117,14 +117,14 @@ function! LightlineFugitive()
 endfunction
 
 function! LightlineFilename()
-if winwidth('.') > 90
-    let fname = expand("%:p")
-else
-    let fname = expand("%:t")
-endif
-return fname =~ 'NERD_tree' ? '' :
-    \ &ft == 'unite' ? unite#get_status_string() :
-    \ ('' != fname ? fname : '[No Name]')
+    if winwidth('.') > 90
+        let fname = expand("%:p")
+    else
+        let fname = expand("%:t")
+    endif
+    return fname =~ 'NERD_tree' ? '' :
+        \ &ft == 'unite' ? unite#get_status_string() :
+        \ ('' != fname ? fname : '[No Name]')
 endfunction
 
 function! LightlineFileformat()
@@ -193,52 +193,52 @@ nnoremap <C-S> :Unite -toggle -silent -vertical -winwidth=30 -wrap menu:shortcut
 let g:unite_source_menu_menus = get(g:,'unite_source_menu_menus',{})
 let g:unite_source_menu_menus.shortcut = {"description" : "shortcut",}
 let g:unite_source_menu_menus.shortcut.command_candidates = [
-    \[ "[Git]GitStatus",            "Gstatus"],
-    \[ "[Git]GitAdd",               "Gwrite"],
-    \[ "[Git]GitCommit",            "Gcommit"],
-    \[ "[Git]GitPush",              "Git push"],
-    \[ "[Git]GitDiff",              "Gdiff"],
-    \[ "[Git]GitBlame",             "Gblame"],
-    \[ "[Git]GitAddCommitPush",     "Gwrite | Gcommit -am 'Update' | Git push"],
-    \[ "[web]localhost:8000",       "OpenBrowser http://localhost:8000"],
-    \[ "[web]Github",               "OpenBrowser https://github.com/zipperr"],
-    \[ "[web]Google",               "OpenBrowser https://www.google.co.jp"],
-    \[ "[web]Qiita",                "OpenBrowser https://qiita.com"],
-    \[ "[web]Wiki",                 "OpenBrowser https://ja.wikipedia.org"],
-    \[ "[Twitter]Timeline",         "FriendsTwitter"],
-    \[ "[Twitter]Tweet",            "PosttoTwitter"],
-    \[ "[Twitter]Setup",            "SetLoginTwitter"],
-    \[ "[vim]FileTree",             "NERDTreeToggle"],
-    \[ "[File]Tab > Space",         "set expandtab|retab 4"],
-    \[ "[File]Space > Tab",         "set noexpandtab | retab! 4"],
-    \[ "[File]Open_UTF8",           "e ++enc=utf-8"],
-    \[ "[File]Open_ShiftJis",       "e ++enc=cp932"],
-    \[ "[File]Open_euc-jp",         "e ++enc=euc-jp"],
-    \[ "[File]Open_iso-2022-jp",    "e ++enc=iso-2022-jp"],
-    \[ "[File]Open_Dos",            "e ++ff=dos"],
-    \[ "[File]Open_Mac",            "e ++ff=mac"],
-    \[ "[File]Open_Unix",           "e ++ff=unix"],
-    \[ "[File]Set_UTF8",            "set fenc=utf-8"],
-    \[ "[File]Set_ShiftJis",        "set fenc=cp932"],
-    \[ "[File]Set_euc-jp",          "set fenc=euc-jp"],
-    \[ "[File]Set_iso-2022-jp",     "set fenc=iso-2022-jp"],
-    \[ "[File]Set_Dos",             "set ff=dos"],
-    \[ "[File]Set_Mac",             "set ff=mac"],
-    \[ "[File]Set_Unix",            "set ff=unix"],
-    \[ "[File]^M delete",           "%s///g"],
-    \[ "[File]^M replace",          "%s//\r/g"],
-    \[ "[File]EOLdelete",           "set binary noeol|wq"],
-    \[ "[Toggle]Number",            "set number!"],
-    \[ "[Toggle]BreakIndent",       "set breakindent!"],
-    \[ "[Toggle]CursorColumn",      "set cursorcolumn!"],
-    \[ "[Toggle]CursorLine",        "set cursorline!"],
-    \[ "[Toggle]HilightSeach",      "set hlsearch!"],
-    \[ "[Toggle]ShowMatch",         "set showmatch!"],
-    \[ "[Toggle]Wrap",              "set wrap!"],
-    \[ "[Edit]vimrc",               "edit $MYVIMRC"],
-    \[ "[Edit]zshrc",               "edit ~/.zshrc"],
-    \[ "[Edit]bashrc",              "edit ~/.bashrc"],
-    \[ "[Edit]gitconf",             "edit ~/.gitconfig"],
+    \[ "[Git]GitStatus",         "Gstatus"],
+    \[ "[Git]GitAdd",            "Gwrite"],
+    \[ "[Git]GitCommit",         "Gcommit"],
+    \[ "[Git]GitPush",           "Git push"],
+    \[ "[Git]GitDiff",           "Gdiff"],
+    \[ "[Git]GitBlame",          "Gblame"],
+    \[ "[Git]GitAddCommitPush",  "Gwrite | Gcommit -am 'Update' | Git push"],
+    \[ "[web]localhost:8000",    "OpenBrowser http://localhost:8000"],
+    \[ "[web]Github",            "OpenBrowser https://github.com/zipperr"],
+    \[ "[web]Google",            "OpenBrowser https://www.google.co.jp"],
+    \[ "[web]Qiita",             "OpenBrowser https://qiita.com"],
+    \[ "[web]Wiki",              "OpenBrowser https://ja.wikipedia.org"],
+    \[ "[Twitter]Timeline",      "FriendsTwitter"],
+    \[ "[Twitter]Tweet",         "PosttoTwitter"],
+    \[ "[Twitter]Setup",         "SetLoginTwitter"],
+    \[ "[vim]FileTree",          "NERDTreeToggle"],
+    \[ "[File]Tab > Space",      "set expandtab|retab 4"],
+    \[ "[File]Space > Tab",      "set noexpandtab | retab! 4"],
+    \[ "[File]Open_UTF8",        "e ++enc=utf-8"],
+    \[ "[File]Open_ShiftJis",    "e ++enc=cp932"],
+    \[ "[File]Open_euc-jp",      "e ++enc=euc-jp"],
+    \[ "[File]Open_iso-2022-jp", "e ++enc=iso-2022-jp"],
+    \[ "[File]Open_Dos",         "e ++ff=dos"],
+    \[ "[File]Open_Mac",         "e ++ff=mac"],
+    \[ "[File]Open_Unix",        "e ++ff=unix"],
+    \[ "[File]Set_UTF8",         "set fenc=utf-8"],
+    \[ "[File]Set_ShiftJis",     "set fenc=cp932"],
+    \[ "[File]Set_euc-jp",       "set fenc=euc-jp"],
+    \[ "[File]Set_iso-2022-jp",  "set fenc=iso-2022-jp"],
+    \[ "[File]Set_Dos",          "set ff=dos"],
+    \[ "[File]Set_Mac",          "set ff=mac"],
+    \[ "[File]Set_Unix",         "set ff=unix"],
+    \[ "[File]^M delete",        "%s///g"],
+    \[ "[File]^M replace",       "%s//\r/g"],
+    \[ "[File]EOLdelete",        "set binary noeol|wq"],
+    \[ "[Toggle]Number",         "set number!"],
+    \[ "[Toggle]BreakIndent",    "set breakindent!"],
+    \[ "[Toggle]CursorColumn",   "set cursorcolumn!"],
+    \[ "[Toggle]CursorLine",     "set cursorline!"],
+    \[ "[Toggle]HilightSeach",   "set hlsearch!"],
+    \[ "[Toggle]ShowMatch",      "set showmatch!"],
+    \[ "[Toggle]Wrap",           "set wrap!"],
+    \[ "[Edit]vimrc",            "edit $MYVIMRC"],
+    \[ "[Edit]zshrc",            "edit ~/.zshrc"],
+    \[ "[Edit]bashrc",           "edit ~/.bashrc"],
+    \[ "[Edit]gitconf",          "edit ~/.gitconfig"],
     \]
 "}}}
 "{{{----- Neocomplcache -----
@@ -532,13 +532,13 @@ endfunction
 " DeleteFile
 function! DeleteMe(force)
     if a:force || !&modified
-    let filename = expand('%')
-    bdelete!
-call delete(filename)
+        let filename = expand('%')
+        bdelete!
+        call delete(filename)
     else
-    echomsg 'File modified'
+        echomsg 'File modified'
     endif
-    endfunction
+endfunction
 command! -bang -nargs=0 DeleteMe call DeleteMe(<bang>0)
 
 " RenamemeFile
@@ -553,15 +553,15 @@ command! -nargs=1 RenameMe call RenameMe(<q-args>)
 function! RemoveUnwantedSpaces()
     let pos_save = getpos('.')
     try
-        keeppatterns %s/\s\+$//e
-        while 1
-            let lastline = getline('$')
-            if lastline =~ '^\s*$' && line('$') != 1
-                $delete
-            else
-                break
-            endif
-        endwhile
+    keeppatterns %s/\s\+$//e
+    while 1
+        let lastline = getline('$')
+        if lastline =~ '^\s*$' && line('$') != 1
+            $delete
+        else
+            break
+        endif
+    endwhile
     finally
         call setpos('.', pos_save)
     endtry
@@ -593,35 +593,35 @@ else
 endif
 
 function! CloseAnyOther()
-let w = 0
-let w:current_win = 1
-for w in reverse(range(1, winnr('$')))
-    let ft = getwinvar(w, '&filetype')
-    let bt = getwinvar(w, '&buftype')
-    let bufnr = winbufnr(w)
-    let name = bufname(bufnr)
+    let w = 0
+    let w:current_win = 1
+    for w in reverse(range(1, winnr('$')))
+        let ft = getwinvar(w, '&filetype')
+        let bt = getwinvar(w, '&buftype')
+        let bufnr = winbufnr(w)
+        let name = bufname(bufnr)
         if (ft ==# 'quickrun' && name ==# 'QuickRunOut')
-        \||(ft ==# 'NERDTree')
-        \||(ft ==# 'unite')
-        \||(ft ==# 'twitvim')
-        \||(ft ==# 'gitcommit')
-        \||(name =~# '^fugitive:')
-        \||(name =~# 'fugitiveblame')
-        \||(name ==# '')
-        \||(bt ==# 'help')
-        \||(bt ==# 'quickfix')
-        \||(bt ==# 'nofile')
-        execute w . 'wincmd w'
-        q
-        break
+            \||(ft ==# 'NERDTree')
+            \||(ft ==# 'unite')
+            \||(ft ==# 'twitvim')
+            \||(ft ==# 'gitcommit')
+            \||(name =~# '^fugitive:')
+            \||(name =~# 'fugitiveblame')
+            \||(name ==# '')
+            \||(bt ==# 'help')
+            \||(bt ==# 'quickfix')
+            \||(bt ==# 'nofile')
+            execute w . 'wincmd w'
+            q
+            break
         endif
-        endfor
-        for w in range(1, winnr('$'))
-            let was_current = getwinvar(w, 'current_win')
-            if was_current
-                execute w . 'wincmd w'
-                unlet w:current_win
-                break
-            endif
-endfor
+    endfor
+    for w in range(1, winnr('$'))
+        let was_current = getwinvar(w, 'current_win')
+        if was_current
+            execute w . 'wincmd w'
+            unlet w:current_win
+            break
+        endif
+    endfor
 endfunction
