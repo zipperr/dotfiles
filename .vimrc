@@ -517,7 +517,7 @@ autocmd vimrc FileType go                setlocal omnifunc=gocomplete#Complete
 if has('autocmd') && exists('+omnifunc')
     autocmd vimrc Filetype *
     \if &omnifunc == "" |
-        \s
+        \setlocal omnifunc=syntaxcomplete#Complete |
     \endif
 endif
 
