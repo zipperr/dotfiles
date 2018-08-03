@@ -19,36 +19,37 @@ if (v:version >= 800 && executable('git')) "deinはversion8.0以下をサポー�
     if dein#load_state(s:dein_dir)
         call dein#begin(s:dein_dir)
         " Utility
-        call dein#add("Shougo/dein.vim")            " プラグイン管理
-        call dein#add("Shougo/unite.vim")           " ランチャー
-        call dein#add("Shougo/neomru.vim")          " 最近開いたファイルリスト
-        call dein#add("scrooloose/nerdtree")        " ファイルツリー
+        call dein#add('Shougo/dein.vim')            " プラグイン管理
+        call dein#add('Shougo/unite.vim')           " ランチャー
+        call dein#add('Shougo/neomru.vim')          " 最近開いたファイルリスト
+        call dein#add('scrooloose/nerdtree')        " ファイルツリー
         " Programming Support
-        call dein#add("Shougo/neocomplcache.vim")   " 補完
-        call dein#add("Shougo/neosnippet.vim")      " スニペット
-        call dein#add("Shougo/neosnippet-snippets") " デフォルトスニペット
-        call dein#add("honza/vim-snippets")         " 追加スニペット
+        call dein#add('Shougo/neocomplcache.vim')   " 補完
+        call dein#add('Shougo/neosnippet.vim')      " スニペット
+        call dein#add('Shougo/neosnippet-snippets') " デフォルトスニペット
+        call dein#add('honza/vim-snippets')         " 追加スニペット
         call dein#add('zipperr/vim-template')       " テンプレート
-        call dein#add("w0rp/ale")                   " 構文チェック
-        call dein#add("thinca/vim-quickrun")        " コード実行
-        call dein#add("tomtom/tcomment_vim")        " コメントアウトトグル
-        call dein#add("junegunn/vim-easy-align")    " 整形
-        call dein#add("Townk/vim-autoclose")        " 閉じ括弧補完
-        call dein#add("airblade/vim-gitgutter")     " Git差分表示
-        call dein#add("tpope/vim-fugitive")         " Git操作
-        call dein#add("elzr/vim-json")              " json用インデント
+        call dein#add('w0rp/ale')                   " 構文チェック
+        call dein#add('thinca/vim-quickrun')        " コード実行
+        call dein#add('tomtom/tcomment_vim')        " コメントアウトトグル
+        call dein#add('junegunn/vim-easy-align')    " 整形
+        call dein#add('Townk/vim-autoclose')        " 閉じ括弧補完
+        call dein#add('airblade/vim-gitgutter')     " Git差分表示
+        call dein#add('tpope/vim-fugitive')         " Git操作
+        call dein#add('elzr/vim-json')              " json用インデント
+        call dein#add('AndrewRadev/switch.vim')     " リテラルトグル
         " Theme / Interface
-        call dein#add("itchyny/lightline.vim")      " ステータスライン
-        call dein#add("maximbaz/lightline-ale")     " ステータスラインにエラー数を表示
-        call dein#add("Yggdroot/indentLine")        " インデント可視化
+        call dein#add('itchyny/lightline.vim')      " ステータスライン
+        call dein#add('maximbaz/lightline-ale')     " ステータスラインにエラー数を表示
+        call dein#add('Yggdroot/indentLine')        " インデント可視化
         call dein#add('morhetz/gruvbox')            " カラースキーマ
         " Depends
         if executable('make')
-            call dein#add("Shougo/vimproc.vim", {'build' : 'make'}) " 非同期処理
+            call dein#add('Shougo/vimproc.vim', {'build' : 'make'}) " 非同期処理
         endif
         if executable('curl')
-            call dein#add("tyru/open-browser.vim")  " ブラウザを開く
-            call dein#add("twitvim/twitvim")        " Twitter
+            call dein#add('tyru/open-browser.vim')  " ブラウザを開く
+            call dein#add('twitvim/twitvim')        " Twitter
         endif
         call dein#end()
         call dein#save_state()
@@ -63,7 +64,7 @@ let g:NERDTreeQuitOnOpen = 1
 let g:NERDTreeDirArrows  = 0
 let g:NERDTreeShowHidden = 1
 let g:NERDTreeWinSize  = 30
-let g:NERDTreeWinPos   = "left"
+let g:NERDTreeWinPos   = 'left'
 let g:NERDTreeIgnore   = ['\.clean$', '\.swp$', '\.bak$', '\~$', '\.DS_Store']
 autocmd vimrc vimenter * if !argc() | NERDTree | endif
 autocmd vimrc bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -118,13 +119,13 @@ endfunction
 
 function! LightlineFilename()
     if winwidth('.') > 90
-        let fname = expand("%:p")
+        let fname = expand('%:p')
     else
-        let fname = expand("%:t")
+        let fname = expand('%:t')
     endif
-    return fname =~ 'NERD_tree' ? '' :
-        \ &ft == 'unite' ? unite#get_status_string() :
-        \ ('' != fname ? fname : '[No Name]')
+    return fname =~# 'NERD_tree' ? '' :
+        \ &filetype ==# 'unite' ? unite#get_status_string() :
+        \ ('' !=# fname ? fname : '[No Name]')
 endfunction
 
 function! LightlineFileformat()
@@ -136,19 +137,19 @@ function! LightlineFiletype()
 endfunction
 
 function! LightlineFileencoding()
-    return winwidth('.') > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
+    return winwidth('.') > 70 ? (&fileencoding !=# '' ? &fileencoding : &encoding) : ''
 endfunction
 
 function! LightlineMode()
     let fname = expand('%:t')
-    return fname =~ 'NERD_tree' ? 'NERDTree' :
-        \&ft == 'unite' ? 'Unite' :
+    return fname =~# 'NERD_tree' ? 'NERDTree' :
+        \&filetype ==# 'unite' ? 'Unite' :
         \lightline#mode()
 endfunction
 
 function! Youbi()
-    let weeks = [ "(日)", "(月)", "(火)", "(水)", "(木)", "(金)", "(土)" ]
-    let wday = strftime("%w")
+    let weeks = ['(日)', '(月)', '(火)', '(水)', '(木)', '(金)', '(土)']
+    let wday = strftime('%w')
     return winwidth('.') > 50 ? strftime('%Y/%m/%d').weeks[wday].strftime(' %H:%M') : ''
 endfunction
 "}}}
@@ -166,7 +167,7 @@ let g:AutoClosePairs_add = "<> |"" |'' |"
 "{{{----- Twitvim -----
 let twitvim_count = 100
 let twitvim_token_file = expand('~/.vim/.twitvim.token')
-if has("mac")
+if has('mac')
     let twitvim_browser_cmd = 'open'
 endif
 nnoremap <C-t> :40vnew<CR>:FriendsTwitter<CR><C-w>j:q<CR>
@@ -185,13 +186,13 @@ autocmd vimrc FileType unite nnoremap <silent><buffer><expr> i unite#do_action('
 autocmd vimrc FileType unite inoremap <silent><buffer><expr> i unite#do_action('split')
 autocmd vimrc FileType unite nnoremap <silent><buffer><expr> s unite#do_action('vsplit')
 autocmd vimrc FileType unite inoremap <silent><buffer><expr> s unite#do_action('vsplit')
-let g:neomru#time_format = "%Y/%m/%d %H:%M:%S"
-noremap <C-P> :Unite -toggle -silent -winheight=8 buffer<CR>
+let g:neomru#time_format ='%Y/%m/%d %H:%M:%S'
+noremap <C-p> :Unite -toggle -silent -winheight=8 buffer<CR>
 noremap <C-N> :Unite -toggle -silent -winheight=8 -buffer-name=file file<CR>
 noremap <C-Z> :Unite -toggle -silent -winheight=8 file_mru<CR>
-nnoremap <C-S> :Unite -toggle -silent -vertical -winwidth=30 -wrap menu:shortcut<CR>
+noremap <C-s> :Unite -toggle -silent -vertical -winwidth=30 -wrap menu:shortcut<CR>
 let g:unite_source_menu_menus = get(g:,'unite_source_menu_menus',{})
-let g:unite_source_menu_menus.shortcut = {"description" : "shortcut",}
+let g:unite_source_menu_menus.shortcut = {'description' : 'shortcut',}
 let g:unite_source_menu_menus.shortcut.command_candidates = [
     \[ "[Git]GitStatus",         "Gstatus"],
     \[ "[Git]GitAdd",            "Gwrite"],
@@ -273,10 +274,10 @@ nnoremap <Leader>h :OpenBrowser<Space>http://localhost:8000<CR>
 "}}}
 "{{{----- Quickrun -----
 nnoremap <C-q> :QuickRun<CR>
-let g:quickrun_config = {"_" : {
-    \"runner": "job",
-    \"outputter" : "error","outputter/error/success" : "buffer","outputter/error/error" : "buffer",
-    \"outputter/buffer/split" : ":vertical 35","outputter/buffer/close_on_empty" : 0
+let g:quickrun_config = {'_' : {
+    \'runner': 'job',
+    \'outputter' : 'error','outputter/error/success' : 'buffer','outputter/error/error' : 'buffer',
+    \'outputter/buffer/split' : ':vertical 35','outputter/buffer/close_on_empty' : 0
 \}}
 let g:quickrun_config['python.python3'] = {'command' : 'python3'}
 "}}}
@@ -290,7 +291,7 @@ let g:neosnippet#snippets_directory='~/.vim/dein/repos/github.com/honza/vim-snip
 "}}}
 "{{{----- vim-template -----
 let s:load_templates_dir='~/.vim/dein/repos/github.com/zipperr/vim-template/templates'
-let s:load_templates_command="0read ".s:load_templates_dir
+let s:load_templates_command='0read '.s:load_templates_dir
 autocmd vimrc BufNewFile *.c                        execute s:load_templates_command."/template.c"
 autocmd vimrc BufNewFile *.coffee                   execute s:load_templates_command."/template.coffee"
 autocmd vimrc BufNewFile *.cpp                      execute s:load_templates_command."/template.cpp"
@@ -318,6 +319,17 @@ autocmd vimrc BufNewFile *.yml                      execute s:load_templates_com
 "{{{----- Vim-json -----
 let g:vim_json_syntax_conceal = 0
 "}}}
+"{{{----- Switch -----
+let g:switch_mapping = '`'
+let g:switch_custom_definitions =
+\[
+\   {
+\         '\(\k\+\)'    : '''\1''',
+\       '''\(.\{-}\)''' :  '"\1"',
+\        '"\(.\{-}\)"'  :   '\1',
+\   },
+\]
+"}}}
 endif
 
 "----- General Settings -----
@@ -325,7 +337,7 @@ endif
 set fileencodings=utf-8,cp932,euc-jp,sjis
 set fileformats=unix,dos,mac
 set ambiwidth=double
-if (v:version == 704 && has("patch785")) || v:version >= 705
+if (v:version == 704 && has('patch785')) || v:version >= 705
     set nofixendofline
 endif
 "Indent
@@ -336,7 +348,7 @@ set shiftwidth=4
 set softtabstop=4
 set autoindent
 set smartindent
-if (v:version == 704 && has("patch338")) || v:version >= 705
+if (v:version == 704 && has('patch338')) || v:version >= 705
     set breakindent
 endif
 "Runtimepath
@@ -394,7 +406,7 @@ set history=100
 set infercase
 "Other
 set timeout timeoutlen=700 ttimeoutlen=1
-set vb t_vb=
+set visualbell t_vb=
 set nrformats=alpha,octal,hex
 set lazyredraw
 set ttyfast
@@ -501,7 +513,7 @@ autocmd vimrc Filetype php               setlocal omnifunc=phpcomplete#CompleteP
 autocmd vimrc FileType c                 setlocal omnifunc=ccomplete#Complete
 autocmd vimrc FileType ruby              setlocal omnifunc=rubycomplete#Complete
 autocmd vimrc FileType go                setlocal omnifunc=gocomplete#Complete
-if has("autocmd") && exists("+omnifunc")
+if has('autocmd') && exists('+omnifunc')
     autocmd vimrc Filetype *
     \if &omnifunc == "" |
         \setlocal omnifunc=syntaxcomplete#Complete |
@@ -556,7 +568,7 @@ function! RemoveUnwantedSpaces()
     keeppatterns %s/\s\+$//e
     while 1
         let lastline = getline('$')
-        if lastline =~ '^\s*$' && line('$') != 1
+        if lastline =~# '^\s*$' && line('$') != 1
             $delete
         else
             break
@@ -582,7 +594,7 @@ command! -bang -bar -complete=file -nargs=? Mac  edit<bang> ++fileformat=mac  <a
 command! DeleteCR %s///g
 
 " CloseAnyOther
-if (has("win64")|| has("win32unix")||has("win32"))
+if (has('win64')|| has('win32unix')||has('win32'))
     let &t_ti .= "\e[?7727h"
     let &t_te .= "\e[?7727l"
     noremap <special> <Esc>O[ <Esc>
