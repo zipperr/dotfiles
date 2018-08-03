@@ -20,6 +20,7 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 setopt nonomatch
 #vim用設定
+stty -ixon -ixoff
 stty stop undef
 stty start undef
 export KEYTIMEOUT=1

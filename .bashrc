@@ -16,6 +16,7 @@ export HISTCONTROL=ignorespace
 export HISTCONTROL=ignoreboth
 export HISTTIMEFORMAT='%Y/%m/%d %H:%M:%S'
 #vimでC-q
+stty -ixon -ixoff
 stty stop undef
 stty start undef
 

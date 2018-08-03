@@ -16,19 +16,21 @@ brew 'mysql'
 brew 'openssl'
 brew 'w3m'
 brew 'ctags'
-
-brew 'mono'
 brew 'python'
 brew 'python3'
+brew 'flake8'
+brew 'gcc'
 brew 'perl'
 brew 'ruby'
 brew 'go'
 brew 'node'
+brew 'coffeescript'
+brew 'jsonlint'
+brew 'write-good'
 
 cask 'karabiner-elements'
 cask 'mplayerx'
 cask 'java'
 
-mas 'TweetDeck', id: 485812721
 mas 'LINE', id: 539883307
 mas 'The Unarchiver', id: 425424353

@@ -228,6 +228,7 @@ let g:unite_source_menu_menus.shortcut.command_candidates = [
     \[ '[File]Set_Unix',         'set ff=unix'],
     \[ '[File]^M delete',        '%s///g'],
     \[ '[File]^M replace',       '%s//\r/g'],
+    \[ '[File]RemoveSpace',      'RemoveUnwantedSpaces'],
     \[ '[File]EOLdelete',        'set binary noeol|wq'],
     \[ '[Toggle]Number',         'set number!'],
     \[ '[Toggle]BreakIndent',    'set breakindent!'],
@@ -516,7 +517,7 @@ autocmd vimrc FileType go                setlocal omnifunc=gocomplete#Complete
 if has('autocmd') && exists('+omnifunc')
     autocmd vimrc Filetype *
     \if &omnifunc == "" |
-        \setlocal omnifunc=syntaxcomplete#Complete |
+        \s
     \endif
 endif
 
