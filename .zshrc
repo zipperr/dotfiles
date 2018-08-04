@@ -135,8 +135,7 @@ zstyle ':vcs_info:*' formats "%F{green}%c%u[%b]%f"
 zstyle ':vcs_info:*' actionformats '[%b|%a]'
 precmd () { vcs_info }
 SPROMPT="もしかして: %r  (y, n, a, e)-> "
-PROMPT='%{${fg[cyan]}%}(%T)[%n@%m][%~]%{%{$reset_color%}%}${vcs_info_msg_0_}
-$ '
+PROMPT='%{${fg[cyan]}%}(%T)[%n@%m][%~]%{%{$reset_color%}%}${vcs_info_msg_0_}$ '
 
 ##### cdしたらlsする #####
 chpwd() {
