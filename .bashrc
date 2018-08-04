@@ -35,9 +35,8 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "MINGW" ]; then
     alias python='winpty python.exe'
     alias ls='ls -a  --color=auto'
     alias ip='ipconfig /all'
-    var_name=whoami
-    str="var_name"
-    alias desk='cd /c/Users/'+ $str +'/Desktop'
+    userName=whoami
+    alias desk='cd /c/Users/${userName}/Desktop'
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     alias python='python3'
     alias pip='pip3'
