@@ -135,7 +135,8 @@ zstyle ':vcs_info:*' formats "%F{green}%c%u[%b]%f"
 zstyle ':vcs_info:*' actionformats '[%b|%a]'
 precmd () { vcs_info }
 SPROMPT="もしかして: %r  (y, n, a, e)-> "
-PROMPT='%{${fg[cyan]}%}(%T)[%n@%m][%~]%{%{$reset_color%}%}${vcs_info_msg_0_}$ '
+PROMPT='%{${fg[cyan]}%}(%T)[%n@%m][%~]%{%{$reset_color%}%}${vcs_info_msg_0_}
+$ '
 
 ##### cdしたらlsする #####
 chpwd() {
@@ -170,12 +171,34 @@ ls_abbrev() {
     fi
 }
 
-####t# mkdir+cd #####
+##### mkdir+cd #####
 function mkcd() {
     if [[ -d $1 ]]; then
         cd $1
     else
         mkdir -p $1 && cd $1
+    fi
+}
+
+#### extract ####
+function extract () {
+    if [ -f $1 ] ; then
+        case $1 in
+            *.tar.bz2)   tar xjf $1     ;;
+            *.tar.gz)    tar xzf $1     ;;
+            *.bz2)       bunzip2 $1     ;;
+            *.rar)       unrar e $1     ;;
+            *.gz)        gunzip $1      ;;
+            *.tar)       tar xf $1      ;;
+            *.tbz2)      tar xjf $1     ;;
+            *.tgz)       tar xzf $1     ;;
+            *.zip)       unzip $1       ;;
+            *.Z)         uncompress $1  ;;
+            *.7z)        7z x $1        ;;
+            *)     echo "'$1' cannot be extracted via extract()" ;;
+        esac
+    else
+        echo "'$1' is not a valid file"
     fi
 }
 
