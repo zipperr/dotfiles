@@ -25,16 +25,26 @@ stty start undef
       export BASH_COMPLETION="$HOME/.bash_completion"
 . $BASH_COMPLETION
 
-if [ "$(uname)" = 'Darwin' ]; then
+if [ "$(uname)" == "Darwin" ]; then
+    alias python='python3'
+    alias pip='pip3'
     alias ls='ls -a -G'
-else
-    alias ls='ls -a  --color=auto'
-fi
-
-if [ "$(expr substr $(uname -s) 1 5)" == "MINGW" ]; then
+    alias ip='ifconfig'
+    alias desk='cd ~/Desktop'
+elif [ "$(expr substr $(uname -s) 1 5)" == "MINGW" ]; then
     alias python='winpty python.exe'
+    alias ls='ls -a  --color=auto'
+    alias ip='ipconfig /all'
+    alias desk='cd /cygdrive/c/Users/taniuchi/Desktop'
+elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+    alias python='python3'
+    alias pip='pip3'
+    alias ls='ls -a  --color=auto'
+    alias ip='ifconfig'
+    alias desk='cd ~/Desktop'
 fi
 
+alias sudo='sudo '
 alias la='ls -CFal'
 alias mv='mv -i'
 alias rm='rm -i'
@@ -51,8 +61,6 @@ alias g='git'
 alias ..='cd ..'
 alias server='python -m SimpleHTTPServer'
 alias server3='python -m http.server'
-alias ip='ipconfig /all'
-alias desk='cd /cygdrive/c/Users/taniuchi/Desktop'
 
 #grep
 function grep() {

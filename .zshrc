@@ -26,10 +26,23 @@ stty start undef
 export KEYTIMEOUT=1
 
 ##### alias #####
-if [ "$(uname)" = 'Darwin' ]; then
+if [ "$(uname)" == "Darwin" ]; then
+    alias python='python3'
+    alias pip='pip3'
     alias ls='ls -a -G'
-else
+    alias ip='ifconfig'
+    alias desk='cd ~/Desktop'
+elif [ "$(expr substr $(uname -s) 1 5)" == "MINGW" ]; then
+    alias python='winpty python.exe'
     alias ls='ls -a  --color=auto'
+    alias ip='ipconfig /all'
+    alias desk='cd /cygdrive/c/Users/taniuchi/Desktop'
+elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+    alias python='python3'
+    alias pip='pip3'
+    alias ls='ls -a  --color=auto'
+    alias ip='ifconfig'
+    alias desk='cd ~/Desktop'
 fi
 
 alias sudo='sudo '
@@ -51,14 +64,12 @@ alias g='git'
 alias server='python -m SimpleHTTPServer'
 alias server3='python -m http.server'
 alias w3="w3m -B"
-alias ip='ipconfig /all'
 
 #blog
 function pos() {command bundle exec rake new_post["$1"]}
 alias wri="vi ./source/_posts/"
 alias dep="bundle exec rake gen_deploy"
 alias pre="bundle exec rake preview"
-alias desk='cd /cygdrive/c/Users/taniuchi/Desktop'
 
 #grep
 function grep() {find . -name '*' -print0 |xargs -0 grep --color=always -s -I -n $1 |awk '{print substr($0, 1, 180) "..." }'}
@@ -133,30 +144,30 @@ chpwd() {
 ls_abbrev() {
     if [[ ! -r $PWD ]]; then
         return
-            fi
-            local cmd_ls='ls'
-            local -a opt_ls
-            opt_ls=('-aCF' '--color=always')
+    fi
+    local cmd_ls='ls'
+    local -a opt_ls
+    opt_ls=('-aCF' '--color=always')
     case "${OSTYPE}" in
             freebsd*|darwin*)
-                if type gls > /dev/null 2>&1; then
-                    cmd_ls='gls'
-                else
-                    opt_ls=('-aCFG')
-                        fi
-                        ;;
-            esac
-                local ls_result
-                ls_result=$(CLICOLOR_FORCE=1 COLUMNS=$COLUMNS command $cmd_ls ${opt_ls[@]} | sed $'/^\e\[[0-9;]*m$/d')
-                local ls_lines=$(echo "$ls_result" | wc -l | tr -d ' ')
-                if [ $ls_lines -gt 10 ]; then
-                    echo "$ls_result" | head -n 5
-                        echo '...'
-                        echo "$ls_result" | tail -n 5
-                        echo "$(command ls -1 -A | wc -l | tr -d ' ') files exist"
-                else
-                    echo "$ls_result"
-                        fi
+        if type gls > /dev/null 2>&1; then
+            cmd_ls='gls'
+        else
+            opt_ls=('-aCFG')
+        fi
+        ;;
+    esac
+    local ls_result
+    ls_result=$(CLICOLOR_FORCE=1 COLUMNS=$COLUMNS command $cmd_ls ${opt_ls[@]} | sed $'/^\e\[[0-9;]*m$/d')
+    local ls_lines=$(echo "$ls_result" | wc -l | tr -d ' ')
+    if [ $ls_lines -gt 10 ]; then
+        echo "$ls_result" | head -n 5
+        echo '...'
+        echo "$ls_result" | tail -n 5
+        echo "$(command ls -1 -A | wc -l | tr -d ' ') files exist"
+    else
+        echo "$ls_result"
+    fi
 }
 
 ####t# mkdir+cd #####
@@ -165,7 +176,7 @@ function mkcd() {
         cd $1
     else
         mkdir -p $1 && cd $1
-            fi
+    fi
 }
 
 ##### Proxy #####
