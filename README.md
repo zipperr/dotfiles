@@ -11,8 +11,7 @@ brew bundle
 chsh -s /bin/zsh   
 
 #  Linux
-sudo apt-get install zsh vim git make gcc w3m  
-sudo yum install zsh vim git make gcc w3m  
+sudo apt-get install zsh vim git  
 chsh -s /usr/bin/zsh
 
 #  Windows

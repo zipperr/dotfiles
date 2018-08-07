@@ -1,22 +1,18 @@
 #!/bin/bash
 
 if [ "$(uname)" == "Darwin" ]; then
+    cd ~/dotfiles
+    xcode-select --install
+    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    brew tap Homebrew/bundle
+    brew bundle
+    chsh -s /bin/zsh
     chmod +x ~/dotfiles/pythonSetup.sh
-    if [ `which brew` ]; then
-        brew update
-    else
-        cd ~/dotfiles
-        xcode-select --install
-        ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-        brew tap Homebrew/bundle
-        brew bundle
-        chsh -s /bin/zsh
-    fi
 elif [ "$(expr substr $(uname -s) 1 5)" == "MINGW" ]; then
     echo 'windows'
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     sudo apt-get update && sudo apt-get -y dist-upgrade && sudo apt-get -y autoremove && sudo apt-get autoclean
-    sudo apt-get -y install zsh vim git make gcc
+    sudo apt-get -y install zsh vim git make node.js python3 python perl ruby golang gcc cpp g++ default-jre default-jdk php clisp mono lua groovy open-cobol
     chsh -s /usr/bin/zsh
     localedef -f UTF-8 -i ja_JP ja_JP.UTF-8
     chmod +x ~/dotfiles/pythonSetup.sh
