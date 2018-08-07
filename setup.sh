@@ -15,10 +15,11 @@ if [ "$(uname)" == "Darwin" ]; then
 elif [ "$(expr substr $(uname -s) 1 5)" == "MINGW" ]; then
     echo 'windows'
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-    localedef -f UTF-8 -i ja_JP ja_JP.UTF-8
-    chmod +x ~/dotfiles/pythonSetup.sh
+    sudo apt-get update && sudo apt-get -y dist-upgrade && sudo apt-get -y autoremove && sudo apt-get autoclean
     sudo apt-get -y install zsh vim git make gcc
     chsh -s /usr/bin/zsh
+    localedef -f UTF-8 -i ja_JP ja_JP.UTF-8
+    chmod +x ~/dotfiles/pythonSetup.sh
 fi
 
 ln -s $HOME/dotfiles/.vimrc $HOME/.vimrc
