@@ -1,7 +1,19 @@
 #  使い方
-2. git clone https://github.com/zipperr/dotfiles ~/dotfiles
-3. chmod +x dotfiles/setup.sh
-4. ~/dotfiles/setup.sh
+1. git clone https://github.com/zipperr/dotfiles ~/dotfiles
+2. chmod +x -R ~/dotfiles
+3. ~/dotfiles/setup.sh
+
+#  Mac OSX
+xcode-select --install  
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"  
+brew tap Homebrew/bundle  
+brew bundle  
+chsh -s /bin/zsh   
+
+#  Linux
+sudo apt-get install zsh vim git make gcc w3m  
+sudo yum install zsh vim git make gcc w3m  
+chsh -s /usr/bin/zsh
 
 #  Windows
 [GitBash Install](http://gitforwindows.org)  
