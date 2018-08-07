@@ -2,10 +2,10 @@
 
 if [ "$(uname)" == "Darwin" ]; then
     if [ `which pyenv` ]; then
-    pyenv install -v 3.7.0
-    pyenv global 3.7.0
-    pip install --upgrade pip
-    pip install requests numpy pybitflyer ccxt flake8 Flask pandas vim-vint
+        pyenv install -v 3.7.0
+        pyenv global 3.7.0
+        pip install --upgrade pip
+        pip install requests numpy pybitflyer ccxt flake8 Flask pandas vim-vint
     fi
 elif [ "$(expr substr $(uname -s) 1 5)" == "MINGW" ]; then
     echo 'windows'
