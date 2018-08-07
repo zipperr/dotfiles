@@ -1,6 +1,6 @@
 #  使い方
 1. git clone https://github.com/zipperr/dotfiles ~/dotfiles
-2. chmod +x -R ~/dotfiles
+2. chmod +x ~/dotfiles/setup.sh
 3. ~/dotfiles/setup.sh
 
 #  Mac OSX

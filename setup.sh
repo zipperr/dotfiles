@@ -1,6 +1,7 @@
 #!/bin/bash
 
 if [ "$(uname)" == "Darwin" ]; then
+    chmod +x ~/dotfiles/pythonSetup.sh
     if [ `which brew` ]; then
         brew update
     else
@@ -14,6 +15,7 @@ if [ "$(uname)" == "Darwin" ]; then
 elif [ "$(expr substr $(uname -s) 1 5)" == "MINGW" ]; then
     echo 'windows'
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+    chmod +x ~/dotfiles/pythonSetup.sh
     sudo apt-get -y install zsh vim git make gcc
     chsh -s /usr/bin/zsh
 fi
