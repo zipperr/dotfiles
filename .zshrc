@@ -219,3 +219,7 @@ git config --global http.proxy ${HTTP_PROXY}
 git config --global https.proxy ${HTTPS_PROXY}
 git config --global url."https://".insteadOf git://
 #COMMENT_OUT
+
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
