@@ -280,7 +280,6 @@ let g:quickrun_config = {'_' : {
     \'outputter' : 'error','outputter/error/success' : 'buffer','outputter/error/error' : 'buffer',
     \'outputter/buffer/split' : ':vertical 35','outputter/buffer/close_on_empty' : 0
 \}}
-let g:quickrun_config['python.python3'] = {'command' : 'python3'}
 "}}}
 "{{{----- gruvbox -----
 colorscheme gruvbox

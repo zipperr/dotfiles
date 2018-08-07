@@ -4,21 +4,6 @@
 3. chmod +x dotfiles/setup.sh
 4. ~/dotfiles/setup.sh
 
-#  Mac OSX
-xcode-select --install  
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"  
-brew tap Homebrew/bundle  
-brew bundle  
-chsh -s /bin/zsh   
-
-#  Linux
-sudo apt-get install zsh vim git make gcc w3m  
-sudo yum install zsh vim git make gcc w3m  
-chsh -s /usr/bin/zsh
-
-aptコマンドメモ:node.js python3 python perl ruby golang gcc cpp g++  
-default-jre default-jdk php clisp mono lua groovy open-cobol
-
 #  Windows
 [GitBash Install](http://gitforwindows.org)  
 

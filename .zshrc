@@ -27,8 +27,6 @@ export KEYTIMEOUT=1
 
 ##### alias #####
 if [ "$(uname)" == "Darwin" ]; then
-    alias python='python3'
-    alias pip='pip3'
     alias ls='ls -a -G'
     alias ip='ifconfig'
     alias desk='cd ~/Desktop'
@@ -39,8 +37,6 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "MINGW" ]; then
     userName=$(whoami)
     alias desk='cd /c/Users/${userName}/Desktop'
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-    alias python='python3'
-    alias pip='pip3'
     alias ls='ls -a  --color=auto'
     alias ip='ifconfig'
     alias desk='cd ~/Desktop'
