@@ -1,10 +1,10 @@
 #!/bin/bash
 
 if [ "$(uname)" == "Darwin" ]; then
-    cd ~/dotfiles
     if [ `which brew` ]; then
         brew update
     else
+        cd ~/dotfiles
         xcode-select --install
         ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
         brew tap Homebrew/bundle
