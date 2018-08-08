@@ -11,10 +11,26 @@ if [ "$(uname)" == "Darwin" ]; then
 elif [ "$(expr substr $(uname -s) 1 5)" == "MINGW" ]; then
     echo 'windows'
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-    sudo apt-get update && sudo apt-get -y dist-upgrade && sudo apt-get -y autoremove && sudo apt-get autoclean
-    sudo apt-get -y install zsh vim git make node.js python3 python perl ruby groovy
-    sudo apt-get -y install golang gcc cpp g++ default-jre default-jdk php clisp open-cobol
-    sudo apt-get -y install default-jre default-jdk php clisp lua groovy open-cobol lua
+    while true;do
+        echo "Start apt-get update&install"
+        echo "Type 'y' or 'n'"
+        read answer
+        case $answer in
+            y)
+                sudo apt-get update && sudo apt-get -y dist-upgrade && sudo apt-get -y autoremove && sudo apt-get autoclean
+                sudo apt-get -y install zsh vim git make node.js python3 python
+                sudo apt-get -y install golang gcc cpp g++ perl ruby groovy php
+                sudo apt-get -y install default-jre default-jdk clisp open-cobol lua
+                break
+                ;;
+            n)
+                break
+                ;;
+            *)
+                echo -e "cannot understand $answer.\n"
+                ;;
+        esac
+    done
     chsh -s /usr/bin/zsh
     localedef -f UTF-8 -i ja_JP ja_JP.UTF-8
     chmod +x ~/dotfiles/pythonSetup.sh
