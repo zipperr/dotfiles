@@ -36,6 +36,13 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     chmod +x ~/dotfiles/pythonSetup.sh
 fi
 
+sudo rm $HOME/.vimrc
+sudo rm $HOME/.bashrc
+sudo rm $HOME/.bash_completion
+sudo rm $HOME/.zshrc
+sudo rm $HOME/.git-prompt.sh
+sudo rm $HOME/.gitconfig
+sudo rm $HOME/.gitignore_global
 ln -s $HOME/dotfiles/.vimrc $HOME/.vimrc
 ln -s $HOME/dotfiles/.bashrc $HOME/.bashrc
 ln -s $HOME/dotfiles/.bash_completion $HOME/.bash_completion
