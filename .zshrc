@@ -38,7 +38,6 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "MINGW" ]; then
     alias desk='cd /c/Users/${userName}/Desktop'
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     alias ls='ls -a  --color=auto'
-    alias ip='ifconfig'
     alias desk='cd ~/Desktop'
 fi
 
