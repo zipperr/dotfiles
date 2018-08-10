@@ -1,0 +1,11 @@
+[Unit]
+Description = PythonFlask WebServer
+
+[Service]
+ExecStart=/home/pi/.pyenv/shims/python /home/pi/work/Flask/main.py
+Restart=always
+Type=simple
+User=pi
+
+[Install]
+WantedBy=multi-user.target

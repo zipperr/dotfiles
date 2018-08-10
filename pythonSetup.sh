@@ -23,7 +23,14 @@ if [ "$(uname)" == "Darwin" ]; then
     fi
     if [ `which pip` ]; then
         pip install --upgrade pip
-        pip install requests numpy pybitflyer ccxt flake8 Flask pandas vim-vint
+        pip install numpy
+        pip install pybitflyer
+        pip install flake8
+        pip install Flask
+        pip install vim-vint
+        pip install flask-socketIO
+        pip install ccxt
+        pip install pandas
     fi
 elif [ "$(expr substr $(uname -s) 1 5)" == "MINGW" ]; then
     echo 'windows'
@@ -53,5 +60,13 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     if [ `which pip` ]; then
         pip install --upgrade pip
         pip install requests numpy pybitflyer ccxt flake8 Flask pandas vim-vint
+        pip install numpy
+        pip install pybitflyer
+        pip install flake8
+        pip install Flask
+        pip install vim-vint
+        pip install flask-socketIO
+        pip install ccxt
+        pip install pandas
     fi
 fi
