@@ -68,5 +68,7 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
         pip install flask-socketIO
         pip install ccxt
         pip install pandas
+        pip install Flask-MySQL
+        pip install picamera
     fi
 fi
