@@ -487,15 +487,6 @@ cnoremap <C-h> <Left>
 cnoremap <C-l> <Right>
 cnoremap <expr> /  getcmdtype() == '/' ? '\/' : '/'
 cnoremap <expr> ?  getcmdtype() == '?' ? '\?' : '?'
-"ArrowKeys
-noremap <Up>    :<C-u>echoerr "Don't use that key!"<CR>
-noremap <Down>  :<C-u>echoerr "Don't use that key!"<CR>
-noremap <Left>  :<C-u>echoerr "Don't use that key!"<CR>
-noremap <Right> :<C-u>echoerr "Don't use that key!"<CR>
-inoremap <Up>    <Right><ESC>
-inoremap <Down>  <Right><ESC>
-inoremap <Left>  <Right><ESC>:<C-u>echoerr "Don't use that key!"<CR>
-inoremap <Right> <Right><ESC>:<C-u>echoerr "Don't use that key!"<CR>
 "grep
 autocmd vimrc QuickFixCmdPost *grep* cwindow
 set grepprg=grep\ -rnIH\ --exclude-dir=.svn\ --exclude-dir=.git

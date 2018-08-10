@@ -61,12 +61,6 @@ alias server='python -m SimpleHTTPServer'
 alias server3='python -m http.server'
 alias w3="w3m -B"
 
-#blog
-function pos() {command bundle exec rake new_post["$1"]}
-alias wri="vi ./source/_posts/"
-alias dep="bundle exec rake gen_deploy"
-alias pre="bundle exec rake preview"
-
 #grep
 function grep() {find . -name '*' -print0 |xargs -0 grep --color=always -s -I -n $1 |awk '{print substr($0, 1, 180) "..." }'}
 
@@ -222,3 +216,8 @@ git config --global url."https://".insteadOf git://
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+
+function dep(){
+    rm -rf ~/Flask
+    git clone https://github.com/zipperr/Flask
+}
