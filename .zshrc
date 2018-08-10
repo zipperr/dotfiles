@@ -219,5 +219,5 @@ eval "$(pyenv init -)"
 
 function dep(){
     rm -rf ~/Flask
-    git clone https://github.com/zipperr/Flask
+    git clone https://github.com/zipperr/Flask ~/Flask
 }
