@@ -70,5 +70,7 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
         pip install pandas
         pip install Flask-MySQL
         pip install picamera
+        pip install --upgrade setuptools
+        pip install flask-bootstrap
     fi
 fi
