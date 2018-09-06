@@ -59,7 +59,7 @@ if (v:version >= 800 && executable('git')) "deinはversion8.0以下をサポー�
     endif
 
 "{{{----- NERDTree -----
-nnoremap <silent><C-e> :NERDTreeToggle<CR>
+nnoremap <silent>E :NERDTreeToggle<CR>
 let g:NERDTreeQuitOnOpen = 1
 let g:NERDTreeDirArrows  = 0
 let g:NERDTreeShowHidden = 1
@@ -170,8 +170,8 @@ let twitvim_token_file = expand('~/.vim/.twitvim.token')
 if has('mac')
     let twitvim_browser_cmd = 'open'
 endif
-nnoremap <C-t> :40vnew<CR>:FriendsTwitter<CR><C-w>j:q<CR>
-nnoremap T :PosttoTwitter<CR>
+nnoremap T :40vnew<CR>:FriendsTwitter<CR><C-w>j:q<CR>
+" nnoremap T :PosttoTwitter<CR>
 nnoremap <Leader>t :RefreshTwitter<CR>
 autocmd vimrc FileType twitvim call s:twitvim_my_settings()
 function! s:twitvim_my_settings()
@@ -190,7 +190,7 @@ let g:neomru#time_format ='%Y/%m/%d %H:%M:%S'
 noremap <C-p> :Unite -toggle -silent -winheight=8 buffer<CR>
 noremap <C-N> :Unite -toggle -silent -winheight=8 -buffer-name=file file<CR>
 noremap <C-Z> :Unite -toggle -silent -winheight=8 file_mru<CR>
-noremap <C-s> :Unite -toggle -silent -vertical -winwidth=30 -wrap menu:shortcut<CR>
+noremap W :Unite -toggle -silent -vertical -winwidth=30 -wrap menu:shortcut<CR>
 let g:unite_source_menu_menus = get(g:,'unite_source_menu_menus',{})
 let g:unite_source_menu_menus.shortcut = {'description' : 'shortcut',}
 let g:unite_source_menu_menus.shortcut.command_candidates = [
@@ -274,7 +274,7 @@ nnoremap <Leader>s :OpenBrowserSearch<Space>
 nnoremap <Leader>h :OpenBrowser<Space>http://localhost:8000<CR>
 "}}}
 "{{{----- Quickrun -----
-nnoremap <C-q> :QuickRun<CR>
+nnoremap Q :QuickRun<CR>
 let g:quickrun_config = {'_' : {
     \'runner': 'job',
     \'outputter' : 'error','outputter/error/success' : 'buffer','outputter/error/error' : 'buffer',
