@@ -435,7 +435,7 @@ nnoremap * *zz
 nnoremap # #zz
 nnoremap g* g*zz
 nnoremap g# g#zz
-nnoremap <C-w> <C-w><C-w>
+nnoremap R <C-w><C-w>
 nnoremap r <C-r>
 nnoremap Y y$
 nnoremap p p`]
