@@ -187,9 +187,7 @@ autocmd vimrc FileType unite inoremap <silent><buffer><expr> i unite#do_action('
 autocmd vimrc FileType unite nnoremap <silent><buffer><expr> s unite#do_action('vsplit')
 autocmd vimrc FileType unite inoremap <silent><buffer><expr> s unite#do_action('vsplit')
 let g:neomru#time_format ='%Y/%m/%d %H:%M:%S'
-noremap <C-p> :Unite -toggle -silent -winheight=8 buffer<CR>
-noremap <C-N> :Unite -toggle -silent -winheight=8 -buffer-name=file file<CR>
-noremap <C-Z> :Unite -toggle -silent -winheight=8 file_mru<CR>
+noremap Z :Unite -toggle -silent -winheight=8 file_mru<CR>
 noremap W :Unite -toggle -silent -vertical -winwidth=30 -wrap menu:shortcut<CR>
 let g:unite_source_menu_menus = get(g:,'unite_source_menu_menus',{})
 let g:unite_source_menu_menus.shortcut = {'description' : 'shortcut',}
@@ -456,10 +454,6 @@ nnoremap <Leader>{ ciw{}<Esc>P
 nnoremap <Leader>[ ciw[]<Esc>P
 nnoremap <Leader>/ :%s/置換前/置換後/<Left>
 "InsertMode
-inoremap <C-j> <Down>
-inoremap <C-k> <Up>
-inoremap <C-h> <Left>
-inoremap <C-l> <Right>
 inoremap jj <ESC>
 inoremap , ,<space>
 "VisualMode
@@ -481,10 +475,6 @@ cmap wb<CR> set binary noeol<CR>:wq<CR>
 cmap W<CR> wa<CR>
 cmap Q<CR> qa<CR>
 cmap WQ<CR> wqa<CR>
-cnoremap <C-j> <Down>
-cnoremap <C-k> <Up>
-cnoremap <C-h> <Left>
-cnoremap <C-l> <Right>
 cnoremap <expr> /  getcmdtype() == '/' ? '\/' : '/'
 cnoremap <expr> ?  getcmdtype() == '?' ? '\?' : '?'
 "grep
