@@ -433,7 +433,11 @@ nnoremap * *zz
 nnoremap # #zz
 nnoremap g* g*zz
 nnoremap g# g#zz
-nnoremap R <C-w><C-w>
+nnoremap sh <C-w>h
+nnoremap sj <C-w>j
+nnoremap sk <C-w>k
+nnoremap sl <C-w>l
+nnoremap sw <C-w>w
 nnoremap r <C-r>
 nnoremap Y y$
 nnoremap p p`]
