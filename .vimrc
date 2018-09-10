@@ -59,7 +59,7 @@ if (v:version >= 800 && executable('git')) "deinはversion8.0以下をサポー�
     endif
 
 "{{{----- NERDTree -----
-nnoremap <silent>E :NERDTreeToggle<CR>
+nnoremap <silent><C-e> :NERDTreeToggle<CR>
 let g:NERDTreeQuitOnOpen = 1
 let g:NERDTreeDirArrows  = 0
 let g:NERDTreeShowHidden = 1
@@ -170,8 +170,8 @@ let twitvim_token_file = expand('~/.vim/.twitvim.token')
 if has('mac')
     let twitvim_browser_cmd = 'open'
 endif
-nnoremap T :40vnew<CR>:FriendsTwitter<CR><C-w>j:q<CR>
-" nnoremap T :PosttoTwitter<CR>
+nnoremap <C-t> :40vnew<CR>:FriendsTwitter<CR><C-w>j:q<CR>
+nnoremap T :PosttoTwitter<CR>
 nnoremap <Leader>t :RefreshTwitter<CR>
 autocmd vimrc FileType twitvim call s:twitvim_my_settings()
 function! s:twitvim_my_settings()
@@ -187,8 +187,10 @@ autocmd vimrc FileType unite inoremap <silent><buffer><expr> i unite#do_action('
 autocmd vimrc FileType unite nnoremap <silent><buffer><expr> s unite#do_action('vsplit')
 autocmd vimrc FileType unite inoremap <silent><buffer><expr> s unite#do_action('vsplit')
 let g:neomru#time_format ='%Y/%m/%d %H:%M:%S'
-noremap Z :Unite -toggle -silent -winheight=8 file_mru<CR>
-noremap W :Unite -toggle -silent -vertical -winwidth=30 -wrap menu:shortcut<CR>
+noremap <C-p> :Unite -toggle -silent -winheight=8 buffer<CR>
+noremap <C-N> :Unite -toggle -silent -winheight=8 -buffer-name=file file<CR>
+noremap <C-Z> :Unite -toggle -silent -winheight=8 file_mru<CR>
+noremap <C-R> :Unite -toggle -silent -vertical -winwidth=30 -wrap menu:shortcut<CR>
 let g:unite_source_menu_menus = get(g:,'unite_source_menu_menus',{})
 let g:unite_source_menu_menus.shortcut = {'description' : 'shortcut',}
 let g:unite_source_menu_menus.shortcut.command_candidates = [
@@ -272,7 +274,7 @@ nnoremap <Leader>s :OpenBrowserSearch<Space>
 nnoremap <Leader>h :OpenBrowser<Space>http://localhost:8000<CR>
 "}}}
 "{{{----- Quickrun -----
-nnoremap Q :QuickRun<CR>
+nnoremap <C-q> :QuickRun<CR>
 let g:quickrun_config = {'_' : {
     \'runner': 'job',
     \'outputter' : 'error','outputter/error/success' : 'buffer','outputter/error/error' : 'buffer',
@@ -433,11 +435,7 @@ nnoremap * *zz
 nnoremap # #zz
 nnoremap g* g*zz
 nnoremap g# g#zz
-nnoremap sh <C-w>h
-nnoremap sj <C-w>j
-nnoremap sk <C-w>k
-nnoremap sl <C-w>l
-nnoremap sw <C-w>w
+nnoremap <C-w> <C-w><C-w>
 nnoremap r <C-r>
 nnoremap Y y$
 nnoremap p p`]
@@ -458,6 +456,10 @@ nnoremap <Leader>{ ciw{}<Esc>P
 nnoremap <Leader>[ ciw[]<Esc>P
 nnoremap <Leader>/ :%s/置換前/置換後/<Left>
 "InsertMode
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-h> <Left>
+inoremap <C-l> <Right>
 inoremap jj <ESC>
 inoremap , ,<space>
 "VisualMode
@@ -479,6 +481,10 @@ cmap wb<CR> set binary noeol<CR>:wq<CR>
 cmap W<CR> wa<CR>
 cmap Q<CR> qa<CR>
 cmap WQ<CR> wqa<CR>
+cnoremap <C-j> <Down>
+cnoremap <C-k> <Up>
+cnoremap <C-h> <Left>
+cnoremap <C-l> <Right>
 cnoremap <expr> /  getcmdtype() == '/' ? '\/' : '/'
 cnoremap <expr> ?  getcmdtype() == '?' ? '\?' : '?'
 "grep
