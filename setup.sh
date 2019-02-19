@@ -2,12 +2,28 @@
 
 if [ "$(uname)" == "Darwin" ]; then
     cd ~/dotfiles
-    xcode-select --install
     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
     brew tap Homebrew/bundle
     brew bundle
     chsh -s /bin/zsh
     chmod +x ~/dotfiles/pythonSetup.sh
+    defaults write com.apple.dock autohide-delay -float 0
+    defaults write com.apple.dock autohide-time-modifier -float 0
+    defaults write com.apple.dock autohide -bool true
+    defaults write com.apple.dock mineffect -string "scale"
+    defaults write com.apple.dock springboard-show-duration -int 0
+    defaults write com.apple.dock springboard-hide-duration -int 0
+    killall Dock
+    chflags nohidden ~/Library
+    defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -int 1
+    defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
+    defaults write com.apple.finder AppleShowAllFiles true
+    defaults write com.apple.finder QuitMenuItem -bool true
+    defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+    defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true
+    defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+    defaults write com.apple.LaunchServices LSQuarantine -bool false
+    defaults write com.apple.CrashReporter DialogType none
 elif [ "$(expr substr $(uname -s) 1 5)" == "MINGW" ]; then
     echo 'windows'
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
