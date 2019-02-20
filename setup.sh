@@ -31,7 +31,11 @@ if [ "$(uname)" == "Darwin" ]; then
     sudo chflags nohidden /Volumes    # /Volumes ディレクトリを見えるようにする
     sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName    # 時計アイコンクリック時に OS やホスト名 IP を表示する
     # タップでクリック
-    defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -int 1
+    defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+    # カーソ最速
+    defaults write -g com.apple.trackpad.scaling 3
+    # スクロール方向
+    defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
     # タイトルバーにフルパスを表示
     defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
     # 隠しファイルや隠しフォルダを表示
