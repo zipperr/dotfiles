@@ -7,23 +7,64 @@ if [ "$(uname)" == "Darwin" ]; then
     brew bundle
     chsh -s /bin/zsh
     chmod +x ~/dotfiles/pythonSetup.sh
-    defaults write com.apple.dock autohide-delay -float 0
-    defaults write com.apple.dock autohide-time-modifier -float 0
-    defaults write com.apple.dock autohide -bool true
-    defaults write com.apple.dock mineffect -string "scale"
-    defaults write com.apple.dock springboard-show-duration -int 0
-    defaults write com.apple.dock springboard-hide-duration -int 0
-    killall Dock
-    chflags nohidden ~/Library
-    defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -int 1
-    defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
-    defaults write com.apple.finder AppleShowAllFiles true
-    defaults write com.apple.finder QuitMenuItem -bool true
+
+    # 起動最小
+    sudo nvram SystemAudioVolume=%00
+    # 拡張子を常に表示
     defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+    # Dockをすぐに表示する
+    defaults write com.apple.dock autohide-delay -float 0
+    #Dockアニメーションなし
+    defaults write com.apple.dock autohide-time-modifier -float 0
+    # 自動でドック隠す
+    defaults write com.apple.dock autohide -bool true
+    #スケールエフェクト
+    defaults write com.apple.dock mineffect -string "scale"
+    #Launchpadすぐ出す
+    defaults write com.apple.dock springboard-show-duration -int 0
+    #Launchpadすぐ隠す
+    defaults write com.apple.dock springboard-hide-duration -int 0
+    # 設定反映
+    killall Dock
+    #ライブラリフォルダ出す
+    chflags nohidden ~/Library
+    sudo chflags nohidden /Volumes    # /Volumes ディレクトリを見えるようにする
+    sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName    # 時計アイコンクリック時に OS やホスト名 IP を表示する
+    # タップでクリック
+    defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -int 1
+    # タイトルバーにフルパスを表示
+    defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
+    # 隠しファイルや隠しフォルダを表示
+    defaults write com.apple.finder AppleShowAllFiles true
+    #Finderを終了を出す
+    defaults write com.apple.finder QuitMenuItem -bool true
+    # アドレスバーに完全なURLを表示
     defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true
+    # ネットワークフォルダに.DS_Storeを作らない
     defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+    defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
+    # 未確認のアプリケーションを実行する際のダイアログを無効にする
     defaults write com.apple.LaunchServices LSQuarantine -bool false
+    # クラッシュリポーターを無効にする
     defaults write com.apple.CrashReporter DialogType none
+    defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false    # 拡張子変更時の警告を無効化する
+    defaults write com.apple.finder WarnOnEmptyTrash -bool false    # ゴミ箱を空にする前の警告を無効化する
+    defaults write com.apple.Safari AutoOpenSafeDownloads -bool false    # ファイルのダウンロード後に自動でファイルを開くのを無効化する
+    defaults write com.apple.Safari SuppressSearchSuggestions -bool true    # 検索クエリを Apple へ送信しない
+    defaults write com.apple.Safari UniversalSearchEnabled -bool false    # 検索クエリを Apple へ送信しない
+    #キーリピート
+    defaults write -g InitialKeyRepeat -int 12
+    defaults write -g KeyRepeat -int 1
+    # Use a custom theme （カスタムテーマを使う、そのテーマをデフォルトに設定する）
+    TERM_PROFILE='zip';
+    TERM_PATH='./';
+    CURRENT_PROFILE="$(defaults read com.apple.terminal 'Default Window Settings')";
+    if [ "${CURRENT_PROFILE}" != "${TERM_PROFILE}" ]; then
+        open "$TERM_PATH$TERM_PROFILE.terminal"
+        defaults write com.apple.Terminal "Default Window Settings" -string "$TERM_PROFILE"
+        defaults write com.apple.Terminal "Startup Window Settings" -string "$TERM_PROFILE"
+    fi
+defaults import com.apple.Terminal "$HOME/Library/Preferences/com.apple.Terminal.plist"
 elif [ "$(expr substr $(uname -s) 1 5)" == "MINGW" ]; then
     echo 'windows'
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then

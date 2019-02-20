@@ -38,10 +38,3 @@ mas 'The Unarchiver', id: 425424353
 mas 'PiPifier', id: 1160374471
 mas 'ToothFairy', id: 1191449274
 mas 'AdGuard for Safari', id: 1440147259
-mas 'Microsoft Excel', id: 462058435
-mas 'Microsoft Word', id: 462054704
-mas 'Microsoft PowerPoint', id: 462062816
-mas 'Keynote', id: 409183694
-mas 'Pages', id: 409201541
-mas 'Numbers', id: 409203825
-mas 'iMovie', id: 408981434
