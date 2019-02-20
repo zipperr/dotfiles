@@ -26,6 +26,7 @@ brew 'node'
 brew 'coffeescript'
 brew 'jsonlint'
 brew 'write-good'
+brew 'wallpaper'
 
 cask 'bathyscaphe'
 cask 'karabiner-elements'
