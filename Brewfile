@@ -26,7 +26,7 @@ brew 'node'
 brew 'coffeescript'
 brew 'jsonlint'
 brew 'write-good'
-brew 'vim', args: ['--override-system-vim']
+brew 'vim'
 
 cask 'bathyscaphe'
 cask 'karabiner-elements'

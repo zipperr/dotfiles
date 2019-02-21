@@ -26,10 +26,10 @@ if [ "$(uname)" == "Darwin" ]; then
     defaults write com.apple.dock springboard-hide-duration -int 0
     # 設定反映
     killall Dock
-    #ライブラリフォルダ出す
-    chflags nohidden ~/Library
-    sudo chflags nohidden /Volumes    # /Volumes ディレクトリを見えるようにする
-    sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName    # 時計アイコンクリック時に OS やホスト名 IP を表示する
+    #ライブラリディレクトリを見えるようにする
+    sudo chflags nohidden ~/Library
+    # /Volumes ディレクトリを見えるようにする
+    sudo chflags nohidden /Volumes
     # タップでクリック
     defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
     # カーソ最速
@@ -44,19 +44,24 @@ if [ "$(uname)" == "Darwin" ]; then
     defaults write com.apple.finder QuitMenuItem -bool true
     # アドレスバーに完全なURLを表示
     defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true
-    # ネットワークフォルダに.DS_Storeを作らない
+    # ネットワークフォルダとUSBに.DS_Storeを作らない
     defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
     defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
     # 未確認のアプリケーションを実行する際のダイアログを無効にする
     defaults write com.apple.LaunchServices LSQuarantine -bool false
     # クラッシュリポーターを無効にする
     defaults write com.apple.CrashReporter DialogType none
-    defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false    # 拡張子変更時の警告を無効化する
-    defaults write com.apple.finder WarnOnEmptyTrash -bool false    # ゴミ箱を空にする前の警告を無効化する
-    defaults write com.apple.Safari AutoOpenSafeDownloads -bool false    # ファイルのダウンロード後に自動でファイルを開くのを無効化する
-    defaults write com.apple.Safari SuppressSearchSuggestions -bool true    # 検索クエリを Apple へ送信しない
-    defaults write com.apple.Safari UniversalSearchEnabled -bool false    # 検索クエリを Apple へ送信しない
-    #キーリピート
+    # 拡張子変更時の警告を無効化する
+    defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+    # ゴミ箱を空にする前の警告を無効化する
+    defaults write com.apple.finder WarnOnEmptyTrash -bool false
+    # ファイルのダウンロード後に自動でファイルを開くのを無効化する
+    defaults write com.apple.Safari AutoOpenSafeDownloads -bool false
+    # 検索クエリを Apple へ送信しない
+    defaults write com.apple.Safari SuppressSearchSuggestions -bool true
+    # 検索クエリを Apple へ送信しない
+    defaults write com.apple.Safari UniversalSearchEnabled -bool false
+    #キーリピート最速
     defaults write -g InitialKeyRepeat -int 12
     defaults write -g KeyRepeat -int 1
     # Use a custom theme （カスタムテーマを使う、そのテーマをデフォルトに設定する）
@@ -68,7 +73,8 @@ if [ "$(uname)" == "Darwin" ]; then
         defaults write com.apple.Terminal "Default Window Settings" -string "$TERM_PROFILE"
         defaults write com.apple.Terminal "Startup Window Settings" -string "$TERM_PROFILE"
     fi
-defaults import com.apple.Terminal "$HOME/Library/Preferences/com.apple.Terminal.plist"
+    defaults import com.apple.Terminal "$HOME/Library/Preferences/com.apple.Terminal.plist"
+
 elif [ "$(expr substr $(uname -s) 1 5)" == "MINGW" ]; then
     echo 'windows'
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
