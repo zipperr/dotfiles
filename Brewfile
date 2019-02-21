@@ -1,41 +1,38 @@
-cask_args appdir: '/Applications'
-tap 'caskroom/cask'
-tap 'homebrew/bundle'
-tap 'homebrew/core'
-tap 'mas-cli/tap'
-
-brew 'wget'
-brew 'zsh'
-brew 'bash'
-brew 'mas'
-brew 'curl'
-brew 'git'
-brew 'lua'
-brew 'screenfetch'
-brew 'mysql'
-brew 'openssl'
-brew 'w3m'
-brew 'ctags'
-brew 'pyenv'
-brew 'flake8'
-brew 'gcc'
-brew 'perl'
-brew 'ruby'
-brew 'go'
-brew 'node'
-brew 'coffeescript'
-brew 'jsonlint'
-brew 'write-good'
-brew 'vim'
-
-cask 'bathyscaphe'
-cask 'karabiner-elements'
-cask 'mplayerx'
-cask 'java'
-
-mas 'LINE', id: 539883307
-mas 'TweetDeck', id: 485812721
-mas 'The Unarchiver', id: 425424353
-mas 'PiPifier', id: 1160374471
-mas 'ToothFairy', id: 1191449274
-mas 'AdGuard for Safari', id: 1440147259
+tap "caskroom/cask"
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/core"
+tap "mas-cli/tap"
+brew "bash"
+brew "node"
+brew "coffeescript"
+brew "ctags"
+brew "curl"
+brew "openssl"
+brew "flake8"
+brew "gcc"
+brew "git"
+brew "go"
+brew "jsonlint"
+brew "lua"
+brew "mysql"
+brew "perl"
+brew "pyenv"
+brew "ruby"
+brew "screenfetch"
+brew "vim"
+brew "w3m"
+brew "wget"
+brew "write-good"
+brew "zsh"
+brew "mas-cli/tap/mas"
+cask "caskroom/cask/bathyscaphe"
+cask "caskroom/cask/java"
+cask "caskroom/cask/karabiner-elements"
+cask "caskroom/cask/mplayerx"
+mas "AdGuard for Safari", id: 1440147259
+mas "LINE", id: 539883307
+mas "PiPifier", id: 1160374471
+mas "The Unarchiver", id: 425424353
+mas "ToothFairy", id: 1191449274
+mas "TweetDeck", id: 485812721
