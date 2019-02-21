@@ -31,8 +31,8 @@ if [ "$(uname)" == "Darwin" ]; then
     # /Volumes ディレクトリを見えるようにする
     sudo chflags nohidden /Volumes
     # タップでクリック
-    defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
-    # カーソ最速
+    defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -int 1
+    # カーソル最速
     defaults write -g com.apple.trackpad.scaling 3
     # スクロール方向
     defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
@@ -64,6 +64,8 @@ if [ "$(uname)" == "Darwin" ]; then
     #キーリピート最速
     defaults write -g InitialKeyRepeat -int 12
     defaults write -g KeyRepeat -int 1
+    # スリープとスクリーンセーバの解除にパスワードを要求
+    defaults write com.apple.screensaver askForPassword -bool false
     # Use a custom theme （カスタムテーマを使う、そのテーマをデフォルトに設定する）
     TERM_PROFILE='zip';
     TERM_PATH='./';
