@@ -87,10 +87,8 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
         case $answer in
             y)
                 sudo apt-get update && sudo apt-get -y dist-upgrade && sudo apt-get -y autoremove && sudo apt-get autoclean
-                sudo apt-get -y install zsh vim git make node.js python3 python
-                sudo apt-get -y install golang gcc cpp g++ perl ruby groovy php
-                sudo apt-get -y install default-jre default-jdk clisp open-cobol lua
-                sudo apt-get -y omxplayer vsftpd
+                sudo apt-get -y install zsh vim git make python3 python
+                sudo apt-get -y install gcc cpp g++ perl ruby node.js lua
                 break
                 ;;
             n)
