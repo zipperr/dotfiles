@@ -6,57 +6,39 @@ augroup vimrc
 augroup END
 
 "----- Plugin Setting-----
-if (v:version >= 800 && executable('git')) "deinはversion8.0以下をサポートしない
-    " let g:vimproc#download_windows_dll = 1
-    let s:dein_dir = expand('~/.vim/dein')
-    let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
-    if &runtimepath !~# '/dein.vim'
-        if !isdirectory(s:dein_repo_dir)
-            execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
-        endif
+let s:dein_dir = expand('~/.vim/dein')
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+if &runtimepath !~# '/dein.vim'
+    if !isdirectory(s:dein_repo_dir)
+        execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+    endif
     execute 'set runtimepath^=' . s:dein_repo_dir
-    endif
-    if dein#load_state(s:dein_dir)
-        call dein#begin(s:dein_dir)
-        " Utility
-        call dein#add('Shougo/dein.vim')            " プラグイン管理
-        call dein#add('Shougo/unite.vim')           " ランチャー
-        call dein#add('Shougo/neomru.vim')          " 最近開いたファイルリスト
-        call dein#add('scrooloose/nerdtree')        " ファイルツリー
-        " Programming Support
-        call dein#add('Shougo/neocomplcache.vim')   " 補完
-        call dein#add('Shougo/neosnippet.vim')      " スニペット
-        call dein#add('Shougo/neosnippet-snippets') " デフォルトスニペット
-        call dein#add('honza/vim-snippets')         " 追加スニペット
-        call dein#add('zipperr/vim-template')       " テンプレート
-        call dein#add('w0rp/ale')                   " 構文チェック
-        call dein#add('thinca/vim-quickrun')        " コード実行
-        call dein#add('tomtom/tcomment_vim')        " コメントアウトトグル
-        call dein#add('junegunn/vim-easy-align')    " 整形
-        call dein#add('Townk/vim-autoclose')        " 閉じ括弧補完
-        call dein#add('airblade/vim-gitgutter')     " Git差分表示
-        call dein#add('tpope/vim-fugitive')         " Git操作
-        call dein#add('elzr/vim-json')              " json用インデント
-        call dein#add('AndrewRadev/switch.vim')     " リテラルトグル
-        " Theme / Interface
-        call dein#add('itchyny/lightline.vim')      " ステータスライン
-        call dein#add('maximbaz/lightline-ale')     " ステータスラインにエラー数を表示
-        call dein#add('Yggdroot/indentLine')        " インデント可視化
-        call dein#add('morhetz/gruvbox')            " カラースキーマ
-        " Depends
-        if executable('make')
-            call dein#add('Shougo/vimproc.vim', {'build' : 'make'}) " 非同期処理
-        endif
-        if executable('curl')
-            call dein#add('tyru/open-browser.vim')  " ブラウザを開く
-            call dein#add('twitvim/twitvim')        " Twitter
-        endif
-        call dein#end()
-        call dein#save_state()
-    endif
-    if dein#check_install()
-        call dein#install()
-    endif
+endif
+if dein#load_state(s:dein_dir)
+    call dein#begin(s:dein_dir)
+    call dein#add('Shougo/dein.vim')            " プラグイン管理
+    call dein#add('Shougo/unite.vim')           " ランチャー
+    call dein#add('scrooloose/nerdtree')        " ファイルツリー
+    call dein#add('Shougo/neocomplcache.vim')   " 補完
+    call dein#add('Shougo/neosnippet.vim')      " スニペット
+    call dein#add('Shougo/neosnippet-snippets') " デフォルトスニペット
+    call dein#add('honza/vim-snippets')         " 追加スニペット
+    call dein#add('w0rp/ale')                   " 構文チェック
+    call dein#add('thinca/vim-quickrun')        " コード実行
+    call dein#add('tomtom/tcomment_vim')        " コメントアウトトグル
+    call dein#add('junegunn/vim-easy-align')    " 整形
+    call dein#add('Townk/vim-autoclose')        " 閉じ括弧補完
+    call dein#add('airblade/vim-gitgutter')     " Git差分表示
+    call dein#add('itchyny/lightline.vim')      " ステータスライン
+    call dein#add('Yggdroot/indentLine')        " インデント可視化
+    call dein#add('morhetz/gruvbox')            " カラースキーマ
+    call dein#add('twitvim/twitvim')            " Twitter
+    call dein#end()
+    call dein#save_state()
+endif
+if dein#check_install()
+    call dein#install()
+endif
 
 "{{{----- NERDTree -----
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
@@ -189,7 +171,6 @@ autocmd vimrc FileType unite inoremap <silent><buffer><expr> s unite#do_action('
 let g:neomru#time_format ='%Y/%m/%d %H:%M:%S'
 noremap <C-p> :Unite -toggle -silent -winheight=8 buffer<CR>
 noremap <C-N> :Unite -toggle -silent -winheight=8 -buffer-name=file file<CR>
-noremap <C-Z> :Unite -toggle -silent -winheight=8 file_mru<CR>
 noremap <C-R> :Unite -toggle -silent -vertical -winwidth=30 -wrap menu:shortcut<CR>
 let g:unite_source_menu_menus = get(g:,'unite_source_menu_menus',{})
 let g:unite_source_menu_menus.shortcut = {'description' : 'shortcut',}
@@ -230,13 +211,6 @@ let g:unite_source_menu_menus.shortcut.command_candidates = [
     \[ '[File]^M replace',       '%s//\r/g'],
     \[ '[File]RemoveSpace',      'RemoveUnwantedSpaces'],
     \[ '[File]EOLdelete',        'set binary noeol|wq'],
-    \[ '[Toggle]Number',         'set number!'],
-    \[ '[Toggle]BreakIndent',    'set breakindent!'],
-    \[ '[Toggle]CursorColumn',   'set cursorcolumn!'],
-    \[ '[Toggle]CursorLine',     'set cursorline!'],
-    \[ '[Toggle]HilightSeach',   'set hlsearch!'],
-    \[ '[Toggle]ShowMatch',      'set showmatch!'],
-    \[ '[Toggle]Wrap',           'set wrap!'],
     \[ '[Edit]vimrc',            'edit $MYVIMRC'],
     \[ '[Edit]zshrc',            'edit ~/.zshrc'],
     \[ '[Edit]bashrc',           'edit ~/.bashrc'],
@@ -255,9 +229,6 @@ let g:neocomplcache_enable_smart_case               = 1
 let g:neocomplcache_enable_camel_case_completion    = 1
 let g:neocomplcache_enable_underbar_completion      = 1
 let g:neocomplcache_enable_insert_char_pre          = 1
-" let g:neocomplcache_text_mode_filetypes             = {
-"     \'rst':1,'markdown':1,'gitrebase':1,'gitcommit':1,'vcs-commit':1,'text':1,'tex': 1,
-"     \'plaintex': 1,'help':1,'vim' :1,'zsh':1,}
 if !exists('g:neocomplcache_omni_patterns')
     let g:neocomplcache_omni_patterns = {}
 endif
@@ -267,11 +238,6 @@ imap <expr><CR> neosnippet#expandable() ? "<Plug>(neosnippet_expand_or_jump)" : 
 imap <expr><TAB> pumvisible() ? "<C-n>" : neosnippet#jumpable() ? "<Plug>(neosnippet_expand_or_jump)" : "<TAB>"
 imap <expr><S-TAB> pumvisible() ? "<C-k>" : neosnippet#jumpable() ? "<Plug>(neosnippet_expand_or_jump)" : "<S-TAB>"
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-"}}}
-"{{{----- Openbrowser -----
-let g:openbrowser_use_vimproc=0
-nnoremap <Leader>s :OpenBrowserSearch<Space>
-nnoremap <Leader>h :OpenBrowser<Space>http://localhost:8000<CR>
 "}}}
 "{{{----- Quickrun -----
 nnoremap <C-q> :QuickRun<CR>
@@ -289,36 +255,6 @@ let g:neosnippet#disable_runtime_snippets = {'_' : 1}
 let g:neosnippet#enable_snipmate_compatibility = 1
 let g:neosnippet#snippets_directory='~/.vim/dein/repos/github.com/honza/vim-snippets/snippets'
 "}}}
-"{{{----- vim-template -----
-let s:load_templates_dir='~/.vim/dein/repos/github.com/zipperr/vim-template/templates'
-let s:load_templates_command='0read '.s:load_templates_dir
-autocmd vimrc BufNewFile *.c                        execute s:load_templates_command."/template.c"
-autocmd vimrc BufNewFile *.coffee                   execute s:load_templates_command."/template.coffee"
-autocmd vimrc BufNewFile *.cpp                      execute s:load_templates_command."/template.cpp"
-autocmd vimrc BufNewFile *.cs                       execute s:load_templates_command."/template.cs"
-autocmd vimrc BufNewFile *.css                      execute s:load_templates_command."/template.css"
-autocmd vimrc BufNewFile *.d                        execute s:load_templates_command."/template.d"
-autocmd vimrc BufNewFile Dockerfile                 execute s:load_templates_command."/template.Dockerfile"
-autocmd vimrc BufNewFile *.erl                      execute s:load_templates_command."/template.erl"
-autocmd vimrc BufNewFile *.f90                      execute s:load_templates_command."/template.f90"
-autocmd vimrc BufNewFile *.go                       execute s:load_templates_command."/template.go"
-autocmd vimrc BufNewFile *.html                     execute s:load_templates_command."/template.html"
-autocmd vimrc BufNewFile *.java                     execute s:load_templates_command."/template.java"
-autocmd vimrc BufNewFile *.js                       execute s:load_templates_command."/template.js"
-autocmd vimrc BufNewFile *.php                      execute s:load_templates_command."/template.php"
-autocmd vimrc BufNewFile *.pl                       execute s:load_templates_command."/template.pl"
-autocmd vimrc BufNewFile *.py                       execute s:load_templates_command."/template.py"
-autocmd vimrc BufNewFile *.rb                       execute s:load_templates_command."/template.rb"
-autocmd vimrc BufNewFile *.sh                       execute s:load_templates_command."/template.sh"
-autocmd vimrc BufNewFile *.xml                      execute s:load_templates_command."/template.xml"
-autocmd vimrc BufNewFile *.{md,mdwn,mkd,mkdn,mark*} execute s:load_templates_command."/template.md"
-autocmd vimrc BufNewFile *.bat                      execute s:load_templates_command."/template.bat"
-autocmd vimrc BufNewFile *.json                     execute s:load_templates_command."/template.json"
-autocmd vimrc BufNewFile *.yml                      execute s:load_templates_command."/template.yml"
-"}}}
-"{{{----- Vim-json -----
-let g:vim_json_syntax_conceal = 0
-"}}}
 "{{{----- Switch -----
 let g:switch_mapping = '`'
 let g:switch_custom_definitions =
@@ -330,17 +266,12 @@ let g:switch_custom_definitions =
 \   },
 \]
 "}}}
-endif
 
 "----- General Settings -----
-"Encoding
 set fileencodings=utf-8,cp932,euc-jp,sjis
 set fileformats=unix,dos,mac
 set ambiwidth=double
-if (v:version == 704 && has('patch785')) || v:version >= 705
-    set nofixendofline
-endif
-"Indent
+set nofixendofline
 set expandtab
 set smarttab
 set tabstop=4
@@ -348,22 +279,16 @@ set shiftwidth=4
 set softtabstop=4
 set autoindent
 set smartindent
-if (v:version == 704 && has('patch338')) || v:version >= 705
-    set breakindent
-endif
-"Runtimepath
+set breakindent
 set runtimepath+=$HOME/.vim,$HOME/.vim/after
-"Invisibles
 set list
 set listchars=tab:>-,trail:-
-"SwapFile
 set updatetime=300
 set nobackup
 set noswapfile
 set viminfo+=n~/.vim/viminfo.txt
 set undodir=~/.vim
 set undofile
-"Move
 set wrap
 set display=lastline
 set backspace=indent,eol,start
@@ -371,23 +296,19 @@ set whichwrap=b,s,h,l,<,>,[,],~
 set mouse=a
 set scrolloff=5
 set splitright
-"Clipboard
 set clipboard=unnamed,autoselect
 nnoremap x "_x
 nnoremap dd "_dd
 vnoremap pp "0p
-"Matchpair
 set showmatch
 set matchtime=0
 set matchpairs+=<:>,「:」,『:』,（:）,【:】,《:》,〈:〉,［:］,‘:’,“:”
-"Search
 set hlsearch
 set incsearch
 set ignorecase
 set smartcase
 set wrapscan
 set gdefault
-"Color
 syntax on
 set t_Co=256
 autocmd vimrc ColorScheme * highlight Normal ctermbg=none
@@ -396,15 +317,12 @@ set background=dark
 hi Comment    gui=NONE font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE term=NONE ctermfg=59 ctermbg=NONE
 hi LineNr     gui=NONE font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE term=NONE ctermfg=59 ctermbg=NONE
 hi SpecialKey gui=NONE font=NONE guifg=#5f5f5f guibg=NONE guisp=NONE cterm=NONE term=NONE ctermfg=59 ctermbg=NONE
-"StatusLine
 set laststatus=2
 set number
-"CommandLine
 set showcmd
 set wildmenu
 set history=100
 set infercase
-"Other
 set timeout timeoutlen=700 ttimeoutlen=1
 set visualbell t_vb=
 set nrformats=alpha,octal,hex
@@ -594,7 +512,6 @@ if (has('win64')|| has('win32unix')||has('win32'))
 else
     nnoremap <Esc><Esc> :<C-u>call CloseAnyOther()<CR>
 endif
-
 function! CloseAnyOther()
     let w = 0
     let w:current_win = 1
@@ -603,17 +520,8 @@ function! CloseAnyOther()
         let bt = getwinvar(w, '&buftype')
         let bufnr = winbufnr(w)
         let name = bufname(bufnr)
-        if (ft ==# 'quickrun' && name ==# 'QuickRunOut')
-            \||(ft ==# 'NERDTree')
-            \||(ft ==# 'unite')
-            \||(ft ==# 'twitvim')
-            \||(ft ==# 'gitcommit')
-            \||(name =~# '^fugitive:')
-            \||(name =~# 'fugitiveblame')
-            \||(name ==# '')
-            \||(bt ==# 'help')
-            \||(bt ==# 'quickfix')
-            \||(bt ==# 'nofile')
+        if (ft ==# 'quickrun' && name ==# 'QuickRunOut')||(ft ==# 'NERDTree')||(ft ==# 'unite')||(ft ==# 'twitvim')||(ft ==# 'gitcommit')
+            \||(name =~# '^fugitive:')||(name =~# 'fugitiveblame')||(name ==# '')||(bt ==# 'help')||(bt ==# 'quickfix')||(bt ==# 'nofile')
             execute w . 'wincmd w'
             q
             break
