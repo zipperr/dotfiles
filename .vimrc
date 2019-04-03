@@ -262,14 +262,25 @@ let g:neosnippet#enable_snipmate_compatibility = 1
 let g:neosnippet#snippets_directory='~/.vim/dein/repos/github.com/honza/vim-snippets/snippets'
 "}}}
 "{{{----- Switch -----
-nnoremap - :SwitchReverse<CR>
-" let g:switch_mapping = '-'
+nnoremap - :Switch<CR>
 let g:switch_custom_definitions =
             \[
-            \   {
-            \         '\(\k\+\)'    : '''\1''',
-            \       '''\(.\{-}\)''' :  '"\1"',
-            \   },
+            \{'foo'           : 'bar'},
+            \{'bar'           : 'foo'},
+            \{'on'            : 'off'},
+            \{'off'           : 'on'},
+            \{'ON'            : 'OFF'},
+            \{'OFF'           : 'ON'},
+            \{'true'          : 'false'},
+            \{'false'         : 'true'},
+            \{'<'             : '>'},
+            \{'>'             : '<'},
+            \{'<\(.\{-}\)>'   : '(\1)'},
+            \{'(\(.\{-}\))'   : '{\1}'},
+            \{'{\(.\{-}\)}'   : '<\1>'},
+            \{'\(\k\+\)'      : '''\1'''},
+            \{'''\(.\{-}\)''' : '"\1"'},
+            \{'"\(.\{-}\)"'   : '\1'},
             \]
 "}}}
 "{{{----- W3m -----
