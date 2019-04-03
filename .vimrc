@@ -34,6 +34,7 @@ if dein#load_state(s:dein_dir)
     call dein#add('morhetz/gruvbox')            " カラースキーマ
     call dein#add('twitvim/twitvim')            " Twitter
     call dein#add('yuratomo/w3m.vim')           " w3m
+    call dein#add("tyru/open-browser.vim")      " GUIブラウザ起動
     call dein#end()
     call dein#save_state()
 endif
@@ -171,8 +172,7 @@ autocmd vimrc FileType unite nnoremap <silent><buffer><expr> s unite#do_action('
 autocmd vimrc FileType unite inoremap <silent><buffer><expr> s unite#do_action('vsplit')
 let g:neomru#time_format ='%Y/%m/%d %H:%M:%S'
 noremap <C-p> :Unite -toggle -silent -winheight=8 buffer<CR>
-noremap <C-N> :Unite -toggle -silent -winheight=8 -buffer-name=file file<CR>
-noremap <C-R> :Unite -toggle -silent -vertical -winwidth=30 -wrap menu:shortcut<CR>
+noremap <C-r> :Unite -toggle -silent -vertical -winwidth=30 -wrap menu:shortcut<CR>
 let g:unite_source_menu_menus = get(g:,'unite_source_menu_menus',{})
 let g:unite_source_menu_menus.shortcut = {'description' : 'shortcut',}
 let g:unite_source_menu_menus.shortcut.command_candidates = [
