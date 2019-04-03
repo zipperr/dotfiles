@@ -285,11 +285,9 @@ let g:switch_custom_definitions =
 "}}}
 "{{{----- W3m -----
 nnoremap <silent><C-s> :W3mVSplit<CR>
-if (has("win64") || has("win32unix") || has("win32"))
-    "forWindows
-    let g:w3m#command = '/c/Users/'.$USERNAME.'/dotfiles/w3m.exe'
     let g:w3m#homepage = "http://www.google.co.jp/"
-    " let g:w3m#disable_default_keymap = 1
+if (has("win64") || has("win32unix") || has("win32"))
+    let g:w3m#command = '/c/Users/'.$USERNAME.'/dotfiles/w3m.exe'
 endif
 "}}}
 "{{{----- ALE -----

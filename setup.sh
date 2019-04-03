@@ -87,7 +87,7 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
         case $answer in
             y)
                 sudo apt-get update && sudo apt-get -y dist-upgrade && sudo apt-get -y autoremove && sudo apt-get autoclean
-                sudo apt-get -y install zsh vim git make python3 python
+                sudo apt-get -y install zsh vim git make python3 python w3m
                 sudo apt-get -y install gcc cpp g++ perl ruby node.js lua
                 break
                 ;;
@@ -111,6 +111,7 @@ sudo rm $HOME/.zshrc
 sudo rm $HOME/.git-prompt.sh
 sudo rm $HOME/.gitconfig
 sudo rm $HOME/.gitignore_global
+sudo rm $HOME/.minttyrc
 ln -s $HOME/dotfiles/.vimrc $HOME/.vimrc
 ln -s $HOME/dotfiles/.bashrc $HOME/.bashrc
 ln -s $HOME/dotfiles/.bash_completion $HOME/.bash_completion
@@ -118,3 +119,4 @@ ln -s $HOME/dotfiles/.zshrc $HOME/.zshrc
 ln -s $HOME/dotfiles/.git-prompt.sh $HOME/.git-prompt.sh
 ln -s $HOME/dotfiles/.gitconfig $HOME/.gitconfig
 ln -s $HOME/dotfiles/.gitignore_global $HOME/.gitignore_global
+ln -s $HOME/dotfiles/.gitignore_global $HOME/.minttyrc
