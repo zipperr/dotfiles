@@ -33,6 +33,7 @@ if dein#load_state(s:dein_dir)
     call dein#add('Yggdroot/indentLine')        " インデント可視化
     call dein#add('morhetz/gruvbox')            " カラースキーマ
     call dein#add('twitvim/twitvim')            " Twitter
+    call dein#add('yuratomo/w3m.vim')           " w3m
     call dein#end()
     call dein#save_state()
 endif
@@ -53,45 +54,45 @@ autocmd vimrc bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTr
 "}}}
 "{{{----- Lightline -----
 let g:lightline = {
-    \'colorscheme': 'wombat',
-    \'active': {
-        \'left':  [
+            \'colorscheme': 'wombat',
+            \'active': {
+            \'left':  [
             \['mode', 'paste'],
             \['fugitive', 'readonly', 'filename', 'modified'],
             \['linter_checking', 'linter_errors', 'linter_warnings']
-        \],
-        \'right': [
+            \],
+            \'right': [
             \['youbi', 'syntastic' ],
             \['lineinfo'],
             \['fileformat', 'fileencoding', 'filetype']
-        \]
-    \},
-    \'component': {
-        \'readonly': '%{&readonly?"RO":""}',
-        \'lineinfo': '%3l/%L'
-    \},
-    \'component_expand': {
-      \ 'linter_checking': 'lightline#ale#checking',
-      \ 'linter_warnings': 'lightline#ale#warnings',
-      \ 'linter_errors':   'lightline#ale#errors',
-      \ 'linter_ok':       'lightline#ale#ok'
-    \},
-    \'component_type': {
-      \ 'linter_checking': 'left',
-      \ 'linter_warnings': 'warning',
-      \ 'linter_errors':   'error',
-      \ 'linter_ok':       'left'
-    \},
-    \'component_function':{
-        \'fugitive':     'LightlineFugitive',
-        \'filename':     'LightlineFilename',
-        \'fileformat':   'LightlineFileformat',
-        \'filetype':     'LightlineFiletype',
-        \'fileencoding': 'LightlineFileencoding',
-        \'syntastic':    'SyntasticStatuslineFlag',
-        \'youbi':        'Youbi',
-        \'mode':         'LightlineMode'},
-    \}
+            \]
+            \},
+            \'component': {
+            \'readonly': '%{&readonly?"RO":""}',
+            \'lineinfo': '%3l/%L'
+            \},
+            \'component_expand': {
+            \ 'linter_checking': 'lightline#ale#checking',
+            \ 'linter_warnings': 'lightline#ale#warnings',
+            \ 'linter_errors':   'lightline#ale#errors',
+            \ 'linter_ok':       'lightline#ale#ok'
+            \},
+            \'component_type': {
+            \ 'linter_checking': 'left',
+            \ 'linter_warnings': 'warning',
+            \ 'linter_errors':   'error',
+            \ 'linter_ok':       'left'
+            \},
+            \'component_function':{
+            \'fugitive':     'LightlineFugitive',
+            \'filename':     'LightlineFilename',
+            \'fileformat':   'LightlineFileformat',
+            \'filetype':     'LightlineFiletype',
+            \'fileencoding': 'LightlineFileencoding',
+            \'syntastic':    'SyntasticStatuslineFlag',
+            \'youbi':        'Youbi',
+            \'mode':         'LightlineMode'},
+            \}
 
 let g:ale_statusline_format = ['E%d', 'W%d', 'ok']
 
@@ -175,47 +176,47 @@ noremap <C-R> :Unite -toggle -silent -vertical -winwidth=30 -wrap menu:shortcut<
 let g:unite_source_menu_menus = get(g:,'unite_source_menu_menus',{})
 let g:unite_source_menu_menus.shortcut = {'description' : 'shortcut',}
 let g:unite_source_menu_menus.shortcut.command_candidates = [
-    \[ '[Git]GitStatus',         'Gstatus'],
-    \[ '[Git]GitAdd',            'Gwrite'],
-    \[ '[Git]GitCommit',         'Gcommit'],
-    \[ '[Git]GitPush',           'Git push'],
-    \[ '[Git]GitDiff',           'Gdiff'],
-    \[ '[Git]GitBlame',          'Gblame'],
-    \[ '[Git]GitAddCommitPush',  "Gwrite | Gcommit -am 'Update' | Git push"],
-    \[ '[web]localhost:8000',    'OpenBrowser http://localhost:8000'],
-    \[ '[web]Github',            'OpenBrowser https://github.com/zipperr'],
-    \[ '[web]Google',            'OpenBrowser https://www.google.co.jp'],
-    \[ '[web]Qiita',             'OpenBrowser https://qiita.com'],
-    \[ '[web]Wiki',              'OpenBrowser https://ja.wikipedia.org'],
-    \[ '[Twitter]Timeline',      'FriendsTwitter'],
-    \[ '[Twitter]Tweet',         'PosttoTwitter'],
-    \[ '[Twitter]Setup',         'SetLoginTwitter'],
-    \[ '[vim]FileTree',          'NERDTreeToggle'],
-    \[ '[File]Tab > Space',      'set expandtab|retab 4'],
-    \[ '[File]Space > Tab',      'set noexpandtab | retab! 4'],
-    \[ '[File]Open_UTF8',        'e ++enc=utf-8'],
-    \[ '[File]Open_ShiftJis',    'e ++enc=cp932'],
-    \[ '[File]Open_euc-jp',      'e ++enc=euc-jp'],
-    \[ '[File]Open_iso-2022-jp', 'e ++enc=iso-2022-jp'],
-    \[ '[File]Open_Dos',         'e ++ff=dos'],
-    \[ '[File]Open_Mac',         'e ++ff=mac'],
-    \[ '[File]Open_Unix',        'e ++ff=unix'],
-    \[ '[File]Set_UTF8',         'set fenc=utf-8'],
-    \[ '[File]Set_ShiftJis',     'set fenc=cp932'],
-    \[ '[File]Set_euc-jp',       'set fenc=euc-jp'],
-    \[ '[File]Set_iso-2022-jp',  'set fenc=iso-2022-jp'],
-    \[ '[File]Set_Dos',          'set ff=dos'],
-    \[ '[File]Set_Mac',          'set ff=mac'],
-    \[ '[File]Set_Unix',         'set ff=unix'],
-    \[ '[File]^M delete',        '%s///g'],
-    \[ '[File]^M replace',       '%s//\r/g'],
-    \[ '[File]RemoveSpace',      'RemoveUnwantedSpaces'],
-    \[ '[File]EOLdelete',        'set binary noeol|wq'],
-    \[ '[Edit]vimrc',            'edit $MYVIMRC'],
-    \[ '[Edit]zshrc',            'edit ~/.zshrc'],
-    \[ '[Edit]bashrc',           'edit ~/.bashrc'],
-    \[ '[Edit]gitconf',          'edit ~/.gitconfig'],
-    \]
+            \[ '[Git]GitStatus',         'Gstatus'],
+            \[ '[Git]GitAdd',            'Gwrite'],
+            \[ '[Git]GitCommit',         'Gcommit'],
+            \[ '[Git]GitPush',           'Git push'],
+            \[ '[Git]GitDiff',           'Gdiff'],
+            \[ '[Git]GitBlame',          'Gblame'],
+            \[ '[Git]GitAddCommitPush',  "Gwrite | Gcommit -am 'Update' | Git push"],
+            \[ '[web]localhost:8000',    'OpenBrowser http://localhost:8000'],
+            \[ '[web]Github',            'OpenBrowser https://github.com/zipperr'],
+            \[ '[web]Google',            'OpenBrowser https://www.google.co.jp'],
+            \[ '[web]Qiita',             'OpenBrowser https://qiita.com'],
+            \[ '[web]Wiki',              'OpenBrowser https://ja.wikipedia.org'],
+            \[ '[Twitter]Timeline',      'FriendsTwitter'],
+            \[ '[Twitter]Tweet',         'PosttoTwitter'],
+            \[ '[Twitter]Setup',         'SetLoginTwitter'],
+            \[ '[vim]FileTree',          'NERDTreeToggle'],
+            \[ '[File]Tab > Space',      'set expandtab|retab 4'],
+            \[ '[File]Space > Tab',      'set noexpandtab | retab! 4'],
+            \[ '[File]Open_UTF8',        'e ++enc=utf-8'],
+            \[ '[File]Open_ShiftJis',    'e ++enc=cp932'],
+            \[ '[File]Open_euc-jp',      'e ++enc=euc-jp'],
+            \[ '[File]Open_iso-2022-jp', 'e ++enc=iso-2022-jp'],
+            \[ '[File]Open_Dos',         'e ++ff=dos'],
+            \[ '[File]Open_Mac',         'e ++ff=mac'],
+            \[ '[File]Open_Unix',        'e ++ff=unix'],
+            \[ '[File]Set_UTF8',         'set fenc=utf-8'],
+            \[ '[File]Set_ShiftJis',     'set fenc=cp932'],
+            \[ '[File]Set_euc-jp',       'set fenc=euc-jp'],
+            \[ '[File]Set_iso-2022-jp',  'set fenc=iso-2022-jp'],
+            \[ '[File]Set_Dos',          'set ff=dos'],
+            \[ '[File]Set_Mac',          'set ff=mac'],
+            \[ '[File]Set_Unix',         'set ff=unix'],
+            \[ '[File]^M delete',        '%s///g'],
+            \[ '[File]^M replace',       '%s//\r/g'],
+            \[ '[File]RemoveSpace',      'RemoveUnwantedSpaces'],
+            \[ '[File]EOLdelete',        'set binary noeol|wq'],
+            \[ '[Edit]vimrc',            'edit $MYVIMRC'],
+            \[ '[Edit]zshrc',            'edit ~/.zshrc'],
+            \[ '[Edit]bashrc',           'edit ~/.bashrc'],
+            \[ '[Edit]gitconf',          'edit ~/.gitconfig'],
+            \]
 "}}}
 "{{{----- Neocomplcache -----
 let g:neocomplcache_enable_at_startup               = 1
@@ -258,13 +259,22 @@ let g:neosnippet#snippets_directory='~/.vim/dein/repos/github.com/honza/vim-snip
 "{{{----- Switch -----
 let g:switch_mapping = '`'
 let g:switch_custom_definitions =
-\[
-\   {
-\         '\(\k\+\)'    : '''\1''',
-\       '''\(.\{-}\)''' :  '"\1"',
-\        '"\(.\{-}\)"'  :   '\1',
-\   },
-\]
+            \[
+            \   {
+            \         '\(\k\+\)'    : '''\1''',
+            \       '''\(.\{-}\)''' :  '"\1"',
+            \        '"\(.\{-}\)"'  :   '\1',
+            \   },
+            \]
+"}}}
+"{{{----- W3m -----
+nnoremap <silent><C-s> :W3mVSplit<CR>
+if (has("win64") || has("win32unix") || has("win32"))
+    "forWindows
+    let g:w3m#command = '/c/Users/'.$USERNAME.'/dotfiles/w3m.exe'
+    let g:w3m#homepage = "http://www.google.co.jp/"
+    let g:w3m#disable_default_keymap = 1
+endif
 "}}}
 
 "----- General Settings -----
@@ -424,9 +434,9 @@ autocmd vimrc FileType ruby              setlocal omnifunc=rubycomplete#Complete
 autocmd vimrc FileType go                setlocal omnifunc=gocomplete#Complete
 if has('autocmd') && exists('+omnifunc')
     autocmd vimrc Filetype *
-    \if &omnifunc == "" |
-        \setlocal omnifunc=syntaxcomplete#Complete |
-    \endif
+                \if &omnifunc == "" |
+                \setlocal omnifunc=syntaxcomplete#Complete |
+                \endif
 endif
 
 "----- Scripts -----
@@ -474,15 +484,15 @@ command! -nargs=1 RenameMe call RenameMe(<q-args>)
 function! RemoveUnwantedSpaces()
     let pos_save = getpos('.')
     try
-    keeppatterns %s/\s\+$//e
-    while 1
-        let lastline = getline('$')
-        if lastline =~# '^\s*$' && line('$') != 1
-            $delete
-        else
-            break
-        endif
-    endwhile
+        keeppatterns %s/\s\+$//e
+        while 1
+            let lastline = getline('$')
+            if lastline =~# '^\s*$' && line('$') != 1
+                $delete
+            else
+                break
+            endif
+        endwhile
     finally
         call setpos('.', pos_save)
     endtry
@@ -521,7 +531,7 @@ function! CloseAnyOther()
         let bufnr = winbufnr(w)
         let name = bufname(bufnr)
         if (ft ==# 'quickrun' && name ==# 'QuickRunOut')||(ft ==# 'NERDTree')||(ft ==# 'unite')||(ft ==# 'twitvim')||(ft ==# 'gitcommit')
-            \||(name =~# '^fugitive:')||(name =~# 'fugitiveblame')||(name ==# '')||(bt ==# 'help')||(bt ==# 'quickfix')||(bt ==# 'nofile')
+                    \||(name =~# '^fugitive:')||(name =~# 'fugitiveblame')||(name ==# '')||(bt ==# 'help')||(bt ==# 'quickfix')||(bt ==# 'nofile')
             execute w . 'wincmd w'
             q
             break

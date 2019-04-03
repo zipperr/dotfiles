@@ -16,21 +16,22 @@
     status = auto
     branch = auto
 [alias]
-    st   = status
-    a    = add
-    ad   = add -A
-    adre = reset HEAD
-    cm   = "!f(){ git commit -m $1;};f"
-    cmre = reset --soft HEAD^
-    pu   = push
-    b    = branch
-    fe   = fetch
-    co   = checkout
-    coo  = checkout .
-    cob  = "!f(){ git checkout -b $1 origin/$1;};f"
-    sm   = submodule
-    di   = diff
-    bl   = "!f(){ git blame $1;};f"
+    st    = status
+    a     = add
+    ad    = add      -A
+    adre  = reset    HEAD
+    cm    = "!f(){ git commit -m $1;};f"
+    cmre  = reset    --soft HEAD^
+    pu    = push
+    b     = branch
+    fe    = fetch
+    co    = checkout
+    coo   = checkout .
+    cob   = "!f(){ git checkout -b $1 origin/$1;};f"
+    sm    = submodule
+    di    = diff
+    bl    = "!f(){ git blame $1;};f"
+    reset = "reset --hard origin/master"
 [filter "lfs"]
     smudge = git-lfs smudge -- %f
     process = git-lfs filter-process
