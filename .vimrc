@@ -24,17 +24,21 @@ if dein#load_state(s:dein_dir)
     call dein#add('Shougo/neosnippet-snippets') " デフォルトスニペット
     call dein#add('honza/vim-snippets')         " 追加スニペット
     call dein#add('w0rp/ale')                   " 構文チェック
+    call dein#add('zipperr/vim-template')       " テンプレート
     call dein#add('thinca/vim-quickrun')        " コード実行
     call dein#add('tomtom/tcomment_vim')        " コメントアウトトグル
+    call dein#add('AndrewRadev/switch.vim')     " リテラルトグル
     call dein#add('junegunn/vim-easy-align')    " 整形
     call dein#add('Townk/vim-autoclose')        " 閉じ括弧補完
     call dein#add('airblade/vim-gitgutter')     " Git差分表示
+    call dein#add('tpope/vim-fugitive')         " Git操作
     call dein#add('itchyny/lightline.vim')      " ステータスライン
+    call dein#add('maximbaz/lightline-ale')     " ステータスラインにエラー数を表示
     call dein#add('Yggdroot/indentLine')        " インデント可視化
     call dein#add('morhetz/gruvbox')            " カラースキーマ
     call dein#add('twitvim/twitvim')            " Twitter
     call dein#add('yuratomo/w3m.vim')           " w3m
-    call dein#add("tyru/open-browser.vim")      " GUIブラウザ起動
+    call dein#add('tyru/open-browser.vim')      " GUIブラウザ起動
     call dein#end()
     call dein#save_state()
 endif
@@ -173,7 +177,6 @@ autocmd vimrc FileType unite inoremap <silent><buffer><expr> i unite#do_action('
 autocmd vimrc FileType unite nnoremap <silent><buffer><expr> s unite#do_action('vsplit')
 autocmd vimrc FileType unite inoremap <silent><buffer><expr> s unite#do_action('vsplit')
 let g:neomru#time_format ='%Y/%m/%d %H:%M:%S'
-noremap <C-p> :Unite -toggle -silent -winheight=8 buffer<CR>
 noremap <C-r> :Unite -toggle -silent -vertical -winwidth=30 -wrap menu:shortcut<CR>
 let g:unite_source_menu_menus = get(g:,'unite_source_menu_menus',{})
 let g:unite_source_menu_menus.shortcut = {'description' : 'shortcut',}
@@ -259,13 +262,13 @@ let g:neosnippet#enable_snipmate_compatibility = 1
 let g:neosnippet#snippets_directory='~/.vim/dein/repos/github.com/honza/vim-snippets/snippets'
 "}}}
 "{{{----- Switch -----
-let g:switch_mapping = '`'
+nnoremap - :SwitchReverse<CR>
+" let g:switch_mapping = '-'
 let g:switch_custom_definitions =
             \[
             \   {
             \         '\(\k\+\)'    : '''\1''',
             \       '''\(.\{-}\)''' :  '"\1"',
-            \        '"\(.\{-}\)"'  :   '\1',
             \   },
             \]
 "}}}
@@ -278,7 +281,42 @@ if (has("win64") || has("win32unix") || has("win32"))
     " let g:w3m#disable_default_keymap = 1
 endif
 "}}}
-
+"{{{----- ALE -----
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_text_changed = 0
+let g:ale_lint_on_enter = 0
+"}}}
+"{{{----- vim-template -----
+let s:load_templates_dir='~/.vim/dein/repos/github.com/zipperr/vim-template/templates'
+let s:load_templates_command='0read '.s:load_templates_dir
+autocmd vimrc BufNewFile *.c                        execute s:load_templates_command."/template.c"
+autocmd vimrc BufNewFile *.coffee                   execute s:load_templates_command."/template.coffee"
+autocmd vimrc BufNewFile *.cpp                      execute s:load_templates_command."/template.cpp"
+autocmd vimrc BufNewFile *.cs                       execute s:load_templates_command."/template.cs"
+autocmd vimrc BufNewFile *.css                      execute s:load_templates_command."/template.css"
+autocmd vimrc BufNewFile *.d                        execute s:load_templates_command."/template.d"
+autocmd vimrc BufNewFile Dockerfile                 execute s:load_templates_command."/template.Dockerfile"
+autocmd vimrc BufNewFile *.erl                      execute s:load_templates_command."/template.erl"
+autocmd vimrc BufNewFile *.f90                      execute s:load_templates_command."/template.f90"
+autocmd vimrc BufNewFile *.go                       execute s:load_templates_command."/template.go"
+autocmd vimrc BufNewFile *.html                     execute s:load_templates_command."/template.html"
+autocmd vimrc BufNewFile *.java                     execute s:load_templates_command."/template.java"
+autocmd vimrc BufNewFile *.js                       execute s:load_templates_command."/template.js"
+autocmd vimrc BufNewFile *.php                      execute s:load_templates_command."/template.php"
+autocmd vimrc BufNewFile *.pl                       execute s:load_templates_command."/template.pl"
+autocmd vimrc BufNewFile *.py                       execute s:load_templates_command."/template.py"
+autocmd vimrc BufNewFile *.rb                       execute s:load_templates_command."/template.rb"
+autocmd vimrc BufNewFile *.sh                       execute s:load_templates_command."/template.sh"
+autocmd vimrc BufNewFile *.xml                      execute s:load_templates_command."/template.xml"
+autocmd vimrc BufNewFile *.{md,mdwn,mkd,mkdn,mark*} execute s:load_templates_command."/template.md"
+autocmd vimrc BufNewFile *.bat                      execute s:load_templates_command."/template.bat"
+autocmd vimrc BufNewFile *.json                     execute s:load_templates_command."/template.json"
+autocmd vimrc BufNewFile *.yml                      execute s:load_templates_command."/template.yml"
+"}}}
+"{{{----- Openbrowser -----
+let g:openbrowser_use_vimproc=0
+nnoremap <Leader>h :OpenBrowserSearch<Space>
+"}}}
 "----- General Settings -----
 set fileencodings=utf-8,cp932,euc-jp,sjis
 set fileformats=unix,dos,mac
@@ -502,7 +540,7 @@ endfunction
 command! -nargs=0 RemoveUnwantedSpaces call RemoveUnwantedSpaces()
 
 " Copyfullpath
-command! CopyFullPath let @+ = expand('%:p')
+command! CopyFullPath let @+ = expand(%:p)
 
 " OpenAnyFile
 command! -bang -bar -complete=file -nargs=? Utf8 edit<bang> ++enc=utf-8       <args>
