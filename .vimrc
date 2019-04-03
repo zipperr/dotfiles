@@ -153,6 +153,8 @@ let twitvim_count = 100
 let twitvim_token_file = expand('~/.vim/.twitvim.token')
 if has('mac')
     let twitvim_browser_cmd = 'open'
+elseif (has("win64") || has("win32unix") || has("win32"))
+    let twitvim_browser_cmd = '/c/Program Files (x86)/Google/Chrome/Application/chrome.exe'
 endif
 nnoremap <C-t> :40vnew<CR>:FriendsTwitter<CR><C-w>j:q<CR>
 nnoremap T :PosttoTwitter<CR>
@@ -273,7 +275,7 @@ if (has("win64") || has("win32unix") || has("win32"))
     "forWindows
     let g:w3m#command = '/c/Users/'.$USERNAME.'/dotfiles/w3m.exe'
     let g:w3m#homepage = "http://www.google.co.jp/"
-    let g:w3m#disable_default_keymap = 1
+    " let g:w3m#disable_default_keymap = 1
 endif
 "}}}
 
