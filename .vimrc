@@ -158,7 +158,7 @@ let twitvim_token_file = expand('~/.vim/.twitvim.token')
 if has('mac')
     let twitvim_browser_cmd = 'open'
 elseif (has("win64") || has("win32unix") || has("win32"))
-    let twitvim_browser_cmd = '/c/Program Files (x86)/Google/Chrome/Application/chrome.exe'
+    " let twitvim_browser_cmd = '/c/Program Files (x86)/Google/Chrome/Application/chrome.exe'
 endif
 nnoremap <C-t> :40vnew<CR>:FriendsTwitter<CR><C-w>j:q<CR>
 nnoremap T :PosttoTwitter<CR>
@@ -193,6 +193,10 @@ let g:unite_source_menu_menus.shortcut.command_candidates = [
             \[ '[web]Google',            'OpenBrowser https://www.google.co.jp'],
             \[ '[web]Qiita',             'OpenBrowser https://qiita.com'],
             \[ '[web]Wiki',              'OpenBrowser https://ja.wikipedia.org'],
+            \[ '[w3m]5ch',              'W3mVSplit http://menu.5ch.net/bbsmenu.html'],
+            \[ '[w3m]Qiita',             'W3mVSplit https://qiita.com'],
+            \[ '[w3m]Wiki',              'W3mVSplit https://ja.wikipedia.org'],
+            \[ '[w3m]Google',            'W3mVSplit https://www.google.co.jp'],
             \[ '[Twitter]Timeline',      'FriendsTwitter'],
             \[ '[Twitter]Tweet',         'PosttoTwitter'],
             \[ '[Twitter]Setup',         'SetLoginTwitter'],
