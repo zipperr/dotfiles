@@ -462,6 +462,7 @@ cmap wb<CR> set binary noeol<CR>:wq<CR>
 cmap W<CR> wa<CR>
 cmap Q<CR> qa<CR>
 cmap WQ<CR> wqa<CR>
+cmap <C-P> <C-R>"
 cnoremap <C-j> <Down>
 cnoremap <C-k> <Up>
 cnoremap <C-h> <Left>
