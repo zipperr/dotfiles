@@ -463,8 +463,6 @@ cmap W<CR> wa<CR>
 cmap Q<CR> qa<CR>
 cmap WQ<CR> wqa<CR>
 cmap <C-P> <C-R>"
-cmap <C-P> <C-R>"
-cmap <C-P> <C-R>"
 cnoremap <C-j> <Down>
 cnoremap <C-k> <Up>
 cnoremap <C-h> <Left>
