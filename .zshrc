@@ -60,6 +60,7 @@ alias g='git'
 alias server='python -m SimpleHTTPServer'
 alias server3='python -m http.server'
 alias w3="w3m -B"
+alias ssh='ssh zip@60.116.182.149'
 
 #grep
 function grep() {find . -name '*' -print0 |xargs -0 grep --color=always -s -I -n $1 |awk '{print substr($0, 1, 180) "..." }'}
