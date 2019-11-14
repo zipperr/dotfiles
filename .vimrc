@@ -294,24 +294,6 @@ nnoremap <silent><C-s> :W3mVSplit<CR>
 if (has("win64") || has("win32unix") || has("win32"))
     let g:w3m#command = '/c/Users/'.$USERNAME.'/dotfiles/w3m.exe'
 endif
-
-if !exists('g:w3m#user_agent_list')
-let g:w3m#user_agent_list = []
-endif
-call add(g:w3m#user_agent_list, {'name':'w3m', 'agent':''})
-call add(g:w3m#user_agent_list, {'name':'Chrome', 'agent':'Mozilla/5.0 (Windows NT 5.1) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/14.0.835.187 Safari/535.1'})
-call add(g:w3m#user_agent_list, {'name':'Firefox', 'agent':'Mozilla/5.0 (Windows NT 5.1; rv:7.0.1) Gecko/20100101 Firefox/7.0.1'})
-call add(g:w3m#user_agent_list, {'name':'IE6', 'agent':'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; GTB6.6; .NET CLR 2.0.50727; .NET CLR 3.0.4506.2152; .NET CLR 3.5.30729)'})
-call add(g:w3m#user_agent_list, {'name':'IE7', 'agent':'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; Trident/4.0; GTB6.6; .NET CLR 2.0.50727; .NET CLR 3.0.4506.2152; .NET CLR 3.5.30729)'})
-call add(g:w3m#user_agent_list, {'name':'IE8', 'agent':'Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.1; Trident/4.0; GTB6.6; .NET CLR 2.0.50727; .NET CLR 3.0.4506.2152; .NET CLR 3.5.30729)'})
-call add(g:w3m#user_agent_list, {'name':'IE9', 'agent':'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; .NET4.0C)'})
-call add(g:w3m#user_agent_list, {'name':'Opera', 'agent':'Opera 11 Opera/9.80 (Windows NT 5.1; U; ja) Presto/2.7.62 Version/11.00'})
-call add(g:w3m#user_agent_list, {'name':'Android', 'agent':'Mozilla/5.0 (Linux; U; Android 2.3.5; ja-jp; T-01D Build/F0001) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1'})
-call add(g:w3m#user_agent_list, {'name':'iOS', 'agent':'Mozilla/5.0 (iPhone; CPU iPhone OS 5_0 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9A334 Safari/7534.48.3'})
-call add(g:w3m#user_agent_list, {'name':'KDDI', 'agent':'KDDI-HI31 UP.Browser/6.2.0.5 (GUI) MMP/2.0'})
-call add(g:w3m#user_agent_list, {'name':'DoCoMo', 'agent':'D502i DoCoMo/1.0/D502i DoCoMo/1.0/D502i/c10'})
-call add(g:w3m#user_agent_list, {'name':'SoftBank','agent':'SoftBank/1.0/911SH/SHJ001/XXXXXXXXXXXXXXXX Browser/NetFront/3.3 Profile/MIDP-2.0 Configuration/CLDC-1.1'})
-
 "}}}
 "{{{----- ALE -----
 let g:ale_lint_on_save = 1
