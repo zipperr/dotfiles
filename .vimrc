@@ -113,8 +113,8 @@ function! LightlineFilename()
         let fname = expand('%:t')
     endif
     return fname =~# 'NERD_tree' ? '' :
-        \ &filetype ==# 'unite' ? unite#get_status_string() :
-        \ ('' !=# fname ? fname : '[No Name]')
+                \ &filetype ==# 'unite' ? unite#get_status_string() :
+                \ ('' !=# fname ? fname : '[No Name]')
 endfunction
 
 function! LightlineFileformat()
@@ -132,8 +132,8 @@ endfunction
 function! LightlineMode()
     let fname = expand('%:t')
     return fname =~# 'NERD_tree' ? 'NERDTree' :
-        \&filetype ==# 'unite' ? 'Unite' :
-        \lightline#mode()
+                \&filetype ==# 'unite' ? 'Unite' :
+                \lightline#mode()
 endfunction
 
 function! Youbi()
@@ -251,10 +251,10 @@ imap <expr><TAB> pumvisible() ? "<C-n>" : neosnippet#jumpable() ? "<Plug>(neosni
 "{{{----- Quickrun -----
 nnoremap <C-q> :QuickRun<CR>
 let g:quickrun_config = {'_' : {
-    \'runner': 'job',
-    \'outputter' : 'error','outputter/error/success' : 'buffer','outputter/error/error' : 'buffer',
-    \'outputter/buffer/split' : ':vertical 35','outputter/buffer/close_on_empty' : 0
-\}}
+            \'runner': 'job',
+            \'outputter' : 'error','outputter/error/success' : 'buffer','outputter/error/error' : 'buffer',
+            \'outputter/buffer/split' : ':vertical 35','outputter/buffer/close_on_empty' : 0
+            \}}
 "}}}
 "{{{----- gruvbox -----
 colorscheme gruvbox
@@ -288,7 +288,7 @@ let g:switch_custom_definitions =
 "}}}
 "{{{----- W3m -----
 nnoremap <silent><C-g> :W3mVSplit<CR>
-    let g:w3m#homepage = 'http://www.google.co.jp/'
+let g:w3m#homepage = 'http://www.google.co.jp/'
 if (has('win64') || has('win32unix') || has('win32'))
     let g:w3m#command = '/c/Users/'.$USERNAME.'/dotfiles/w3m.exe'
 endif
