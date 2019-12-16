@@ -297,8 +297,8 @@ endif
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 0
 let g:ale_lint_on_enter = 0
-nmap <C-k> <Plug>(ale_nprevious_wrap)
-nmap <C-j> <Plug>(ale_next_wrap)
+nnoremap <C-k> <Plug>(ale_nprevious_wrap)
+nnoremap <C-j> <Plug>(ale_next_wrap)
 "}}}
 "{{{----- vim-template -----
 let s:load_templates_dir='~/.vim/dein/repos/github.com/zipperr/vim-template/templates'
