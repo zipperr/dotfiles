@@ -245,11 +245,10 @@ if !exists('g:neocomplcache_omni_patterns')
 endif
 "}}}
 "{{{----- Neosnippet -----
-" viVimの時だけコメントアウト
-" imap <expr><CR> neosnippet#expandable() ? "<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "<C-y>" : "<CR>"
-" imap <expr><TAB> pumvisible() ? "<C-n>" : neosnippet#jumpable() ? "<Plug>(neosnippet_expand_or_jump)" : "<TAB>"
-" imap <expr><S-TAB> pumvisible() ? "<C-k>" : neosnippet#jumpable() ? "<Plug>(neosnippet_expand_or_jump)" : "<S-TAB>"
-" smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+imap <expr><CR> neosnippet#expandable() ? "<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "<C-y>" : "<CR>"
+imap <expr><TAB> pumvisible() ? "<C-n>" : neosnippet#jumpable() ? "<Plug>(neosnippet_expand_or_jump)" : "<TAB>"
+imap <expr><S-TAB> pumvisible() ? "<C-k>" : neosnippet#jumpable() ? "<Plug>(neosnippet_expand_or_jump)" : "<S-TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 "}}}
 "{{{----- Quickrun -----
 nnoremap <C-q> :QuickRun<CR>
