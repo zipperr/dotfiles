@@ -158,7 +158,7 @@ let twitvim_count = 100
 let twitvim_token_file = expand('~/.vim/.twitvim.token')
 if has('mac')
     let twitvim_browser_cmd = 'open'
-elseif (has("win64") || has("win32unix") || has("win32"))
+elseif (has('win64') || has('win32unix') || has('win32'))
     " let twitvim_browser_cmd = '/c/Program Files (x86)/Google/Chrome/Application/chrome.exe'
 endif
 nnoremap <C-t> :40vnew<CR>:FriendsTwitter<CR><C-w>j:q<CR>
@@ -194,7 +194,7 @@ let g:unite_source_menu_menus.shortcut.command_candidates = [
             \[ '[web]Google',            'OpenBrowser https://www.google.co.jp'],
             \[ '[web]Qiita',             'OpenBrowser https://qiita.com'],
             \[ '[web]Wiki',              'OpenBrowser https://ja.wikipedia.org'],
-            \[ '[w3m]5ch',              'W3mVSplit http://menu.5ch.net/bbsmenu.html'],
+            \[ '[w3m]5ch',               'W3mVSplit http://menu.5ch.net/bbsmenu.html'],
             \[ '[w3m]Qiita',             'W3mVSplit https://qiita.com'],
             \[ '[w3m]Wiki',              'W3mVSplit https://ja.wikipedia.org'],
             \[ '[w3m]Google',            'W3mVSplit https://www.google.co.jp'],
@@ -289,9 +289,9 @@ let g:switch_custom_definitions =
             \]
 "}}}
 "{{{----- W3m -----
-nnoremap <silent><C-s> :W3mVSplit<CR>
-    let g:w3m#homepage = "http://www.google.co.jp/"
-if (has("win64") || has("win32unix") || has("win32"))
+nnoremap <silent><C-d> :W3mVSplit<CR>
+    let g:w3m#homepage = 'http://www.google.co.jp/'
+if (has('win64') || has('win32unix') || has('win32'))
     let g:w3m#command = '/c/Users/'.$USERNAME.'/dotfiles/w3m.exe'
 endif
 "}}}
@@ -299,6 +299,8 @@ endif
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 0
 let g:ale_lint_on_enter = 0
+nmap <C-k> <Plug>(ale_nprevious_wrap)
+nmap <C-j> <Plug>(ale_next_wrap)
 "}}}
 "{{{----- vim-template -----
 let s:load_templates_dir='~/.vim/dein/repos/github.com/zipperr/vim-template/templates'
@@ -427,6 +429,7 @@ nnoremap wj 10<C-W>+
 nnoremap wk 10<C-W>-
 nnoremap wh 10<C-W>>
 nnoremap wl 10<C-W><
+nnoremap <C-s> :w<CR>
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :q<CR>
 nnoremap <Leader>s :<C-u>new<CR>
