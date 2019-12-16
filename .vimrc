@@ -408,6 +408,7 @@ noremap k gk
 noremap gj j
 noremap gk k
 noremap <Tab> %
+noremap <C-k><C-d> ggVG=
 "NormalMode
 nnoremap <C-l> :<C-u>nohlsearch<CR><C-l>
 nnoremap n nzz
