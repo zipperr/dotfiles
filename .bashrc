@@ -62,6 +62,7 @@ alias g='git'
 alias ..='cd ..'
 alias server='python -m SimpleHTTPServer'
 alias server3='python -m http.server'
+alias ssh='ssh zip@60.116.182.149'
 
 #grep
 function grep() {

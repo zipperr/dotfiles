@@ -48,10 +48,11 @@ endif
 
 "{{{----- NERDTree -----
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
-let g:NERDTreeQuitOnOpen = 1
+let g:NERDTreeQuitOnOpen = 0
 let g:NERDTreeDirArrows  = 0
 let g:NERDTreeShowHidden = 1
 let g:NERDTreeWinSize  = 30
+let g:NERDTreeMouseMode=2
 let g:NERDTreeWinPos   = 'left'
 let g:NERDTreeIgnore   = ['\.clean$', '\.swp$', '\.bak$', '\~$', '\.DS_Store']
 autocmd vimrc vimenter * if !argc() | NERDTree | endif
@@ -112,8 +113,8 @@ function! LightlineFilename()
         let fname = expand('%:t')
     endif
     return fname =~# 'NERD_tree' ? '' :
-        \ &filetype ==# 'unite' ? unite#get_status_string() :
-        \ ('' !=# fname ? fname : '[No Name]')
+                \ &filetype ==# 'unite' ? unite#get_status_string() :
+                \ ('' !=# fname ? fname : '[No Name]')
 endfunction
 
 function! LightlineFileformat()
@@ -131,8 +132,8 @@ endfunction
 function! LightlineMode()
     let fname = expand('%:t')
     return fname =~# 'NERD_tree' ? 'NERDTree' :
-        \&filetype ==# 'unite' ? 'Unite' :
-        \lightline#mode()
+                \&filetype ==# 'unite' ? 'Unite' :
+                \lightline#mode()
 endfunction
 
 function! Youbi()
@@ -157,7 +158,7 @@ let twitvim_count = 100
 let twitvim_token_file = expand('~/.vim/.twitvim.token')
 if has('mac')
     let twitvim_browser_cmd = 'open'
-elseif (has("win64") || has("win32unix") || has("win32"))
+elseif (has('win64') || has('win32unix') || has('win32'))
     " let twitvim_browser_cmd = '/c/Program Files (x86)/Google/Chrome/Application/chrome.exe'
 endif
 nnoremap <C-t> :40vnew<CR>:FriendsTwitter<CR><C-w>j:q<CR>
@@ -193,7 +194,7 @@ let g:unite_source_menu_menus.shortcut.command_candidates = [
             \[ '[web]Google',            'OpenBrowser https://www.google.co.jp'],
             \[ '[web]Qiita',             'OpenBrowser https://qiita.com'],
             \[ '[web]Wiki',              'OpenBrowser https://ja.wikipedia.org'],
-            \[ '[w3m]5ch',              'W3mVSplit http://menu.5ch.net/bbsmenu.html'],
+            \[ '[w3m]5ch',               'W3mVSplit http://menu.5ch.net/bbsmenu.html'],
             \[ '[w3m]Qiita',             'W3mVSplit https://qiita.com'],
             \[ '[w3m]Wiki',              'W3mVSplit https://ja.wikipedia.org'],
             \[ '[w3m]Google',            'W3mVSplit https://www.google.co.jp'],
@@ -246,16 +247,14 @@ endif
 "{{{----- Neosnippet -----
 imap <expr><CR> neosnippet#expandable() ? "<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "<C-y>" : "<CR>"
 imap <expr><TAB> pumvisible() ? "<C-n>" : neosnippet#jumpable() ? "<Plug>(neosnippet_expand_or_jump)" : "<TAB>"
-imap <expr><S-TAB> pumvisible() ? "<C-k>" : neosnippet#jumpable() ? "<Plug>(neosnippet_expand_or_jump)" : "<S-TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 "}}}
 "{{{----- Quickrun -----
 nnoremap <C-q> :QuickRun<CR>
 let g:quickrun_config = {'_' : {
-    \'runner': 'job',
-    \'outputter' : 'error','outputter/error/success' : 'buffer','outputter/error/error' : 'buffer',
-    \'outputter/buffer/split' : ':vertical 35','outputter/buffer/close_on_empty' : 0
-\}}
+            \'runner': 'job',
+            \'outputter' : 'error','outputter/error/success' : 'buffer','outputter/error/error' : 'buffer',
+            \'outputter/buffer/split' : ':vertical 35','outputter/buffer/close_on_empty' : 0
+            \}}
 "}}}
 "{{{----- gruvbox -----
 colorscheme gruvbox
@@ -288,9 +287,9 @@ let g:switch_custom_definitions =
             \]
 "}}}
 "{{{----- W3m -----
-nnoremap <silent><C-s> :W3mVSplit<CR>
-    let g:w3m#homepage = "http://www.google.co.jp/"
-if (has("win64") || has("win32unix") || has("win32"))
+nnoremap <silent><C-g> :W3mVSplit<CR>
+let g:w3m#homepage = 'http://www.google.co.jp/'
+if (has('win64') || has('win32unix') || has('win32'))
     let g:w3m#command = '/c/Users/'.$USERNAME.'/dotfiles/w3m.exe'
 endif
 "}}}
@@ -298,6 +297,8 @@ endif
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 0
 let g:ale_lint_on_enter = 0
+nnoremap <C-k> <Plug>(ale_nprevious_wrap)
+nnoremap <C-j> <Plug>(ale_next_wrap)
 "}}}
 "{{{----- vim-template -----
 let s:load_templates_dir='~/.vim/dein/repos/github.com/zipperr/vim-template/templates'
@@ -408,6 +409,7 @@ noremap k gk
 noremap gj j
 noremap gk k
 noremap <Tab> %
+noremap <C-k><C-d> ggVG=
 "NormalMode
 nnoremap <C-l> :<C-u>nohlsearch<CR><C-l>
 nnoremap n nzz
@@ -425,6 +427,7 @@ nnoremap wj 10<C-W>+
 nnoremap wk 10<C-W>-
 nnoremap wh 10<C-W>>
 nnoremap wl 10<C-W><
+nnoremap <C-s> :w<CR>
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :q<CR>
 nnoremap <Leader>s :<C-u>new<CR>
@@ -462,6 +465,7 @@ cmap wb<CR> set binary noeol<CR>:wq<CR>
 cmap W<CR> wa<CR>
 cmap Q<CR> qa<CR>
 cmap WQ<CR> wqa<CR>
+cmap <C-P> <C-R>"
 cnoremap <C-j> <Down>
 cnoremap <C-k> <Up>
 cnoremap <C-h> <Left>
