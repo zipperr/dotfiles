@@ -48,10 +48,11 @@ endif
 
 "{{{----- NERDTree -----
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
-let g:NERDTreeQuitOnOpen = 1
+let g:NERDTreeQuitOnOpen = 0
 let g:NERDTreeDirArrows  = 0
 let g:NERDTreeShowHidden = 1
 let g:NERDTreeWinSize  = 30
+let g:NERDTreeMouseMode=2
 let g:NERDTreeWinPos   = 'left'
 let g:NERDTreeIgnore   = ['\.clean$', '\.swp$', '\.bak$', '\~$', '\.DS_Store']
 autocmd vimrc vimenter * if !argc() | NERDTree | endif
@@ -244,10 +245,11 @@ if !exists('g:neocomplcache_omni_patterns')
 endif
 "}}}
 "{{{----- Neosnippet -----
-imap <expr><CR> neosnippet#expandable() ? "<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "<C-y>" : "<CR>"
-imap <expr><TAB> pumvisible() ? "<C-n>" : neosnippet#jumpable() ? "<Plug>(neosnippet_expand_or_jump)" : "<TAB>"
-imap <expr><S-TAB> pumvisible() ? "<C-k>" : neosnippet#jumpable() ? "<Plug>(neosnippet_expand_or_jump)" : "<S-TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+" viVimの時だけコメントアウト
+" imap <expr><CR> neosnippet#expandable() ? "<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "<C-y>" : "<CR>"
+" imap <expr><TAB> pumvisible() ? "<C-n>" : neosnippet#jumpable() ? "<Plug>(neosnippet_expand_or_jump)" : "<TAB>"
+" imap <expr><S-TAB> pumvisible() ? "<C-k>" : neosnippet#jumpable() ? "<Plug>(neosnippet_expand_or_jump)" : "<S-TAB>"
+" smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 "}}}
 "{{{----- Quickrun -----
 nnoremap <C-q> :QuickRun<CR>
@@ -463,6 +465,7 @@ cmap wb<CR> set binary noeol<CR>:wq<CR>
 cmap W<CR> wa<CR>
 cmap Q<CR> qa<CR>
 cmap WQ<CR> wqa<CR>
+cmap <C-P> <C-R>"
 cnoremap <C-j> <Down>
 cnoremap <C-k> <Up>
 cnoremap <C-h> <Left>
