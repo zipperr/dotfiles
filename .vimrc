@@ -247,8 +247,6 @@ endif
 "{{{----- Neosnippet -----
 imap <expr><CR> neosnippet#expandable() ? "<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "<C-y>" : "<CR>"
 imap <expr><TAB> pumvisible() ? "<C-n>" : neosnippet#jumpable() ? "<Plug>(neosnippet_expand_or_jump)" : "<TAB>"
-imap <expr><S-TAB> pumvisible() ? "<C-k>" : neosnippet#jumpable() ? "<Plug>(neosnippet_expand_or_jump)" : "<S-TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 "}}}
 "{{{----- Quickrun -----
 nnoremap <C-q> :QuickRun<CR>
@@ -289,7 +287,7 @@ let g:switch_custom_definitions =
             \]
 "}}}
 "{{{----- W3m -----
-nnoremap <silent><C-d> :W3mVSplit<CR>
+nnoremap <silent><C-g> :W3mVSplit<CR>
     let g:w3m#homepage = 'http://www.google.co.jp/'
 if (has('win64') || has('win32unix') || has('win32'))
     let g:w3m#command = '/c/Users/'.$USERNAME.'/dotfiles/w3m.exe'
