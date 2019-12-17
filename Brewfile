@@ -12,6 +12,7 @@ brew "openssl"
 brew "flake8"
 brew "gcc"
 brew "git"
+brew "git-lfs"
 brew "go"
 brew "jsonlint"
 brew "lua"
@@ -30,6 +31,7 @@ cask "caskroom/cask/bathyscaphe"
 cask "caskroom/cask/java"
 cask "caskroom/cask/karabiner-elements"
 cask "caskroom/cask/mplayerx"
+cask "caskroom/cask/oracle-jdk"
 mas "AdGuard for Safari", id: 1440147259
 mas "LINE", id: 539883307
 mas "PiPifier", id: 1160374471
