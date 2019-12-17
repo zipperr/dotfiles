@@ -411,6 +411,7 @@ noremap j gj
 noremap k gk
 noremap gj j
 noremap gk k
+noremap <C-f> /
 noremap <Tab> %
 noremap <C-k><C-d> ggVG=
 "NormalMode
@@ -431,16 +432,16 @@ nnoremap wk 10<C-W>-
 nnoremap wh 10<C-W>>
 nnoremap wl 10<C-W><
 nnoremap <C-s> :w<CR>
+nnoremap " ciw""<Esc>P
+nnoremap ' ciw''<Esc>P
+nnoremap ` ciw``<Esc>P
+nnoremap ( ciw()<Esc>P
+nnoremap { ciw{}<Esc>P
+nnoremap [ ciw[]<Esc>P
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :q<CR>
 nnoremap <Leader>s :<C-u>new<CR>
 nnoremap <Leader>v :<C-u>vne<CR>
-nnoremap <Leader>" ciw""<Esc>P
-nnoremap <Leader>' ciw''<Esc>P
-nnoremap <Leader>` ciw``<Esc>P
-nnoremap <Leader>( ciw()<Esc>P
-nnoremap <Leader>{ ciw{}<Esc>P
-nnoremap <Leader>[ ciw[]<Esc>P
 nnoremap <Leader>/ :%s/置換前/置換後/<Left>
 "InsertMode
 inoremap <C-j> <Down>
