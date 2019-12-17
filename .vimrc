@@ -190,7 +190,6 @@ let g:unite_source_menu_menus.shortcut.command_candidates = [
             \[ '[Git]GitDiff',           'Gdiff'],
             \[ '[Git]GitBlame',          'Gblame'],
             \[ '[Git]GitAddCommitPush',  "Gwrite | Gcommit -am 'Update' | Git push"],
-            \[ '[web]localhost:8000',    'OpenBrowser http://localhost:8000'],
             \[ '[web]Github',            'OpenBrowser https://github.com/zipperr'],
             \[ '[web]Google',            'OpenBrowser https://www.google.co.jp'],
             \[ '[web]Qiita',             'OpenBrowser https://qiita.com'],
@@ -454,8 +453,8 @@ inoremap , ,<space>
 vnoremap v $h
 vnoremap <bs> d
 vnoremap <delete> d
-vnoremap * "vy/\V<C-r>=substitute(escape(@v, '\/'), "\n", '\\n','g')<CR><CR>
-vnoremap / "xy:%s/<C-R>=escape(@x, '\\/.*$^~[]')<CR>//<Left>
+vnoremap / "vy/\V<C-r>=substitute(escape(@v, '\/'), "\n", '\\n','g')<CR><CR>
+vnoremap * "xy:%s/<C-R>=escape(@x, '\\/.*$^~[]')<CR>//<Left>
 vnoremap [ "zdi[<C-R>z]<ESC>
 vnoremap ( "zdi(<C-R>z)<ESC>
 vnoremap { "zdi{<C-R>z}<ESC>
