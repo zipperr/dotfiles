@@ -147,7 +147,9 @@ nmap <Leader><Leader> gcc
 vmap <Leader><Leader> gc
 "}}}
 "{{{----- Easy-Align -----
-vmap <Enter> <Plug>(EasyAlign)*
+if executable('echo') "visualstudioのVsVimはechoコマンドがない
+    vmap <Enter> <Plug>(EasyAlign)*
+endif
 "}}}
 "{{{----- AutoClose -----
 let g:AutoClosePairs_add = "<> |"" |'' |"
