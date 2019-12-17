@@ -45,6 +45,18 @@ endif
 if dein#check_install()
     call dein#install()
 endif
+"{{{----- NERDTree -----
+nnoremap <silent><C-e> :NERDTreeToggle<CR>
+let g:NERDTreeQuitOnOpen = 0
+let g:NERDTreeDirArrows  = 0
+let g:NERDTreeShowHidden = 1
+let g:NERDTreeWinSize  = 30
+let g:NERDTreeMouseMode=2
+let g:NERDTreeWinPos   = 'left'
+let g:NERDTreeIgnore   = ['\.clean$', '\.swp$', '\.bak$', '\~$', '\.DS_Store']
+autocmd vimrc vimenter * if !argc() | NERDTree | endif
+autocmd vimrc bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+"}}}
 "{{{----- Lightline -----
 let g:lightline = {
             \'colorscheme': 'wombat',
