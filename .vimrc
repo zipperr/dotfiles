@@ -45,7 +45,7 @@ endif
 if dein#check_install()
     call dein#install()
 endif
-
+let g:popup_enabled =0
 "{{{----- NERDTree -----
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
 let g:NERDTreeQuitOnOpen = 0
@@ -245,8 +245,10 @@ if !exists('g:neocomplcache_omni_patterns')
 endif
 "}}}
 "{{{----- Neosnippet -----
-imap <expr><CR> neosnippet#expandable() ? "<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "<C-y>" : "<CR>"
-imap <expr><TAB> pumvisible() ? "<C-n>" : neosnippet#jumpable() ? "<Plug>(neosnippet_expand_or_jump)" : "<TAB>"
+if executable('echo') "visualstudioのVsVimはechoコマンドがない
+    imap <expr><CR> neosnippet#expandable() ? "<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "<C-y>" : "<CR>"
+    imap <expr><TAB> pumvisible() ? "<C-n>" : neosnippet#jumpable() ? "<Plug>(neosnippet_expand_or_jump)" : "<TAB>"
+endif
 "}}}
 "{{{----- Quickrun -----
 nnoremap <C-q> :QuickRun<CR>
