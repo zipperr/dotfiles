@@ -201,7 +201,6 @@ let g:unite_source_menu_menus.shortcut.command_candidates = [
             \[ '[Twitter]Timeline',      'FriendsTwitter'],
             \[ '[Twitter]Tweet',         'PosttoTwitter'],
             \[ '[Twitter]Setup',         'SetLoginTwitter'],
-            \[ '[vim]FileTree',          'NERDTreeToggle'],
             \[ '[File]Tab > Space',      'set expandtab|retab 4'],
             \[ '[File]Space > Tab',      'set noexpandtab | retab! 4'],
             \[ '[File]Open_UTF8',        'e ++enc=utf-8'],

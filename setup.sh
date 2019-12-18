@@ -8,25 +8,25 @@ if [ "$(uname)" == "Darwin" ]; then
     chsh -s /bin/zsh
     chmod +x ~/dotfiles/pythonSetup.sh
 
-    # 起動最小
+    # 起動音最小
     sudo nvram SystemAudioVolume=%00
     # 拡張子を常に表示
     defaults write NSGlobalDomain AppleShowAllExtensions -bool true
     # Dockをすぐに表示する
     defaults write com.apple.dock autohide-delay -float 0
-    #Dockアニメーションなし
+    # Dockアニメーションなし
     defaults write com.apple.dock autohide-time-modifier -float 0
     # 自動でドック隠す
     defaults write com.apple.dock autohide -bool true
-    #スケールエフェクト
+    # スケールエフェクト
     defaults write com.apple.dock mineffect -string "scale"
-    #Launchpadすぐ出す
+    # Launchpadすぐ出す
     defaults write com.apple.dock springboard-show-duration -int 0
-    #Launchpadすぐ隠す
+    # Launchpadすぐ隠す
     defaults write com.apple.dock springboard-hide-duration -int 0
     # 設定反映
     killall Dock
-    #ライブラリディレクトリを見えるようにする
+    # ライブラリディレクトリを見えるようにする
     sudo chflags nohidden ~/Library
     # /Volumes ディレクトリを見えるようにする
     sudo chflags nohidden /Volumes
@@ -40,7 +40,7 @@ if [ "$(uname)" == "Darwin" ]; then
     defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
     # 隠しファイルや隠しフォルダを表示
     defaults write com.apple.finder AppleShowAllFiles true
-    #Finderを終了を出す
+    # "Finderを終了"を出す
     defaults write com.apple.finder QuitMenuItem -bool true
     # アドレスバーに完全なURLを表示
     defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true
@@ -61,12 +61,12 @@ if [ "$(uname)" == "Darwin" ]; then
     defaults write com.apple.Safari SuppressSearchSuggestions -bool true
     # 検索クエリを Apple へ送信しない
     defaults write com.apple.Safari UniversalSearchEnabled -bool false
-    #キーリピート最速
+    # キーリピート最速
     defaults write -g InitialKeyRepeat -int 12
     defaults write -g KeyRepeat -int 1
-    # スリープとスクリーンセーバの解除にパスワードを要求
+    # スリープとスクリーンセーバの解除にパスワードを要求しない
     defaults write com.apple.screensaver askForPassword -bool false
-    # Use a custom theme （カスタムテーマを使う、そのテーマをデフォルトに設定する）
+    # カスタムテーマを使う、そのテーマをデフォルトに設定する
     TERM_PROFILE='zip';
     TERM_PATH='./';
     CURRENT_PROFILE="$(defaults read com.apple.terminal 'Default Window Settings')";

@@ -140,13 +140,13 @@ ls_abbrev() {
     local -a opt_ls
     opt_ls=('-aCF' '--color=always')
     case "${OSTYPE}" in
-            freebsd*|darwin*)
-        if type gls > /dev/null 2>&1; then
-            cmd_ls='gls'
-        else
-            opt_ls=('-aCFG')
-        fi
-        ;;
+        freebsd*|darwin*)
+            if type gls > /dev/null 2>&1; then
+                cmd_ls='gls'
+            else
+                opt_ls=('-aCFG')
+            fi
+            ;;
     esac
     local ls_result
     ls_result=$(CLICOLOR_FORCE=1 COLUMNS=$COLUMNS command $cmd_ls ${opt_ls[@]} | sed $'/^\e\[[0-9;]*m$/d')
@@ -217,8 +217,3 @@ git config --global url."https://".insteadOf git://
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
-
-function dep(){
-    rm -rf ~/Flask
-    git clone https://github.com/zipperr/Flask ~/Flask
-}

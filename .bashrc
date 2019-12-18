@@ -15,6 +15,7 @@ export HISTCONTROL=ignoredups
 export HISTCONTROL=ignorespace
 export HISTCONTROL=ignoreboth
 export HISTTIMEFORMAT='%Y/%m/%d %H:%M:%S'
+
 #vimでC-q
 stty -ixon -ixoff
 stty stop undef
@@ -72,16 +73,16 @@ function grep() {
 #(時間)[ユーザ名@ホスト名][場所][ブランチ名]
 source $HOME/.git-prompt.sh
 export GIT_PS1_SHOWCOLORHINTS=true
-if [ "$(uname)" == 'Darwin' ]; then     #mac
-export PS1='\[\e[036m\](\A)\[\e[036m\]\[\e[036m\][\u@\h]\[\e[36m\][\w]\[\e[31m\]$(__git_ps1 "[%s]")\[\e[0m\]\n\$ '
-elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then   #Linux
-export PS1='\[\e[036m\](\A)\[\e[036m\]\[\e[036m\][\u@\h]\[\e[36m\][\w]\[\e[31m\]$(__git_ps1 "[%s]")\[\e[0m\]\n\$ '
-elif [ "$(expr substr $(uname -s) 1 10)" == 'MINGW64_NT' ]; then    #Gitbash,Cygwin 64bit
-export PS1="\[\e[036m\](\A)[\u@\h][\w]\[\e[31m\]\$(__git_ps1 '[%s]')"$'\[\e[0m\]\n$'
-elif [ "$(expr substr $(uname -s) 1 10)" == 'MINGW32_NT' ]; then    #Gitbash,Cygwin 32bit
-export PS1="\[\e[036m\](\A)[\u@\h][\w]\[\e[31m\]\$(__git_ps1 '[%s]')"$'\[\e[0m\]\n$'
+if [ "$(uname)" == 'Darwin' ]; then                              #mac
+    export PS1='\[\e[036m\](\A)\[\e[036m\]\[\e[036m\][\u@\h]\[\e[36m\][\w]\[\e[31m\]$(__git_ps1 "[%s]")\[\e[0m\]\n\$ '
+elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then       #Linux
+    export PS1='\[\e[036m\](\A)\[\e[036m\]\[\e[036m\][\u@\h]\[\e[36m\][\w]\[\e[31m\]$(__git_ps1 "[%s]")\[\e[0m\]\n\$ '
+elif [ "$(expr substr $(uname -s) 1 10)" == 'MINGW64_NT' ]; then #Gitbash,Cygwin 64bit
+    export PS1="\[\e[036m\](\A)[\u@\h][\w]\[\e[31m\]\$(__git_ps1 '[%s]')"$'\[\e[0m\]\n$'
+elif [ "$(expr substr $(uname -s) 1 10)" == 'MINGW32_NT' ]; then #Gitbash,Cygwin 32bit
+    export PS1="\[\e[036m\](\A)[\u@\h][\w]\[\e[31m\]\$(__git_ps1 '[%s]')"$'\[\e[0m\]\n$'
 else
-export PS1="\[\e[036m\](\A)\[\e[036m\]\[\e[036m\][\u@\h]\[\e[36m\][\w]\[\e[m\]"
+    export PS1="\[\e[036m\](\A)\[\e[036m\]\[\e[036m\][\u@\h]\[\e[36m\][\w]\[\e[m\]"
 fi
 
 cd (){
