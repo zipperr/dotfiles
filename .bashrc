@@ -134,9 +134,9 @@ git config --global url."https://".insteadOf git://
 
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+eval "$(pyenv init -  2>/dev/null)"
 
-export JAVA_HOME=`/usr/libexec/java_home -v 13`
+export JAVA_HOME=`/usr/libexec/java_home -v 13 2>/dev/null`
 export PATH="$JAVA_HOME/bin:$PATH"
 
 export PATH_TO_FX="/Library/Java/JavaVirtualMachines/javafx-sdk-11.0.2/lib"
