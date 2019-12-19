@@ -1,7 +1,6 @@
 tap "caskroom/cask"
 tap "homebrew/bundle"
 tap "homebrew/cask"
-tap "homebrew/cask-versions"
 tap "homebrew/core"
 tap "mas-cli/tap"
 brew "bash"
@@ -29,10 +28,10 @@ brew "wget"
 brew "write-good"
 brew "zsh"
 brew "mas-cli/tap/mas"
+cask "java"
 cask "bathyscaphe"
 cask "karabiner-elements"
 cask "mplayerx"
-cask "corretto8"
 mas "AdGuard for Safari", id: 1440147259
 mas "LINE", id: 539883307
 mas "PiPifier", id: 1160374471
