@@ -23,47 +23,47 @@ stty start undef
 
 # Compaletion
 [ -n "${BASH_COMPLETION}" ] || \
-      export BASH_COMPLETION="$HOME/.bash_completion"
-. $BASH_COMPLETION
+    export BASH_COMPLETION="$HOME/.bash_completion"
+    . $BASH_COMPLETION
 
-if [ "$(uname)" == "Darwin" ]; then
-    alias python='python3'
-    alias pip='pip3'
-    alias ls='ls -a -G'
-    alias ip='ifconfig'
-    alias desk='cd ~/Desktop'
-elif [ "$(expr substr $(uname -s) 1 5)" == "MINGW" ]; then
-    alias python='winpty python.exe'
-    alias ls='ls -a  --color=auto'
-    alias ip='ipconfig /all'
-    userName=$(whoami)
-    alias desk='cd /c/Users/${userName}/Desktop'
-elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-    alias python='python3'
-    alias pip='pip3'
-    alias ls='ls -a  --color=auto'
-    alias ip='ifconfig'
-    alias desk='cd ~/Desktop'
-fi
+    if [ "$(uname)" == "Darwin" ]; then
+        alias python='python3'
+        alias pip='pip3'
+        alias ls='ls -a -G'
+        alias ip='ifconfig'
+        alias desk='cd ~/Desktop'
+    elif [ "$(expr substr $(uname -s) 1 5)" == "MINGW" ]; then
+        alias python='winpty python.exe'
+        alias ls='ls -a  --color=auto'
+        alias ip='ipconfig /all'
+        userName=$(whoami)
+        alias desk='cd /c/Users/${userName}/Desktop'
+    elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+        alias python='python3'
+        alias pip='pip3'
+        alias ls='ls -a  --color=auto'
+        alias ip='ifconfig'
+        alias desk='cd ~/Desktop'
+    fi
 
-alias sudo='sudo '
-alias la='ls -CFal'
-alias mv='mv -i'
-alias rm='rm -i'
-alias cp='cp -i'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-alias mkdir='mkdir -p'
-alias sc='screen'
-alias ps='ps --sort=start_time'
-alias v='vim'
-alias vi='vim'
-alias emacs='vim'
-alias g='git'
-alias ..='cd ..'
-alias server='python -m SimpleHTTPServer'
-alias server3='python -m http.server'
-alias ssh='ssh zip@60.116.182.149'
+    alias sudo='sudo '
+    alias la='ls -CFal'
+    alias mv='mv -i'
+    alias rm='rm -i'
+    alias cp='cp -i'
+    alias ...='cd ../..'
+    alias ....='cd ../../..'
+    alias mkdir='mkdir -p'
+    alias sc='screen'
+    alias ps='ps --sort=start_time'
+    alias v='vim'
+    alias vi='vim'
+    alias emacs='vim'
+    alias g='git'
+    alias ..='cd ..'
+    alias server='python -m SimpleHTTPServer'
+    alias server3='python -m http.server'
+    alias ssh='ssh zip@60.116.182.149'
 
 #grep
 function grep() {
@@ -110,6 +110,25 @@ function extract () {
         echo "'$1' is not a valid file"
     fi
 }
+
+#### typeset ####
+_path=""
+for _p in $(echo $PATH | tr ':' ' '); do
+    case ":${_path}:" in
+        *:"${_p}":* )
+            ;;
+        * )
+            if [ "$_path" ]; then
+                _path="$_path:$_p"
+            else
+                _path=$_p
+            fi
+            ;;
+    esac
+done
+PATH=$_path
+unset _p
+unset _path
 
 << '#COMMENT_OUT'
 #Proxy環境下でapt-get,yum,docker,git等を使う時に設定しておく

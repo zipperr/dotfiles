@@ -16,6 +16,7 @@ setopt chase_links
 setopt AUTO_RESUME
 export TERM=xterm-256color
 autoload -U colors && colors
+typeset -U path PATH
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 setopt nonomatch
