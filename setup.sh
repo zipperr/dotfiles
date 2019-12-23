@@ -38,52 +38,9 @@ setup(){
     echo 'Setup for each OS'
     if [ "$(uname)" == "Darwin" ]; then
         echo 'mac'
-        which brew >/dev/null 2>&1 || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-        which brew >/dev/null 2>&1 && brew doctor
-        which brew >/dev/null 2>&1 && brew update
-        brew upgrade --all
-        brew tap "caskroom/cask"
-        brew tap "homebrew/bundle"
-        brew tap "homebrew/cask"
-        brew tap "homebrew/core"
-        brew tap "mas-cli/tap"
-        brew install "bash"
-        brew install "node"
-        brew install "coffeescript"
-        brew install "ctags"
-        brew install "curl"
-        brew install "openssl"
-        brew install "flake8"
-        brew install "gcc"
-        brew install "git"
-        brew install "git-lfs"
-        brew install "gnu-typist"
-        brew install "go"
-        brew install "jsonlint"
-        brew install "lua"
-        brew install "mysql"
-        brew install "perl"
-        brew install "pyenv"
-        brew install "ruby"
-        brew install "screenfetch"
-        brew install "vim"
-        brew install "w3m"
-        brew install "wget"
-        brew install "write-good"
-        brew install "zsh"
-        brew install "mas-cli/tap/mas"
-        brew cask install "java"
-        brew cask install "bathyscaphe"
-        brew cask install "karabiner-elements"
-        brew cask install "mplayerx"
-        mas install "AdGuard for Safari", id: 1440147259
-        mas install "LINE", id: 539883307
-        mas install "PiPifier", id: 1160374471
-        mas install "The Unarchiver", id: 425424353
-        mas install "ToothFairy", id: 1191449274
-        mas install "TweetDeck", id: 485812721
-        brew cleanup
-        brew cask cleanup
+        ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+        brew tap Homebrew/bundle
+        brew bundle
         chsh -s /bin/zsh
         sudo nvram SystemAudioVolume=%00
         defaults write NSGlobalDomain AppleShowAllExtensions -bool true
