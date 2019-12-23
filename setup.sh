@@ -27,7 +27,6 @@ fi
 }
 
 download_dotfiles() {
-    echo 'Download Dotfiles'
     REPOSITORY_NAME="dotfiles"
     REPOSITORY_URL="https://github.com/zipperr/"$REPOSITORY_NAME
     DOTFILES_PATH="$HOME/$REPOSITORY_NAME"
@@ -48,7 +47,6 @@ download_dotfiles() {
 }
 
 create_symbolic_links(){
-    echo 'Create SymbolicLinks'
     cd $DOTFILES_PATH
     export MSYS=winsymlinks:nati
     for f in .??*
@@ -61,7 +59,6 @@ create_symbolic_links(){
 }
 
  platform_dependent_setup(){
-    echo 'Setup for each OS'
     if [ "$(uname)" == "Darwin" ]; then
         echo 'mac'
         ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -171,10 +168,8 @@ install_python(){
     done
 }
 
-echo "Start Setup"
 init
 download_dotfiles
 create_symbolic_links
 platform_dependent_setup
 install_python
-echo "Finish Setup"
