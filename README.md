@@ -1,3 +1,7 @@
+ bash -c "$(curl -fsSL raw.github.com/zipperr/dotfiles/master/setup.sh)"
+
+
+
 #  Mac OSX
 xcode-select --install  
 git clone https://github.com/zipperr/dotfiles ~/dotfiles  
