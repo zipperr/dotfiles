@@ -106,6 +106,8 @@ create_symbolic_links(){
         defaults import com.apple.Terminal "$HOME/Library/Preferences/com.apple.Terminal.plist"
     elif [ "$(expr substr $(uname -s) 1 5)" == "MINGW" ]; then
         echo 'windows'
+        pacman  -Syu --noconfirm
+        pacman -S tmux vim git bash zsh --noconfirm
     elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
         echo 'linux'
         sudo apt-get update && sudo apt-get -y dist-upgrade && sudo apt-get -y autoremove && sudo apt-get autoclean
@@ -136,7 +138,15 @@ install_python(){
                         pip install flask-socketIO
                     fi
                 elif [ "$(expr substr $(uname -s) 1 5)" == "MINGW" ]; then
-                    echo "Go https://www.python.org/"
+                    if [ `which pacman` ]; then
+                        pacman -S python3 python3-pip --noconfirm
+                    fi
+                    if [ `which pip` ]; then
+                        pip install --upgrade pip
+                        pip install Flask
+                        pip install vim-vint
+                        pip install --user mps-youtube youtube-dl
+                    fi
                 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
                     if [ `which git` ]; then
                         git clone https://github.com/pyenv/pyenv.git ~/.pyenv

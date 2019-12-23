@@ -28,10 +28,13 @@ brew "wget"
 brew "write-good"
 brew "zsh"
 brew "mas-cli/tap/mas"
+brew "ranger"
+brew "weechat"
+brew "mps-youtube"
 cask "java"
 cask "bathyscaphe"
 cask "karabiner-elements"
-cask "mplayerx"
+cask "mpv"
 mas "AdGuard for Safari", id: 1440147259
 mas "LINE", id: 539883307
 mas "PiPifier", id: 1160374471
