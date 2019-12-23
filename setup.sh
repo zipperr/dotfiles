@@ -23,23 +23,15 @@ download_dotfiles() {
 
 create_symbolic_links(){
     echo 'Create SymbolicLinks'
+    cd $DOTFILES_PATH
     export MSYS=winsymlinks:nati
-    rm -f $HOME/.vimrc
-    rm -f $HOME/.bashrc
-    rm -f $HOME/.bash_completion
-    rm -f $HOME/.zshrc
-    rm -f $HOME/.git-prompt.sh
-    rm -f $HOME/.gitconfig
-    rm -f $HOME/.gitignore_global
-    rm -f $HOME/.minttyrc
-    ln -s $HOME/dotfiles/.vimrc $HOME/.vimrc
-    ln -s $HOME/dotfiles/.bashrc $HOME/.bashrc
-    ln -s $HOME/dotfiles/.bash_completion $HOME/.bash_completion
-    ln -s $HOME/dotfiles/.zshrc $HOME/.zshrc
-    ln -s $HOME/dotfiles/.git-prompt.sh $HOME/.git-prompt.sh
-    ln -s $HOME/dotfiles/.gitconfig $HOME/.gitconfig
-    ln -s $HOME/dotfiles/.gitignore_global $HOME/.gitignore_global
-    ln -s $HOME/dotfiles/.minttyrc $HOME/.minttyrc
+    for f in .??*
+    do
+        [[ ${f} = ".git" ]] && continue
+        [[ ${f} = ".gitignore" ]] && continue
+        rm -f $HOME/${f}
+        ln -snfv $DOTFILES_PATH/${f} $HOME/${f}
+    done
 }
 
 setup(){
