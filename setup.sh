@@ -1,6 +1,6 @@
 #!/bin/bash
 
-init(){
+ini(){
 dotfiles_logo='
 ██████╗  ██████╗ ████████╗███████╗██╗██╗     ███████╗███████╗
 ██╔══██╗██╔═══██╗╚══██╔══╝██╔════╝██║██║     ██╔════╝██╔════╝
@@ -168,7 +168,7 @@ install_python(){
     done
 }
 
-init
+ini
 download_dotfiles
 create_symbolic_links
 platform_dependent_setup
