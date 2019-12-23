@@ -34,7 +34,7 @@ create_symbolic_links(){
     done
 }
 
-setup(){
+ platform_dependent_setup(){
     echo 'Setup for each OS'
     if [ "$(uname)" == "Darwin" ]; then
         echo 'mac'
@@ -148,6 +148,6 @@ install_python(){
 echo "Start Setup"
 download_dotfiles
 create_symbolic_links
-setup
+platform_dependent_setup
 install_python
 echo "Finish Setup"
