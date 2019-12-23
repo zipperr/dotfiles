@@ -1,5 +1,35 @@
 #!/bin/bash
 
+init(){
+dotfiles_logo='
+██████╗  ██████╗ ████████╗███████╗██╗██╗     ███████╗███████╗
+██╔══██╗██╔═══██╗╚══██╔══╝██╔════╝██║██║     ██╔════╝██╔════╝
+██║  ██║██║   ██║   ██║   █████╗  ██║██║     █████╗  ███████╗
+██║  ██║██║   ██║   ██║   ██╔══╝  ██║██║     ██╔══╝  ╚════██║
+██████╔╝╚██████╔╝   ██║   ██║     ██║███████╗███████╗███████║
+╚═════╝  ╚═════╝    ╚═╝   ╚═╝     ╚═╝╚══════╝╚══════╝╚══════╝
+*** WHAT IS INSIDE? ***
+1. Download my dotfiles from https://github.com/takuzoo3868/dotfiles
+2. Symlinking dotfiles to your home directory
+3. Install packages
+   [coreutils bash vim git python tmux curl fish]
+*** HOW TO INSTALL? ***
+See the README for documentation.
+Licensed under the MIT license.  
+'
+
+echo   "$dotfiles_logo"
+echo ""
+read -p "$(warn '(U^w^) < Are you sure you want to install it? [y/N] ')" -n 1 -r
+
+
+if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+  echo ""
+  error 'Installation failed. Nothing changed.'
+  exit 1
+fi
+}
+
 download_dotfiles() {
     echo 'Download Dotfiles'
     REPOSITORY_NAME="dotfiles"
@@ -146,6 +176,7 @@ install_python(){
 }
 
 echo "Start Setup"
+init
 download_dotfiles
 create_symbolic_links
 platform_dependent_setup
