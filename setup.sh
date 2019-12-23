@@ -20,9 +20,7 @@ Licensed under the MIT license.
 
 echo   "$dotfiles_logo"
 echo ""
-read -p "$(warn '(U^w^) < Are you sure you want to install it? [y/N] ')" -n 1 -r
-
-
+read -p "$('(U^w^) < Are you sure you want to install it? [y/N] ')" -n 1 -r
 if [[ ! $REPLY =~ ^[Yy]$ ]]; then
   echo ""
   error 'Installation failed. Nothing changed.'
