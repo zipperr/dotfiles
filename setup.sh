@@ -2,7 +2,7 @@
 
 download_dotfiles() {
     echo 'Download Dotfiles'
-    REPOSITORY_NAME="OneLineDotfiles"
+    REPOSITORY_NAME="dotfiles"
     REPOSITORY_URL="https://github.com/zipperr/"$REPOSITORY_NAME
     DOTFILES_PATH="$HOME/$REPOSITORY_NAME"
 
@@ -47,7 +47,6 @@ setup(){
     if [ "$(uname)" == "Darwin" ]; then
         echo 'mac'
         ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-        cd $DOTFILES_PATH
         brew tap Homebrew/bundle
         brew bundle
         chsh -s /bin/zsh
@@ -94,7 +93,6 @@ setup(){
         echo 'windows'
     elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
         echo 'linux'
-        cd $DOTFILES_PATH
         sudo apt-get update && sudo apt-get -y dist-upgrade && sudo apt-get -y autoremove && sudo apt-get autoclean
         sudo apt-get -y install zsh vim git make python3 python w3m
         sudo apt-get -y install gcc cpp g++ perl ruby node.js lua
