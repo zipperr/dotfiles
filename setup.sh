@@ -20,6 +20,7 @@ Licensed under the MIT license.
 echo "$dotfiles_logo"
 echo ""
 read -p "$(echo '(U^w^) < Are you sure you want to install it? [y/N] ')" -n 1 -r
+echo ""
 if [[ ! $REPLY =~ ^[Yy]$ ]]; then
   echo ""
   exit 1
