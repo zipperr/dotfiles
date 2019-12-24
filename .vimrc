@@ -412,6 +412,11 @@ noremap gk k
 noremap <C-f> /
 noremap <Tab> %
 noremap <C-k><C-d> ggVG=
+if (executable('zsh'))
+    noremap <C-y> :vert terminal ++close zsh<CR>
+else
+    noremap <C-y> :vert terminal ++close bash<CR>
+endif
 "NormalMode
 nnoremap <C-l> :<C-u>nohlsearch<CR><C-l>
 nnoremap n nzz
