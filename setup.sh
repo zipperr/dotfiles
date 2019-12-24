@@ -65,6 +65,7 @@ create_symbolic_links(){
         ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
         brew tap Homebrew/bundle
         brew bundle --global --no-lock
+        nmp install gtop -g
         chsh -s /bin/zsh
         sudo nvram SystemAudioVolume=%00
         defaults write NSGlobalDomain AppleShowAllExtensions -bool true
@@ -112,8 +113,9 @@ create_symbolic_links(){
     elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
         echo 'linux'
         sudo apt-get update && sudo apt-get -y dist-upgrade && sudo apt-get -y autoremove && sudo apt-get autoclean
-        sudo apt-get -y install zsh vim git make python3 python w3m
+        sudo apt-get -y install zsh vim git make python3 python w3m tmux ranger mps-youtube
         sudo apt-get -y install gcc cpp g++ perl ruby node.js lua
+        npm install -g gtop
         chsh -s /usr/bin/zsh
         localedef -f UTF-8 -i ja_JP ja_JP.UTF-8
     fi

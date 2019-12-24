@@ -160,3 +160,11 @@ export PATH="$JAVA_HOME/bin:$PATH"
 
 export PATH_TO_FX="/Library/Java/JavaVirtualMachines/javafx-sdk-11.0.2/lib"
 export PATH="$PATH_TO_FX:$PATH"
+
+if [ -z $TMUX ]; then
+  if $(tmux has-session); then
+    tmux attach
+  else
+    tmux
+  fi
+fi
