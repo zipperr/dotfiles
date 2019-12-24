@@ -65,7 +65,7 @@ create_symbolic_links(){
         ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
         brew tap Homebrew/bundle
         brew bundle --global --no-lock
-        nmp install gtop -g
+        npm install gtop -g
         chsh -s /bin/zsh
         sudo nvram SystemAudioVolume=%00
         defaults write NSGlobalDomain AppleShowAllExtensions -bool true
