@@ -199,6 +199,7 @@ let g:unite_source_menu_menus.shortcut.command_candidates = [
             \[ '[w3m]Wiki',              'W3mVSplit https://ja.wikipedia.org'],
             \[ '[w3m]Google',            'W3mVSplit https://www.google.co.jp'],
             \[ '[Twitter]Timeline',      'FriendsTwitter'],
+            \[ '[Twitter]Replie',        'RepliesTwitter'],
             \[ '[Twitter]Tweet',         'PosttoTwitter'],
             \[ '[Twitter]Setup',         'SetLoginTwitter'],
             \[ '[File]Tab > Space',      'set expandtab|retab 4'],
