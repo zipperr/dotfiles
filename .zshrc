@@ -226,7 +226,7 @@ export PATH_TO_FX="/Library/Java/JavaVirtualMachines/javafx-sdk-11.0.2/lib"
 export PATH="$PATH_TO_FX:$PATH"
 
 #### tmux ####
-if [ -x `which tmux` ]; then
+if [ `which tmux > /dev/null 2>&1` ]; then
     if [ -z $TMUX ]; then
         if $(tmux has-session); then
             tmux attach
