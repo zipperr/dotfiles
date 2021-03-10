@@ -162,7 +162,7 @@ if has('mac')
 elseif (has('win64') || has('win32unix') || has('win32'))
     " let twitvim_browser_cmd = '/c/Program Files (x86)/Google/Chrome/Application/chrome.exe'
 endif
-nnoremap <S-t> :SerchTwitter 
+nnoremap <S-t> :SearchTwitter<CR>
 nnoremap <C-t> :40vnew<CR>:FriendsTwitter<CR><C-w>j:q<CR>
 nnoremap <S-C-t> :PosttoTwitter<CR>
 nnoremap <Leader>t :RefreshTwitter<CR>
