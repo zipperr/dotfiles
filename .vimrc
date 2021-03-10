@@ -162,8 +162,9 @@ if has('mac')
 elseif (has('win64') || has('win32unix') || has('win32'))
     " let twitvim_browser_cmd = '/c/Program Files (x86)/Google/Chrome/Application/chrome.exe'
 endif
+nnoremap <S-t> :SerchTwitter 
 nnoremap <C-t> :40vnew<CR>:FriendsTwitter<CR><C-w>j:q<CR>
-nnoremap T :PosttoTwitter<CR>
+nnoremap <S-C-t> :PosttoTwitter<CR>
 nnoremap <Leader>t :RefreshTwitter<CR>
 autocmd vimrc FileType twitvim call s:twitvim_my_settings()
 function! s:twitvim_my_settings()
