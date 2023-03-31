@@ -55,7 +55,7 @@ create_symbolic_links(){
         [[ ${f} = ".git" ]] && continue
         [[ ${f} = ".gitignore" ]] && continue
         rm -f $HOME/${f}
-        ln -sf $DOTFILES_PATH/${f} $HOME/${f}
+        ln -fv $DOTFILES_PATH/${f} $HOME/${f}
     done
 }
 
