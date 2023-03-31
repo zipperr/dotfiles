@@ -39,6 +39,7 @@ if dein#load_state(s:dein_dir)
     call dein#add('twitvim/twitvim')            " Twitter
     call dein#add('yuratomo/w3m.vim')           " w3m
     call dein#add('tyru/open-browser.vim')      " GUIブラウザ起動
+    call dein#add('aduros/ai.vim')      " GUIブラウザ起動
     call dein#end()
     call dein#save_state()
 endif
