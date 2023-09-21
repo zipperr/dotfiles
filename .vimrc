@@ -36,10 +36,11 @@ if dein#load_state(s:dein_dir)
     call dein#add('maximbaz/lightline-ale')     " ステータスラインにエラー数を表示
     call dein#add('Yggdroot/indentLine')        " インデント可視化
     call dein#add('morhetz/gruvbox')            " カラースキーマ
-    call dein#add('twitvim/twitvim')            " Twitter
     call dein#add('yuratomo/w3m.vim')           " w3m
     call dein#add('tyru/open-browser.vim')      " GUIブラウザ起動
-    call dein#add('aduros/ai.vim')      " GUIブラウザ起動
+    if has('python3')
+        call dein#add('CoderCookE/vim-chatgpt') " ChatGPT
+    endif
     call dein#end()
     call dein#save_state()
 endif
@@ -154,25 +155,6 @@ endif
 "}}}
 "{{{----- AutoClose -----
 let g:AutoClosePairs_add = "<> |"" |'' |"
-"}}}
-"{{{----- Twitvim -----
-let twitvim_count = 100
-let twitvim_token_file = expand('~/.vim/.twitvim.token')
-if has('mac')
-    let twitvim_browser_cmd = 'open'
-elseif (has('win64') || has('win32unix') || has('win32'))
-    " let twitvim_browser_cmd = '/c/Program Files (x86)/Google/Chrome/Application/chrome.exe'
-endif
-nnoremap <S-t> :SearchTwitter<CR>
-nnoremap <C-t> :40vnew<CR>:FriendsTwitter<CR><C-w>j:q<CR>
-nnoremap <S-C-t> :PosttoTwitter<CR>
-nnoremap <Leader>t :RefreshTwitter<CR>
-autocmd vimrc FileType twitvim call s:twitvim_my_settings()
-function! s:twitvim_my_settings()
-    set nonumber
-    set wrap
-    set whichwrap=b,s,h,l,<,>,[,]
-endfunction
 "}}}
 "{{{----- Unite -----
 autocmd vimrc FileType unite set noequalalways
@@ -299,8 +281,10 @@ endif
 "}}}
 "{{{----- ALE -----
 let g:ale_lint_on_save = 1
+let g:ale_lint_on_insert_leave = 1
 let g:ale_lint_on_text_changed = 0
 let g:ale_lint_on_enter = 0
+let g:ale_python_flake8_options = '--ignore=E501,W503'
 nnoremap <C-k> <Plug>(ale_nprevious_wrap)
 nnoremap <C-j> <Plug>(ale_next_wrap)
 "}}}
@@ -334,6 +318,17 @@ autocmd vimrc BufNewFile *.yml                      execute s:load_templates_com
 "{{{----- Openbrowser -----
 let g:openbrowser_use_vimproc=0
 nnoremap <Leader>h :OpenBrowserSearch<Space>
+"}}}
+"{{{----- vim-chatgpt -----
+let g:openai_api_key=''
+let g:chat_gpt_max_tokens=2000
+let g:chat_gpt_model='gpt-4'
+let g:chat_gpt_session_mode=1
+let g:chat_gpt_temperature = 0.7
+let g:chat_gpt_lang = 'Japanese'
+let g:chat_gpt_split_direction = 'vertical'
+vmap <S-t> <Plug>(chatgpt-menu)
+nnoremap <S-t> :Ask 
 "}}}
 "----- General Settings -----
 set fileencodings=utf-8,cp932,euc-jp,sjis
@@ -623,3 +618,5 @@ function! CloseAnyOther()
         endif
     endfor
 endfunction
+
+
