@@ -618,5 +618,3 @@ function! CloseAnyOther()
         endif
     endfor
 endfunction
-
-
