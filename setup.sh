@@ -117,7 +117,6 @@ create_symbolic_links(){
         sudo apt-get -y install vim
         sudo apt-get -y install git
         chsh -s /usr/bin/zsh
-        localedef -f UTF-8 -i ja_JP ja_JP.UTF-8
     fi
 }
 
