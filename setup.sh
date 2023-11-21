@@ -113,76 +113,16 @@ create_symbolic_links(){
     elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
         echo 'linux'
         sudo apt-get update && sudo apt-get -y dist-upgrade && sudo apt-get -y autoremove && sudo apt-get autoclean
-        sudo apt-get -y install zsh vim git make python3 python w3m tmux ranger mps-youtube
-        sudo apt-get -y install gcc cpp g++ perl ruby node.js lua
-        npm install -g gtop
+        sudo apt-get -y install zsh
+        sudo apt-get -y install vim
+        sudo apt-get -y install git
         chsh -s /usr/bin/zsh
         localedef -f UTF-8 -i ja_JP ja_JP.UTF-8
     fi
 }
 
-install_python(){
-    while true;do
-        echo "Start python3.7.0 install"
-        echo "Type 'y' or 'n'"
-        read answer
-        case $answer in
-            y)
-                if [ "$(uname)" == "Darwin" ]; then
-                    if [ `which pyenv` ]; then
-                        pyenv install -v 3.7.0
-                        pyenv global 3.7.0
-                    fi
-                    if [ `which pip` ]; then
-                        pip install --upgrade pip
-                        pip install numpy
-                        pip install Flask
-                        pip install vim-vint
-                        pip install flask-socketIO
-                    fi
-                elif [ "$(expr substr $(uname -s) 1 5)" == "MINGW" ]; then
-                    if [ `which pacman` ]; then
-                        pacman -S python3 python3-pip --noconfirm
-                    fi
-                    if [ `which pip` ]; then
-                        pip install --upgrade pip
-                        pip install Flask
-                        pip install vim-vint
-                        pip install --user mps-youtube youtube-dl
-                    fi
-                elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-                    if [ `which git` ]; then
-                        git clone https://github.com/pyenv/pyenv.git ~/.pyenv
-                        sudo apt-get -y install git gcc make openssl libssl-dev libbz2-dev libreadline-dev libsqlite3-dev libffi-dev
-                        pyenv install -v 3.7.0
-                        pyenv global 3.7.0
-                    fi
-                    if [ `which pip` ]; then
-                        pip install --upgrade pip
-                        pip install numpy
-                        pip install Flask
-                        pip install vim-vint
-                        pip install flask-socketIO
-                        pip install Flask-MySQL
-                        pip install picamera
-                        pip install --upgrade setuptools
-                        pip install flask-bootstrap
-                    fi
-                fi
-                break
-                ;;
-            n)
-                break
-                ;;
-            *)
-                echo -e "cannot understand $answer.\n"
-                ;;
-        esac
-    done
-}
 
 ini
 download_dotfiles
 create_symbolic_links
 platform_dependent_setup
-install_python

@@ -36,11 +36,10 @@ if dein#load_state(s:dein_dir)
     call dein#add('maximbaz/lightline-ale')     " ステータスラインにエラー数を表示
     call dein#add('Yggdroot/indentLine')        " インデント可視化
     call dein#add('morhetz/gruvbox')            " カラースキーマ
-    call dein#add('yuratomo/w3m.vim')           " w3m
-    call dein#add('tyru/open-browser.vim')      " GUIブラウザ起動
-    if has('python3')
-        call dein#add('CoderCookE/vim-chatgpt') " ChatGPT
+    if (has('win64') || has('win32unix') || has('win32'))
+        call dein#add('yuratomo/w3m.vim')       " w3m
     endif
+    call dein#add('tyru/open-browser.vim')      " GUIブラウザ起動
     call dein#end()
     call dein#save_state()
 endif
@@ -273,9 +272,9 @@ let g:switch_custom_definitions =
             \]
 "}}}
 "{{{----- W3m -----
+if (has('win64') || has('win32unix') || has('win32'))
 nnoremap <silent><C-g> :W3mVSplit<CR>
 let g:w3m#homepage = 'http://www.google.co.jp/'
-if (has('win64') || has('win32unix') || has('win32'))
     let g:w3m#command = '/c/Users/'.$USERNAME.'/dotfiles/w3m.exe'
 endif
 "}}}
@@ -318,17 +317,6 @@ autocmd vimrc BufNewFile *.yml                      execute s:load_templates_com
 "{{{----- Openbrowser -----
 let g:openbrowser_use_vimproc=0
 nnoremap <Leader>h :OpenBrowserSearch<Space>
-"}}}
-"{{{----- vim-chatgpt -----
-let g:openai_api_key=''
-let g:chat_gpt_max_tokens=2000
-let g:chat_gpt_model='gpt-4'
-let g:chat_gpt_session_mode=1
-let g:chat_gpt_temperature = 0.7
-let g:chat_gpt_lang = 'Japanese'
-let g:chat_gpt_split_direction = 'vertical'
-vmap <S-t> <Plug>(chatgpt-menu)
-nnoremap <S-t> :Ask 
 "}}}
 "----- General Settings -----
 set fileencodings=utf-8,cp932,euc-jp,sjis
